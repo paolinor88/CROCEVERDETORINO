@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Paolo Randone">
+    <title>Template attivazione utenza</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h2 style="color: forestgreen">Benvenuto {{nome}} {{cognome}}</h2>
+        <p style="color: forestgreen">Da questo momento puoi accedere al portale tramite l'indirizzo <a href="http://croceverde.org/gestionale">http://croceverde.org/gestionale</a></p>
+        <h5 style="color: forestgreen">MATRICOLA: <strong>{{id}}</strong></h5>
+        <h5 style="color: forestgreen">PASSWORD: <strong>{{password}}</strong></h5>
+        <p style="color:red;">La password è stata generata automaticamente, conservala!</p>
+        <hr>
+        <h6 style="color:#aaaaaa">CONFIDENTIALITY NOTICE: The content of this email is confidential and intended for the recipient specified in message only. It is strictly forbidden to share any part of this message with any third party, without a written consent of the sender. If you received this message by mistake, please delete it and <a href="mailto:mail@paolorandone.it">contact us.</a></h6>
+    </div>
+</div>
+</body>
+</html>

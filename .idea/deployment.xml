@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="croceverde.org">
+    <serverData>
+      <paths name="croceverde.org">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/doc/source" />
+            <excludedPath local="true" path="$PROJECT_DIR$/doc/admin" />
+            <excludedPath path="/doc/admin" />
+            <excludedPath path="/doc/thumbs" />
+            <excludedPath path="/doc/user" />
+            <excludedPath local="true" path="$PROJECT_DIR$/doc/source" />
+            <excludedPath local="true" path="$PROJECT_DIR$/doc/thumbs" />
+            <excludedPath local="true" path="$PROJECT_DIR$/doc/user" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

@@ -1,0 +1,45 @@
+[19-May-2020 03:42:11 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/magazzino/item.php:27
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/item.php on line 27
+[22-May-2020 11:45:08 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/json.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/json.php on line 7
+[23-May-2020 09:21:27 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/magazzino.php:150
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 150
+[23-May-2020 09:21:41 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/magazzino.php:150
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 150
+[23-May-2020 09:48:40 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/magazzino.php:150
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 150
+[23-May-2020 10:42:54 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/magazzino.php:150
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 150
+[23-May-2020 10:43:13 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/magazzino.php:150
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 150
+[23-May-2020 10:43:35 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/magazzino/magazzino.php:150
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 150
+[24-May-2020 11:39:55 CST6CDT] PHP Recoverable fatal error:  Object of class DateTime could not be converted to string in /home/massi369/public_html/gestionale/magazzino/magazzino.php on line 174
+[28-May-2020 14:07:51 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function get_user_by_id() in /home/massi369/public_html/gestionale/magazzino/modal.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/modal.php on line 3
+[31-May-2020 02:34:06 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/magazzino/modal.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/modal.php on line 5
+[31-May-2020 02:34:11 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/magazzino/modal.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/magazzino/modal.php on line 5

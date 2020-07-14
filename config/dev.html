@@ -1,0 +1,27 @@
+
+<!-- CSS -->
+<link rel="stylesheet" href="../config/css/bootstrap.min.css"> <!-- 4.4.1 -->
+<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<link rel="stylesheet" href="../config/css/custom.css">
+<link rel='stylesheet' href="../config/css/fullcalendar.css" />
+
+
+<!-- JS Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="../config/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script src="../config/js/moment.min.js"></script>
+
+<script src="../config/js/datepicker-it.js"></script>
+
+
+<td>"."<a href=\"https://".$_SERVER['HTTP_HOST']."/gestionale/magazzino/item.php?id=".$ciclo['id']."\" class=\"btn btn-sm btn-outline-dark\"><i class=\"fas fa-search\"></i></a>"."</td>
+<input type="text" class="form-control form-control-sm" id="scadenza" name="scadenza" value="<?$start=date_create($modifica['scadenza']); echo date_format($start, 'd-m-Y')?>">
+
+
+<td><form><a href=\"modal.php?id=".$ciclo['id']."\">".$ciclo['quantita']."</a></form></td>

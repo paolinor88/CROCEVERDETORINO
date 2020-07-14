@@ -1,0 +1,109 @@
+[26-Feb-2020 06:47:53 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:171
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 171
+[26-Feb-2020 06:50:56 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:51:19 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:51:39 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:52:07 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:53:33 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:167
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 167
+[26-Feb-2020 06:58:13 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:167
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 167
+[26-Feb-2020 06:59:32 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:159
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 159
+[26-Feb-2020 07:03:11 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:03:16 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:10:48 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:10:55 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:11:08 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:13:33 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:20:53 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:154
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 154
+[26-Feb-2020 07:21:46 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:154
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 154
+[02-Mar-2020 03:50:23 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:269
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 269
+[02-Mar-2020 03:51:24 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:269
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 269
+[02-Mar-2020 10:28:01 CST6CDT] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home/massi369/public_html/gestionale/checklist/new.php on line 748
+[02-Mar-2020 12:42:49 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[03-Mar-2020 00:39:50 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[03-Mar-2020 02:14:48 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[06-Mar-2020 04:49:15 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[10-Mar-2020 13:24:00 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:281
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 281
+[10-Mar-2020 13:25:25 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:281
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 281
+[10-Mar-2020 13:29:11 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:285
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 285
+[03-May-2020 01:39:05 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:271
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 271
+[03-May-2020 09:33:20 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:270
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 270
