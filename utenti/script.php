@@ -5,7 +5,7 @@
  */
 session_start();
 //connessione DB
-$connect=new PDO('mysql:host=localhost;dbname=massi369_gestionale', 'massi369', '@Croceto99');
+$connect=new PDO('mysql:host=localhost;dbname=massi369_gestionale', 'urhqx7h4kxv84', 'Gestional€');
 //aggiungi operatore
 if(isset($_POST["ID"])){
     $query = "INSERT INTO utenti (ID, cognome, nome, email, cf, password, telefono, ciclico, livello, stato, sezione, squadra) VALUES (:ID, :cognome, :nome, :email, cf, :password, :telefono, :ciclico, :livello, :stato, :sezione, :squadra)";
