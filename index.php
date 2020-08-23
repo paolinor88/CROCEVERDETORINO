@@ -48,15 +48,23 @@ $dictionaryLivello = array (
     <title>Gestionale CV-TO - Home page</title>
 
     <link rel="stylesheet" href="config/css/bootstrap.min.css">
-    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="config/css/custom.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="config/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(function() {
+            $('#checklist').change(function() {
+                $("#checkbutton").prop("disabled", true);
+            })
+        })
+    </script>
 
 </head>
 <body>
@@ -71,9 +79,16 @@ $dictionaryLivello = array (
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<5){echo "disabled";};?>" href="utenti/index.php"><i class="fas fa-user"></i> Gestione utenze</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
-                <a role="button" class="btn btn-outline-cv btn-block" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
+                <a id="checkbutton" role="button" class="btn btn-outline-cv btn-block" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
+                <?
+                if ($id=='D9999'){
+                    echo "
+                <a role=\"button\" class=\"btn btn-outline-secondary btn-block\" href=\"https://login.siteground.com\" target='_blank'><i class=\"fas fa-question\"></i> ADMIN</a>
+                ";
+                }
+                ?>
                 <a role="button" class="btn btn-outline-danger btn-block" href="logout.php"><i class="fas fa-times"></i> Logout</a>
                 <!--<a role="button" class="btn btn-outline-cv btn-lg btn-block" href=""><i class="fas fa-tasks"></i> Checklist elettronica</a>-->
                 <!--<a role="button" class="btn btn-outline-cv btn-lg btn-block" href=""><i class="fas fa-ambulance"></i> Turni dipendenti</a>-->
