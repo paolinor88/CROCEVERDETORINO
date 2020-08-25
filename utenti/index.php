@@ -165,6 +165,7 @@ $pwd = generatePassword(8);
                 "language": {url: '../config/js/package.json'},
                 "order": [[1, "asc"]],
                 "pagingType": "simple",
+                "pageLength": 50,
                 "columnDefs": [
                     {
                         "targets": [ 0 ],
@@ -298,7 +299,7 @@ $pwd = generatePassword(8);
                 <?php
                 $select = $db->query("SELECT ID, cognome, nome, sezione, squadra, livello, stato FROM utenti WHERE cognome !='ADMIN'order by ID");
                 while($ciclo = $select->fetch_array()){
-                    if ($ciclo['stato']==0){
+                    if (($ciclo['stato']==0)&&($_SESSION['ID']!='D9999')){
                         echo "
 					<tr>
 						<td>"."<a href=\"https://".$_SERVER['HTTP_HOST']."/gestionale/utenti/schedaoperatore.php?ID=".$ciclo['ID']."\" class=\"btn btn-sm btn-outline-dark disabled\"><i class=\"far fa-times-circle\"></i></a>"."</td>

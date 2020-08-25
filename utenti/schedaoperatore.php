@@ -344,6 +344,10 @@ if(isset($_POST["resetpwd"])){
                             ?>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="xpassword">Password</label>
+                        <input id="xpassword" name="xpassword" type="<?if(($_SESSION['ID'])!='D9999'){echo "password";}else{echo "text";} ?>" class="form-control form-control-sm" <?=$readonly ?> value="<?=$modifica['password']?>">
+                    </div>
                     <button type="submit" id="resetpwd" name="resetpwd" class="btn btn-warning btn-sm"><i class="fas fa-sync-alt"></i> Reset password</button>
                     <hr>
                     <center>
