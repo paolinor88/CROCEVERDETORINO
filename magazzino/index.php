@@ -41,7 +41,7 @@ if (!isset($_SESSION["ID"])){
         <div class="col-md-3 col-md-offset-3"></div>
         <div class="text-center col-md-6">
             <div class="jumbotron">
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<3){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="request.php"><i class="fas fa-question"></i> Richiesta</a>
             </div>
         </div>
