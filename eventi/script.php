@@ -11,4 +11,16 @@ if (isset($_POST["id_utente"])){
             ':id_evento' => $_POST['id_evento']
         )
     );
-}
+};
+
+if(isset($_POST["id"]))
+{
+    $query = "DELETE FROM agenda WHERE id=:id";
+
+    $statement = $connect->prepare($query);
+    $statement->execute(
+        array(
+            ':id'  => $_POST['id'],
+        )
+    );
+};

@@ -1294,6 +1294,6 @@ be a descendant of the grid when it is being dragged.
 
 /*  Colors for events  */
 .mattino {background: darkorange; color: #fff; border: darkorange}
-.pomeriggio {background: forestgreen; color: #fff; border: forestgreen}
-.notte {background: darkblue; color: #fff; border: darkblue}
+.centrale {background: forestgreen; color: #fff; border: forestgreen}
+.pomeriggio {background: royalblue; color: #fff; border: royalblue}
 .confermato {background: lightgrey; color: #fff; border: lightgrey}

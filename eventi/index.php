@@ -14,7 +14,6 @@ include "../config/config.php";
 if (!isset($_SESSION["ID"])){
     header("Location: ../login.php");
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -44,7 +43,11 @@ if (!isset($_SESSION["ID"])){
             <div class="jumbotron">
                 <a role="button" class="btn btn-outline-cv btn-block" href="calendar.php"><i class="far fa-calendar-alt"></i> Calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION["livello"]<5){echo "disabled";};?>" href="event.php"><i class="fas fa-thumbtack"></i> Eventi</a>
-                <button  <?if(($_SESSION["livello"]!=1) && ($_SESSION["livello"]!=6)){echo "disabled";}?> type="button" class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal1"><i class="fas fa-search"></i> Cerca settimana</button>
+                <?if(($_SESSION["livello"]==1)||($_SESSION["livello"]>=4)){echo "
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"agenda.php\"><i class=\"far fa-calendar-check\"></i> Agenda</a>
+                     <button type=\"button\" class=\"btn btn-outline-cv btn-block\" data-toggle=\"modal\" data-target=\"#modal1\"><i class=\"fas fa-search\"></i> Cerca settimana</button>
+                ";}?>
+
             </div>
         </div>
     </div>
