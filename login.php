@@ -151,6 +151,10 @@ if(isset($_POST["activateBTN"])){
                     <div class="text-center">
                         <font size="-2"><a href="mailto: gestioneutenti@croceverde.org">Problemi di accesso?</a></font>
                     </div>
+                    <hr>
+                    <div class="text-center">
+                        <a style="color: #078f40" href="https://croceverde.org/gestionale/help.php" target="_blank">MANUALE UTENTE</a>
+                    </div>
                 </div>
             </div>
         </div>
