@@ -10,9 +10,9 @@
 session_start();
 //parametri DB
 include "../config/config.php";
-//login
-if (!isset($_SESSION["ID"])){
-    header("Location: ../login.php");
+//accesso consentito a logistica, segreteria e ADMIN
+if (($_SESSION["ID"])!='D9999'){
+    header("Location: ../error.php");
 }
 
 ?>

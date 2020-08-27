@@ -91,9 +91,10 @@ if(isset($_GET["provenienza"])){
 </div>
 
 </body>
-
-<!-- FOOTER -->
-<?php include('../config/include/footer.php'); ?>
+<? if (!isset($calendario)){
+    include('../config/include/footer.php');
+}
+?>
 
 
 </html>
