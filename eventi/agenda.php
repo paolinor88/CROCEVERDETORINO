@@ -76,11 +76,13 @@ if (!isset($_SESSION["ID"])){
                         end: nowDate.clone().add(8, 'days')
                     };
                 },
+                eventOrder: "event.id",
+                //aspectRatio: 5,
                 editable: true,
                 selectable: false,
                 displayEventEnd: false,
                 eventDurationEditable: false,
-                eventOverlap: false,
+                //eventOverlap: false,
                 defaultView: 'basicWeek',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
@@ -183,11 +185,13 @@ if (!isset($_SESSION["ID"])){
                         end: nowDate.clone().add(8, 'days')
                     };
                 },
+                eventOrder: "event.id",
+                //aspectRatio: 5,
                 editable: true,
                 selectable: false,
                 displayEventEnd: false,
                 eventDurationEditable: false,
-                eventOverlap: false,
+                //eventOverlap: false,
                 defaultView: 'basicWeek',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
