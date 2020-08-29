@@ -15,7 +15,7 @@ if(isset($_POST["user_id"]))
         )
     );
 };
-if(isset($_POST["stato"]))
+/*if(isset($_POST["stato"]))
 {
     $query = "UPDATE agenda SET stato=:stato WHERE id=:id";
 
@@ -26,6 +26,6 @@ if(isset($_POST["stato"]))
             ':stato'  => $_POST['stato']
         )
     );
-};
+};*/
 
 ?>

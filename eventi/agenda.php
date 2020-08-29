@@ -105,7 +105,8 @@ if (!isset($_SESSION["ID"])){
                         className: 'nolink',
                     }
                 ],
-                dayClick: function(date) { //INSERISCI DISPONIBILITA
+                //FUNZIONE DISABILITATA
+                /*dayClick: function(date) { //INSERISCI DISPONIBILITA
                     if(moment() <= date){
                         var day = date.format("YYYY-MM-DD");
                         $('#modal4').modal('show');
@@ -136,11 +137,11 @@ if (!isset($_SESSION["ID"])){
                     }else{
                         alert("BLOCCATO")
                     }
-                },
-                eventClick:function(event, jsEvent){ // assegna turno ADMIN
+                },*/
+                //FUNZIONE DISABILITATA
+                eventClick:function(event, jsEvent){
                     jsEvent.preventDefault();
-
-                    $('#modal2').modal('show');
+                    /*$('#modal2').modal('show');
                         $('#assignButton').off('click').on('click', function(){
                             $("#modal2").modal('hide');
                             var id = event.id;
@@ -156,8 +157,8 @@ if (!isset($_SESSION["ID"])){
                                     }
                                 })
                             }
-                        });
-                }//click
+                        });*/
+                }
             });
             var calendaruser = $('#calendaruser').fullCalendar({
                 eventRender: function (event, element){
@@ -211,6 +212,8 @@ if (!isset($_SESSION["ID"])){
                         googleCalendarId: 'rpiguh13hptg6bq4imt5udgjpo@group.calendar.google.com',
                         color: 'red',
                         className: 'nolink',
+                        rendering: 'background'
+
                     }
                 ],
                 dayClick: function(date) { //INSERISCI DISPONIBILITA
@@ -247,7 +250,9 @@ if (!isset($_SESSION["ID"])){
                 },
                 eventClick:function(event, jsEvent){ //elimina disponibilità
                     jsEvent.preventDefault();
-                    if(moment() <= event.start){
+                    var title = $("#cognomenome").val();
+                    //alert(event.start.format("YYYY-MM-DD"));
+                    if(((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD")))&&(title===event.title)){
                         swal({
                             text: "Sei sicuro di voler cancellare questa disponibilità?",
                             icon: "warning",
@@ -288,7 +293,7 @@ if (!isset($_SESSION["ID"])){
                             })
                     }else{
                         calendaruser.fullCalendar('refetchEvents');
-                        swal({title: "Tempo scaduto!", text:"Non è possibile modificare questa disponibilità", icon: "error", button:true, closeOnClickOutside: false});
+                        swal({title: "ERRORE!", text:"Non è possibile modificare questa disponibilità", icon: "error", button:true, closeOnClickOutside: false});
                     }
                 },
             });
@@ -312,7 +317,7 @@ if (!isset($_SESSION["ID"])){
     <div id='<?if ($_SESSION['livello']>=4)echo "agendacal"?>'</div>
     <div id='<?if ($_SESSION['livello']==1)echo "calendaruser"?>'</div>
 </div>
-<div align="center">Legenda: <span style="color: lightgrey" >Confermati</span>, <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
+<div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
 
 <!-- MODAL INSERIMENTO -->
 <div id="modal4" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
