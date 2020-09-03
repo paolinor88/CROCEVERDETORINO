@@ -56,3 +56,15 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 26
+[03-Sep-2020 03:28:10 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:36
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 36
+[03-Sep-2020 03:45:14 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:39
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 39
+[03-Sep-2020 04:09:12 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/test.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/test.php on line 19

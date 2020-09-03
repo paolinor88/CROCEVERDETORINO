@@ -10,59 +10,94 @@
 session_start();
 //parametri DB
 include "../config/config.php";
-//test super user
-if (($_SESSION["ID"])!='D9999'){
+//test
+if (!isset($_SESSION["ID"])){
     header("Location: ../error.php");
 }
-
+//nicename sezioni
+$dictionarySezione = array (
+    1 => "Torino",
+    2 => "Alpignano",
+    3 => "Borgaro/Caselle",
+    4 => "Ciriè",
+    5 => "San Mauro",
+    6 => "Venaria",
+    7 => "",
+);
+//nicename sezioni
+$dictionarySquadra = array (
+    1 => "Prima",
+    2 => "Seconda",
+    3 => "Terza",
+    4 => "Quarta",
+    5 => "Quinta",
+    6 => "Sesta",
+    7 => "Settima",
+    8 => "Ottava",
+    9 => "Nona",
+    10 => "Sabato",
+    11 => "Montagna",
+    12 => "Direzione",
+    13 => "Lunedì",
+    14 => "Martedì",
+    15 => "Mercoledì",
+    16 => "Giovedì",
+    17 => "Venerdì",
+    18 => "Diurno",
+    19 => "Giovani",
+    20 => "Servizi Generali",
+    21 => "Altro",
+    22 => "",
+);
+//input item
 if( isset($_POST['form_item_id_list']) ) {
     $array_item = explode( ',' , $_POST['form_item_id_list'] );
     foreach( $array_item as $id_item ) {
-        //echo $id_item . ' - ';
         if( isset($_POST['form_qt_' . $id_item]) and ($_POST['form_qt_' . $id_item] > 0) ) {
-
             $quantita = $_POST['form_qt_' . $id_item];
-
-            while ($elenco = mysqli_fetch_array($quantita));
-            {
-                echo $id_item .' - '. $quantita . ' - ';
-            }
-
-            /*
-            //PARAMETRI MAIL ->
-            //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
-            $destinatario='paolo.randone@yahoo.it';
-            $nome_mittente="Gestionale CVTO";
-            $mail_mittente="gestioneutenti@croceverde.org";
-            $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-            //$headers .= "Bcc: paolo.randone@yahoo.it\r\n";
-            //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
-            $headers .= "X-Mailer: PHP/" . phpversion();
-            $headers .= "MIME-Version: 1.0\r\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1";
-
-            $oggetto = 'TEST RICHIESTA MATERIALE';
-            $replace = array(
-                '{{id}}',
-                '{{cognome}}',
-                '{{nome}}',
-            );
-            $with = array(
-                $id,
-                $cognome,
-                $nome,
-            );
-
-            $corpo = file_get_contents('../config/template/request_item.html');
-            $corpo = str_replace ($replace, $with, $corpo);
-
-            mail($destinatario, $oggetto, $corpo, $headers);
-            // <- fine parametri mail
-            */
+            $prova = $db->query("SELECT nome, tipo FROM giacenza WHERE id='$id_item'")->fetch_array();
+            $tabella .= $prova['nome'].' '.$prova['tipo'].': '.$quantita.'<br>';
         }
     }
-    //echo $item_nome;
-    //var_dump($quantita);
+    //PARAMETRI MAIL ->
+    //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
+    $destinatario=$_SESSION['email'];
+    $nome_mittente="Gestionale CVTO";
+    $mail_mittente="gestioneutenti@croceverde.org";
+    $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+    //$headers .= "Bcc: paolo.randone@yahoo.it\r\n";
+    //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion();
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1";
+    $data = date("d-m-Y");
+    $replace = array(
+        '{{tabella}}',
+        '{{ID}}',
+        '{{cognome}}',
+        '{{nome}}',
+        '{{data}}',
+        '{{sezione}}',
+        '{{squadra}}',
+        '{{note}}',
+    );
+    $with = array(
+        $tabella,
+        $_SESSION['ID'],
+        $_SESSION['cognome'],
+        $_SESSION['nome'],
+        $data,
+        $dictionarySezione[$_SESSION['sezione']],
+        $dictionarySquadra[$_SESSION['squadra']],
+        $_POST['note'],
+    );
+    $corpo = file_get_contents('../config/template/request_item.html');
+    $corpo = str_replace ($replace, $with, $corpo);
+
+    $oggetto = 'RICHIESTA MATERIALE';
+
+    mail($destinatario, $oggetto, $corpo, $headers);
+    // <- fine parametri mail
 }
 
 ?>
@@ -87,7 +122,7 @@ if( isset($_POST['form_item_id_list']) ) {
             <li class="breadcrumb-item active" aria-current="page">Richiesta materiale</li>
         </ol>
     </nav>
-<!--    <form action="request.php" method="post">-->
+    <form action="request.php" method="post">
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -99,18 +134,21 @@ if( isset($_POST['form_item_id_list']) ) {
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        <form method="post" action="request.php">
                             <?php
-                            $sql = "SELECT DISTINCT id, nome, tipo FROM giacenza WHERE categoria='1' order by nome, tipo";
-                            $ret = mysqli_query( $db, $sql );
+                            $sql_1 = "SELECT DISTINCT id, nome, tipo FROM giacenza WHERE categoria='1' order by nome, tipo";
+                            $ret_1 = mysqli_query( $db, $sql_1 );
 
-                            $html_form_item = '';
+                            $html_form_item_1 = '';
                             $html_hidd_id_item = '';
 
-                            while ($row = mysqli_fetch_assoc($ret))
+                            while ($row = mysqli_fetch_assoc($ret_1))
                             {
-                                $html_hidd_id_item .= ( $html_hidd_id_item == '' ) ? $row['id'] : ',' . $row['id'];
-                                $html_form_item .=
+                                if (($html_hidd_id_item == '')) {
+                                    $html_hidd_id_item .= $row['id'];
+                                } else {
+                                    $html_hidd_id_item .= (',' . $row['id']);
+                                }
+                                $html_form_item_1 .=
                                     "
                                 <div class='form-group row'>
                                     <div class='col-sm-1'>
@@ -119,19 +157,11 @@ if( isset($_POST['form_item_id_list']) ) {
                                     <label class='col-sm-11 col-form-label'>{$row['nome']} {$row['tipo']}</label>
                                 </div>
                                 ";
-                                //$html_form_item .= "\r\n <label>{$row['nome']} {$row['tipo']}</label><br />quantita': <input type='text' name='form_qt_{$row['id']}' value='0' /><br /><br /> \r\n";
                             }
+
                             ?>
 
-                            <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item; ?>" />
-
-                            <?= $html_form_item; ?>
-                            <button type="submit" id="submit" name="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
-
-                        </form>
-
-
-
+                            <?= $html_form_item_1; ?>
                     </div>
                 </div>
             </div>
@@ -146,16 +176,20 @@ if( isset($_POST['form_item_id_list']) ) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
                             <?php
-                            $sql = "SELECT DISTINCT nome, tipo FROM giacenza WHERE categoria='4' order by nome, tipo";
-                            $ret = mysqli_query( $db, $sql );
+                            $sql_4 = "SELECT DISTINCT id, nome, tipo FROM giacenza WHERE categoria='4' order by nome, tipo";
+                            $ret_4 = mysqli_query( $db, $sql_4 );
 
-                            $html_form_item = '';
-                            $html_hidd_id_item = '';
+                            $html_form_item_4 = '';
+                            $html_hidd_id_item .= '';
 
-                            while ($row = mysqli_fetch_assoc($ret))
+                            while ($row = mysqli_fetch_assoc($ret_4))
                             {
-                                $html_hidd_id_item .= ( $html_hidd_id_item == '' ) ? $row['id'] : ',' . $row['id'];
-                                $html_form_item .=
+                                if (($html_hidd_id_item == '')) {
+                                    $html_hidd_id_item .= $row['id'];
+                                } else {
+                                    $html_hidd_id_item .= (',' . $row['id']);
+                                }
+                                $html_form_item_4 .=
                                     "
                                 <div class='form-group row'>
                                     <div class='col-sm-1'>
@@ -164,13 +198,10 @@ if( isset($_POST['form_item_id_list']) ) {
                                     <label class='col-sm-11 col-form-label'>{$row['nome']} {$row['tipo']}</label>
                                 </div>
                                 ";
-                                //$html_form_item .= "\r\n <label>{$row['nome']} {$row['tipo']}</label><br />quantita': <input type='text' name='form_qt_{$row['id']}' value='0' /><br /><br /> \r\n";
                             }
                             ?>
 
-                            <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item; ?>" />
-
-                            <?= $html_form_item; ?>
+                            <?= $html_form_item_4;?>
 
                         </div>
                 </div>
@@ -213,19 +244,13 @@ if( isset($_POST['form_item_id_list']) ) {
         </div>
         <br>
         <center>
-<!--            <button type="submit" id="submit" name="submit" class="btn btn-success"><i class="fas fa-check"></i></button>-->
+            <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item;?>" />
+
+            <button type="submit" id="submit" name="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
         </center>
-<!--    </form>-->
+    </form>
 </div>
 <br>
-<?
-/*//ottieni items
-if(isset($_POST["inviarichiesta"])&&(($_POST[$ciclo['nome'].' '.$ciclo['tipo']])!="")){
-    echo "OK";
-}else{
-    echo "ERRORE";
-}*/?>
-
 </body>
 <?php include('../config/include/footer.php'); ?>
 </html>
