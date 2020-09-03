@@ -41,6 +41,15 @@ if (isset($_POST["LoginBTN"])){
         echo "<script type='text/javascript'>alert('Accesso negato')</script>";
     }
 }
+//nicename accesso
+$dictionaryLivello = array (
+    1 => "Dipendente",
+    2 => "Volontario",
+    3 => "Altro",
+    4 => "Logistica",
+    5 => "Segreteria",
+    6 => "ADMIN",
+);
 //generatore password
 function generatePassword ( $length = 8 )
 {
@@ -68,9 +77,10 @@ if(isset($_POST["activateBTN"])){
     $querycheck = $db->query("SELECT cognome, nome FROM utenti WHERE ID='$id' AND cf='$cf'");
     if ($querycheck->num_rows>0){
         $query = $db->query("UPDATE utenti SET email='$email', stato=1, password='$password' WHERE ID='$id'");
-        $var = $db->query("SELECT cognome, nome FROM utenti WHERE ID='$id'")->fetch_array();
+        $var = $db->query("SELECT cognome, nome, livello FROM utenti WHERE ID='$id'")->fetch_array();
         $cognome = $var['cognome'];
         $nome = $var['nome'];
+        $livello =strtoupper($dictionaryLivello[$var['livello']]);
         $destinatario= $email;
         $oggetto="Attivazione utenza";
         $nome_mittente="Gestionale CVTO";
@@ -99,6 +109,35 @@ if(isset($_POST["activateBTN"])){
         mail($destinatario, $oggetto, $corpo, $headers);
 
         echo "<script type='text/javascript'>alert('Utente attivato con successo.\\nLe credenziali di accesso sono state inviate via mail')</script>";
+
+        if ($var){ // CC ADMIN
+            $destinatario= "gestioneutenti@croceverde.org";
+            $oggetto="Attivazione utenza $id $cognome $nome" ;
+            $nome_mittente="Gestionale CVTO";
+            $mail_mittente="gestioneutenti@croceverde.org";
+            $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+            $headers .= "X-Mailer: PHP/" . phpversion();
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html; charset=iso-8859-1";
+
+            $replace = array(
+                '{{id}}',
+                '{{livello}}',
+                '{{cognome}}',
+                '{{nome}}',
+            );
+            $with = array(
+                $id,
+                $livello,
+                $cognome,
+                $nome,
+            );
+
+            $corpo = file_get_contents('config/template/ccactive.html');
+            $corpo = str_replace ($replace, $with, $corpo);
+
+            mail($destinatario, $oggetto, $corpo, $headers);
+        } //end CC
 
     }else{
         echo "<script type='text/javascript'>alert('ERRORE')</script>";

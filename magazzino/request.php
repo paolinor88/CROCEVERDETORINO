@@ -10,9 +10,59 @@
 session_start();
 //parametri DB
 include "../config/config.php";
-//accesso consentito a logistica, segreteria e ADMIN
+//test super user
 if (($_SESSION["ID"])!='D9999'){
     header("Location: ../error.php");
+}
+
+if( isset($_POST['form_item_id_list']) ) {
+    $array_item = explode( ',' , $_POST['form_item_id_list'] );
+    foreach( $array_item as $id_item ) {
+        //echo $id_item . ' - ';
+        if( isset($_POST['form_qt_' . $id_item]) and ($_POST['form_qt_' . $id_item] > 0) ) {
+
+            $quantita = $_POST['form_qt_' . $id_item];
+
+            while ($elenco = mysqli_fetch_array($quantita));
+            {
+                echo $id_item .' - '. $quantita . ' - ';
+            }
+
+            /*
+            //PARAMETRI MAIL ->
+            //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
+            $destinatario='paolo.randone@yahoo.it';
+            $nome_mittente="Gestionale CVTO";
+            $mail_mittente="gestioneutenti@croceverde.org";
+            $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+            //$headers .= "Bcc: paolo.randone@yahoo.it\r\n";
+            //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+            $headers .= "X-Mailer: PHP/" . phpversion();
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html; charset=iso-8859-1";
+
+            $oggetto = 'TEST RICHIESTA MATERIALE';
+            $replace = array(
+                '{{id}}',
+                '{{cognome}}',
+                '{{nome}}',
+            );
+            $with = array(
+                $id,
+                $cognome,
+                $nome,
+            );
+
+            $corpo = file_get_contents('../config/template/request_item.html');
+            $corpo = str_replace ($replace, $with, $corpo);
+
+            mail($destinatario, $oggetto, $corpo, $headers);
+            // <- fine parametri mail
+            */
+        }
+    }
+    //echo $item_nome;
+    //var_dump($quantita);
 }
 
 ?>
@@ -37,7 +87,7 @@ if (($_SESSION["ID"])!='D9999'){
             <li class="breadcrumb-item active" aria-current="page">Richiesta materiale</li>
         </ol>
     </nav>
-    <form action="request.php" method="post">
+<!--    <form action="request.php" method="post">-->
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -49,24 +99,39 @@ if (($_SESSION["ID"])!='D9999'){
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        <?php
+                        <form method="post" action="request.php">
+                            <?php
+                            $sql = "SELECT DISTINCT id, nome, tipo FROM giacenza WHERE categoria='1' order by nome, tipo";
+                            $ret = mysqli_query( $db, $sql );
 
-                        $select = $db->query("SELECT DISTINCT nome, tipo FROM giacenza WHERE categoria='1' order by nome, tipo");
+                            $html_form_item = '';
+                            $html_hidd_id_item = '';
 
-                        while($ciclo = $select->fetch_array()){
-
-                            echo "
-                                    <div class=\"form-group row\">
-                                        <div class=\"col-sm-1\" >
-                                           <input type=\"text\" class=\"form-control form-control-sm oggetto\" name=\"".$ciclo['nome']." ".$ciclo['tipo']."\" value=''>
-                                        </div>
-                                        <label class=\"col-sm-11 col-form-label\" for=\"".$ciclo['nome']." ".$ciclo['tipo']."\">".$ciclo['nome']." ".$ciclo['tipo']."</label>
+                            while ($row = mysqli_fetch_assoc($ret))
+                            {
+                                $html_hidd_id_item .= ( $html_hidd_id_item == '' ) ? $row['id'] : ',' . $row['id'];
+                                $html_form_item .=
+                                    "
+                                <div class='form-group row'>
+                                    <div class='col-sm-1'>
+                                        <input type='text' class='form-control form-control-sm' name='form_qt_{$row['id']}' value='0' />
                                     </div>
-                                    ";
+                                    <label class='col-sm-11 col-form-label'>{$row['nome']} {$row['tipo']}</label>
+                                </div>
+                                ";
+                                //$html_form_item .= "\r\n <label>{$row['nome']} {$row['tipo']}</label><br />quantita': <input type='text' name='form_qt_{$row['id']}' value='0' /><br /><br /> \r\n";
+                            }
+                            ?>
 
-                        }
+                            <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item; ?>" />
 
-                        ?>
+                            <?= $html_form_item; ?>
+                            <button type="submit" id="submit" name="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+
+                        </form>
+
+
+
                     </div>
                 </div>
             </div>
@@ -79,26 +144,35 @@ if (($_SESSION["ID"])!='D9999'){
                     </h2>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <?php
+                        <div class="card-body">
+                            <?php
+                            $sql = "SELECT DISTINCT nome, tipo FROM giacenza WHERE categoria='4' order by nome, tipo";
+                            $ret = mysqli_query( $db, $sql );
 
-                        $select = $db->query("SELECT DISTINCT nome, tipo FROM giacenza WHERE categoria='4' order by nome, tipo");
+                            $html_form_item = '';
+                            $html_hidd_id_item = '';
 
-                        while($ciclo = $select->fetch_array()){
-
-                            echo "
-                                    <div class=\"form-group row\">
-                                        <div class=\"col-sm-1\">
-                                           <input type=\"text\" class=\"form-control form-control-sm\" id=\"".$ciclo['nome']." ".$ciclo['tipo']."\">
-                                        </div>
-                                        <label class=\"col-sm-11 col-form-label\" for=\"".$ciclo['nome']." ".$ciclo['tipo']."\">".$ciclo['nome']." ".$ciclo['tipo']."</label>
+                            while ($row = mysqli_fetch_assoc($ret))
+                            {
+                                $html_hidd_id_item .= ( $html_hidd_id_item == '' ) ? $row['id'] : ',' . $row['id'];
+                                $html_form_item .=
+                                    "
+                                <div class='form-group row'>
+                                    <div class='col-sm-1'>
+                                        <input type='text' class='form-control form-control-sm' name='form_qt_{$row['id']}' value='0' />
                                     </div>
-                                    ";
+                                    <label class='col-sm-11 col-form-label'>{$row['nome']} {$row['tipo']}</label>
+                                </div>
+                                ";
+                                //$html_form_item .= "\r\n <label>{$row['nome']} {$row['tipo']}</label><br />quantita': <input type='text' name='form_qt_{$row['id']}' value='0' /><br /><br /> \r\n";
+                            }
+                            ?>
 
-                        }
+                            <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item; ?>" />
 
-                        ?>
-                    </div>
+                            <?= $html_form_item; ?>
+
+                        </div>
                 </div>
             </div>
             <div class="card">
@@ -139,9 +213,9 @@ if (($_SESSION["ID"])!='D9999'){
         </div>
         <br>
         <center>
-            <button type="submit" id="inviarichiesta" name="inviarichiesta" class="btn btn-success"><i class="fas fa-check"></i></button>
+<!--            <button type="submit" id="submit" name="submit" class="btn btn-success"><i class="fas fa-check"></i></button>-->
         </center>
-    </form>
+<!--    </form>-->
 </div>
 <br>
 <?

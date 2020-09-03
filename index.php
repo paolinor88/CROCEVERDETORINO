@@ -78,7 +78,7 @@ $dictionaryLivello = array (
                 <h4 class="text-center" style="color: #078f40">Gestionale</h4>
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<3){echo "disabled";};?>" href="utenti/index.php"><i class="fas fa-user"></i> Gestione utenze</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";};?>" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";};?>" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
                 <a id="checkbutton" role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";};?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>

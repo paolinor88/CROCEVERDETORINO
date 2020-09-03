@@ -43,3 +43,16 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/massi369/public_html/gestionale/magazzino/modal.php on line 5
+[25-Aug-2020 11:46:22 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:57
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 57
+[27-Aug-2020 04:44:42 CST6CDT] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 19
+[27-Aug-2020 04:44:56 CST6CDT] PHP Parse error:  syntax error, unexpected '{' in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 18
+[30-Aug-2020 00:38:41 CST6CDT] PHP Parse error:  syntax error, unexpected '?>' in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 112
+[30-Aug-2020 10:09:57 CST6CDT] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/prova.php on line 29
+[02-Sep-2020 11:26:16 CST6CDT] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 65
+[02-Sep-2020 11:30:25 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 26

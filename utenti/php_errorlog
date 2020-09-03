@@ -62,3 +62,6 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/massi369/public_html/gestionale/utenti/index.php on line 203
+[25-Aug-2020 10:19:36 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/customer/www/croceverde.org/public_html/gestionale/utenti/schedaoperatore.php on line 349
+[25-Aug-2020 10:19:42 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/customer/www/croceverde.org/public_html/gestionale/utenti/schedaoperatore.php on line 349
+[25-Aug-2020 10:20:15 CST6CDT] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/customer/www/croceverde.org/public_html/gestionale/utenti/schedaoperatore.php on line 349
