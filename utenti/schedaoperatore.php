@@ -95,12 +95,12 @@ if(isset($_POST["update"])){
         $sezioned = $dictionarySezione[$_POST['xsezione']];
         $squadrad = $dictionarySquadra[$_POST['xsquadra']];
         //
-        $destinatario= $email;
-        $oggetto="Riepilogo informazioni";
+        $to= $email;
+        $subject="Riepilogo informazioni";
         $nome_mittente="Gestionale CVTO";
         $mail_mittente="gestioneutenti@croceverde.org";
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+        $headers .= "Bcc: ".$mail_mittente."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -127,7 +127,7 @@ if(isset($_POST["update"])){
         $corpo = file_get_contents('../config/template/reminder.html');
         $corpo = str_replace ($replace, $with, $corpo);
 
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
 
     }
 }
@@ -192,16 +192,17 @@ if(isset($_POST["resetpwd"])){
         $nome = strtoupper($nomeL);
         $password = $pwd;
         //
-        $destinatario= $email;
+        $to= $email;
         $nome_mittente="Gestionale CVTO";
         $mail_mittente="gestioneutenti@croceverde.org";
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+        $headers .= "Bcc: ".$mail_mittente."\r\n";
         //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
 
-        $oggetto="Reset password";
+        $subject="Reset password";
 
         $replace = array(
             '{{nome}}',
@@ -215,7 +216,7 @@ if(isset($_POST["resetpwd"])){
         $corpo = file_get_contents('../config/template/reset.html');
         $corpo = str_replace ($replace, $with, $corpo);
 
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
 
     }
 }

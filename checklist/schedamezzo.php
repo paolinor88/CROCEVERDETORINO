@@ -66,13 +66,14 @@ if(isset($_POST["stampalavaggi"])){
     for ($i=0;$i<$nwash;$i++){
         $elenco .= ($array[$i])."<br>";
     };
-
+    //PARAMETRI MAIL ->
     $now = date("Y-m-d");
-    $destinatario= $_SESSION['email'];
-    $oggetto="Elenco lavaggi auto $numeroauto";
+    $to= $_SESSION['email'];
+    $subject="Elenco lavaggi auto $numeroauto";
     $nome_mittente="Gestionale CVTO";
     $mail_mittente="gestioneutenti@croceverde.org";
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+    $headers .= "Bcc: ".$mail_mittente."\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -91,7 +92,7 @@ if(isset($_POST["stampalavaggi"])){
     $corpo = file_get_contents('../config/template/wash.html');
     $corpo = str_replace ($replace, $with, $corpo);
 
-    mail($destinatario, $oggetto, $corpo, $headers);
+    mail($to, $subject, $corpo, $headers);
 
     echo '<script type="text/javascript">
             alert("Riepilogo inviato con successo");
@@ -109,11 +110,12 @@ if(isset($_POST["stampacheck"])){
     };
 
     $now = date("Y-m-d");
-    $destinatario= $_SESSION['email'];
-    $oggetto="Elenco checklist auto $numeroauto";
+    $to= $_SESSION['email'];
+    $subject="Elenco checklist auto $numeroauto";
     $nome_mittente="Gestionale CVTO";
     $mail_mittente="gestioneutenti@croceverde.org";
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+    $headers .= "Bcc: ".$mail_mittente."\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -132,7 +134,7 @@ if(isset($_POST["stampacheck"])){
     $corpo = file_get_contents('../config/template/check.html');
     $corpo = str_replace ($replace, $with, $corpo);
 
-    mail($destinatario, $oggetto, $corpo, $headers);
+    mail($to, $subject, $corpo, $headers);
 
     echo '<script type="text/javascript">
         alert("Riepilogo inviato con successo");

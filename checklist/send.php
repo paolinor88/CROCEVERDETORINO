@@ -24,11 +24,11 @@ if(isset($_POST["IDMEZZO"])){
 
     //PARAMETRI MAIL ->
     //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
-    $destinatario=$email;
+    $to=$email;
     $nome_mittente="Gestionale CVTO";
     $mail_mittente="gestioneutenti@croceverde.org";
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    //$headers .= "Bcc: paolo.randone@yahoo.it\r\n";
+    $headers .= "Bcc: ".$to."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
@@ -55,7 +55,7 @@ if(isset($_POST["IDMEZZO"])){
         )
     );
 
-    $oggetto="Checklist auto $numeroauto";
+    $subject="Checklist auto $numeroauto";
     $replace = array(
         '{{numeroauto}}',
         '{{compilatore}}',
@@ -285,14 +285,14 @@ if(isset($_POST["IDMEZZO"])){
     if($tipo==2){   // MSA
         $corpo = file_get_contents('../config/template/msa.html');
         $corpo = str_replace ($replace, $with, $corpo);
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
     }elseif ($tipo==1){ // MSB
         $corpo = file_get_contents('../config/template/msb.html');
         $corpo = str_replace ($replace, $with, $corpo);
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
     }elseif ($tipo==3){ // 118
         $corpo = file_get_contents('../config/template/118.html');
         $corpo = str_replace ($replace, $with, $corpo);
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
     }
 };

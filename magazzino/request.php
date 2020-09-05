@@ -60,13 +60,14 @@ if( isset($_POST['form_item_id_list']) ) {
         }
     }
     //PARAMETRI MAIL ->
-    //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
-    $destinatario=$_SESSION['email'];
+    //$to='paolo.randone@yahoo.it';
+    $to='massimilianobechis@gmail.com';
+    //$destinatario=$_SESSION['email'];
     $nome_mittente="Gestionale CVTO";
     $mail_mittente="gestioneutenti@croceverde.org";
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    //$headers .= "Bcc: paolo.randone@yahoo.it\r\n";
-    //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+    $headers .= "Bcc: ".$mail_mittente."\r\n";
+    $headers .= "Reply-To: " .  $_SESSION['email'] . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -91,12 +92,17 @@ if( isset($_POST['form_item_id_list']) ) {
         $dictionarySquadra[$_SESSION['squadra']],
         $_POST['note'],
     );
-    $corpo = file_get_contents('../config/template/request_item.html');
-    $corpo = str_replace ($replace, $with, $corpo);
+    $message = file_get_contents('../config/template/request_item.html');
+    $corpo = str_replace ($replace, $with, $message);
 
-    $oggetto = 'RICHIESTA MATERIALE';
+    $subject = 'RICHIESTA MATERIALE';
 
-    mail($destinatario, $oggetto, $corpo, $headers);
+    mail($to, $subject, $corpo, $headers);
+    echo '<script type="text/javascript">
+        alert("La richiesta è stata inviata correttamente");
+        location.reload();
+        </script>';
+
     // <- fine parametri mail
 }
 
@@ -135,7 +141,12 @@ if( isset($_POST['form_item_id_list']) ) {
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                             <?php
-                            $sql_1 = "SELECT DISTINCT id, nome, tipo FROM giacenza WHERE categoria='1' order by nome, tipo";
+                            $sql_1 = "SELECT id, nome, tipo, SUM(quantita) AS quantita 
+                                      FROM giacenza 
+                                      WHERE categoria='1' 
+                                      AND quantita >'0' 
+                                      GROUP BY nome, tipo 
+                                      ORDER BY nome, tipo";
                             $ret_1 = mysqli_query( $db, $sql_1 );
 
                             $html_form_item_1 = '';
@@ -151,14 +162,14 @@ if( isset($_POST['form_item_id_list']) ) {
                                 $html_form_item_1 .=
                                     "
                                 <div class='form-group row'>
-                                    <div class='col-sm-1'>
-                                        <input type='text' class='form-control form-control-sm' name='form_qt_{$row['id']}' value='0' />
+                                    <div class='col-sm-2'>
+                                        <input type='number' class='form-control form-control-sm' name='form_qt_{$row['id']}' value='0' max='{$row['quantita']}' required/>
                                     </div>
-                                    <label class='col-sm-11 col-form-label'>{$row['nome']} {$row['tipo']}</label>
+                                    <label class='col-sm-10 col-form-label'>{$row['nome']} {$row['tipo']} <small class='text-muted'>(Disponibile: {$row['quantita']})</small></label>
                                 </div>
+                                
                                 ";
                             }
-
                             ?>
 
                             <?= $html_form_item_1; ?>
@@ -176,7 +187,12 @@ if( isset($_POST['form_item_id_list']) ) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
                             <?php
-                            $sql_4 = "SELECT DISTINCT id, nome, tipo FROM giacenza WHERE categoria='4' order by nome, tipo";
+                            $sql_4 = "SELECT id, nome, tipo, SUM(quantita) AS quantita 
+                                      FROM giacenza 
+                                      WHERE categoria='4' 
+                                      AND quantita >'0' 
+                                      GROUP BY nome, tipo 
+                                      ORDER BY nome, tipo";
                             $ret_4 = mysqli_query( $db, $sql_4 );
 
                             $html_form_item_4 = '';
@@ -192,10 +208,10 @@ if( isset($_POST['form_item_id_list']) ) {
                                 $html_form_item_4 .=
                                     "
                                 <div class='form-group row'>
-                                    <div class='col-sm-1'>
-                                        <input type='text' class='form-control form-control-sm' name='form_qt_{$row['id']}' value='0' />
+                                    <div class='col-sm-2'>
+                                        <input type='number' class='form-control form-control-sm' name='form_qt_{$row['id']}' value='0' max='{$row['quantita']}' required />
                                     </div>
-                                    <label class='col-sm-11 col-form-label'>{$row['nome']} {$row['tipo']}</label>
+                                    <label class='col-sm-10 col-form-label'>{$row['nome']} {$row['tipo']} <small class='text-muted'>(Disponibile: {$row['quantita']})</small></label>
                                 </div>
                                 ";
                             }

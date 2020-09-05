@@ -81,8 +81,8 @@ if(isset($_POST["activateBTN"])){
         $cognome = $var['cognome'];
         $nome = $var['nome'];
         $livello =strtoupper($dictionaryLivello[$var['livello']]);
-        $destinatario= $email;
-        $oggetto="Attivazione utenza";
+        $to= $email;
+        $subject="Attivazione utenza";
         $nome_mittente="Gestionale CVTO";
         $mail_mittente="gestioneutenti@croceverde.org";
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
@@ -106,13 +106,13 @@ if(isset($_POST["activateBTN"])){
         $corpo = file_get_contents('config/template/active.html');
         $corpo = str_replace ($replace, $with, $corpo);
 
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
 
         echo "<script type='text/javascript'>alert('Utente attivato con successo.\\nLe credenziali di accesso sono state inviate via mail')</script>";
 
         if ($var){ // CC ADMIN
-            $destinatario= "gestioneutenti@croceverde.org";
-            $oggetto="Attivazione utenza $id $cognome $nome" ;
+            $to= "gestioneutenti@croceverde.org";
+            $subject="Attivazione utenza $id $cognome $nome" ;
             $nome_mittente="Gestionale CVTO";
             $mail_mittente="gestioneutenti@croceverde.org";
             $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
@@ -136,7 +136,7 @@ if(isset($_POST["activateBTN"])){
             $corpo = file_get_contents('config/template/ccactive.html');
             $corpo = str_replace ($replace, $with, $corpo);
 
-            mail($destinatario, $oggetto, $corpo, $headers);
+            mail($to, $subject, $corpo, $headers);
         } //end CC
 
     }else{

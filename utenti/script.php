@@ -34,12 +34,12 @@ if(isset($_POST["ID"])){
         $nome = $_POST['nome'];
         $cognome = $_POST['cognome'];
         $password = $_POST['password'];
-        $destinatario= $email;
-        $oggetto="Attivazione utenza";
+        $to= $email;
+        $subject="Attivazione utenza";
         $nome_mittente="Gestionale CVTO";
         $mail_mittente="gestioneutenti@croceverde.org";
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+        $headers .= "Bcc: ".$mail_mittente."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -60,7 +60,7 @@ if(isset($_POST["ID"])){
         $corpo = file_get_contents('../config/template/active.html');
         $corpo = str_replace ($replace, $with, $corpo);
 
-        mail($destinatario, $oggetto, $corpo, $headers);
+        mail($to, $subject, $corpo, $headers);
 
     }
 }
