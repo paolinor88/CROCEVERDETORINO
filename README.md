@@ -3,9 +3,7 @@
 
 mail@paolorandone.it
 ---
-Version 1.1
-
-Changelog:
+Version 1.1 changelog:
 
 - new request item form
 - minor update
