@@ -3,6 +3,11 @@
 
 mail@paolorandone.it
 ---
+Version 1.2 changelog:
+
+- security update
+- login issue solved
+---
 Version 1.1 changelog:
 
 - new request item form
