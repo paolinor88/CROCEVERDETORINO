@@ -9,7 +9,7 @@
  */
 session_start();
 //parametri DB
-$connect=new PDO('mysql:host=localhost;dbname=massi369_gestionale', 'urhqx7h4kxv84', 'Gestional€');
+include "../config/pdo.php";
 //set session var
 $cognome = $_SESSION["cognome"];
 $nome = $_SESSION["nome"];

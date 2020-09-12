@@ -5,7 +5,7 @@
  */
 session_start();
 //connessione DB
-$connect=new PDO('mysql:host=localhost;dbname=massi369_gestionale', 'urhqx7h4kxv84', 'Gestional€');
+include "../config/pdo.php";
 // aggiungi mezzo
 if(isset($_POST["targa"])){
 
