@@ -72,3 +72,14 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 167
+[05-Sep-2020 01:56:40 CST6CDT] PHP Fatal error:  Cannot redeclare array_has_dupes() (previously declared in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:146) in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 146
+[05-Sep-2020 01:57:05 CST6CDT] PHP Parse error:  syntax error, unexpected '}' in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 149
+[05-Sep-2020 01:57:25 CST6CDT] PHP Parse error:  syntax error, unexpected '}' in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 149
+[05-Sep-2020 03:58:22 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:174
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 174
+[05-Sep-2020 03:58:22 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php:174
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 174

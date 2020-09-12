@@ -50,6 +50,41 @@ $dictionaryLivello = array (
     5 => "Segreteria",
     6 => "ADMIN",
 );
+//nicename sezioni
+$dictionarySezione = array (
+    1 => "Torino",
+    2 => "Alpignano",
+    3 => "Borgaro/Caselle",
+    4 => "Ciriè",
+    5 => "San Mauro",
+    6 => "Venaria",
+    7 => "",
+);
+//nicename sezioni
+$dictionarySquadra = array (
+    1 => "Prima",
+    2 => "Seconda",
+    3 => "Terza",
+    4 => "Quarta",
+    5 => "Quinta",
+    6 => "Sesta",
+    7 => "Settima",
+    8 => "Ottava",
+    9 => "Nona",
+    10 => "Sabato",
+    11 => "Montagna",
+    12 => "Direzione",
+    13 => "Lunedì",
+    14 => "Martedì",
+    15 => "Mercoledì",
+    16 => "Giovedì",
+    17 => "Venerdì",
+    18 => "Diurno",
+    19 => "Giovani",
+    20 => "Servizi Generali",
+    21 => "Altro",
+    22 => "",
+);
 //generatore password
 function generatePassword ( $length = 8 )
 {
@@ -77,15 +112,18 @@ if(isset($_POST["activateBTN"])){
     $querycheck = $db->query("SELECT cognome, nome FROM utenti WHERE ID='$id' AND cf='$cf'");
     if ($querycheck->num_rows>0){
         $query = $db->query("UPDATE utenti SET email='$email', stato=1, password='$password' WHERE ID='$id'");
-        $var = $db->query("SELECT cognome, nome, livello FROM utenti WHERE ID='$id'")->fetch_array();
+        $var = $db->query("SELECT cognome, nome, livello, sezione, squadra FROM utenti WHERE ID='$id'")->fetch_array();
         $cognome = $var['cognome'];
         $nome = $var['nome'];
         $livello =strtoupper($dictionaryLivello[$var['livello']]);
+        $sezione = $dictionarySezione[$var['sezione']];
+        $squadra = $dictionarySquadra[$var['squadra']];
         $to= $email;
         $subject="Attivazione utenza";
         $nome_mittente="Gestionale CVTO";
         $mail_mittente="gestioneutenti@croceverde.org";
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+        $headers .= "Bcc: ".$mail_mittente."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -95,12 +133,18 @@ if(isset($_POST["activateBTN"])){
             '{{password}}',
             '{{cognome}}',
             '{{nome}}',
+            '{{livello}}',
+            '{{sezione}}',
+            '{{squadra}}',
         );
         $with = array(
             $id,
             $password,
             $cognome,
             $nome,
+            $livello,
+            $sezione,
+            $squadra,
         );
 
         $corpo = file_get_contents('config/template/active.html');
@@ -108,14 +152,15 @@ if(isset($_POST["activateBTN"])){
 
         mail($to, $subject, $corpo, $headers);
 
-        echo "<script type='text/javascript'>alert('Utente attivato con successo.\\nLe credenziali di accesso sono state inviate via mail')</script>";
+        echo "<script type='text/javascript'>alert('Utente attivato con successo.\\nLe credenziali di accesso saranno inviate via mail entro 24 ore')</script>";
 
         if ($var){ // CC ADMIN
-            $to= "gestioneutenti@croceverde.org";
-            $subject="Attivazione utenza $id $cognome $nome" ;
+            $destinatario= "gestioneutenti@croceverde.org";
+            $oggetto="Attivazione utenza $id $cognome $nome" ;
             $nome_mittente="Gestionale CVTO";
             $mail_mittente="gestioneutenti@croceverde.org";
             $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+            //$headers .= "Bcc: ".$destinatario."\r\n";
             $headers .= "X-Mailer: PHP/" . phpversion();
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -136,7 +181,7 @@ if(isset($_POST["activateBTN"])){
             $corpo = file_get_contents('config/template/ccactive.html');
             $corpo = str_replace ($replace, $with, $corpo);
 
-            mail($to, $subject, $corpo, $headers);
+            mail($destinatario, $oggetto, $corpo, $headers);
         } //end CC
 
     }else{
@@ -243,7 +288,7 @@ if(isset($_POST["activateBTN"])){
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:info@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 1.1</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:info@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 1.0</p></em></font>
     </div>
 </footer>
 </html>

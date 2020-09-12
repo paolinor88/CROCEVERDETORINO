@@ -65,6 +65,7 @@ if (isset($_GET["ID"])){
     $readonly = "readonly";
     $modifica = $db->query("SELECT * FROM utenti WHERE ID='$id'")->fetch_array();
 }
+//echo $modifica['sezione'];
 //aggiorna
 if(isset($_POST["update"])){
     $id = $_POST["xmatricola"];
