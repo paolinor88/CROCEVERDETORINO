@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -11,7 +11,7 @@ session_start();
 //parametri DB
 include "../config/config.php";
 //controllo LOGIN
-if (($_SESSION["livello"])<5){
+if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
 }
 //nicename livelli

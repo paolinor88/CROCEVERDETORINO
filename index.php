@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -58,13 +58,6 @@ $dictionaryLivello = array (
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
-    <script>
-        $(function() {
-            $('#checklist').change(function() {
-                $("#checkbutton").prop("disabled", true);
-            })
-        })
-    </script>
 
 </head>
 <body>
@@ -74,24 +67,22 @@ $dictionaryLivello = array (
         <div class="col-md-3 col-md-offset-3"></div>
         <div class="text-center col-md-6">
             <div class="jumbotron">
-                <div align="center"><img class="img-fluid" src="config/images/logo.png"/></div>
+                <div align="center"><img class="img-fluid" src="config/images/logo.png" alt="logoCVTO"/></div>
                 <h4 class="text-center" style="color: #078f40">Gestionale</h4>
                 <hr>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<3){echo "disabled";};?>" href="utenti/index.php"><i class="fas fa-user"></i> Gestione utenze</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";};?>" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
-                <a id="checkbutton" role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";};?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Gestione utenze</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";}?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
-                <a role="button" class="btn btn-outline-cv btn-block" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";};?>" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
                 <?
                 if ($id=='D9999'){
-                    echo "
-                <a role=\"button\" class=\"btn btn-outline-secondary btn-block\" href=\"https://login.siteground.com\" target='_blank'><i class=\"fas fa-question\"></i> ADMIN</a>
-                ";
+                    echo
+                    "<a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>
+                    ";
                 }
                 ?>
                 <a role="button" class="btn btn-outline-danger btn-block" href="logout.php"><i class="fas fa-times"></i> Logout</a>
-                <!--<a role="button" class="btn btn-outline-cv btn-lg btn-block" href=""><i class="fas fa-tasks"></i> Checklist elettronica</a>-->
-                <!--<a role="button" class="btn btn-outline-cv btn-lg btn-block" href=""><i class="fas fa-ambulance"></i> Turni dipendenti</a>-->
             </div>
         </div>
     </div>

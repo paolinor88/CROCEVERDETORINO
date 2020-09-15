@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -44,7 +44,7 @@ if (!isset($_SESSION["ID"])){
                 <a role="button" class="btn btn-outline-cv btn-block" href="calendar.php"><i class="far fa-calendar-alt"></i> Calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION["livello"]<5){echo "disabled";};?>" href="event.php"><i class="fas fa-thumbtack"></i> Eventi</a>
                 <?if(($_SESSION["livello"]==1)||($_SESSION["livello"]>=4)){echo "
-                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"agenda.php\"><i class=\"far fa-calendar-check\"></i> Agenda</a>
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"agenda.php\"><i class=\"far fa-calendar-check\"></i> Agenda straordinario</a>
                      <button type=\"button\" class=\"btn btn-outline-cv btn-block\" data-toggle=\"modal\" data-target=\"#modal1\"><i class=\"fas fa-search\"></i> Cerca settimana</button>
                 ";}?>
 

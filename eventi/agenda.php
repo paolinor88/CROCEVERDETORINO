@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -73,7 +73,7 @@ if (!isset($_SESSION["ID"])){
                 validRange: function(nowDate) {
                     return {
                         start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(8, 'days')
+                        end: nowDate.clone().add(1, 'months')
                     };
                 },
                 eventOrder: "event.id",
@@ -183,7 +183,7 @@ if (!isset($_SESSION["ID"])){
                 validRange: function(nowDate) {
                     return {
                         start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(8, 'days')
+                        end: nowDate.clone().add(1, 'months')
                     };
                 },
                 eventOrder: "event.id",
@@ -245,7 +245,7 @@ if (!isset($_SESSION["ID"])){
                             }
                         });
                     }else{
-                        alert("BLOCCATO")
+                        swal({title: "ERRORE!", text:"Non è una macchina del tempo!", icon: "error", button:true, closeOnClickOutside: false});
                     }
                 },
                 eventClick:function(event, jsEvent){ //elimina disponibilità
@@ -293,7 +293,7 @@ if (!isset($_SESSION["ID"])){
                             })
                     }else{
                         calendaruser.fullCalendar('refetchEvents');
-                        swal({title: "ERRORE!", text:"Non è possibile modificare questa disponibilità", icon: "error", button:true, closeOnClickOutside: false});
+                        swal({title: "ERRORE!", text:"Non puoi eseguire questa operazione", icon: "error", button:true, closeOnClickOutside: false});
                     }
                 },
             });

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -93,6 +93,7 @@ $dictionary = array (
                 "language": {url: '../config/js/package.json'},
                 "order": [[1, "asc"]],
                 "pagingType": "simple",
+                "pageLength": 50,
                 "columnDefs": [
                     {
                         "targets": [ 0 ],

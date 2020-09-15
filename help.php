@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -61,10 +61,10 @@ include "config/config.php";
                     <div class="tab-pane fade" id="v-pills-agenda" role="tabpanel" aria-labelledby="v-pills-agenda-tab">
                         <p>L'agenda dello straordinario è accessibile dal relativo pulsante della sezione "Calendario e eventi"</p>
                         <p>La visualizzazione è predefinita sulla settimana corrente. Attraverso i pulsanti freccia posti in alto si può scorrere l'agenda, oppure ottenere la visualizzazione mensile.</p>
-                        <p>Per inserire la propria disponibilità allo straordinario, è sufficiente cliccare sul giorno desiderato. Si apre una maschera che invita a selezionare il proprio turno: se, ad esempio, ci si vuole rendere disponibili allo straordinario del mattino perché impegnati in una postazione del pomeriggio, è necessario selezionare "pomeriggio" dal relativo menù a tendina.</p>
+                        <p>Per inserire la propria disponibilità allo straordinario, è sufficiente cliccare sul giorno desiderato. Si apre una maschera che invita a selezionare il proprio turno.</p>
                         <p>Per eliminare una disponibilità, è sufficiente cliccare sulla stessa e confermare tramite il popup.</p>
                         <div class="alert alert-warning" role="alert">
-                            ATTENZIONE: Non è possibile inserire disponibilità oltre sette giorni dalla data corrente; sono bloccati anche la modifica è l'inserimento di disponibilità antecedenti e corrispondenti alla data odierna </a>
+                            ATTENZIONE: Non è possibile inserire disponibilità oltre un mese dalla data corrente; sono bloccati anche la modifica è l'inserimento di disponibilità antecedenti e corrispondenti alla data odierna </a>
                         </div>
                     </div>
                 </div>

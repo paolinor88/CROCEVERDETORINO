@@ -3,16 +3,15 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.0
+ * @version    1.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
 session_start();
 //parametri DB
 include "../config/config.php";
-//controllo LOGIN
-//accesso consentito a segreteria e ADMIN
-if (($_SESSION["livello"])<5){
+//controllo accesso
+if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
 }
 //nicename livelli di accesso
@@ -34,7 +33,7 @@ $dictionarySezione = array (
     6 => "Venaria",
     7 => "",
 );
-//nicename sezioni
+//nicename squadre
 $dictionarySquadra = array (
     1 => "Prima",
     2 => "Seconda",
@@ -65,7 +64,6 @@ if (isset($_GET["ID"])){
     $readonly = "readonly";
     $modifica = $db->query("SELECT * FROM utenti WHERE ID='$id'")->fetch_array();
 }
-//echo $modifica['sezione'];
 //aggiorna
 if(isset($_POST["update"])){
     $id = $_POST["xmatricola"];
