@@ -3,6 +3,11 @@
 
 mail@paolorandone.it
 ---
+Version 1.3 changelog:
+
+- pubblic login
+- bug fixes
+---
 Version 1.2 changelog:
 
 - security update
