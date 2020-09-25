@@ -3,6 +3,10 @@
 
 mail@paolorandone.it
 ---
+Version 1.4 changelog:
+
+- file manager
+---
 Version 1.3 changelog:
 
 - pubblic login

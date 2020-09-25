@@ -28,6 +28,7 @@ include "../config/config.php";
         });
     </script>
 </head>
+<body>
 <!-- navbar -->
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
@@ -36,16 +37,13 @@ include "../config/config.php";
             <li class="breadcrumb-item active" aria-current="page">Documentazione</li>
         </ol>
     </nav>
+    <? if (($_SESSION['livello'])==6){
+        echo "<iframe src=\"adminfilemanager.php\" style=\"width:100%; height: 90vh; border: 0;\"></iframe>";
+    }else{
+        echo "<iframe src=\"userfilemanager.php\" style=\"width:100%; height: 90vh; border: 0;\"></iframe>";
+    }
+    ?>
 </div>
-<!-- iframe -->
-<body>
-<?php
-if (($_SESSION["livello"])<4) {
-    echo '<iframe src="./user/dialog.php" style="width:100%; height: 90vh; border: 0;"></iframe>';
-}else{
-    echo '<iframe src="./admin/dialog.php" style="width:100%; height: 90vh; border: 0;"></iframe>';
-}
-?>
 </body>
 <!-- FOOTER -->
 <footer class="container-fluid">

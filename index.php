@@ -71,17 +71,13 @@ $dictionaryLivello = array (
                 <h4 class="text-center" style="color: #078f40">Gestionale</h4>
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Gestione utenze</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
+                <a role="button" class="btn btn-outline-cv btn-block " href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";}?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";};?>" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
-                <?
-                if ($id=='D9999'){
-                    echo
-                    "<a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>
-                    ";
-                }
-                ?>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
+                <? if ($id=='D9999'): ?>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>
+                <? endif; ?>
                 <a role="button" class="btn btn-outline-danger btn-block" href="logout.php"><i class="fas fa-times"></i> Logout</a>
             </div>
         </div>
