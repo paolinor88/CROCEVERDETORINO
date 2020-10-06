@@ -3298,15 +3298,33 @@ function fm_show_nav_path($path)
     $isStickyNavBar = $sticky_navbar ? 'fixed-top' : '';
     $getTheme = fm_get_theme();
     $getTheme .= " navbar-light";
-    if (FM_THEME == "dark") {
+    if(FM_THEME == "dark") {
         $getTheme .= " navbar-dark";
     } else {
         $getTheme .= " bg-white";
     }
     ?>
+    <nav class="navbar navbar-expand-sm <?php echo $getTheme; ?> mb-4 main-nav <?php echo $isStickyNavBar ?>">
 
+
+            <div class="col-xs-6 col-sm-7 text-right">
+                <ul class="navbar-nav mr-auto float-right <?php echo fm_get_theme();  ?>">
+                    <?php if (!FM_READONLY): ?>
+                        <li class="nav-item">
+                            <a title="<?php echo lng('Upload') ?>" class="nav-link" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> <?php echo lng('Upload') ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a title="<?php echo lng('NewItem') ?>" class="nav-link" href="#createNewItem" data-toggle="modal" data-target="#createNewItem"><i class="fa fa-plus-square"></i> <?php echo lng('NewItem') ?></a>
+                        </li>
+                    <?php endif; ?>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
     <?php
 }
+
 /**
  * Show message from session
  */
@@ -3338,8 +3356,8 @@ global $lang, $root_url, $favicon_path;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Web based File Manager in PHP, Manage your files efficiently and easily with Tiny File Manager">
-    <meta name="author" content="CCP Programmers">
+    <meta name="description" content="Web based File Manager">
+    <meta name="author" content="Paolo Randone">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex">
     <link rel="icon" href="<?php echo fm_enc($favicon_path) ?>" type="image/png">
