@@ -71,7 +71,8 @@ $dictionaryLivello = array (
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="config/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
@@ -92,6 +93,9 @@ $dictionaryLivello = array (
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";}?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
+                <? if ($livello=='1'): ?>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://87.27.34.227/mip/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                <? endif; ?>
                 <? if ($id=='D9999'): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>
                 <? endif; ?>

@@ -105,12 +105,13 @@ $pwd = generatePassword(8);
 
 //attiva utente
 if(isset($_POST["activateBTN"])){
-    $id = $_POST["matricola"];
+    $id = strtoupper($_POST["matricola"]);
     $email = $_POST["email"];
     $cf = strtoupper($_POST["cf"]);
     $password = $_POST["password"];
-    $querycheck = $db->query("SELECT cognome, nome FROM utenti WHERE ID='$id' AND cf='$cf'");
-    if ($querycheck->num_rows>0){
+    $querycheck = $db->query("SELECT cognome, nome, stato FROM utenti WHERE ID='$id' AND cf='$cf'");
+    $checkstato = $querycheck->fetch_array();
+    if (($querycheck->num_rows>0)&&($checkstato['stato']==0)){
         $query = $db->query("UPDATE utenti SET email='$email', stato=1, password='$password' WHERE ID='$id'");
         $var = $db->query("SELECT cognome, nome, livello, sezione, squadra FROM utenti WHERE ID='$id'")->fetch_array();
         $cognome = $var['cognome'];
@@ -185,7 +186,7 @@ if(isset($_POST["activateBTN"])){
         } //end CC
 
     }else{
-        echo "<script type='text/javascript'>alert('ERRORE')</script>";
+        echo "<script type='text/javascript'>alert('ERRORE. Se avevi già effettuato la registrazione e non ricordi più la password, scrivi a gestioneutenti@croceverde.org')</script>";
     }
 }
 
