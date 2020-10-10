@@ -93,7 +93,7 @@ $dictionaryLivello = array (
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello!=6){echo "disabled";}?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="magazzino/index.php"><i class="fas fa-book"></i> Magazzino</a>
-                <? if ($livello=='1'): ?>
+                <? if ($livello=='1' OR '4' OR '5'): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='http://87.27.34.227/mip/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
                 <? if ($id=='D9999'): ?>

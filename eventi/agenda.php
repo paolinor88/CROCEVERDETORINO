@@ -187,7 +187,7 @@ if (!isset($_SESSION["ID"])){
                     };
                 },
                 eventOrder: "event.id",
-                //aspectRatio: 5,
+                //aspectRatio: 3,
                 editable: true,
                 selectable: false,
                 displayEventEnd: false,
@@ -317,7 +317,7 @@ if (!isset($_SESSION["ID"])){
     <div id='<?if ($_SESSION['livello']>=4)echo "agendacal"?>'</div>
     <div id='<?if ($_SESSION['livello']==1)echo "calendaruser"?>'</div>
 </div>
-<div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
+<div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale (da usare anche per sabati e domeniche!)</span>, <span style="color: royalblue" >Pomeriggio</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
 
 <!-- MODAL INSERIMENTO -->
 <div id="modal4" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
