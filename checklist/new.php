@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.3
+ * @version    1.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -297,8 +297,8 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])==2){
-                echo '<hr>
+            if (($select['tipo'])==2): ?>
+                <hr>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="elettrodi">Elettrodi</label>
                     <div class="col col-sm-2">
@@ -399,9 +399,8 @@ if (isset($_POST['IDMEZZO'])){
                             <option value="Vedi note">Vedi note</option>
                         </select>
                     </div>
-                </div>';
-            }
-            ?>
+                </div>
+            <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="maschere">3x Maschere ossigeno ADULTI e PEDIATRICHE</label>
@@ -416,62 +415,60 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])==2){
-                echo '<hr>
+            if (($select['tipo'])==2): ?>
+                <hr>
                 <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="piastre">1x Piastre LP 12/15 ADULTI e PEDIATRICHE</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="piastre">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                    <label class="col-sm-4 col-form-label" for="piastre">1x Piastre LP 12/15 ADULTI e PEDIATRICHE</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="piastre">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <? endif; ?>
 
             <?php
-            if (($select['tipo'])==2){
-                echo '<hr>
+            if (($select['tipo'])==2): ?>
+                <hr>
                 <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="LP">Defibrillatore LP 12/15</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="LP">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                    <label class="col-sm-4 col-form-label" for="LP">Defibrillatore LP 12/15</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="LP">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="cavoLP">Alimentatore 12v con cavo</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cavoLP">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="cavoLP">Alimentatore 12v con cavo</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="cavoLP">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="batterieLP">Batterie</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="batterieLP">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="batterieLP">Batterie</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="batterieLP">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="aspiratore">Aspiratore con sondino</label>
@@ -486,82 +483,81 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])==2){
-                echo '<hr>
+            if (($select['tipo'])==2): ?>
+                <hr>
                 <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="ventilatore">Ventilatore polmonare Drager</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ventilatore">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                    <label class="col-sm-4 col-form-label" for="ventilatore">Ventilatore polmonare Drager</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="ventilatore">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="cavovent12">Cavo ventilatore 12v</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cavovent12">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="cavovent12">Cavo ventilatore 12v</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="cavovent12">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="cavovent220">Cavo ventilatore 220v</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cavovent220">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="cavovent220">Cavo ventilatore 220v</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="cavovent220">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="pompa">Pompa infusionale</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="pompa">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="pompa">Pompa infusionale</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="pompa">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="cavopompa12">Cavo pompa 12v</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cavopompa12">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="cavopompa12">Cavo pompa 12v</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="cavopompa12">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="cavopompa220">Cavo pompa 220v</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cavopompa220">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="cavopompa220">Cavo pompa 220v</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="cavopompa220">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="bombolefisse">2x Bombole ossigeno fisse 7lt.</label>
@@ -613,24 +609,23 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])==2){
-                echo '<div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="cpap">1x Maschere CPAP (S-M-L)</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cpap">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Parziale">Quantità inferiore</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+            if (($select['tipo'])==2): ?>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="cpap">1x Maschere CPAP (S-M-L)</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="cpap">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Parziale">Quantità inferiore</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <? endif; ?>
             <?php
-            if (($select['tipo'])==3){
-                echo '<div class="form-group row">
+            if (($select['tipo'])==3): ?>
+            <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="pedimate">Pedi-Mate</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="pedimate">
@@ -641,9 +636,8 @@ if (isset($_POST['IDMEZZO'])){
                         <option value="Vedi note">Vedi note</option>
                     </select>
                 </div>
-            </div>';
-            }
-            ?>
+            </div>
+            <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="guanti">1x Guanti (S-M-L-XL)</label>
@@ -748,8 +742,8 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])!=2){
-                echo '<div class="form-group row">
+            if (($select['tipo'])!=2): ?>
+            <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="amputazioni">Sacca porta arti</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="amputazioni">
@@ -760,9 +754,8 @@ if (isset($_POST['IDMEZZO'])){
                         <option value="Vedi note">Vedi note</option>
                     </select>
                 </div>
-            </div>';
-            }
-            ?>
+            </div>
+            <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ragno">Ragno</label>
@@ -837,8 +830,8 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])!=3){
-                echo '<div class="form-group row">
+            if (($select['tipo'])!=3): ?>
+            <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="traslatore">Traslatore</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="traslatore">
@@ -849,9 +842,8 @@ if (isset($_POST['IDMEZZO'])){
                         <option value="Vedi note">Vedi note</option>
                     </select>
                 </div>
-            </div>';
-            }
-            ?>
+            </div>
+            <? endif; ?>
             <hr>
             <div class="alert alert-success" style="text-align: center" role="alert">
                 <b>CABINA GUIDA</b>
@@ -1052,8 +1044,8 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])!=3){
-                echo '<div class="form-group row">
+            if (($select['tipo'])!=3): ?>
+            <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="battesedia">Batteria + caricabatteria sedia</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="battesedia">
@@ -1063,9 +1055,8 @@ if (isset($_POST['IDMEZZO'])){
                         <option value="Vedi note">Vedi note</option>
                     </select>
                 </div>
-            </div>';
-            }
-            ?>
+            </div>
+            <? endif; ?>
             <hr>
             <div class="alert alert-success" style="text-align: center" role="alert">
                 <b>CONTROLLO BORSA</b>
@@ -1369,34 +1360,32 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])==3){
-                echo '
+            if (($select['tipo'])==3): ?>
                 <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="saturimetrob">Saturimetro</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="saturimetrob">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                    <label class="col-sm-4 col-form-label" for="saturimetrob">Saturimetro</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="saturimetrob">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="termometro">Termometro</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="termometro">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="termometro">Termometro</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="termometro">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="sondini">Sondini aspiratore (5x)</label>
@@ -1524,22 +1513,21 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <?php
-            if (($select['tipo'])==3){
-                echo '<hr>
+            if (($select['tipo'])==3): ?>
+                <hr>
                 <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="monossido">Rilevatore gas tossici</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="monossido">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                    <label class="col-sm-4 col-form-label" for="monossido">Rilevatore gas tossici</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="monossido">
+                            <option value="OK" selected="selected">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <? endif; ?>
             <hr>
             <div class="form-group">
                 <label for="note">Segnalazioni</label>
