@@ -41,3 +41,15 @@ if (isset($_POST["nome"])){
     }
 
 }
+
+if (isset($_POST["id"])){
+    $update = "UPDATE giacenza SET quantita=:quantita WHERE id=:id";
+
+    $statement2 = $connect->prepare($update);
+    $statement2->execute(
+        array(
+            ':quantita' => $_POST['quantitaF'],
+            ':id' => $_POST['id'],
+        )
+    );
+}

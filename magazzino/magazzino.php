@@ -18,7 +18,7 @@ include "../config/config.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Giacenza</title>
+    <title>Giacenza magazzino</title>
 
     <? require "../config/include/header.html";?>
 
@@ -170,8 +170,10 @@ include "../config/config.php";
                 $.get("https://croceverde.org/gestionale/magazzino/modal.php", {id:id, fastquantita:fastquantita}, function (html) {
                     $('#modalquantita').html(html);
                     $('.bd-quantita').modal('toggle');
-
-                }).fail(function (msg) {
+                    $('#update').on('click', function () {
+                        $('#test').modal('hide');
+                    })
+                    }).fail(function (msg) {
                     console.log(msg);
                 })
             });
@@ -212,6 +214,7 @@ include "../config/config.php";
                 <button id="vestiario" type="button" class="btn btn-outline-secondary btn-sm">Vestiario</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
             </div>
+                <a href="magazzino.php" class="btn btn-outline-info btn-sm"><i class="fas fa-sync-alt"></i></a>
         </center>
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">
@@ -235,33 +238,30 @@ include "../config/config.php";
                     $today = date("Y-m");
                     $rif = strtotime("+2 months", strtotime($today));
                     $scadenza = strtotime($ciclo['scadenza']);
-                    if($rif<$scadenza){
-                        echo "
-					<tr>
-						<td class=\"align-middle\"><form><button type='button' id='".$ciclo['id']."' class='btn-outline-dark btn btn-sm details'><i class=\"fas fa-search\"></i></button></form></td>
-						<td class=\"align-middle\">".$ciclo['nome']."</td>
-						<td class=\"align-middle\">".$ciclo['tipo']."</td>
-						<td class=\"align-middle\"><form><button type='button' id='".$ciclo['id']."' class='btn-link btn btn-sm fast' style=\"font-size:16px\" value=\"".$ciclo['quantita']."\">".$ciclo['quantita']."</button></form></td>
-						<td class=\"align-middle\">".substr($ciclo['scadenza'], 0, 7)."</td>
-						<td class=\"align-middle\">".$ciclo['posizione']."</td>
-						<td class=\"align-middle\">".$ciclo['categoria']."</td>
-					</tr>";
-                    }else{
-                        echo "
-					<tr>
-						<td class=\"align-middle\">"."<a href=\"https://".$_SERVER['HTTP_HOST']."/gestionale/magazzino/item.php?id=".$ciclo['id']."\" class=\"btn btn-sm btn-outline-dark\"><i class=\"fas fa-search\"></i></a>"."</td>
-						<td class=\"align-middle\">".$ciclo['nome']."</td>
-						<td class=\"align-middle\">".$ciclo['tipo']."</td>
-						<td class=\"align-middle\"><form><button type='button' id='".$ciclo['id']."' class='btn-link btn btn-sm fast' style=\"font-size:16px\" value=\"".$ciclo['quantita']."\">".$ciclo['quantita']."</button></form></td>
-						<td class=\"align-middle\" style='color: red'>".substr($ciclo['scadenza'], 0, 7)."</td>
-						<td class=\"align-middle\">".$ciclo['posizione']."</td>
-						<td class=\"align-middle\">".$ciclo['categoria']."</td>
+                    if($rif<$scadenza): ?>
+                        <tr>
+                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details'><i class="fas fa-search"></i></button></form></td>
+                            <td class="align-middle"><?=$ciclo['nome']?></td>
+                            <td class="align-middle"><?=$ciclo['tipo']?></td>
+                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-link btn btn-sm fast' style="font-size:16px" value='<?=$ciclo['quantita']?>'><?=$ciclo['quantita']?></button></form></td>
+                            <td class="align-middle"><?=substr($ciclo['scadenza'], 0, 7)?></td>
+                            <td class="align-middle"><?=$ciclo['posizione']?></td>
+                            <td class="align-middle\"><?=$ciclo['categoria']?></td>
+                        </tr>
+                    <? endif; ?>
+                    <? if($rif>$scadenza): ?>
+                        <tr>
+                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details'><i class="fas fa-search"></i></button></form></td>
+                            <td class="align-middle"><?=$ciclo['nome']?></td>
+                            <td class="align-middle"><?=$ciclo['tipo']?></td>
+                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-link btn btn-sm fast' style="font-size:16px" value="<?=$ciclo['quantita']?>"><?=$ciclo['quantita']?></button></form></td>
+                            <td class="align-middle" style='color: red'><?=substr($ciclo['scadenza'], 0, 7)?></td>
+                            <td class="align-middle"><?=$ciclo['posizione']?></td>
+                            <td class="align-middle"><?=$ciclo['categoria']?></td>
 
-					</tr>";
-                    }
-                }
-
-                ?>
+                        </tr>
+                    <? endif;
+                } ?>
                 </tbody>
             </table>
         </div>
@@ -352,7 +352,7 @@ include "../config/config.php";
     </div>
 </div>
 
-<div class="modal bd-quantita" role="dialog" aria-hidden="true">
+<div class="modal bd-quantita" role="dialog" aria-hidden="true" id="test">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-body" id="modalquantita">
