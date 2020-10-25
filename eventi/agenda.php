@@ -39,11 +39,14 @@ if (!isset($_SESSION["ID"])){
                     }else if
                     ((event.start.format("HH:mm:ss")) == "08:00:00"){
                         element.addClass('centrale');
+                    }else if
+                    ((event.start.format("HH:mm:ss")) == "01:00:00"){
+                        element.addClass('giorno');
                     }
                     else {
                         element.addClass('pomeriggio');
                     }
-                    return(['all', event.user_id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.stato].indexOf($("#modalFilterStato option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
+                    return(['all', event.user_id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
                 },
                 customButtons: {
                     refreshBTN: {
@@ -169,11 +172,14 @@ if (!isset($_SESSION["ID"])){
                     }else if
                     ((event.start.format("HH:mm:ss")) == "08:00:00"){
                         element.addClass('centrale');
+                    }else if
+                    ((event.start.format("HH:mm:ss")) == "01:00:00"){
+                        element.addClass('giorno');
                     }
                     else {
                         element.addClass('pomeriggio');
                     }
-                    return(['all', event.id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.stato].indexOf($("#modalFilterStato option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
+                    return(['all', event.id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
                 },
                 header: {
                     left: 'prev ,today',
@@ -224,8 +230,8 @@ if (!isset($_SESSION["ID"])){
                             $('#modal4').modal('hide');
                             var user_id = $("#user_id").val();
                             var title = $("#cognomenome").val();
-                            var start = day + " " + $("#modalAddStart option:selected").val();
-                            if (title) {
+                            if (($("#modalAddStart option:selected").val()) !== ""){
+                                var start = day + " " + $("#modalAddStart option:selected").val();
                                 var endStr = $.fullCalendar.moment(start);
                                 endStr.add(1, 'hours');
                                 var end =endStr.format("YYYY-MM-DD HH:mm:ss");
@@ -242,6 +248,8 @@ if (!isset($_SESSION["ID"])){
                                         )
                                     }
                                 });
+                            }else{
+                                alert("Seleziona un turno dall'elenco a discesa!")
                             }
                         });
                     }else{
@@ -317,7 +325,7 @@ if (!isset($_SESSION["ID"])){
     <div id='<?if ($_SESSION['livello']>=4)echo "agendacal"?>'</div>
     <div id='<?if ($_SESSION['livello']==1)echo "calendaruser"?>'</div>
 </div>
-<div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale (da usare anche per sabati e domeniche!)</span>, <span style="color: royalblue" >Pomeriggio</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
+<div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span>, <span style="color: slategray" >Weekend e festività</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
 
 <!-- MODAL INSERIMENTO -->
 <div id="modal4" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -331,9 +339,11 @@ if (!isset($_SESSION["ID"])){
                     <input type="hidden" id="user_id" value="<?=$_SESSION['ID']?>">
                     <input type="hidden" id="cognomenome" value="<?=$_SESSION['cognome'].' '.$_SESSION['nome']?>">
                     <select class="form-control form-control-sm" id="modalAddStart">
+                        <option value="">Seleziona...</option>
                         <option value="06:00:00">Mattino</option>
                         <option value="08:00:00">Centrale</option>
                         <option value="13:00:00">Pomeriggio</option>
+                        <option value="01:00:00">Weekend e festività</option>
                     </select>
                 </div>
                 <div class="modal-footer justify-content-center">
@@ -373,14 +383,7 @@ if (!isset($_SESSION["ID"])){
                         <option value="08:00:00">Centrale</option>
                         <option value="13:00:00">Pomeriggio</option>
                     </select>
-                    <hr>
-                    <div>Stato</div>
-                    <select id="modalFilterStato" name="modalFilterStato" class="form-control form-control-sm" required>
-                        <option value="all">Tutti</option>
-                        <option value="1">Inserito</option>
-                        <option value="2">Confermato</option>
 
-                    </select>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <div class="btn-group btn-group" role="group">
