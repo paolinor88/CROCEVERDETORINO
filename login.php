@@ -186,7 +186,7 @@ if(isset($_POST["activateBTN"])){
         } //end CC
 
     }else{
-        echo "<script type='text/javascript'>alert('ERRORE. Se avevi già effettuato la registrazione e non ricordi più la password, scrivi a gestioneutenti@croceverde.org')</script>";
+        echo "<script type='text/javascript'>alert('ERRORE. Se avevi già effettuato la registrazione e non ricordi più la password, scrivi a mail@paolorandone.it')</script>";
     }
 }
 
@@ -251,7 +251,7 @@ if(isset($_POST["activateBTN"])){
                     </div>
                     <br>
                     <div class="text-center">
-                        <font size="-2"><a href="mailto: gestioneutenti@croceverde.org">Problemi di accesso?</a></font>
+                        <font size="-2"><a href="mailto: mail@paolorandone.it">Problemi di accesso?</a></font>
                     </div>
                     <hr>
                     <div class="text-center">

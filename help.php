@@ -51,7 +51,7 @@ include "config/config.php";
                         <p>Al primo accesso premere <button class="btn btn-outline-success btn-sm">Registrati</button> e inserire le informazioni richieste nel form.</p>
                         <p>Ricorda di inserire un indirizzo email valido e di cui hai l'accesso. Se la registrazione è andata a buon fine, riceverai una email contentente le credenziali di accesso. Non cancellarla!</p>
                         <div class="alert alert-warning" role="alert">
-                            ATTENZIONE: se non hai ricevuto la mail, controlla nello spam. In caso di problemi, <a href="mailto: gestioneutenti@croceverde.org">contatta il supporto</a>
+                            ATTENZIONE: se non hai ricevuto la mail, controlla nello spam. In caso di problemi, <a href="mailto: mail@paolorandone.it">contatta il supporto</a>
                         </div>
                         <p>Accedi al sistema inserendo la tua matricola (attenzione a rispettare il formato richiesto) e la password che hai ricevuto.</p>
                     </div>
