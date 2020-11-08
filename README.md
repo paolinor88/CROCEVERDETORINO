@@ -3,6 +3,10 @@
 
 mail@paolorandone.it
 ---
+Version 1.5 changelog:
+
+- new checklist system
+---
 Version 1.4 changelog:
 
 - file manager
