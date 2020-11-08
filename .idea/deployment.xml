@@ -9,13 +9,6 @@
           </mappings>
           <excludedPaths>
             <excludedPath path="/doc/source" />
-            <excludedPath local="true" path="$PROJECT_DIR$/doc/admin" />
-            <excludedPath path="/doc/admin" />
-            <excludedPath path="/doc/thumbs" />
-            <excludedPath path="/doc/user" />
-            <excludedPath local="true" path="$PROJECT_DIR$/doc/source" />
-            <excludedPath local="true" path="$PROJECT_DIR$/doc/thumbs" />
-            <excludedPath local="true" path="$PROJECT_DIR$/doc/user" />
           </excludedPaths>
         </serverdata>
       </paths>
