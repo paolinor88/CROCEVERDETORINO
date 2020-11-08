@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.4
+ * @version    1.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -244,7 +244,7 @@ if (isset($_POST['IDMEZZO'])){
             </center>
             <hr>
             <?php
-            $notealert = $db->query("SELECT DATACHECK, NOTE FROM checklist WHERE IDMEZZO='$idmezzo' AND NOTE!='' ORDER BY DATACHECK DESC");
+            $notealert = $db->query("SELECT DATACHECK, NOTE FROM checklist WHERE IDMEZZO='$idmezzo' AND NOTE!='' AND CHIUSO!='2' ORDER BY DATACHECK DESC");
             if ($notealert->num_rows > 0) {
                 echo "<div class=\"alert alert-danger\" role=\"alert\">
                         <h5 class=\"alert-heading\" STYLE='text-align: center'>Segnalazioni attive!</h5>";

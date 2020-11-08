@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.4
+ * @version    1.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -21,16 +21,17 @@ if (isset($_GET["ID"])){
     $idoperatore = $modifica['IDOPERATORE'];
 }
 //OP variable
-$select = $db->query("SELECT cognome, nome, squadra, sezione FROM utenti WHERE ID='$idoperatore'")->fetch_array();
+$select = $db->query("SELECT cognome, nome, squadra, sezione, email FROM utenti WHERE ID='$idoperatore'")->fetch_array();
 $cognome = $select['cognome'];
 $nome = $select['nome'];
 $sezione = $select['sezione'];
 $squadra = $select['squadra'];
+$email = $select['email'];
 
-//reset note
-if (isset($_POST["cancellanota"])){
+//chiudi note
+if (isset($_POST["archivianota"])){
     $idcheck=$_POST["xcheck"];
-    $aggiornacheck = $db->query("UPDATE checklist SET NOTE='' WHERE IDCHECK='$idcheck'");
+    $aggiornacheck = $db->query("UPDATE checklist SET VISTO='2', CHIUSO='2' WHERE IDCHECK='$idcheck'");
     echo '<script type="text/javascript">
         alert("Modifica effettuata con successo");
         location.href="archivio.php";
@@ -39,8 +40,16 @@ if (isset($_POST["cancellanota"])){
 //update note
 if (isset($_POST["aggiornacheck"])){
     $idcheck=$_POST["xcheck"];
-    $nuovanota=$_POST["xnote"];
-    $aggiornacheck = $db->query("UPDATE checklist SET NOTE='$nuovanota' WHERE IDCHECK='$idcheck'");
+    $aggiornacheck = $db->query("UPDATE checklist SET VISTO='2' WHERE IDCHECK='$idcheck'");
+    echo '<script type="text/javascript">
+        alert("Modifica effettuata con successo");
+        location.href="archivio.php";
+        </script>';
+}
+//apri note
+if (isset($_POST["aprinota"])){
+    $idcheck=$_POST["xcheck"];
+    $aggiornacheck = $db->query("UPDATE checklist SET VISTO='2', CHIUSO='1' WHERE IDCHECK='$idcheck'");
     echo '<script type="text/javascript">
         alert("Modifica effettuata con successo");
         location.href="archivio.php";
@@ -90,6 +99,33 @@ $dictionarySquadra = array (
     21 => "Altro",
     22 => "",
 );
+
+if(isset($_POST["reply"])) {
+
+    //PARAMETRI MAIL ->
+    //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
+    $to = $_POST['email'];
+    $nome_mittente = "Gestionale CVTO";
+    $mail_mittente = "gestioneutenti@croceverde.org";
+    $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
+    //$headers .= "Bcc: ".$to."\r\n";
+
+    //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion();
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1";
+    //
+    $subject = "Risposta segnalazione";
+    $corpo = $_POST['testo'];
+    mail($to, $subject, $corpo, $headers);
+
+        echo '<script type="text/javascript">
+        alert("Risposta inviata con successo");
+        location.href="archivio.php";
+        </script>';
+
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -147,21 +183,52 @@ $dictionarySquadra = array (
                 <p>MATRICOLA: <?=$modifica['IDOPERATORE']?></p>
                 <hr>
                 <div class="form-group">
-                    <textarea class="form-control" id="xnote" name="xnote" rows="10"><?=$modifica['NOTE']?></textarea>
+                    <textarea class="form-control" id="xnote" name="xnote" readonly rows="10"><?=$modifica['NOTE']?></textarea>
                 </div>
                 <center>
                     <div class="btn-group" role="group">
-                        <button type="submit" id="cancellanota" name="cancellanota" class="btn btn-sm btn-warning" aria-label="Cancella nota"><i class="far fa-trash-alt"></i></button>
-                        <button type="submit" id="aggiornacheck" name="aggiornacheck" class="btn btn-sm btn-success" aria-label="Aggiorna record"><i class="far fa-save"></i></button>
+                        <button type="button" id="rispondi" name="rispondi" class="btn btn-sm btn-outline-info" aria-label="Rispondi" data-toggle="modal" data-target="#modalrisposta"><i class="fas fa-reply"></i></button>
+
+                        <a href="archivio.php" class="btn btn-sm btn-outline-secondary" id="indietro"><i class="fas fa-undo"></i></a>
+
                     </div>
                     <br>
-                    <font size="-1"><em>Premendo il pulsante <i class="far fa-trash-alt" style="color: #faa732"></i> verrà cancellato il testo della segnalazione<br>Per modificare la segnalazione, aggiungere il testo e premere <i class="far fa-save" style="color: green"></i></em></font>
+                    <font size="-1"><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></font>
                 </center>
             </form>
         </div>
     </div>
 </div>
+
+
 </body>
+<!-- Modal -->
+<form action="details.php" method="post">
+    <div class="modal" id="modalrisposta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Rispondi a <?= $modifica['IDOPERATORE'] ?></h6>
+                    <input hidden name="email" value="<?=$select['email']?>">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea class="form-control" name="testo" rows="10" placeholder="Digita qui la risposta"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="reply" class="btn btn-info btn-sm">Invia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
 <!-- FOOTER -->
 <?php include('../config/include/footer.php'); ?>
 

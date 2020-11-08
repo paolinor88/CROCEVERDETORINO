@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.4
+ * @version    1.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -170,10 +170,8 @@ include "../config/config.php";
                 $.get("https://croceverde.org/gestionale/magazzino/modal.php", {id:id, fastquantita:fastquantita}, function (html) {
                     $('#modalquantita').html(html);
                     $('.bd-quantita').modal('toggle');
-                    $('#update').on('click', function () {
-                        $('#test').modal('hide');
-                    })
-                    }).fail(function (msg) {
+
+                }).fail(function (msg) {
                     console.log(msg);
                 })
             });
@@ -246,7 +244,7 @@ include "../config/config.php";
                             <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-link btn btn-sm fast' style="font-size:16px" value='<?=$ciclo['quantita']?>'><?=$ciclo['quantita']?></button></form></td>
                             <td class="align-middle"><?=substr($ciclo['scadenza'], 0, 7)?></td>
                             <td class="align-middle"><?=$ciclo['posizione']?></td>
-                            <td class="align-middle\"><?=$ciclo['categoria']?></td>
+                            <td class="align-middle"><?=$ciclo['categoria']?></td>
                         </tr>
                     <? endif; ?>
                     <? if($rif>$scadenza): ?>

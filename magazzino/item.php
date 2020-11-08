@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.4
+ * @version    1.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -252,5 +252,5 @@ $dictionaryCategoria = array (
     </div>
 </body>
 <!-- FOOTER -->
-<?//php include('../config/include/footer.php'); ?>
+<?php include('../config/include/footer.php'); ?>
 </html>

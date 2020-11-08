@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.4
+ * @version    1.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -297,7 +297,9 @@ $pwd = generatePassword(8);
                 </thead>
                 <tbody>
                 <?php
+
                 $select = $db->query("SELECT ID, cognome, nome, sezione, squadra, livello, stato FROM utenti WHERE cognome !='ADMIN'order by ID");
+
                 while($ciclo = $select->fetch_array()){
                     if (($ciclo['stato']==0)&&($_SESSION['ID']!='D9999')){
                         echo "
