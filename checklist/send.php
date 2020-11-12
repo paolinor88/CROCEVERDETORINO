@@ -41,7 +41,7 @@ if(isset($_POST["IDMEZZO"])){
     $datatesto = $_POST["DATACHECK"];
     $compilatore = $_POST["IDOPERATORE"];
 
-    $query = "INSERT INTO checklist (IDMEZZO, IDOPERATORE, DATACHECK, LAVAGGIO, SCADENZE, NOTE) VALUES (:IDMEZZO, :IDOPERATORE, :DATACHECK, :LAVAGGIO, :SCADENZE, :NOTE)";
+    $query = "INSERT INTO checklist (IDMEZZO, IDOPERATORE, DATACHECK, LAVAGGIO, SCADENZE, OLIO, NOTE) VALUES (:IDMEZZO, :IDOPERATORE, :DATACHECK, :LAVAGGIO, :SCADENZE, :OLIO, :NOTE)";
 
     $statement = $connect->prepare($query);
     $statement->execute(
@@ -51,6 +51,7 @@ if(isset($_POST["IDMEZZO"])){
             ':DATACHECK'  => $_POST['DATACHECK'],
             ':LAVAGGIO'  => $_POST['LAVAGGIO'],
             ':SCADENZE'  => $_POST['SCADENZE'],
+            ':OLIO'  => $_POST['OLIO'],
             ':NOTE'  => $_POST['note'],
         )
     );
@@ -118,6 +119,7 @@ if(isset($_POST["IDMEZZO"])){
         '{{fuoriservizio}}',
         '{{antifiamma}}',
         '{{panseptil}}',
+        '{{oliocheck}}',
         '{{luci}}',
         '{{blu}}',
         '{{sirene}}',
@@ -231,6 +233,7 @@ if(isset($_POST["IDMEZZO"])){
         $fuoriservizio=$_POST["fuoriservizio"],
         $antifiamma=$_POST["antifiamma"],
         $panseptil=$_POST["panseptil"],
+        $olio=$_POST["oliocheck"],
         $luci=$_POST["luci"],
         $blu=$_POST["blu"],
         $sirene=$_POST["sirene"],
@@ -294,5 +297,17 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = file_get_contents('../config/template/118.html');
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
+    }
+    if (($_POST["rabbocco"])!=0){
+        $olioq = $_POST["rabbocco"];
+        $oggetto = "Rabbocco olio motore auto $numeroauto";
+        $corpo = "
+        <html>
+            <body>
+                <p>Si segnala che in data ".$datatesto." sono stati aggiunti ".$olioq." Kg di olio motore all'auto in oggetto</p>
+                <p>".$compilatore." ".$cognome." ".$nome."</p>
+            </body>
+        </html>";
+        mail($to, $oggetto, $corpo, $headers);
     }
 };

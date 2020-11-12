@@ -54,6 +54,7 @@ if (isset($_POST['IDMEZZO'])){
                 var DATACHECK = moment().format('YYYY-MM-DD HH:mm:ss');
                 var LAVAGGIO = $("#lavaggioesterno option:selected").val();
                 var SCADENZE = $("#scadenze:checked").val();
+                var OLIO = $("#olio:checked").val();
                 var prova = $("#prova option:selected").val();
 
                 //AMBULANZA
@@ -121,6 +122,9 @@ if (isset($_POST['IDMEZZO'])){
                 var lavaggiointerno = $("#lavaggiointerno option:selected").val();
                 var disinfezione = $("#disinfezione option:selected").val();
                 var battesedia = $("#battesedia option:selected").val();
+                var oliocheck = $("#olio").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
+                var rabbocco = $("#rabbocco option:selected").val();
+
 
                 //
                 var scadenzeborsa = $("#scadenze").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
@@ -187,7 +191,7 @@ if (isset($_POST['IDMEZZO'])){
                             $.ajax({
                                 url:"send.php",
                                 type:"POST",
-                                data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, LAVAGGIO:LAVAGGIO, SCADENZE:SCADENZE, note:note,
+                                data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, LAVAGGIO:LAVAGGIO, SCADENZE:SCADENZE, OLIO:OLIO, note:note,
                                     spinale:spinale, scoop:scoop, collari:collari, elettrodi:elettrodi, gel:gel, ecg:ecg, sixlead:sixlead,
                                     fourlead:fourlead, saturimetro:saturimetro, pacing:pacing, circuitoventilatore:circuitoventilatore,
                                     maschere:maschere, piastre:piastre, LP:LP, cavoLP:cavoLP, batterieLP:batterieLP, aspiratore:aspiratore,
@@ -206,7 +210,7 @@ if (isset($_POST['IDMEZZO'])){
                                     h2o2:h2o2, betadine:betadine, cerotti:cerotti, benda:benda, garze:garze, ghiaccio:ghiaccio, arterioso:arterioso,
                                     venoso:venoso, rasoio:rasoio, sfigmo:sfigmo, fonendo:fonendo, saturimetrob:saturimetrob, termometro:termometro, sondini:sondini,
                                     maschereborsa:maschereborsa, robin:robin, guantisterili:guantisterili, telini:telini, metalline:metalline, spazzatura:spazzatura,
-                                    pappagallo:pappagallo, dpi:dpi, chirurgiche:chirurgiche, monossido:monossido},
+                                    pappagallo:pappagallo, dpi:dpi, chirurgiche:chirurgiche, monossido:monossido, oliocheck:oliocheck, rabbocco:rabbocco},
                                 success:function(){
                                     swal({text:"Checklist inviata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
@@ -941,6 +945,31 @@ if (isset($_POST['IDMEZZO'])){
             <div class="alert alert-success" style="text-align: center" role="alert">
                 <b>CONTROLLI MEZZO</b>
             </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="olio" value="1">
+                <label class="form-check-label" for="scadenze">Controllo olio motore
+                    <?
+                    $controlloolio=$db->query("SELECT DATACHECK, OLIO from checklist WHERE IDMEZZO='$idmezzo' AND OLIO=1 ORDER BY DATACHECK DESC LIMIT 1");
+                    if ($controlloolio->num_rows>0){
+                        list($ultimolio)= $controlloolio->fetch_array();
+                        echo "(ultimo controllo in data $ultimolio)";
+                    }
+                    ?>
+                </label>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="rabbocco">Rabbocco olio motore</label>
+                <div class="col col-sm-2">
+                    <select class="form-control form-control-sm" id="rabbocco">
+                        <option value="0" selected="selected">NON EFFETTUATO</option>
+                        <option value="0.5">0.5 Kg</option>
+                        <option value="1.0">1 Kg</option>
+                        <option value="1.5">1.5 Kg</option>
+                        <option value="2.0">2 Kg</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="luci">Luci</label>
                 <div class="col col-sm-2">
