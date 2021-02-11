@@ -107,3 +107,23 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 270
+[08-Nov-2020 09:48:07 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php:356
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php on line 356
+[08-Nov-2020 09:48:38 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php:356
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php on line 356
+[08-Nov-2020 09:49:21 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php:356
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php on line 356
+[12-Nov-2020 13:19:50 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on null in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php:950
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php on line 950
+[12-Nov-2020 13:30:54 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on null in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php:950
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php on line 950

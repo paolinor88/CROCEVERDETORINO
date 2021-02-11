@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.5
+ * @version    1.6
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -67,7 +67,7 @@ if (!isset($_SESSION["ID"])){
                     <select id="IDMEZZO" name="IDMEZZO" class="form-control form-control-sm" required>
                         <option value="">Mezzo...</option>
                         <?
-                        $select = $db->query("SELECT ID FROM mezzi ORDER BY ID");
+                        $select = $db->query("SELECT ID FROM mezzi WHERE tipo !='4' ORDER BY ID");
                         while($ciclo = $select->fetch_array()){
                             echo "<option value=\"".$ciclo['ID']."\">".$ciclo['ID']."</option>";
                         }

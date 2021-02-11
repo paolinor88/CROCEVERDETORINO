@@ -3,6 +3,11 @@
 
 mail@paolorandone.it
 ---
+Version 1.6 changelog:
+
+- new wash system (beta)
+- update autoparco rights
+---
 Version 1.5 changelog:
 
 - new checklist system

@@ -42,6 +42,7 @@ if (isset($_POST["nome"])){
 
 }
 
+
 if (isset($_POST["id"])){
     $update = "UPDATE giacenza SET quantita=:quantita WHERE id=:id";
 

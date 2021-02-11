@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.5
+ * @version    1.6
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -221,7 +221,7 @@ if (!isset($_SESSION["ID"])){
 </div>
 <br>
 <div class="container-fluid">
-    <div id='<?if ($_SESSION['livello']==6){echo 'calendaradmin';}elseif ($_SESSION['livello']==1){echo 'calendardip';}else {echo 'calendarvulu';}?>'></div>
+    <div id='<?if ($_SESSION['livello']==6){echo 'calendaradmin';}elseif (($_SESSION['livello']==1) OR ($_SESSION['livello']==4)){echo 'calendardip';}else {echo 'calendarvulu';}?>'></div>
 </div>
 
 </body>

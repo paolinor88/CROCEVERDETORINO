@@ -3,7 +3,7 @@ include "../config/pdo.php";
 
 $data = array();
 
-$query = "SELECT * FROM events ORDER BY id";
+$query = "SELECT * FROM lavaggio_mezzi ORDER BY id";
 
 $statement = $connect->prepare($query);
 
@@ -16,18 +16,10 @@ foreach($result as $row)
     $data[] = array(
         'id' => $row["id"],
         'title' => $row["title"],
-        'start' => $row["start_event"],
-        'end' => $row["end_event"],
         'user_id' => $row["user_id"],
+        'start' => $row["start_event"],
         'stato' => $row["stato"],
-        'luogo' => $row["luogo"],
-        'note' => $row["note"],
-        'msa' => $row["msa"],
-        'msb' => $row["msb"],
-        'pma' => $row["pma"],
-        'squadre' => $row["squadre"],
     );
 }
 
 echo json_encode($data);
-

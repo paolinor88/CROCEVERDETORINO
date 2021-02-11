@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.5
+ * @version    1.6
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -195,7 +195,7 @@ include "../config/config.php";
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Magazzino</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Autoparco</a></li>
             <li class="breadcrumb-item active" aria-current="page">Giacenza</li>
         </ol>
     </nav>

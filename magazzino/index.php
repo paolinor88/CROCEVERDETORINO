@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.5
+ * @version    1.6
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -21,7 +21,7 @@ if (!isset($_SESSION["ID"])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Gestione Magazzino</title>
+    <title>Gestione autoparco</title>
 
     <? require "../config/include/header.html";?>
 
@@ -31,7 +31,7 @@ if (!isset($_SESSION["ID"])){
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Magazzino</li>
+            <li class="breadcrumb-item active" aria-current="page">Autoparco</li>
         </ol>
     </nav>
 </div>
@@ -42,6 +42,7 @@ if (!isset($_SESSION["ID"])){
         <div class="text-center col-md-6">
             <div class="jumbotron">
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="lavaggi.php"><i class="fas fa-shower"></i> Lavaggio mezzi</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="request.php"><i class="fas fa-question"></i> Richiesta</a>
             </div>
         </div>
