@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.5
+ * @version    1.6
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -322,8 +322,8 @@ if (!isset($_SESSION["ID"])){
 <br>
 
 <div class="container-fluid">
-    <div id='<?if ($_SESSION['livello']>=4)echo "agendacal"?>'</div>
-    <div id='<?if ($_SESSION['livello']==1)echo "calendaruser"?>'</div>
+    <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'</div>
+    <div id='<?if (($_SESSION['livello']==1) OR ($_SESSION['livello']==4)) echo "calendaruser"?>'</div>
 </div>
 <div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span>, <span style="color: slategray" >Weekend e festività</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
 

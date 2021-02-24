@@ -122,7 +122,8 @@ if (!isset($_SESSION["ID"])){
                     $('#modal1').modal('show');
                     $('#addButton').off('click').on('click', function () {
                         $('#modal1').modal('hide');
-                },
+                    });
+                }
             });
         });
     </script>
@@ -143,7 +144,7 @@ if (!isset($_SESSION["ID"])){
 <div class="container-fluid">
     <div id='agendalavaggi'</div>
 </div>
-<div align="center">Legenda: <span style="color: darkorange" >Programmato</span>, <span style="color: forestgreen" >Effettuato</span></div>
+<div align="center">Legenda: <span style="color: royalblue" >Programmato</span>, <span style="color: forestgreen" >Effettuato</span></div>
 
 <!-- MODAL INSERIMENTO -->
 <div id="modal4" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
