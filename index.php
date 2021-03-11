@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.6
+ * @version    2.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -94,7 +94,7 @@ $dictionaryLivello = array (
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="magazzino/index.php"><i class="fas fa-cart-plus"></i> Autoparco</a>
                 <? if ($livello=='1' OR '4' OR '5'): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://87.27.34.227/mip/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
                 <? if ($id=='D9999'): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>

@@ -3,9 +3,15 @@
 
 mail@paolorandone.it
 ---
+Version 2.0 changelog:
+
+- MAJOR RELEASES
+- Registro integrato di lavaggio mezzi
+- Esportazione in .xls
+---
 Version 1.6 changelog:
 
-- new wash system (beta)
+- new washing system (beta)
 - update autoparco rights
 ---
 Version 1.5 changelog:

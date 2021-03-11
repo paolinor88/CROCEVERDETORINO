@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{all, bootstrap-toggle, bootstrap4-toggle, javascript.util, jquery-ui, mdb, moment}" />
+    <file url="PROJECT" libraries="{all, bootstrap-toggle, bootstrap4-toggle, gijgo, javascript.util, jquery-ui, mdb, moment}" />
   </component>
 </project>

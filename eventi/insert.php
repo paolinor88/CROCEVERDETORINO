@@ -1,6 +1,6 @@
 <?
 session_start();
-$connect=new PDO('mysql:host=localhost;dbname=massi369_gestionale', 'urhqx7h4kxv84', 'Gestional€');
+include "../config/pdo.php";
 if(isset($_POST["user_id"]))
 {
     $query = "INSERT INTO agenda (title, start_event, end_event, user_id) VALUES (:title, :start_event, :end_event, :user_id)";

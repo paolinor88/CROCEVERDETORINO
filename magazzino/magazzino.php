@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    1.6
+ * @version    2.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */

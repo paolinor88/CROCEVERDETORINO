@@ -127,3 +127,51 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php on line 950
+[25-Feb-2021 07:30:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:20 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:33:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:34:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258

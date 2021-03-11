@@ -54,3 +54,14 @@ if (isset($_POST["id"])){
         )
     );
 }
+
+if (isset($_POST["title"])){
+    $delete = "DELETE FROM lavaggio_mezzi WHERE id=:id";
+
+    $statement3 = $connect->prepare($delete);
+    $statement3->execute(
+        array(
+            ':id' => $_POST['id']
+        )
+    );
+}

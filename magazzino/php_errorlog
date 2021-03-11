@@ -83,3 +83,81 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/request.php on line 174
+[25-Feb-2021 08:21:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:70
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 70
+[25-Feb-2021 08:21:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:70
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 70
+[25-Feb-2021 08:51:14 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 72
+[25-Feb-2021 09:05:07 UTC] PHP Parse error:  syntax error, unexpected '$select' (T_VARIABLE) in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 86
+[25-Feb-2021 09:05:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 88
+[25-Feb-2021 09:06:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 88
+[25-Feb-2021 09:06:50 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:89
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 89
+[25-Feb-2021 09:08:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 88
+[25-Feb-2021 09:10:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/list.php on line 88
+[25-Feb-2021 09:16:33 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/export.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/export.php on line 32
+[25-Feb-2021 10:15:29 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 30
+[25-Feb-2021 10:16:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 30
+[25-Feb-2021 12:27:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 30
+[25-Feb-2021 12:29:04 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 30
+[25-Feb-2021 12:31:26 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 30
+[26-Feb-2021 15:01:55 UTC] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/lavaggi.php:347
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/lavaggi.php on line 347
+[26-Feb-2021 15:14:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/lavaggi.php:349
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/lavaggi.php on line 349
+[26-Feb-2021 21:13:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:37
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 37
+[26-Feb-2021 21:49:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 41
+[26-Feb-2021 21:51:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 41
+[28-Feb-2021 17:38:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportSAMSIC.php on line 41

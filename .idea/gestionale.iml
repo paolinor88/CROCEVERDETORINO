@@ -13,5 +13,6 @@
     <orderEntry type="library" name="bootstrap-toggle" level="application" />
     <orderEntry type="library" name="bootstrap4-toggle" level="application" />
     <orderEntry type="library" name="javascript.util" level="application" />
+    <orderEntry type="library" name="gijgo" level="application" />
   </component>
 </module>

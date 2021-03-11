@@ -14899,7 +14899,9 @@ Bootstrap4Theme.prototype.iconClasses = {
 	returnBTN: 'fa-undo-alt',
 	refreshBTN: 'fa-sync-alt',
 	pubblicBTN: 'fa-check',
-	filterBTN: 'fa-filter'
+	exportBTN: 'fa-file-excel',
+	filterBTN: 'fa-filter',
+	checkBTN: 'fa-search'
 };
 Bootstrap4Theme.prototype.iconOverrideOption = 'bootstrapFontAwesome';
 Bootstrap4Theme.prototype.iconOverrideCustomButtonOption = 'bootstrapFontAwesome';
