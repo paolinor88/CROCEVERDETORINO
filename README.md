@@ -7,6 +7,12 @@ Version 2.1 changelog:
 
 - Richiesta materiale (beta)
 ---
+Version 2.0 changelog:
+
+- MAJOR RELEASES
+- Registro integrato di lavaggio mezzi
+- Esportazione in .xls
+---
 Version 1.6 changelog:
 
 - new washing system (beta)
