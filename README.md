@@ -3,11 +3,9 @@
 
 mail@paolorandone.it
 ---
-Version 2.0 changelog:
+Version 2.1 changelog:
 
-- MAJOR RELEASES
-- Registro integrato di lavaggio mezzi
-- Esportazione in .xls
+- Richiesta materiale (beta)
 ---
 Version 1.6 changelog:
 

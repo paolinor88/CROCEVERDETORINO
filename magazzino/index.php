@@ -3,14 +3,14 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.0
+ * @version    2.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
 session_start();
 //parametri DB
 include "../config/config.php";
-//accesso garantito a logistica, segreteria, ADMIN
+
 if (!isset($_SESSION["ID"])){
     header("Location: login.php");
 }
@@ -41,9 +41,9 @@ if (!isset($_SESSION["ID"])){
         <div class="col-md-3 col-md-offset-3"></div>
         <div class="text-center col-md-6">
             <div class="jumbotron">
+                <a role="button" class="btn btn-outline-cv btn-block" href="request.php"><i class="fas fa-question"></i> Richiesta</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="lavaggi.php"><i class="fas fa-shower"></i> Lavaggio mezzi</a>
-                <a role="button" class="btn btn-outline-cv btn-block" href="request.php"><i class="fas fa-question"></i> Richiesta</a>
             </div>
         </div>
     </div>

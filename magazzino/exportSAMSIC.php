@@ -65,14 +65,14 @@ include "../config/config.php";
         <td></td>
         <td></td>
         <td style="background: lightgrey;"><b>UNITARIO</b></td>
-        <td style="color: darkorange; background: lightgrey;"><b>12€</b></td>
+        <td style="color: darkorange; background: lightgrey;"><b>12</b></td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
-        <td style="background: lightgrey;"><b>IMPONIBILE</b></td>
+        <td style="background: lightgrey;"><b>IMPONIBILE (euro)</b></td>
         <td style="color: darkorange; background: lightgrey;"><b>=F<?=($row+1)?>*F<?=($row+2)?></b></td>
     </tr>
     <tr>
@@ -80,7 +80,7 @@ include "../config/config.php";
         <td></td>
         <td></td>
         <td></td>
-        <td style="background: lightgrey;"><b>IVA</b></td>
+        <td style="background: lightgrey;"><b>IVA (euro)</b></td>
         <td style="color: darkorange; background: lightgrey;"><b>=F<?=($row+3)?>*22%</b></td>
     </tr>
     <tr>
@@ -88,7 +88,7 @@ include "../config/config.php";
         <td></td>
         <td></td>
         <td></td>
-        <td style="background: lightgrey;"><b>TOTALE A PAGARE</b></td>
+        <td style="background: lightgrey;"><b>TOTALE A PAGARE (euro)</b></td>
         <td style="color: darkorange; background: lightgrey;"><b>=F<?=($row+3)?>+F<?=($row+4)?></b></td>
     </tr>
     </tbody>

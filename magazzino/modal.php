@@ -40,7 +40,7 @@ if (isset($_GET["id"])) {
                     type: "POST",
                     data: {id:id, quantitaF:quantitaF},
                     success:function () {
-                        swal({text:"Chiccoooooo", icon: "success", button:false, timer:1000, closeOnClickOutside: false});
+                        swal({text:"Eseguito", icon: "success", button:false, timer:1000, closeOnClickOutside: false});
                     }
                 })
             })

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.0
+ * @version    2.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -57,8 +57,14 @@ if( isset($_POST['form_item_id_list']) ) {
             $quantita = $_POST['form_qt_' . $id_item];
             $prova = $db->query("SELECT nome, tipo FROM giacenza WHERE id='$id_item'")->fetch_array();
             $tabella .= $prova['nome'].' '.$prova['tipo'].': '.$quantita.'<br>';
+            $sessionID = $_SESSION['ID'];
+            $oggi= date("Y-m-d");
+            $note = $_POST['note'];
+            $insert = $db -> query("INSERT INTO richiesta_giacenza (ID_UTENTE, ID_ITEM, QUANTITA, STATO, DATA, NOTE) VALUES ('$sessionID', '$id_item', '$quantita', 1, '$oggi', '$note')");
+
         }
     }
+
     //PARAMETRI MAIL ->
     //$to='paolo.randone@yahoo.it';
     $to='massimilianobechis@gmail.com';
@@ -98,12 +104,14 @@ if( isset($_POST['form_item_id_list']) ) {
     $subject = 'RICHIESTA MATERIALE';
 
     mail($to, $subject, $corpo, $headers);
-    echo '<script type="text/javascript">
-        alert("La richiesta è stata inviata correttamente");
-        location.reload();
-        </script>';
+
 
     // <- fine parametri mail
+
+    echo '<script type="text/javascript">
+        alert("La richiesta è stata inviata correttamente");
+            location.href=\'index.php\';
+        </script>';
 }
 
 ?>
@@ -143,7 +151,7 @@ if( isset($_POST['form_item_id_list']) ) {
                             <?php
                             $sql_1 = "SELECT id, nome, tipo, SUM(quantita) AS quantita 
                                       FROM giacenza 
-                                      WHERE categoria='1' 
+                                      WHERE categoria='5' 
                                       AND quantita >'0' 
                                       GROUP BY nome, tipo 
                                       ORDER BY nome, tipo";
@@ -189,7 +197,8 @@ if( isset($_POST['form_item_id_list']) ) {
                             <?php
                             $sql_4 = "SELECT id, nome, tipo, SUM(quantita) AS quantita 
                                       FROM giacenza 
-                                      WHERE categoria='4' 
+                                      /*WHERE categoria='4'*/
+                                      WHERE nome= 'POLO TECNICA'
                                       AND quantita >'0' 
                                       GROUP BY nome, tipo 
                                       ORDER BY nome, tipo";
@@ -262,7 +271,12 @@ if( isset($_POST['form_item_id_list']) ) {
         <center>
             <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item;?>" />
 
-            <button type="submit" id="submit" name="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+            <button type="submit" id="submit" name="submit" class="btn btn-outline-success btn-sm"><i class="fas fa-check"></i></button>
+            <? if (($_SESSION['livello']=='4') OR ($_SESSION['livello']=='6')){
+                echo "<a role=\"button\" class=\"btn btn-outline-info btn-sm\" href=\"ordini.php\"><i class=\"fas fa-search\"></i></a>";
+            }
+            ?>
+
         </center>
     </form>
 </div>

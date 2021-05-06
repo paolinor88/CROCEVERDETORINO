@@ -65,3 +65,27 @@ if (isset($_POST["title"])){
         )
     );
 }
+
+if (isset($_POST["statoF"])){
+    $updatestato = "UPDATE richiesta_giacenza SET STATO=:STATO WHERE ID_RICHIESTA=:ID_RICHIESTA";
+
+    $statement4 = $connect->prepare($updatestato);
+    $statement4->execute(
+        array(
+            ':STATO' => $_POST['statoF'],
+            ':ID_RICHIESTA' => $_POST['id_richiesta'],
+        )
+    );
+
+    if(($_POST["statoF"])!='1'){
+        include "../config/config.php";
+
+        $id_richiesta= $_POST['id_richiesta'];
+        $var = $db->query("SELECT QUANTITA, ID_ITEM FROM richiesta_giacenza WHERE ID_RICHIESTA='$id_richiesta'")->fetch_array();
+        $delta = $var['QUANTITA'];
+        $id_item = $var['ID_ITEM'];
+
+        $updatequantita = $db->query("UPDATE giacenza SET quantita=(quantita-'$delta') WHERE id='$id_item'");
+
+    }
+}
