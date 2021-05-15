@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.1
+ * @version    2.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -16,9 +16,9 @@ if (!isset($_SESSION["ID"])){
 }
 //nicename stati
 $dictionaryStato = array (
-    1 => "Richiesto",
-    2 => "Pronto",
-    3 => "Consegnato",
+    1 => '<i style="color: darkorange" class="far fa-clock"></i>',
+    2 => '<i style="color: #5cb85c" class="far fa-check-circle"></i>',
+    3 => '<i style="color: #6c757d" class="fas fa-lock"></i>',
 );
 //nicename sezioni
 $dictionarySezione = array (
@@ -139,8 +139,9 @@ if(isset($_POST['eliminaALL'])){
     <script>
         $(document).ready(function() {
             var dataTables = $('#myTable').DataTable({
+                "paging": false,
                 "language": {url: '../config/js/package.json'},
-                "order": [[5, "desc"]],
+                //"order": [[5, "desc"]],
                 "pagingType": "simple",
                 "pageLength": 50,
                 "columnDefs": [
@@ -205,18 +206,6 @@ if(isset($_POST['eliminaALL'])){
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
-            $('.fast').on('click', function (e) {
-                e.preventDefault();
-                var id_richiesta = $(this).attr("id");
-                var faststato = $(this).val();
-                $.get("https://croceverde.org/gestionale/magazzino/cambiastato.php", {id_richiesta:id_richiesta, faststato:faststato}, function (html) {
-                    $('#modalstato').html(html);
-                    $('.bd-stato').modal('toggle');
-
-                }).fail(function (msg) {
-                    console.log(msg);
-                })
-            });
             $('.detailsORDER').on('click', function (e) {
                 e.preventDefault();
                 var id_richiesta = $(this).attr("id");
@@ -228,6 +217,95 @@ if(isset($_POST['eliminaALL'])){
                 }).fail(function (msg) {
                     console.log(msg);
                 })
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+
+            $('.pronto').on('click', function (e) {
+                e.preventDefault();
+                var id_richiesta = $(this).attr("id");
+                var statoF = "2";
+                swal({
+                    text: "Conferma azione",
+                    icon: "warning",
+                    buttons:{
+                        cancel:{
+                            text: "Annulla",
+                            value: null,
+                            visible: true,
+                            closeModal: true,
+                        },
+                        confirm:{
+                            text: "Conferma",
+                            value: true,
+                            visible: true,
+                            closeModal: true,
+                        },
+                    },
+                })
+                    .then((confirm) => {
+                        if(confirm){
+                            $.ajax({
+                                url:"script.php",
+                                type:"POST",
+                                data:{id_richiesta:id_richiesta, statoF:statoF},
+                                success:function(){
+                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    setTimeout(function () {
+                                            location.href='ordini.php';
+                                        },1001
+                                    )
+                                }
+                            });
+                        } else {
+                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                        }
+                    })
+            });
+            $('.consegnato').on('click', function (e) {
+                e.preventDefault();
+                var id_richiesta = $(this).attr("id");
+                var statoF = "3";
+                swal({
+                    text: "Conferma azione",
+                    icon: "warning",
+                    buttons:{
+                        cancel:{
+                            text: "Annulla",
+                            value: null,
+                            visible: true,
+                            closeModal: true,
+                        },
+                        confirm:{
+                            text: "Conferma",
+                            value: true,
+                            visible: true,
+                            closeModal: true,
+                        },
+                    },
+                })
+                    .then((confirm) => {
+                        if(confirm){
+                            $.ajax({
+                                url:"script.php",
+                                type:"POST",
+                                data:{id_richiesta:id_richiesta, statoF:statoF},
+                                success:function(){
+                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    setTimeout(function () {
+                                            location.href='ordini.php';
+                                        },1001
+                                    )
+                                }
+                            });
+                        } else {
+                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                        }
+                    })
             });
         });
     </script>
@@ -252,22 +330,16 @@ if(isset($_POST['eliminaALL'])){
 <div class="container-fluid">
     <div class="jumbotron">
         <center>
-            <div class="btn-group" role="group" aria-label="">
+            <!--<div class="btn-group" role="group" aria-label="">
                 <button id="richiesto" type="button" class="btn btn-outline-secondary btn-sm">Da preparare</button>
                 <button id="pronto" type="button" class="btn btn-outline-secondary btn-sm">Pronti</button>
                 <button id="consegnato" type="button" class="btn btn-outline-secondary btn-sm">Consegnati</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Azioni multiple
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <button type="button" class="dropdown-item" id="modalrichiedi" data-toggle="modal" data-target="#modal1">Pronto</button>
-                    <button type="button" class="dropdown-item" id="modalpronti" data-toggle="modal" data-target="#modal2">Richiesto</button>
-                    <button type="button" class="dropdown-item" id="modalconsegnati" data-toggle="modal" data-target="#modal3">Consegnato</button>
-                    <button type="button" class="dropdown-item" id="modalelimina" data-toggle="modal" data-target="#modal4" STYLE="color: red">ELIMINA</button>
-                </div>
+            </div>-->
+            <div class="btn-group" role="group">
+                    <button type="button" class="btn-outline-success btn btn-sm" id="modalpronti" data-toggle="modal" data-target="#modal2"><i class="far fa-check-circle"></i></button>
+                    <button type="button" class="btn-outline-secondary btn btn-sm" data-toggle="modal" data-target="#modal3"><i class="fas fa-lock"></i></button>
+                    <button type="button" class="btn-outline-danger btn btn-sm" id="modalelimina" data-toggle="modal" data-target="#modal4"><i class="fas fa-trash-alt"></i></button>
             </div>
 
         </center>
@@ -279,8 +351,9 @@ if(isset($_POST['eliminaALL'])){
                     <th scope="col">DATA</th>
                     <th scope="col">DA</th>
                     <th scope="col">MATERIALE</th>
-                    <th scope="col">QUANTITA'</th>
-                    <th scope="col">STATO</th>
+                    <th style='text-align: center' scope="col">QUANTITA'</th>
+                    <th style='text-align: center' scope="col">STATO</th>
+                    <th style='text-align: center' scope="col"></th>
 
                 </tr>
                 </thead>
@@ -293,17 +366,26 @@ if(isset($_POST['eliminaALL'])){
                                             LEFT OUTER JOIN giacenza
                                             ON richiesta_giacenza.ID_ITEM = giacenza.id
                                             WHERE richiesta_giacenza.STATO!='4'
-                                            order by richiesta_giacenza.ID_RICHIESTA DESC");
+                                            order by richiesta_giacenza.STATO, richiesta_giacenza.ID_RICHIESTA DESC");
 
                 while($ciclo = $select->fetch_array()){
                         echo "
 					<tr>
-                        <td class='align-middle'><form><button type='button' id='".$ciclo['ID_RICHIESTA']."' class='btn-outline-dark btn btn-sm detailsORDER'><i class='fas fa-search'></i></button></form></td>
-						<td>".$ciclo['DATA']."</td>
-						<td>".$ciclo['ID'].' '.$ciclo['cognome'].' ('.$dictionarySezione[$ciclo['sezione']].' '.$dictionarySquadra[$ciclo['squadra']].')'."</td>
-						<td>".$ciclo['nome'].' '.$ciclo['tipo']."</td>
-						<td>".$ciclo['QUANTITA']."</td>
-						<td class='align-middle'><form><button type='button' id='".$ciclo['ID_RICHIESTA']."' class='btn-link btn btn-sm fast' style='font-size:16px' value='".$ciclo=$dictionaryStato[$ciclo['STATO']]."'>".$ciclo=$dictionaryStato[$ciclo['STATO']]."</button></form></td>
+                        <td class='align-middle' style='text-align: center'><form><button type='button' id='".$ciclo['ID_RICHIESTA']."' class='btn-outline-dark btn btn-sm detailsORDER'><i class='fas fa-search'></i></button></form></td>
+						<td class='align-middle'>".$ciclo['DATA']."</td>
+						<td class='align-middle'>".$ciclo['ID'].' '.$ciclo['cognome'].' ('.$dictionarySezione[$ciclo['sezione']].' '.$dictionarySquadra[$ciclo['squadra']].')'."</td>
+						<td class='align-middle'>".$ciclo['nome'].' '.$ciclo['tipo']."</td>
+						<td class='align-middle' style='text-align: center'>".$ciclo['QUANTITA']."</td>
+						<td class='align-middle' style='text-align: center'>".$ciclo=$dictionaryStato[$ciclo['STATO']]."</td>
+                        <td class='align-middle' style='text-align: center'>
+                            <form>
+                                <div class='btn-group ' role='group'>
+                                    <button type='button' id=".$ciclo['ID_RICHIESTA']." class='btn-outline-success btn btn-sm pronto'><i class=\"far fa-check-circle\"></i></button>
+                                    <button type='button' id=".$ciclo['ID_RICHIESTA']." class='btn-outline-secondary btn btn-sm consegnato'><i class=\"far fa-lock\"></i></button>
+
+                                </div>
+                            </form>
+                        </td>
 					</tr>";
                     }
                 ?>
@@ -339,7 +421,7 @@ if(isset($_POST['eliminaALL'])){
                     <h5 class="modal-title" id="exampleModalCenterTitle">Confermare azione</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Premendo conferma, <b>tutti gli ordini "RICHIESTI"</b> <u>passeranno allo stato "PRONTO"</u></p>
+                    <p>Premendo conferma, <b>tutti gli ordini "RICHIESTI"</b> <i style="color: darkorange" class="far fa-clock"></i> <u>passeranno allo stato "PRONTO"</u> <i style="color: #5cb85c" class="far fa-check-circle"></i></p>
                     <p>Questa azione non potrà essere annullata e modificherà il conteggio del materiale in giacenza.</p>
                 </div>
                 <div class="modal-footer">
@@ -356,7 +438,7 @@ if(isset($_POST['eliminaALL'])){
                     <h5 class="modal-title" id="exampleModalCenterTitle">Confermare azione</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Premendo conferma, <b>tutti gli ordini "PRONTI" </b> <u>passeranno allo stato "CONSEGNATO"</u></p>
+                    <p>Premendo conferma, <b>tutti gli ordini "PRONTI" </b> <i style="color: #5cb85c" class="far fa-check-circle"></i> <u>passeranno allo stato "CONSEGNATO"</u> <i style="color: #6c757d" class="fas fa-lock"></i></p>
                     <p>Questa azione non potrà essere annullata.</p>
                 </div>
                 <div class="modal-footer">
@@ -373,7 +455,7 @@ if(isset($_POST['eliminaALL'])){
                     <h5 class="modal-title" id="exampleModalCenterTitle">Confermare azione</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Premendo conferma, <b>tutte le richieste "CONSEGNATE"</b> <u>verranno ELIMINATE</u></p>
+                    <p>Premendo conferma, <b>tutte le richieste "CONSEGNATE"</b> <i style="color: #6c757d" class="fas fa-lock"></i> <u>verranno ELIMINATE</u></p>
                     <p>Questa azione non potrà essere annullata.</p>
                 </div>
                 <div class="modal-footer">

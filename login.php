@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.1
+ * @version    2.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -306,7 +306,7 @@ if(isset($_POST["activateBTN"])){
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 2.1</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 2.2</p></em></font>
     </div>
 </footer>
 </html>

@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.1
+ * @version    2.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -96,6 +96,8 @@ include "../config/config.php";
     <script>
         $(document).ready(function() {
             var dataTables = $('#myTable').DataTable({
+                stateSave: true,
+                "paging": false,
                 "language": {url: '../config/js/package.json'},
                 "order": [[1, "asc"]],
                 "pagingType": "simple",
@@ -113,6 +115,13 @@ include "../config/config.php";
                         "searchable": true,
                         "orderable": false,
                     }],
+            });
+            $('#reload').on('click', function () {
+                dataTables
+                    .search('')
+                    .columns().search('')
+                    .draw();
+                location.reload();
             });
             //FILTRI TABELLA
             $('#consumo').on('click', function () {
@@ -169,7 +178,7 @@ include "../config/config.php";
                 e.preventDefault();
                 var id = $(this).attr("id");
                 var fastquantita = $(this).val();
-                $.get("https://croceverde.org/gestionale/magazzino/modal.php", {id:id, fastquantita:fastquantita}, function (html) {
+                $.get("https://croceverde.org/gestionale/magazzino/qfast.php", {id:id, fastquantita:fastquantita}, function (html) {
                     $('#modalquantita').html(html);
                     $('.bd-quantita').modal('toggle');
 
@@ -188,6 +197,9 @@ include "../config/config.php";
                     console.log(msg);
                 })
             });
+            $('#export').on('click', function () {
+                alert("ESPORTAZIONE EXCEL NON ANCORA DISPONIBILE")
+            })
         });
     </script>
 
@@ -207,14 +219,17 @@ include "../config/config.php";
 <div class="container-fluid">
     <div class="jumbotron">
         <center>
-            <div class="btn-group" role="group" aria-label="">
+            <div class="btn-group" role="group">
                 <button id="consumo" type="button" class="btn btn-outline-secondary btn-sm">Materiale di consumo</button>
                 <button id="ricambi" type="button" class="btn btn-outline-secondary btn-sm">Ricambi</button>
                 <button id="altro" type="button" class="btn btn-outline-secondary btn-sm">Altro</button>
                 <button id="vestiario" type="button" class="btn btn-outline-secondary btn-sm">Vestiario</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
             </div>
-                <a href="magazzino.php" class="btn btn-outline-info btn-sm"><i class="fas fa-sync-alt"></i></a>
+            <div class="btn-group" role="group">
+                <button id="reload" type="button" class="btn btn-outline-info btn-sm" ><i class="fas fa-sync-alt"></i></button>
+                <button id="export" type="button" class="btn btn-outline-success btn-sm" ><i class="far fa-file-excel"></i></button>
+            </div>
         </center>
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">

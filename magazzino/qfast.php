@@ -41,6 +41,10 @@ if (isset($_GET["id"])) {
                     data: {id:id, quantitaF:quantitaF},
                     success:function () {
                         swal({text:"Eseguito", icon: "success", button:false, timer:1000, closeOnClickOutside: false});
+                        setTimeout(function () {
+                                location.href='magazzino.php';
+                            },1001
+                        )
                     }
                 })
             })

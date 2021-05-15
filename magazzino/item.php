@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.1
+ * @version    2.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -72,7 +72,6 @@ if(isset($_POST["delete"])){
         </script>';
     }
 }
-//nicename livelli di accesso
 $dictionaryCategoria = array (
     1 => "Materiale di consumo",
     2 => "Ricambi",

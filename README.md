@@ -3,6 +3,11 @@
 
 mail@paolorandone.it
 ---
+Version 2.2 changelog:
+
+- Migliorata la gestione degli ordini
+- Modificata l'esportazione lavaggi
+---
 Version 2.1 changelog:
 
 - Richiesta materiale (beta)

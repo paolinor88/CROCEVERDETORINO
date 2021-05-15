@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.1
+ * @version    2.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -53,22 +53,24 @@ if (!isset($_SESSION["ID"])){
     <script>
         $(document).ready(function () {
             var agendalavaggi = $('#agendalavaggi').fullCalendar({
-                eventRender: function (event, element){
-                    if ((event.stato) == '1'){
+                eventRender: function (event, element) {
+                    if ((event.stato) == '1') {
                         element.addClass('checklist');
-                    }else {
+                    } else {
                         element.addClass('SAMSIC');
                     }
-                    return(['all', event.user_id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.title].indexOf($("#modalFilterAuto option:selected").val())>=0);
+                    return (['all', event.user_id].indexOf($("#modalFilterID option:selected").val()) >= 0) && (['all', event.title].indexOf($("#modalFilterAuto option:selected").val()) >= 0);
                 },
                 customButtons: {
                     refreshBTN: {
                         text: 'Aggiorna',
-                        click: function(){location.reload();}
+                        click: function () {
+                            location.reload();
+                        }
                     },
                     exportBTN: {
                         text: 'Esporta',
-                        click: function(){
+                        click: function () {
                             $('#modalexportauto').modal('show');
                             //location.href='list.php'
                             //$('<a href="https://croceverde.org/gestionale/magazzino/list.php" target="blank"></a>')[0].click();
@@ -96,9 +98,9 @@ if (!isset($_SESSION["ID"])){
                     },
                 },
                 header: {
-                    left: 'prev filterBTN,refreshBTN,exportBTN,checkBTN,today',
+                    left: 'prev filterBTN,refreshBTN,exportBTN,checkBTN',
                     center: 'title',
-                    right: 'basicWeek,month next',
+                    right: 'listWeek,month,today next',
                 },
                 /*
                 validRange: function(nowDate) {
@@ -110,7 +112,8 @@ if (!isset($_SESSION["ID"])){
                 */
                 eventOrder: "event.id",
                 //aspectRatio: 3,
-                editable: true,
+                editable: false,
+                droppable: false,
                 selectable: false,
                 displayEventEnd: false,
                 eventDurationEditable: false,
@@ -343,6 +346,7 @@ if (!isset($_SESSION["ID"])){
                                             FROM
                                             lavaggio_mezzi
                                             WHERE title='$value'
+                                            AND stato='2'
                                             AND MONTH(start_event)='$meseattuale'
                                             AND YEAR(start_event)='$annoattuale'
                                             order by start_event, title
