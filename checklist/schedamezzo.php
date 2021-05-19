@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.2
+ * @version    2.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -216,15 +216,15 @@ if(isset($_POST["stampacheck"])){
                     </div>
                     <div class="form-group">
                         <label for="lastcheck">Ultima checklist <button type="button" id="storicocheck" name="storicocheck" data-toggle="modal" data-target="#modal2" class="btn btn-sm btn-outline-secondary"><i class="fas fa-database"></i></button></label>
-                        <input id="lastcheck" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<?=$lastcheck['DATACHECK']?>">
+                        <input id="lastcheck" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<? $var=$lastcheck['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?>">
                     </div>
                     <div class="form-group">
                         <label for="lastwash">Ultimo lavaggio <button type="button" id="storicolavaggi" name="storicolavaggi" data-toggle="modal" data-target="#modal1" class="btn btn-sm btn-outline-secondary"><i class="fas fa-database"></i></button></label>
-                        <input id="lastwash" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<?=$lastwash['DATACHECK']?>">
+                        <input id="lastwash" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<? $var=$lastwash['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?>">
                     </div>
                     <div class="form-group">
                         <label for="lastscad">Controllo scadenze</label>
-                        <input id="lastscad" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<?=$lastscad['DATACHECK']?>">
+                        <input id="lastscad" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<? $var=$lastscad['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?>">
                     </div>
                     <div class="form-group">
                         <label for="xnote">Note sul mezzo</label>

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.2
+ * @version    2.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -197,8 +197,8 @@ if( isset($_POST['form_item_id_list']) ) {
                             <?php
                             $sql_4 = "SELECT id, nome, tipo, SUM(quantita) AS quantita 
                                       FROM giacenza 
-                                      /*WHERE categoria='4'*/
-                                      WHERE nome= 'POLO TECNICA'
+                                      WHERE categoria='4'
+                                      /*WHERE nome= 'POLO TECNICA*/
                                       AND quantita >'0' 
                                       GROUP BY nome, tipo 
                                       ORDER BY nome, tipo";

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.2
+ * @version    2.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -24,11 +24,12 @@ if(isset($_POST["IDMEZZO"])){
 
     //PARAMETRI MAIL ->
     //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
-    $to=$email;
+    //$to='massimilianobechis@gmail.com';
+    $to='paolo.randone@yahoo.it';
     $nome_mittente="Gestionale CVTO";
     $mail_mittente="gestioneutenti@croceverde.org";
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$to."\r\n";
+    $headers .= "Bcc: ".$mail_mittente."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
@@ -309,5 +310,15 @@ if(isset($_POST["IDMEZZO"])){
             </body>
         </html>";
         mail($to, $oggetto, $corpo, $headers);
+    }
+
+    if (($_POST['LAVAGGIO']=='1')){
+        include "../config/config.php";
+        $var = $_POST['DATACHECK'];
+        $lavaggioext = date_create("$var");
+        $start_event = date_format($lavaggioext, "Y-m-d");
+
+        $insert = $db->query("INSERT INTO lavaggio_mezzi (title, user_id, start_event, stato) VALUES ('$numeroauto', '$compilatore', '$start_event', '1')");
+
     }
 };

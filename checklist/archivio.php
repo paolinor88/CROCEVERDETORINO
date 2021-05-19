@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.2
+ * @version    2.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -60,8 +60,12 @@ $dictionarySquadra = array (
 );
 //statocheck
 $dictionaryStatocheck = array(
-    1 => "<i class='fas fa-times'></i>",
-    2 => "<i class='fas fa-check'></i>",
+    1 => "<i style='color: darkorange' class=\"fas fa-exclamation-triangle\"></i>",
+    2 => "<i style=\"color: #5cb85c\" class=\"far fa-check-circle\"></i>",
+);
+$dictionaryStatocheck2 = array(
+    1 => "<i style=\"color: darkorange\" class=\"far fa-clock\"></i>",
+    2 => "<i style='color: #6c757d' class=\"fas fa-lock\"></i>",
 )
 ?>
 <!DOCTYPE html>
@@ -83,8 +87,10 @@ $dictionaryStatocheck = array(
     <script>
         $(document).ready(function() {
             var dataTables = $('#myTable').DataTable({
+                stateSave: true,
+                "paging": false,
                 "language": {url: '../config/js/package.json'},
-                "order": [[1, "desc"]],
+                //"order": [[1, "desc"]],
                 "pagingType": "simple",
                 "pageLength": 50,
                 "columnDefs": [
@@ -294,23 +300,23 @@ $dictionaryStatocheck = array(
                     <th scope="col">Data</th>
                     <th scope="col">Mezzo</th>
                     <th scope="col">Note</th>
-                    <th scope="col">Visto</th>
-                    <th scope="col">Chiuso</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                $select = $db->query("SELECT * FROM checklist WHERE NOTE!='' order by DATACHECK DESC ");
+                $select = $db->query("SELECT * FROM checklist WHERE NOTE!='' order by IDCHECK DESC ");
                 while($ciclo = $select->fetch_array()){
                     if ($ciclo['NOTE']!=""): ?>
 					<tr>
 						<td class="align-middle"><a href="https://<?=$_SERVER['HTTP_HOST']?>/gestionale/checklist/details.php?ID=<?=$ciclo['IDCHECK']?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-search"></i></a></td>
-						<td class="align-middle"><?=$ciclo['DATACHECK']?></td>
+						<td class="align-middle"><? $var=$ciclo['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?></td>
 						<td class="align-middle"><?=$ciclo['IDMEZZO']?></td>
 						<td class="align-middle"><?=$ciclo['NOTE']?></td>
                         <td class="align-middle"><?=$dictionaryStatocheck[$ciclo['VISTO']]?></td>
-                        <td class="align-middle"><?=$dictionaryStatocheck[$ciclo['CHIUSO']]?></td>
+                        <td class="align-middle"><?=$dictionaryStatocheck2[$ciclo['CHIUSO']]?></td>
                         <td class="align-middle">
                             <form>
                                 <div class="btn-group" role="group">
@@ -329,7 +335,7 @@ $dictionaryStatocheck = array(
 						<td class="align-middle"><?=$ciclo['IDMEZZO']?></td>
 						<td class="align-middle"><?=$ciclo['NOTE']?></td>
 						<td class="align-middle"><?=$ciclo=$dictionaryStatocheck[$ciclo['VISTO']]?></td>
-                        <td class="align-middle"><?=$ciclo=$dictionaryStatocheck[$ciclo['CHIUSO']]?></td>
+                        <td class="align-middle"><?=$ciclo=$dictionaryStatocheck2[$ciclo['CHIUSO']]?></td>
 					</tr>
                 <? endif;
                 }

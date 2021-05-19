@@ -64,7 +64,7 @@ include "../config/config.php";
 						<td>".$ciclo['targa']."</td>
 						<td>".$ciclo['start_event']."</td>
 						<td align='center'>X</td>
-						<td align='center'>X</td>
+						<td align='center'>X</td> 
 						<td align='center'>X</td>
 						<td></td>
 						<td></td>
@@ -75,7 +75,7 @@ include "../config/config.php";
         if ($datastart!==""){//data filter ON
             $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.start_event BETWEEN '$datastart' AND '$dataend' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
         }else{//no data filter
-            $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.stato='2' AND mezzi.stato='1' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
+            $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE mezzi.stato='1' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
         }
 
         while($ciclo = $select->fetch_array()){

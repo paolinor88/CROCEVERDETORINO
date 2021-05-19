@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.2
+ * @version    2.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -90,6 +90,8 @@ $dictionary = array (
     <script>
         $(document).ready(function() {
             var dataTables = $('#myTable').DataTable({
+                stateSave: true,
+                "paging": false,
                 "language": {url: '../config/js/package.json'},
                 "order": [[1, "asc"]],
                 "pagingType": "simple",
@@ -104,31 +106,31 @@ $dictionary = array (
             });
             //FILTRI TABELLA
             $('#msb').on('click', function () {
-                dataTables.columns(2).search("").draw();
-                dataTables.columns(2).search("MSB").draw();
+                dataTables.columns(3).search("").draw();
+                dataTables.columns(3).search("MSB").draw();
                 $( "#msb" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
                 $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
             });
             $('#msa').on('click', function () {
-                dataTables.columns(2).search("").draw();
-                dataTables.columns(2).search("MSA").draw();
+                dataTables.columns(3).search("").draw();
+                dataTables.columns(3).search("MSA").draw();
                 $( "#msa" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
                 $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
             });
             $('#emergenza').on('click', function () {
-                dataTables.columns(2).search("").draw();
-                dataTables.columns(2).search("118").draw();
+                dataTables.columns(3).search("").draw();
+                dataTables.columns(3).search("118").draw();
                 $( "#emergenza" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
                 $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
             });
             $('#all').on('click', function () {
-                dataTables.columns(2).search("").draw();
+                dataTables.columns(3).search("").draw();
                 $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
@@ -165,20 +167,24 @@ $dictionary = array (
                 <tr>
                     <th scope="col"><button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modal1"><i class="fas fa-plus"></i></button></th>
                     <th scope="col">Numero</th>
+                    <th scope="col">Targa</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Note</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
 
-                $select = $db->query("SELECT ID, tipo FROM mezzi WHERE stato='1' order by ID");
+                $select = $db->query("SELECT ID, tipo, targa, note FROM mezzi WHERE stato='1' order by ID");
                 while($ciclo = $select->fetch_array()){
 
                     echo "
 					<tr>
 						<td>"."<a href=\"https://".$_SERVER['HTTP_HOST']."/gestionale/checklist/schedamezzo.php?ID=".$ciclo['ID']."\" class=\"btn btn-sm btn-outline-dark\" \"><i class=\"fas fa-cogs\"></i></a>"."</td>
 						<td>".$ciclo['ID']."</td>
+						<td>".$ciclo['targa']."</td>
 						<td>".$ciclo=$dictionary[$ciclo['tipo']]."</td>
+						<td>".$ciclo['note']."</td>
 					</tr>";
 
                 }
