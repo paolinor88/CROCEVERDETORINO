@@ -3,6 +3,10 @@
 
 mail@paolorandone.it
 ---
+Version 2.3 changelog:
+
+- LICENSE update and bug fix
+---
 Version 2.2 changelog:
 
 - Migliorata la gestione degli ordini

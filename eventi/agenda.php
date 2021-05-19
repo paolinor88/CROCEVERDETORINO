@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.2
+ * @version    2.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -71,7 +71,7 @@ if (!isset($_SESSION["ID"])){
                 header: {
                     left: 'prev filterBTN,refreshBTN,today',
                     center: 'title',
-                    right: 'basicWeek,month next',
+                    right: ' next',
                 },
                 validRange: function(nowDate) {
                     return {
@@ -86,7 +86,7 @@ if (!isset($_SESSION["ID"])){
                 displayEventEnd: false,
                 eventDurationEditable: false,
                 //eventOverlap: false,
-                defaultView: 'basicWeek',
+                defaultView: 'month',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
                 googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
@@ -184,7 +184,7 @@ if (!isset($_SESSION["ID"])){
                 header: {
                     left: 'prev ,today',
                     center: 'title',
-                    right: 'basicWeek,month next',
+                    right: ' next',
                 },
                 validRange: function(nowDate) {
                     return {
@@ -199,7 +199,7 @@ if (!isset($_SESSION["ID"])){
                 displayEventEnd: false,
                 eventDurationEditable: false,
                 //eventOverlap: false,
-                defaultView: 'basicWeek',
+                defaultView: 'month',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
                 googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
