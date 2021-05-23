@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -323,7 +323,7 @@ if (isset($calendario)){
                     </div>
                 </div>
                 <hr>
-                <center>
+                <div style="text-align: center;">
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-sm btn-outline-success" id="update" name="update"><i class="fas fa-check"></i></button>
                         <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#modalarchivia"><i class="far fa-trash-alt"></i></button>
@@ -331,7 +331,7 @@ if (isset($calendario)){
                     <br>
                     <font size="-1"><em><i class="fas fa-check" style="color: #1a712c"></i> Salva le modifiche e ritorna alla pagina di riepilogo<br>
                             <i class="far fa-trash-alt" style="color: #CC0000"></i> Archivia evento</em></font>
-                </center>
+                </div>
 
                 <!-- pubblica -->
                 <div class="modal fade" id="modalapri" tabindex="-1" role="dialog" aria-hidden="true">

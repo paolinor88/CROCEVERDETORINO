@@ -63,9 +63,9 @@ include "../config/config.php";
 						<td>".$ciclo['title']."</td>
 						<td>".$ciclo['targa']."</td>
 						<td>".$ciclo['start_event']."</td>
-						<td align='center'>X</td>
-						<td align='center'>X</td> 
-						<td align='center'>X</td>
+						<td align='center' style='font-size:20px;'>&#10003;</td>
+						<td align='center' style='font-size:20px;'>&#10003;</td>
+						<td align='center' style='font-size:20px;'>&#10003;</td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -85,9 +85,9 @@ include "../config/config.php";
 						<td>".$ciclo['title']."</td>
 						<td>".$ciclo['targa']."</td>
 						<td>".$ciclo['start_event']."</td>
-						<td align='center'>X</td>
-						<td align='center'>X</td>
-						<td align='center'>X</td>
+						<td align='center' style='font-size:20px;'>&#10003;</td>
+						<td align='center' style='font-size:20px;'>&#10003;</td>
+						<td align='center' style='font-size:20px;'>&#10003;</td>
 						<td></td>
 						<td></td>
 						<td></td>

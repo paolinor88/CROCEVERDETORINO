@@ -3,6 +3,10 @@
 
 mail@paolorandone.it
 ---
+Version 2.4 changelog:
+
+- refactoring
+---
 Version 2.3 changelog:
 
 - LICENSE update and bug fix

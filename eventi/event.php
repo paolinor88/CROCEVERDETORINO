@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -188,7 +188,7 @@ $dictionaryStato = array (
 
 <div class="container-fluid">
     <div class="jumbotron">
-        <center>
+        <div style="text-align: center;">
             <div class="btn-group" role="group" aria-label="">
                 <button id="programmato" type="button" class="btn btn-outline-secondary btn-sm">Programmato</button>
                 <button id="aperto" type="button" class="btn btn-outline-secondary btn-sm">Aperto</button>
@@ -196,7 +196,7 @@ $dictionaryStato = array (
                 <button id="archiviato" type="button" class="btn btn-outline-secondary btn-sm">Archiviato</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button> 
             </div>
-        </center>
+        </div>
         <div class="table-responsive-sm">
             <table class="table table-hover" id="myTable">
                 <thead>

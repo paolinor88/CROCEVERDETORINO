@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -244,9 +244,9 @@ echo date_format()
 <div class="container-fluid">
     <div class="jumbotron">
         <form name="check">
-            <center>
+            <div style="text-align: center;">
                 <b><?=$idoperatore?> <?=$cognome?> <?=$nome?></b> / <b>AUTO <?=$idmezzo?></b> / <b>CHECKLIST <?=$dictionaryTipo[$select['tipo']]?></b>
-            </center>
+            </div>
             <hr>
             <?php
             $notealert = $db->query("SELECT DATACHECK, NOTE FROM checklist WHERE IDMEZZO='$idmezzo' AND NOTE!='' AND CHIUSO!='2' ORDER BY DATACHECK DESC");
@@ -1582,9 +1582,9 @@ echo date_format()
                     });
                 </script>
             </div>
-            <center>
+            <div style="text-align: center;">
                 <button type="button" id="inviacheck" name="inviacheck" class="btn btn-success"><i class="fas fa-check"></i></button>
-            </center>
+            </div>
         </form>
     </div>
 </div>

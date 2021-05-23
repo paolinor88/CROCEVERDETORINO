@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -86,7 +86,7 @@ $dictionarySquadra = array (
     22 => "",
 );
 //generatore password
-function generatePassword ( $length = 8 )
+function generatePassword ( $length = 8 ): string
 {
     $password = '';
     $possibleChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -192,6 +192,7 @@ if(isset($_POST["activateBTN"])){
 
 ?>
 <!DOCTYPE html>
+<html lang="it">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -236,7 +237,7 @@ if(isset($_POST["activateBTN"])){
             <div class="col-md-3 col-md-offset-3"></div>
             <div class="text-center col-md-6">
                 <div class="jumbotron">
-                    <div align="center"><img class="img-fluid" src="config/images/logo.png"/></div>
+                    <div align="center"><img class="img-fluid" src="config/images/logo.png" alt="logocvto"/></div>
                     <h4 class="text-center" style="color: #078f40">Accedi</h4>
                     <hr>
                     <div class="form-group">
@@ -251,7 +252,7 @@ if(isset($_POST["activateBTN"])){
                     </div>
                     <br>
                     <div class="text-center">
-                        <font size="-2"><a href="mailto: mail@paolorandone.it">Problemi di accesso?</a></font>
+                        <span style="font-size: 70%; "><a href="mailto: mail@paolorandone.it">Problemi di accesso?</a></span>
                     </div>
                     <hr>
                     <div class="text-center">
@@ -306,7 +307,7 @@ if(isset($_POST["activateBTN"])){
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 2.3</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 2.4</p></em></font>
     </div>
 </footer>
 </html>

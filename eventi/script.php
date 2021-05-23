@@ -11,7 +11,7 @@ if (isset($_POST["id_utente"])){
             ':id_evento' => $_POST['id_evento']
         )
     );
-};
+}
 
 if(isset($_POST["id"]))
 {
@@ -23,4 +23,4 @@ if(isset($_POST["id"]))
             ':id'  => $_POST['id'],
         )
     );
-};
+}

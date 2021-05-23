@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -185,7 +185,7 @@ if(isset($_POST["reply"])) {
                 <div class="form-group">
                     <textarea class="form-control" id="xnote" name="xnote" readonly rows="10"><?=$modifica['NOTE']?></textarea>
                 </div>
-                <center>
+                <div style="text-align: center;">
                     <div class="btn-group" role="group">
                         <button type="button" id="rispondi" name="rispondi" class="btn btn-sm btn-outline-info" aria-label="Rispondi" data-toggle="modal" data-target="#modalrisposta"><i class="fas fa-reply"></i></button>
 
@@ -193,8 +193,8 @@ if(isset($_POST["reply"])) {
 
                     </div>
                     <br>
-                    <font size="-1"><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></font>
-                </center>
+                    <span style="font-size: smaller; "><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></span>
+                </div>
             </form>
         </div>
     </div>

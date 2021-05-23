@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -65,7 +65,7 @@ if(isset($_POST["stampalavaggi"])){
     $nwash= count($array);
     for ($i=0;$i<$nwash;$i++){
         $elenco .= ($array[$i])."<br>";
-    };
+    }
     //PARAMETRI MAIL ->
     $now = date("Y-m-d");
     $to= $_SESSION['email'];
@@ -107,7 +107,7 @@ if(isset($_POST["stampacheck"])){
     $ncheck= count($array);
     for ($i=0;$i<$ncheck;$i++){
         $elenco .= ($array[$i])."<br>";
-    };
+    }
 
     $now = date("Y-m-d");
     $to= $_SESSION['email'];
@@ -231,9 +231,9 @@ if(isset($_POST["stampacheck"])){
                         <textarea class="form-control" id="xnote" name="xnote" rows="10"><?=$modifica['note']?></textarea>
                     </div>
                     <hr>
-                    <center>
+                    <div style="text-align: center;">
                         <button type="submit" id="aggiornamezzo" name="aggiornamezzo" class="btn btn-success"><i class="fas fa-check"></i></button>
-                    </center>
+                    </div>
                 </form>
             </div>
         </div>
@@ -257,7 +257,7 @@ if(isset($_POST["stampacheck"])){
                         $allwash = $db->query("SELECT * FROM checklist WHERE IDMEZZO=$id AND LAVAGGIO IS TRUE ORDER BY DATACHECK DESC");
                         while ($ciclo = $allwash->fetch_array()){
                             echo "<option value=\"".$ciclo['DATACHECK']."\">".$ciclo['DATACHECK']."</option>";
-                        };?>
+                        }?>
                     </select>
                 </div>
                 <div class="modal-footer">
@@ -284,7 +284,7 @@ if(isset($_POST["stampacheck"])){
                         $allwash = $db->query("SELECT * FROM checklist WHERE IDMEZZO=$id ORDER BY DATACHECK DESC");
                         while ($ciclo = $allwash->fetch_array()){
                             echo "<option value=\"".$ciclo['DATACHECK']."\">".$ciclo['DATACHECK']."</option>";
-                        };?>
+                        }?>
                     </select>
                 </div>
                 <div class="modal-footer">

@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -143,7 +143,7 @@ $dictionaryCategoria = array (
             if($modifica['scadenza']==NULL || $rif<$scadenza) {
             }else{
                 echo "<div class=\"alert alert-danger\" role=\"alert\" style='text-align: center'><b>ARTICOLO IN SCADENZA</b></div>";
-            };
+            }
             /*$minimo = 5;
             if($modifica['quantita']!=NULL && $modifica['quantita']<$minimo){
                 echo "<div class=\"alert alert-danger\" role=\"alert\" style='text-align: center'><b>QUANTITA' LIMITATA</b></div>";

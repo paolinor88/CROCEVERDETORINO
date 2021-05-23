@@ -14,18 +14,5 @@ if(isset($_POST["user_id"]))
             ':user_id' =>$_POST['user_id']
         )
     );
-};
-/*if(isset($_POST["stato"]))
-{
-    $query = "UPDATE agenda SET stato=:stato WHERE id=:id";
+}
 
-    $statement = $connect->prepare($query);
-    $statement->execute(
-        array(
-            ':id'  => $_POST['id'],
-            ':stato'  => $_POST['stato']
-        )
-    );
-};*/
-
-?>

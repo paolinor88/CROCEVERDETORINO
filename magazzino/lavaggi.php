@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -54,7 +54,7 @@ if (!isset($_SESSION["ID"])){
         $(document).ready(function () {
             var agendalavaggi = $('#agendalavaggi').fullCalendar({
                 eventRender: function (event, element) {
-                    if ((event.stato) == '1') {
+                    if ((event.stato) === '1') {
                         element.addClass('checklist');
                     } else {
                         element.addClass('SAMSIC');
@@ -100,7 +100,7 @@ if (!isset($_SESSION["ID"])){
                 header: {
                     left: 'prev filterBTN,refreshBTN,exportBTN,checkBTN',
                     center: 'title',
-                    right: 'listWeek,month,today next',
+                    right: 'basicWeek,month,today next',
                 },
                 /*
                 validRange: function(nowDate) {

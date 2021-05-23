@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -150,7 +150,7 @@ if (isset($_POST["delete"])){
 
 }
 //generatore password
-function generatePassword ( $length = 8 )
+function generatePassword ( $length = 8 ): string
 {
     $password = '';
     $possibleChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -350,7 +350,7 @@ if(isset($_POST["resetpwd"])){
                     </div>
                     <button type="submit" id="resetpwd" name="resetpwd" class="btn btn-warning btn-sm"><i class="fas fa-sync-alt"></i> Reset password</button>
                     <hr>
-                    <center>
+                    <div style="text-align: center;">
                         <div class="btn-group" role="group">
                             <button type="submit" class="btn btn-sm btn-outline-success" id="update" name="update"><i class="fas fa-check"></i></button>
                             <button type="button" class="btn btn-sm btn-outline-secondary" id="indietro" name="indietro"><i class="fas fa-undo"></i></button>
@@ -358,7 +358,7 @@ if(isset($_POST["resetpwd"])){
                         </div>
                         <br>
                         <font size="-1"><em>Confermando <i class="fas fa-check" style="color: #1a712c"></i>, sarà inviata una mail all'utente con il riepilogo delle informazioni<br>Per ritornare alla lista degli operatori senza apporatare modifiche, utilizzare il pulsante grigio <i class="fas fa-undo" style="color: #595959"></i><br>Per rendere inattivo l'utente, premere il pulsante rosso <i class="far fa-trash-alt" style="color: #CC0000"></i></em></font>
-                    </center>
+                    </div>
                     <!-- delete -->
                     <div class="modal" id="modaldelete" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">

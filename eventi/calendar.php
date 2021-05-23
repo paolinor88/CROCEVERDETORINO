@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -71,7 +71,7 @@ if (!isset($_SESSION["ID"])){
                         className: 'nolink'
                     }
                 ],
-                eventClick: function(calEvent, jsEvent, view) {
+                eventClick: function(calEvent) {
                     if (calEvent.url) {
                         return false;
                     }else{
@@ -176,7 +176,7 @@ if (!isset($_SESSION["ID"])){
                         }
                     },
                 },
-                eventClick: function(calEvent, jsEvent, view) {
+                eventClick: function(calEvent) {
                     if (calEvent.url) {
                         return false;
                     }else{

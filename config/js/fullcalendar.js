@@ -14888,7 +14888,7 @@ Bootstrap4Theme.prototype.classes = {
 Bootstrap4Theme.prototype.baseIconClass = 'fa';
 Bootstrap4Theme.prototype.iconClasses = {
     today: 'fa-home',
-    listWeek: 'fa-list-ul',
+    basicWeek: 'fa-list-ul',
 	month: 'fa-calendar-alt',
     listMonth: 'fa-list-ul',
     close: 'fa-times',

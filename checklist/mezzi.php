@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -153,14 +153,14 @@ $dictionary = array (
 <body>
 <div class="container-fluid">
     <div class="jumbotron">
-        <center>
+        <div style="text-align: center;">
             <div class="btn-group" role="group" aria-label="">
                 <button id="msb" type="button" class="btn btn-outline-secondary btn-sm">MSB</button>
                 <button id="msa" type="button" class="btn btn-outline-secondary btn-sm">MSA</button>
                 <button id="emergenza" type="button" class="btn btn-outline-secondary btn-sm">Flotta 118</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
             </div>
-        </center>
+        </div>
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">
                 <thead>

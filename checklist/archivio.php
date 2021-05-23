@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -76,7 +76,7 @@ $dictionaryStatocheck2 = array(
     <meta name="author" content="Paolo Randone">
     <title>Archivio checklist</title>
 
-    <? require "../config/include/header.html";?>
+    <?php require "../config/include/header.html";?>
 
     <script>
         $(document).ready(function(){
@@ -312,7 +312,7 @@ $dictionaryStatocheck2 = array(
                     if ($ciclo['NOTE']!=""): ?>
 					<tr>
 						<td class="align-middle"><a href="https://<?=$_SERVER['HTTP_HOST']?>/gestionale/checklist/details.php?ID=<?=$ciclo['IDCHECK']?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-search"></i></a></td>
-						<td class="align-middle"><? $var=$ciclo['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?></td>
+						<td class="align-middle"><?php $var=$ciclo['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?></td>
 						<td class="align-middle"><?=$ciclo['IDMEZZO']?></td>
 						<td class="align-middle"><?=$ciclo['NOTE']?></td>
                         <td class="align-middle"><?=$dictionaryStatocheck[$ciclo['VISTO']]?></td>
@@ -327,8 +327,8 @@ $dictionaryStatocheck2 = array(
                         </td>
 
                     </tr>
-                    <? endif; ?>
-                    <? if ($ciclo['NOTE']==""): ?>
+                    <?php endif; ?>
+                    <?php if ($ciclo['NOTE']==""): ?>
 					<tr>
 						<td class="align-middle"><a href="" class="btn btn-sm btn-outline-secondary disabled" ><i class="far fa-times-circle"></i></a></td>
 						<td class="align-middle"><?=$ciclo['DATACHECK']?></td>
@@ -337,7 +337,7 @@ $dictionaryStatocheck2 = array(
 						<td class="align-middle"><?=$ciclo=$dictionaryStatocheck[$ciclo['VISTO']]?></td>
                         <td class="align-middle"><?=$ciclo=$dictionaryStatocheck2[$ciclo['CHIUSO']]?></td>
 					</tr>
-                <? endif;
+                    <?php endif;
                 }
                 ?>
                 </tbody>

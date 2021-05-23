@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -14,10 +14,6 @@ session_start();
 //parametri DB
 include "../config/config.php";
 
-//accesso consentito a logistica, segreteria,ADMIN
-if (($_SESSION["livello"])<4){
-    //header("Location: ../error.php");
-}
 //recupera variabili
 if (isset($_GET["id_richiesta"])){
     $id = $_GET["id_richiesta"];

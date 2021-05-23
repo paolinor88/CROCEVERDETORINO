@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -65,7 +65,7 @@ if (isset($_GET["ID"])){
     $modifica = $db->query("SELECT * FROM utenti WHERE ID='$id'")->fetch_array();
 }
 //generatore password
-function generatePassword ( $length = 8 )
+function generatePassword ( $length = 8 ): string
 {
     $password = '';
     $possibleChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -267,7 +267,7 @@ $pwd = generatePassword(8);
 
 <div class="container-fluid">
     <div class="jumbotron">
-        <center>
+        <div style="text-align: center;">
             <div class="btn-group" role="group" aria-label="">
                 <button id="dipendenti" type="button" class="btn btn-outline-secondary btn-sm">Dipendenti</button>
                 <button id="volontari" type="button" class="btn btn-outline-secondary btn-sm">Volontari</button>
@@ -280,7 +280,7 @@ $pwd = generatePassword(8);
                 <button id="admin" type="button" class="btn btn-outline-secondary btn-sm">Admin</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
             </div>
-        </center>
+        </div>
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">
                 <thead>

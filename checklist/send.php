@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -303,7 +303,7 @@ if(isset($_POST["IDMEZZO"])){
         $olioq = $_POST["rabbocco"];
         $oggetto = "Rabbocco olio motore auto $numeroauto";
         $corpo = "
-        <html>
+        <html lang='it'>
             <body>
                 <p>Si segnala che in data ".$datatesto." sono stati aggiunti ".$olioq." Kg di olio motore all'auto in oggetto</p>
                 <p>".$compilatore." ".$cognome." ".$nome."</p>
@@ -321,4 +321,4 @@ if(isset($_POST["IDMEZZO"])){
         $insert = $db->query("INSERT INTO lavaggio_mezzi (title, user_id, start_event, stato) VALUES ('$numeroauto', '$compilatore', '$start_event', '1')");
 
     }
-};
+}
