@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.3
+ * @version    2.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -34,13 +34,13 @@ if (!isset($_SESSION["ID"])){
                 eventRender: function (event, element){
                     if ((event.stato) !== '1'){
                         element.addClass('confermato');
-                    }else if ((event.start.format("HH:mm:ss")) == "06:00:00"){
+                    }else if ((event.start.format("HH:mm:ss")) === "06:00:00"){
                         element.addClass('mattino');
                     }else if
-                    ((event.start.format("HH:mm:ss")) == "08:00:00"){
+                    ((event.start.format("HH:mm:ss")) === "08:00:00"){
                         element.addClass('centrale');
                     }else if
-                    ((event.start.format("HH:mm:ss")) == "01:00:00"){
+                    ((event.start.format("HH:mm:ss")) === "01:00:00"){
                         element.addClass('giorno');
                     }
                     else {
@@ -71,7 +71,7 @@ if (!isset($_SESSION["ID"])){
                 header: {
                     left: 'prev filterBTN,refreshBTN,today',
                     center: 'title',
-                    right: ' next',
+                    right: 'basicWeek,month next',
                 },
                 validRange: function(nowDate) {
                     return {
@@ -109,71 +109,22 @@ if (!isset($_SESSION["ID"])){
                     }
                 ],
                 //FUNZIONE DISABILITATA
-                /*dayClick: function(date) { //INSERISCI DISPONIBILITA
-                    if(moment() <= date){
-                        var day = date.format("YYYY-MM-DD");
-                        $('#modal4').modal('show');
-                        $('#addButton').off('click').on('click', function () {
-                            $('#modal4').modal('hide');
-                            var user_id = $("#user_id").val();
-                            var title = $("#cognomenome").val();
-                            var start = day + " " + $("#modalAddStart option:selected").val();
-                            if (title) {
-                                var endStr = $.fullCalendar.moment(start);
-                                endStr.add(1, 'hours');
-                                var end =endStr.format("YYYY-MM-DD HH:mm:ss");
-                                $.ajax({
-                                    url: "insert.php",
-                                    type: "POST",
-                                    data: {title:title, start:start, end:end, user_id:user_id},
-                                    success: function () {
-                                        agendacal.fullCalendar('refetchEvents');
-                                        swal({text: "Disponibilità inserita con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
-                                        setTimeout(function () {
-                                                location.reload();
-                                            }, 1001
-                                        )
-                                    }
-                                });
-                            }
-                        });
-                    }else{
-                        alert("BLOCCATO")
-                    }
-                },*/
-                //FUNZIONE DISABILITATA
                 eventClick:function(event, jsEvent){
                     jsEvent.preventDefault();
-                    /*$('#modal2').modal('show');
-                        $('#assignButton').off('click').on('click', function(){
-                            $("#modal2").modal('hide');
-                            var id = event.id;
-                            var stato = $('#modalAssigned').val();
-                            if (stato){
-                                $.ajax({
-                                    url:"insert.php",
-                                    type:"POST",
-                                    data:{id:id, stato:stato},
-                                    success:function(){
-                                        agendacal.fullCalendar('refetchEvents');
-                                        swal({text:"Fatto!", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
-                                    }
-                                })
-                            }
-                        });*/
+
                 }
             });
             var calendaruser = $('#calendaruser').fullCalendar({
                 eventRender: function (event, element){
                     if ((event.stato) !== '1'){
                         element.addClass('confermato');
-                    }else if ((event.start.format("HH:mm:ss")) == "06:00:00"){
+                    }else if ((event.start.format("HH:mm:ss")) === "06:00:00"){
                         element.addClass('mattino');
                     }else if
-                    ((event.start.format("HH:mm:ss")) == "08:00:00"){
+                    ((event.start.format("HH:mm:ss")) === "08:00:00"){
                         element.addClass('centrale');
                     }else if
-                    ((event.start.format("HH:mm:ss")) == "01:00:00"){
+                    ((event.start.format("HH:mm:ss")) === "01:00:00"){
                         element.addClass('giorno');
                     }
                     else {
@@ -184,7 +135,7 @@ if (!isset($_SESSION["ID"])){
                 header: {
                     left: 'prev ,today',
                     center: 'title',
-                    right: ' next',
+                    right: 'basicWeek,month,today next',
                 },
                 validRange: function(nowDate) {
                     return {
@@ -322,9 +273,10 @@ if (!isset($_SESSION["ID"])){
 <br>
 
 <div class="container-fluid">
-    <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'</div>
+    <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'
     <div id='<?if (($_SESSION['livello']==1) OR ($_SESSION['livello']==4)) echo "calendaruser"?>'</div>
-</div>
+
+
 <div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span>, <span style="color: slategray" >Weekend e festività</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
 
 <!-- MODAL INSERIMENTO -->

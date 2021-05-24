@@ -45,10 +45,35 @@ echo date_format()
             $('[data-toggle="popover"]').popover();
         });
     </script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            alert("ATTENZIONE, una o più voci risultano mancanti; puoi ignorare questo messaggio e inviare comunque la checklist, oppure premere annulla e completare l'inserimento.");
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
     <!-- STRUTTURA CHECKLIST -->
     <script>
         $(document).ready(function() {
+
             $('#inviacheck').on('click', function(){
+
                 var IDMEZZO = $("#IDMEZZO").val();
                 var IDOPERATORE = $("#IDOPERATORE").val();
                 var tipo = $("#tipo").val();
@@ -243,7 +268,7 @@ echo date_format()
 <body>
 <div class="container-fluid">
     <div class="jumbotron">
-        <form name="check">
+        <form name="check" class="needs-validation" novalidate>
             <div style="text-align: center;">
                 <b><?=$idoperatore?> <?=$cognome?> <?=$nome?></b> / <b>AUTO <?=$idmezzo?></b> / <b>CHECKLIST <?=$dictionaryTipo[$select['tipo']]?></b>
             </div>
@@ -254,7 +279,8 @@ echo date_format()
                 echo "<div class=\"alert alert-danger\" role=\"alert\">
                         <h5 class=\"alert-heading\" STYLE='text-align: center'>Segnalazioni attive!</h5>";
                 while($ciclo = $notealert->fetch_array()){
-                    echo "<p style='font-size: small'>".$ciclo['DATACHECK']." -> ".$ciclo['NOTE']."</p>";
+                    $var=$ciclo['DATACHECK'];$var1=date_create("$var");
+                    echo "<p style='font-size: small'>".date_format($var1, "d-m-Y H:s")." -> ".$ciclo['NOTE']."</p>";
                 }
                 echo "</div><hr>";
             }
@@ -269,8 +295,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="spinale">Asse spinale</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="spinale">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="spinale" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -280,8 +307,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="scoop">Barella scoop</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="scoop">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="scoop" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -292,8 +320,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="collari">1x Collari (Pediatric - NoNeck - Regular)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="collari">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="collari" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -307,8 +336,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="elettrodi">Elettrodi</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="elettrodi">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="elettrodi" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Ripristinato">Ripristinato</option>
                             <option value="Parziale">Quantità inferiore</option>
@@ -319,8 +349,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="gel">Gel</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="gel">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="gel" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Ripristinato">Ripristinato</option>
                             <option value="Parziale">Quantità inferiore</option>
@@ -331,8 +362,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="ecg">Carta ECG</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="ecg">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="ecg" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Ripristinato">Ripristinato</option>
                             <option value="Parziale">Quantità inferiore</option>
@@ -343,8 +375,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="6lead">Cavo 6 derivazioni</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="6lead">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="6lead" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -356,8 +389,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="4lead">Cavo 4 derivazioni</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="4lead">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="4lead" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -369,12 +403,12 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="saturimetro">Cavo saturimetro</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="saturimetro">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="saturimetro" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
-                            <option value="Parziale">Quantità inferiore</option>
                             <option value="Vedi note">Vedi note</option>
                         </select>
                     </div>
@@ -382,12 +416,12 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="pacing">Cavo mani libere / pacing</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="pacing">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="pacing" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
-                            <option value="Parziale">Quantità inferiore</option>
                             <option value="Vedi note">Vedi note</option>
                         </select>
                     </div>
@@ -395,12 +429,12 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="circuitoventilatore">Corrugato e valvola ventilatore</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="circuitoventilatore">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="circuitoventilatore" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
-                            <option value="Parziale">Quantità inferiore</option>
                             <option value="Vedi note">Vedi note</option>
                         </select>
                     </div>
@@ -410,8 +444,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="maschere">3x Maschere ossigeno ADULTI e PEDIATRICHE</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="maschere">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="maschere" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -425,8 +460,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="piastre">1x Piastre LP 12/15 ADULTI e PEDIATRICHE</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="piastre">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="piastre" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Ripristinato">Ripristinato</option>
                             <option value="Vedi note">Vedi note</option>
@@ -441,8 +477,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="LP">Defibrillatore LP 12/15</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="LP">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="LP" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -453,8 +490,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="cavoLP">Alimentatore 12v con cavo</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="cavoLP">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="cavoLP" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -465,8 +503,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="batterieLP">Batterie</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="batterieLP">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="batterieLP" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Vedi note">Vedi note</option>
@@ -478,8 +517,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="aspiratore">Aspiratore con sondino</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="aspiratore">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="aspiratore" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -493,8 +533,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="ventilatore">Ventilatore polmonare Drager</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="ventilatore">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="ventilatore" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -505,8 +546,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="cavovent12">Cavo ventilatore 12v</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="cavovent12">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="cavovent12" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -517,8 +559,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="cavovent220">Cavo ventilatore 220v</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="cavovent220">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="cavovent220" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -529,8 +572,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="pompa">Pompa infusionale</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="pompa">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="pompa" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -541,8 +585,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="cavopompa12">Cavo pompa 12v</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="cavopompa12">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="cavopompa12" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -553,8 +598,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="cavopompa220">Cavo pompa 220v</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="cavopompa220">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="cavopompa220" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -567,8 +613,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="bombolefisse">2x Bombole ossigeno fisse 7lt.</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="bombolefisse">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="bombolefisse" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -579,8 +626,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="taglienti">Porta taglienti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="taglienti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="taglienti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -592,8 +640,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="DAE">DAE + piastre ADULTI e PEDIATRICHE</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="DAE">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="DAE" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -604,8 +653,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="lenzuola">10x Lenzuola monouso</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="lenzuola">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="lenzuola" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -618,8 +668,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="cpap">1x Maschere CPAP (S-M-L)</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="cpap">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="cpap" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Ripristinato">Ripristinato</option>
                             <option value="Parziale">Quantità inferiore</option>
@@ -633,8 +684,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="pedimate">Pedi-Mate</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="pedimate">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="pedimate" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -642,13 +694,26 @@ echo date_format()
                     </select>
                 </div>
             </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="tablet">Tablet + stampante <small class="text-muted">(SOLO PER MSB)</small></label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="tablet" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
+                </div>
             <? endif; ?>
             <hr>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="guanti">1x Guanti (S-M-L-XL)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="guanti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="guanti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -660,8 +725,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="sedia">Sedia portantina</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="sedia">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="sedia" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -673,8 +739,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="KED">Kit estricazione</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="KED">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="KED" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -686,8 +753,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="steccobende">Set steccobende con pompa</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="steccobende">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="steccobende" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -700,8 +768,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="bomboleport">2x Bombole portatili 3lt.</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="bomboleport">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="bomboleport" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -713,8 +782,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="caschi">4x Elmetti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="caschi">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="caschi" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -726,8 +796,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="padella">Padella</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="padella">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="padella" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -738,8 +809,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="carta">Rotolo carta</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="carta">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="carta" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -751,8 +823,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="amputazioni">Sacca porta arti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="amputazioni">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="amputazioni" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -765,8 +838,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ragno">Ragno</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ragno">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="ragno" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -777,8 +851,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="trauma">Base + fermacapo + mentoniere</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="trauma">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="trauma" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -789,8 +864,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="cinghie">3x Cinture scoop</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cinghie">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="cinghie" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -803,8 +879,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="estintorepost">Estintore posteriore <small class="text-muted">(Lancetta sul verde)</small></label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="estintorepost">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="estintorepost" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Esaurito">Esaurito</option>
                         <option value="Scaduto">Scaduto</option>
@@ -815,19 +892,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="coltrino">Coltrino</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="coltrino">
-                        <option value="OK" selected="selected">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="coperta">Coperta</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="coperta">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="coltrino" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -839,8 +906,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="traslatore">Traslatore</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="traslatore">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="traslatore" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -856,8 +924,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="estintoreant">Estintore anteriore <small class="text-muted">(Lancetta sul verde)</small></label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="estintoreant">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="estintoreant" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Esaurito">Esaurito</option>
                         <option value="Scaduto">Scaduto</option>
@@ -867,8 +936,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="faro">Faro di ricerca</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="faro">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="faro" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -879,8 +949,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="scasso">Set da scasso <small class="text-muted">(Mazzetta, cesoia, leverino, guanti da lavoro, torcia a vento)</small></label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="scasso">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="scasso" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -892,8 +963,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="bloccocv">Blocco auto CV</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="bloccocv">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="bloccocv" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                     </select>
@@ -902,8 +974,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="schede118">5x Schede MSB/MSA</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="schede118">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="schede118" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Parziale">Quantità inferiore</option>
                         <option value="Vedi note">Vedi note</option>
@@ -913,8 +986,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="fuoriservizio">Cartello FUORI SERVIZIO</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="fuoriservizio">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="fuoriservizio" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                     </select>
                 </div>
@@ -922,8 +996,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="antifiamma">Coperta anti-fiamma</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="antifiamma">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="antifiamma" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -933,8 +1008,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="panseptil">Disinfettante</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="panseptil">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="panseptil" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -974,8 +1050,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="luci">Luci</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="luci">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="luci" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -985,8 +1062,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="blu">Lampeggianti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="blu">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="blu" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -996,8 +1074,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="sirene">Sirene</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="sirene">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="sirene" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1007,8 +1086,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="gasolio">Carburante</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="gasolio">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="gasolio" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1018,8 +1098,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="telepass">Telepass</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="telepass">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="telepass" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                     </select>
@@ -1028,8 +1109,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="doc">Documenti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="doc">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="doc" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Vedi note">Vedi note</option>
                     </select>
@@ -1038,8 +1120,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="cartaagip">Carta carburante</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cartaagip">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="cartaagip" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1078,8 +1161,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="battesedia">Batteria + caricabatteria sedia</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="battesedia">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="battesedia" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1107,8 +1191,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ambuped">Pallone autoespandibile pediatrico</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ambuped">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="ambuped" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1119,8 +1204,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="reservoirped">Reservoire +  valvola</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="reservoirped">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="reservoirped" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1131,8 +1217,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="filtroped">Filtri (2x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="filtroped">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="filtroped" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1143,8 +1230,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="maschereped">Mascherine (3 misure)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="maschereped">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="maschereped" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1155,8 +1243,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="guedelped">Guedel (3 misure)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="guedelped">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="guedelped" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1167,8 +1256,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ossped">Raccordo ossigeno</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ossped">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="ossped" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1180,8 +1270,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ambuadulti">Pallone autoespandibile adulti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ambuadulti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="ambuadulti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1192,8 +1283,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="reservoiradulti">Reservoire +  valvola</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="reservoiradulti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="reservoiradulti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1204,8 +1296,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="filtroadulti">Filtri (2x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="filtroadulti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="filtroadulti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1216,8 +1309,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="maschereadulti">Mascherine (5 misure)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="maschereadulti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="maschereadulti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1228,8 +1322,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="guedeladulti">Guedel (5 misure)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="guedeladulti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="guedeladulti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1240,8 +1335,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ossadulti">Raccordo ossigeno</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ossadulti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="ossadulti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1252,8 +1348,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="fisio">Fisiologiche (2x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="fisio">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="fisio" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1264,8 +1361,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="h2o2">Acqua ossigenata (1x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="h2o2">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="h2o2" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1275,8 +1373,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="betadine">Betadine (1x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="betadine">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="betadine" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1286,8 +1385,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="cerotti">Cerotti (2x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="cerotti">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="cerotti" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1298,8 +1398,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="benda">Peha haft (4x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="benda">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="benda" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1310,8 +1411,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="garze">Garze sterili (6x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="garze">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="garze" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1322,8 +1424,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="ghiaccio">Ghiaccio (3x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="ghiaccio">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="ghiaccio" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1334,8 +1437,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="arterioso">Laccio arterioso</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="arterioso">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="arterioso" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1345,8 +1449,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="venoso">Laccio venoso</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="venoso">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="venoso" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1356,8 +1461,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="rasoio">Rasoio</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="rasoio">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="rasoio" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Vedi note">Vedi note</option>
@@ -1368,8 +1474,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="sfigmo">Sfigmomanometro</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="sfigmo">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="sfigmo" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1380,8 +1487,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="fonendo">Fonendoscopio</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="fonendo">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="fonendo" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1394,8 +1502,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="saturimetrob">Saturimetro</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="saturimetrob">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="saturimetrob" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -1406,8 +1515,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="termometro">Termometro</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="termometro">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="termometro" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -1420,8 +1530,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="sondini">Sondini aspiratore (5x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="sondini">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="sondini" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1433,8 +1544,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="maschereborsa">Mascherine reservoir (2 adulti + 2 pediatriche)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="maschereborsa">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="maschereborsa" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1446,8 +1558,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="robin">Robin</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="robin">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="robin" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Guasto">Guasto</option>
                         <option value="Ripristinato">Ripristinato</option>
@@ -1459,8 +1572,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="guantisterili">Guanti sterili (4x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="guantisterili">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="guantisterili" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1471,8 +1585,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="telini">Telini sterili (2x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="telini">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="telini" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1484,8 +1599,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="metalline">Metalline (4x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="metalline">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="metalline" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1496,8 +1612,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="spazzatura">Sacchetti rifiuti</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="spazzatura">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="spazzatura" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1508,8 +1625,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="pappagallo">Pappagallo monouso (2x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="pappagallo">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="pappagallo" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1521,8 +1639,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="dpi">Kit infettivi (3x)</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="dpi">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="dpi" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1533,8 +1652,9 @@ echo date_format()
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="chirurgiche">Mascherine chirurgiche</label>
                 <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="chirurgiche">
-                        <option value="OK" selected="selected">OK</option>
+                    <select class="form-control form-control-sm" id="chirurgiche" required>
+                        <option disabled selected value="">Scegli...</option>
+                        <option value="OK">OK</option>
                         <option value="MANCANTE">Mancante</option>
                         <option value="Ripristinato">Ripristinato</option>
                         <option value="Parziale">Quantità inferiore</option>
@@ -1548,8 +1668,9 @@ echo date_format()
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="monossido">Rilevatore gas tossici</label>
                     <div class="col col-sm-2">
-                        <select class="form-control form-control-sm" id="monossido">
-                            <option value="OK" selected="selected">OK</option>
+                        <select class="form-control form-control-sm" id="monossido" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
                             <option value="MANCANTE">Mancante</option>
                             <option value="Guasto">Guasto</option>
                             <option value="Ripristinato">Ripristinato</option>
@@ -1583,11 +1704,13 @@ echo date_format()
                 </script>
             </div>
             <div style="text-align: center;">
-                <button type="button" id="inviacheck" name="inviacheck" class="btn btn-success"><i class="fas fa-check"></i></button>
+                <button type="submit" id="inviacheck" name="inviacheck" class="btn btn-success"><i class="fas fa-check"></i></button>
             </div>
         </form>
     </div>
 </div>
+
+
 </body>
 
 <!-- FOOTER -->

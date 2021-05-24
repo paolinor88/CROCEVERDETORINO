@@ -10,6 +10,7 @@
 session_start();
 //parametri DB
 include "../config/pdo.php";
+include "../config/include/destinatari.php";
 //set session var
 $cognome = $_SESSION["cognome"];
 $nome = $_SESSION["nome"];
@@ -23,9 +24,14 @@ $dictionary = array (
 if(isset($_POST["IDMEZZO"])){
 
     //PARAMETRI MAIL ->
-    //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
-    //$to='massimilianobechis@gmail.com';
-    $to='paolo.randone@yahoo.it';
+    /*
+    $randone= 'paolo.randone@yahoo.it';
+    $bechis= 'massimilianobechis@gmail.com';
+    $gestionale= 'gestioneutenti@croceverde.org';
+    $comunicazioni= 'comunicazioni.mezzi@croceverde.org';
+    $checklist= 'checklist@croceverde.org';
+    */
+    $to= $randone;//.', '.$bechis;
     $nome_mittente="Gestionale CVTO";
     $mail_mittente="gestioneutenti@croceverde.org";
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
