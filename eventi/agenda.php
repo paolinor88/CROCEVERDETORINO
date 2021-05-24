@@ -273,7 +273,7 @@ if (!isset($_SESSION["ID"])){
 <br>
 
 <div class="container-fluid">
-    <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'
+    <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'</div>
     <div id='<?if (($_SESSION['livello']==1) OR ($_SESSION['livello']==4)) echo "calendaruser"?>'</div>
 
 
