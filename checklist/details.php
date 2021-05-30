@@ -10,6 +10,8 @@
 session_start();
 //parametri DB
 include "../config/config.php";
+include "../config/include/destinatari.php";
+
 //controllo LOGIN / accesso consentito a logistica, segreteria e ADMIN
 if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
@@ -27,34 +29,6 @@ $nome = $select['nome'];
 $sezione = $select['sezione'];
 $squadra = $select['squadra'];
 $email = $select['email'];
-
-//chiudi note
-if (isset($_POST["archivianota"])){
-    $idcheck=$_POST["xcheck"];
-    $aggiornacheck = $db->query("UPDATE checklist SET VISTO='2', CHIUSO='2' WHERE IDCHECK='$idcheck'");
-    echo '<script type="text/javascript">
-        alert("Modifica effettuata con successo");
-        location.href="archivio.php";
-        </script>';
-}
-//update note
-if (isset($_POST["aggiornacheck"])){
-    $idcheck=$_POST["xcheck"];
-    $aggiornacheck = $db->query("UPDATE checklist SET VISTO='2' WHERE IDCHECK='$idcheck'");
-    echo '<script type="text/javascript">
-        alert("Modifica effettuata con successo");
-        location.href="archivio.php";
-        </script>';
-}
-//apri note
-if (isset($_POST["aprinota"])){
-    $idcheck=$_POST["xcheck"];
-    $aggiornacheck = $db->query("UPDATE checklist SET VISTO='2', CHIUSO='1' WHERE IDCHECK='$idcheck'");
-    echo '<script type="text/javascript">
-        alert("Modifica effettuata con successo");
-        location.href="archivio.php";
-        </script>';
-}
 //nicename livelli
 $dictionaryLivello = array (
     1 => "Dipendente",
@@ -103,18 +77,22 @@ $dictionarySquadra = array (
 if(isset($_POST["reply"])) {
 
     //PARAMETRI MAIL ->
-    //$destinatario='direzione@croceverde.org, mgaletto@libero.it';
-    $to = $_POST['email'];
-    $nome_mittente = "Gestionale CVTO";
-    $mail_mittente = "gestioneutenti@croceverde.org";
-    $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
-    //$headers .= "Bcc: ".$to."\r\n";
-
+    /*
+    $randone= 'paolo.randone@yahoo.it';
+    $bechis= 'massimilianobechis@gmail.com';
+    $gestionale= 'gestioneutenti@croceverde.org';
+    $comunicazioni= 'comunicazioni.mezzi@croceverde.org';
+    $checklist= 'checklist@croceverde.org';
+    */
+    $to= $randone;//.', '.$bechis;
+    $nome_mittente="Gestionale CVTO";
+    $mail_mittente="gestioneutenti@croceverde.org";
+    $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+    $headers .= "Bcc: ".$mail_mittente."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
-    //
     $subject = "Risposta segnalazione";
     $corpo = $_POST['testo'];
     mail($to, $subject, $corpo, $headers);
@@ -183,7 +161,7 @@ if(isset($_POST["reply"])) {
                 <p>MATRICOLA: <?=$modifica['IDOPERATORE']?></p>
                 <hr>
                 <div class="form-group">
-                    <textarea class="form-control" id="xnote" name="xnote" readonly rows="10"><?=$modifica['NOTE']?></textarea>
+                    <textarea class="form-control" id="xnote" name="xnote" readonly rows="15"><?=$modifica['NOTE']?></textarea>
                 </div>
                 <div style="text-align: center;">
                     <div class="btn-group" role="group">
@@ -217,7 +195,7 @@ if(isset($_POST["reply"])) {
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <textarea class="form-control" name="testo" rows="10" placeholder="Digita qui la risposta"></textarea>
+                        <textarea class="form-control" name="testo" rows="15" placeholder="Digita qui la risposta" autofocus><?='<messaggio originale>'."\r\n". $modifica['NOTE'] . "\r\n" .'<-------------------->'."\r\n"?></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

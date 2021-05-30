@@ -78,12 +78,13 @@ echo date_format()
                 var IDOPERATORE = $("#IDOPERATORE").val();
                 var tipo = $("#tipo").val();
                 var DATACHECK = moment().format('YYYY-MM-DD HH:mm:ss');
-                var LAVAGGIO = $("#lavaggioesterno option:selected").val();
+                var ESTERNO = $("#lavaggioesterno option:selected").val();
+                var INTERNO = $("#lavaggiointerno option:selected").val();
+                var SANIFICAZIONE = $("#disinfezione option:selected").val();
                 var SCADENZE = $("#scadenze:checked").val();
                 var OLIO = $("#olio:checked").val();
-                var prova = $("#prova option:selected").val();
 
-                //AMBULANZA
+                //CONTROLLI AMBULANZA
                 var spinale = $("#spinale option:selected").val();
                 var scoop = $("#scoop option:selected").val();
                 var collari = $("#collari option:selected").val();
@@ -144,15 +145,14 @@ echo date_format()
                 var telepass = $("#telepass option:selected").val();
                 var doc = $("#doc option:selected").val();
                 var cartaagip = $("#cartaagip option:selected").val();
-                var lavaggioesterno = $("#lavaggioesterno option:selected").text();
-                var lavaggiointerno = $("#lavaggiointerno option:selected").val();
-                var disinfezione = $("#disinfezione option:selected").val();
+                var lavaggioesternotext = $("#lavaggioesterno option:selected").text();
+                var lavaggiointernotext = $("#lavaggiointerno option:selected").text();
+                var disinfezionetext = $("#disinfezione option:selected").text();
                 var battesedia = $("#battesedia option:selected").val();
                 var oliocheck = $("#olio").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
                 var rabbocco = $("#rabbocco option:selected").val();
 
-
-                //
+                //CONTROLLI BORSA
                 var scadenzeborsa = $("#scadenze").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
                 var ambuped = $("#ambuped option:selected").val();
                 var reservoirped = $("#reservoirped option:selected").val();
@@ -217,7 +217,7 @@ echo date_format()
                             $.ajax({
                                 url:"send.php",
                                 type:"POST",
-                                data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, LAVAGGIO:LAVAGGIO, SCADENZE:SCADENZE, OLIO:OLIO, note:note,
+                                data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, ESTERNO:ESTERNO, INTERNO:INTERNO, SANIFICAZIONE:SANIFICAZIONE, SCADENZE:SCADENZE, OLIO:OLIO, note:note,
                                     spinale:spinale, scoop:scoop, collari:collari, elettrodi:elettrodi, gel:gel, ecg:ecg, sixlead:sixlead,
                                     fourlead:fourlead, saturimetro:saturimetro, pacing:pacing, circuitoventilatore:circuitoventilatore,
                                     maschere:maschere, piastre:piastre, LP:LP, cavoLP:cavoLP, batterieLP:batterieLP, aspiratore:aspiratore,
@@ -229,8 +229,8 @@ echo date_format()
                                     coperta:coperta, traslatore:traslatore, estintoreant:estintoreant, faro:faro, scasso:scasso,
                                     bloccocv:bloccocv, schede118:schede118, fuoriservizio:fuoriservizio, antifiamma:antifiamma,
                                     panseptil:panseptil, luci:luci, blu:blu, sirene:sirene, gasolio:gasolio, telepass:telepass,
-                                    doc:doc, cartaagip:cartaagip, lavaggioesterno:lavaggioesterno, lavaggiointerno:lavaggiointerno,
-                                    disinfezione:disinfezione, battesedia:battesedia, scadenzeborsa:scadenzeborsa, ambuped:ambuped, reservoirped:reservoirped, filtroped:filtroped,
+                                    doc:doc, cartaagip:cartaagip, lavaggioesternotext:lavaggioesternotext, lavaggiointernotext:lavaggiointernotext,
+                                    disinfezionetext:disinfezionetext, battesedia:battesedia, scadenzeborsa:scadenzeborsa, ambuped:ambuped, reservoirped:reservoirped, filtroped:filtroped,
                                     maschereped:maschereped, guedelped:guedelped, ossped:ossped, ambuadulti:ambuadulti, reservoiradulti:reservoiradulti,
                                     filtroadulti:filtroadulti, maschereadulti:maschereadulti, guedeladulti:guedeladulti, ossadulti:ossadulti, fisio:fisio,
                                     h2o2:h2o2, betadine:betadine, cerotti:cerotti, benda:benda, garze:garze, ghiaccio:ghiaccio, arterioso:arterioso,
@@ -264,7 +264,7 @@ echo date_format()
         </ol>
     </nav>
 </div>
-<!-- CONTENT -->
+
 <body>
 <div class="container-fluid">
     <div class="jumbotron">
@@ -681,19 +681,19 @@ echo date_format()
             <? endif; ?>
             <?php
             if (($select['tipo'])==3): ?>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="pedimate">Pedi-Mate</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="pedimate" required>
-                        <option disabled selected value="">Scegli...</option>
-                        <option value="OK">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="pedimate">Pedi-Mate</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="pedimate" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="tablet">Tablet + stampante <small class="text-muted">(SOLO PER MSB)</small></label>
                     <div class="col col-sm-2">
@@ -820,19 +820,19 @@ echo date_format()
             </div>
             <?php
             if (($select['tipo'])!=2): ?>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="amputazioni">Sacca porta arti</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="amputazioni" required>
-                        <option disabled selected value="">Scegli...</option>
-                        <option value="OK">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="amputazioni">Sacca porta arti</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="amputazioni" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
             <? endif; ?>
             <hr>
             <div class="form-group row">
@@ -903,19 +903,19 @@ echo date_format()
             </div>
             <?php
             if (($select['tipo'])!=3): ?>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="traslatore">Traslatore</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="traslatore" required>
-                        <option disabled selected value="">Scegli...</option>
-                        <option value="OK">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Ripristinato">Ripristinato</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="traslatore">Traslatore</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="traslatore" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Ripristinato">Ripristinato</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
             <? endif; ?>
             <hr>
             <div class="alert alert-success" style="text-align: center" role="alert">
@@ -1134,7 +1134,7 @@ echo date_format()
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="lavaggioesterno">
                         <option value="1">EFFETTUATO</option>
-                        <option value="" selected="selected">NON EFFETTUATO</option>
+                        <option value="0" selected="selected">NON EFFETTUATO</option>
                     </select>
                 </div>
             </div>
@@ -1142,34 +1142,34 @@ echo date_format()
                 <label class="col-sm-4 col-form-label" for="lavaggiointerno">Lavaggio interno</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="lavaggiointerno">
-                        <option value="EFFETTUATO">EFFETTUATO</option>
-                        <option value="NON EFFETTUATO" selected="selected">NON EFFETTUATO</option>
+                        <option value="1">EFFETTUATO</option>
+                        <option value="0" selected="selected">NON EFFETTUATO</option>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="disinfezione">Disinfezione</label>
+                <label class="col-sm-4 col-form-label" for="disinfezione">Sanificazione</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="disinfezione">
-                        <option value="EFFETTUATA">EFFETTUATA</option>
-                        <option value="NON EFFETTUATA" selected="selected">NON EFFETTUATA</option>
+                        <option value="1">EFFETTUATA</option>
+                        <option value="0" selected="selected">NON EFFETTUATA</option>
                     </select>
                 </div>
             </div>
             <?php
             if (($select['tipo'])!=3): ?>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="battesedia">Batteria + caricabatteria sedia</label>
-                <div class="col col-sm-2">
-                    <select class="form-control form-control-sm" id="battesedia" required>
-                        <option disabled selected value="">Scegli...</option>
-                        <option value="OK">OK</option>
-                        <option value="MANCANTE">Mancante</option>
-                        <option value="Guasto">Guasto</option>
-                        <option value="Vedi note">Vedi note</option>
-                    </select>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="battesedia">Batteria + caricabatteria sedia</label>
+                    <div class="col col-sm-2">
+                        <select class="form-control form-control-sm" id="battesedia" required>
+                            <option disabled selected value="">Scegli...</option>
+                            <option value="OK">OK</option>
+                            <option value="MANCANTE">Mancante</option>
+                            <option value="Guasto">Guasto</option>
+                            <option value="Vedi note">Vedi note</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
             <? endif; ?>
             <hr>
             <div class="alert alert-success" style="text-align: center" role="alert">

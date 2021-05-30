@@ -48,7 +48,7 @@ if(isset($_POST["IDMEZZO"])){
     $datatesto = $_POST["DATACHECK"];
     $compilatore = $_POST["IDOPERATORE"];
 
-    $query = "INSERT INTO checklist (IDMEZZO, IDOPERATORE, DATACHECK, LAVAGGIO, SCADENZE, OLIO, NOTE) VALUES (:IDMEZZO, :IDOPERATORE, :DATACHECK, :LAVAGGIO, :SCADENZE, :OLIO, :NOTE)";
+    $query = "INSERT INTO checklist (IDMEZZO, IDOPERATORE, DATACHECK, ESTERNO, INTERNO, NEB, SCADENZE, OLIO, NOTE) VALUES (:IDMEZZO, :IDOPERATORE, :DATACHECK, :ESTERNO, :INTERNO, :SANIFICAZIONE, :SCADENZE, :OLIO, :NOTE)";
 
     $statement = $connect->prepare($query);
     $statement->execute(
@@ -56,7 +56,9 @@ if(isset($_POST["IDMEZZO"])){
             ':IDMEZZO'  => $_POST['IDMEZZO'],
             ':IDOPERATORE'  => $_POST['IDOPERATORE'],
             ':DATACHECK'  => $_POST['DATACHECK'],
-            ':LAVAGGIO'  => $_POST['LAVAGGIO'],
+            ':ESTERNO'  => $_POST['ESTERNO'],
+            ':INTERNO'  => $_POST['INTERNO'],
+            ':SANIFICAZIONE'  => $_POST['SANIFICAZIONE'],
             ':SCADENZE'  => $_POST['SCADENZE'],
             ':OLIO'  => $_POST['OLIO'],
             ':NOTE'  => $_POST['note'],
@@ -248,9 +250,9 @@ if(isset($_POST["IDMEZZO"])){
         $telepass=$_POST["telepass"],
         $doc=$_POST["doc"],
         $cartaagip=$_POST["cartaagip"],
-        $lavaggioesterno=$_POST["lavaggioesterno"],
-        $lavaggiointerno=$_POST["lavaggiointerno"],
-        $disinfezione=$_POST["disinfezione"],
+        $lavaggioesterno=$_POST["lavaggioesternotext"],
+        $lavaggiointerno=$_POST["lavaggiointernotext"],
+        $disinfezione=$_POST["disinfezionetext"],
         $battesedia=$_POST["battesedia"],
         //BORSA
         $scadenzeborsa=$_POST["scadenzeborsa"],
@@ -318,13 +320,16 @@ if(isset($_POST["IDMEZZO"])){
         mail($to, $oggetto, $corpo, $headers);
     }
 
-    if (($_POST['LAVAGGIO']=='1')){
+    if ((($_POST["ESTERNO"])!=0) OR (($_POST["INTERNO"])!=0) OR (($_POST["SANIFICAZIONE"])!=0)){
         include "../config/config.php";
         $var = $_POST['DATACHECK'];
-        $lavaggioext = date_create("$var");
-        $start_event = date_format($lavaggioext, "Y-m-d");
+        $data_check = date_create("$var");
+        $start_event = date_format($data_check, "Y-m-d");
+        $est = $_POST["ESTERNO"];
+        $int = $_POST["INTERNO"];
+        $san = $_POST["SANIFICAZIONE"];
 
-        $insert = $db->query("INSERT INTO lavaggio_mezzi (title, user_id, start_event, stato) VALUES ('$numeroauto', '$compilatore', '$start_event', '1')");
+        $insert = $db->query("INSERT INTO lavaggio_mezzi (title, user_id, start_event, stato, esterno, interno, neb) VALUES ('$numeroauto', '$compilatore', '$start_event', '1', '$est', '$int', '$san')");
 
     }
 }

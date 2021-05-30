@@ -329,20 +329,13 @@ if(isset($_POST['eliminaALL'])){
 
 <div class="container-fluid">
     <div class="jumbotron">
-        <center>
-            <!--<div class="btn-group" role="group" aria-label="">
-                <button id="richiesto" type="button" class="btn btn-outline-secondary btn-sm">Da preparare</button>
-                <button id="pronto" type="button" class="btn btn-outline-secondary btn-sm">Pronti</button>
-                <button id="consegnato" type="button" class="btn btn-outline-secondary btn-sm">Consegnati</button>
-                <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
-            </div>-->
+        <div style="text-align: center;">
             <div class="btn-group" role="group">
                     <button type="button" class="btn-outline-success btn btn-sm" id="modalpronti" data-toggle="modal" data-target="#modal2"><i class="far fa-check-circle"></i></button>
                     <button type="button" class="btn-outline-secondary btn btn-sm" data-toggle="modal" data-target="#modal3"><i class="fas fa-lock"></i></button>
                     <button type="button" class="btn-outline-danger btn btn-sm" id="modalelimina" data-toggle="modal" data-target="#modal4"><i class="fas fa-trash-alt"></i></button>
             </div>
-
-        </center>
+        </div>
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">
                 <thead>
