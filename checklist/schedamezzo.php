@@ -20,18 +20,6 @@ if (isset($_GET["ID"])){
     $readonly = "readonly";
     $modifica = $db->query("SELECT * FROM mezzi WHERE ID='$id'")->fetch_array();
 }
-//contatore check
-if (isset($id)){
-    $lastcheck = $db->query("SELECT DATACHECK FROM checklist WHERE IDMEZZO='$id' ORDER BY DATACHECK DESC LIMIT 1")->fetch_array();
-}
-//contatore lavaggi
-if (isset($id)){
-    $lastwash = $db->query("SELECT start_event FROM lavaggio_mezzi WHERE title='$id' ORDER BY start_event DESC LIMIT 1")->fetch_array();
-}
-//contatore scadenze
-if (isset($id)){
-    $lastscad = $db->query("SELECT DATACHECK FROM checklist WHERE IDMEZZO='$id' AND SCADENZE=1 ORDER BY DATACHECK DESC LIMIT 1")->fetch_array();
-}
 //nicename tipo
 $dictionary = array (
     1 => "MSB",
@@ -129,18 +117,6 @@ if(isset($_POST["aggiornamezzo"])){
                             }
                             ?>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastcheck">Ultima checklist</label>
-                        <input id="lastcheck" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<? $var=$lastcheck['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y")?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastwash">Ultimo lavaggio</label>
-                        <input id="lastwash" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<? $var=$lastwash['start_event']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y")?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastscad">Ultimo controllo scadenze</label>
-                        <input id="lastscad" type="text" class="form-control form-control-sm" <?=$readonly ?> value="<? $var=$lastscad['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y")?>">
                     </div>
                     <div class="form-group">
                         <label for="xnote">Note sul mezzo</label>

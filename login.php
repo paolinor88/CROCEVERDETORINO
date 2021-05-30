@@ -296,6 +296,12 @@ if(isset($_POST["activateBTN"])){
                         <label for="email">Email</label>
                         <input type="email" class="form-control form-control-sm" id="email" name="email" aria-describedby="emailHelp" required>
                     </div> <!-- email -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+                        <label style="font-size: x-small" class="form-check-label" for="defaultCheck1">
+                            Ho letto e accetto i <a href="https://github.com/paolinor88/gestionalecvto/blob/master/LICENSE.txt" target="_blank">termini di licenza</a>
+                        </label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Chiudi</button>
