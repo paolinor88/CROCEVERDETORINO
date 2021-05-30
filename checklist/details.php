@@ -76,19 +76,13 @@ $dictionarySquadra = array (
 
 if(isset($_POST["reply"])) {
 
-    //PARAMETRI MAIL ->
-    /*
-    $randone= 'paolo.randone@yahoo.it';
-    $bechis= 'massimilianobechis@gmail.com';
-    $gestionale= 'gestioneutenti@croceverde.org';
-    $comunicazioni= 'comunicazioni.mezzi@croceverde.org';
-    $checklist= 'checklist@croceverde.org';
-    */
-    $to= $randone;//.', '.$bechis;
+    //TODO modificare destinatario
+
+    $to= $email;//.', '.$bechis;
     $nome_mittente="Gestionale CVTO";
-    $mail_mittente="gestioneutenti@croceverde.org";
+    $mail_mittente=$gestionale;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$mail_mittente."\r\n";
+    $headers .= "Bcc: ".$randone."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";

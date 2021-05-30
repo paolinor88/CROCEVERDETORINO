@@ -151,6 +151,7 @@ echo date_format()
                 var battesedia = $("#battesedia option:selected").val();
                 var oliocheck = $("#olio").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
                 var rabbocco = $("#rabbocco option:selected").val();
+                var tablet = $("#tablet option:selected").val();
 
                 //CONTROLLI BORSA
                 var scadenzeborsa = $("#scadenze").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
@@ -236,7 +237,7 @@ echo date_format()
                                     h2o2:h2o2, betadine:betadine, cerotti:cerotti, benda:benda, garze:garze, ghiaccio:ghiaccio, arterioso:arterioso,
                                     venoso:venoso, rasoio:rasoio, sfigmo:sfigmo, fonendo:fonendo, saturimetrob:saturimetrob, termometro:termometro, sondini:sondini,
                                     maschereborsa:maschereborsa, robin:robin, guantisterili:guantisterili, telini:telini, metalline:metalline, spazzatura:spazzatura,
-                                    pappagallo:pappagallo, dpi:dpi, chirurgiche:chirurgiche, monossido:monossido, oliocheck:oliocheck, rabbocco:rabbocco},
+                                    pappagallo:pappagallo, dpi:dpi, chirurgiche:chirurgiche, monossido:monossido, oliocheck:oliocheck, rabbocco:rabbocco, tablet:tablet},
                                 success:function(){
                                     swal({text:"Checklist inviata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {

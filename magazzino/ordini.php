@@ -10,6 +10,7 @@
 session_start();
 //parametri DB
 include "../config/config.php";
+include "../config/include/destinatari.php";
 //test
 if (!isset($_SESSION["ID"])){
     header("Location: ../error.php");
@@ -65,14 +66,12 @@ if( isset($_POST['form_item_id_list']) ) {
             $tabella .= $prova['nome'].' '.$prova['tipo'].': '.$quantita.'<br>';
         }
     }
-    //PARAMETRI MAIL ->
-    //$to='paolo.randone@yahoo.it';
-    $to='massimilianobechis@gmail.com';
-    //$destinatario=$_SESSION['email'];
+    //TODO modificare destinatario
+    $to=$bechis;
     $nome_mittente="Gestionale CVTO";
-    $mail_mittente="gestioneutenti@croceverde.org";
+    $mail_mittente=$gestionale;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$mail_mittente."\r\n";
+    $headers .= "Bcc: ".$randone."\r\n";
     $headers .= "Reply-To: " .  $_SESSION['email'] . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";

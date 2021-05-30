@@ -23,19 +23,12 @@ $dictionary = array (
 );
 if(isset($_POST["IDMEZZO"])){
 
-    //PARAMETRI MAIL ->
-    /*
-    $randone= 'paolo.randone@yahoo.it';
-    $bechis= 'massimilianobechis@gmail.com';
-    $gestionale= 'gestioneutenti@croceverde.org';
-    $comunicazioni= 'comunicazioni.mezzi@croceverde.org';
-    $checklist= 'checklist@croceverde.org';
-    */
-    $to= $randone;//.', '.$bechis;
+    //TODO modificare destinatario
+    $to= $bechis;//.', '.$bechis;
     $nome_mittente="Gestionale CVTO";
-    $mail_mittente="gestioneutenti@croceverde.org";
+    $mail_mittente=$gestionale;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$mail_mittente."\r\n";
+    $headers .= "Bcc: ".$randone."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
@@ -179,6 +172,7 @@ if(isset($_POST["IDMEZZO"])){
         '{{dpi}}',
         '{{chirurgiche}}',
         '{{monossido}}',
+        '{{tablet}}',
     );
     $with = array(
         $numeroauto,
@@ -254,6 +248,7 @@ if(isset($_POST["IDMEZZO"])){
         $lavaggiointerno=$_POST["lavaggiointernotext"],
         $disinfezione=$_POST["disinfezionetext"],
         $battesedia=$_POST["battesedia"],
+        $tablet=$_POST["tablet"],
         //BORSA
         $scadenzeborsa=$_POST["scadenzeborsa"],
         $ambuped=$_POST["ambuped"],
@@ -309,12 +304,45 @@ if(isset($_POST["IDMEZZO"])){
     }
     if (($_POST["rabbocco"])!=0){
         $olioq = $_POST["rabbocco"];
+        //TODO modificare destinatario
+        $to= $bechis;//.', '.$bechis;
+        $nome_mittente="Gestionale CVTO";
+        $mail_mittente=$gestionale;
+        $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+        $headers .= "Bcc: ".$randone."\r\n";
+        //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1";
         $oggetto = "Rabbocco olio motore auto $numeroauto";
         $corpo = "
         <html lang='it'>
             <body>
                 <p>Si segnala che in data ".$datatesto." sono stati aggiunti ".$olioq." Kg di olio motore all'auto in oggetto</p>
                 <p>".$compilatore." ".$cognome." ".$nome."</p>
+            </body>
+        </html>";
+        mail($to, $oggetto, $corpo, $headers);
+    }
+    if (($_POST["note"])!=""){
+        $inoltronote = $_POST["note"];
+        //TODO modificare destinatario
+        $to= $bechis;//.', '.$bechis;
+        $nome_mittente="Gestionale CVTO";
+        $mail_mittente=$gestionale;
+        $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+        $headers .= "Bcc: ".$randone."\r\n";
+        $headers .= "Reply-To: " .  $email . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1";
+        $oggetto = "Segnalazione auto $numeroauto";
+        $corpo = "
+        <html lang='it'>
+            <body>
+                <p>Segnalazione effettuata da: ".$compilatore." ".$cognome." ".$nome."</p>
+                <p>In data ".$datatesto."</p>
+                <p>Messaggio: \"".$inoltronote."\"</p>
             </body>
         </html>";
         mail($to, $oggetto, $corpo, $headers);

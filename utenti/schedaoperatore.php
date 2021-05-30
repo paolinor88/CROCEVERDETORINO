@@ -10,6 +10,7 @@
 session_start();
 //parametri DB
 include "../config/config.php";
+include "../config/include/destinatari.php";
 //controllo accesso
 if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
@@ -93,13 +94,13 @@ if(isset($_POST["update"])){
         $livellod = $dictionaryLivello[$_POST['xlivello']];
         $sezioned = $dictionarySezione[$_POST['xsezione']];
         $squadrad = $dictionarySquadra[$_POST['xsquadra']];
-        //
+        //TODO modificare destinatario
         $to= $email;
         $subject="Riepilogo informazioni";
         $nome_mittente="Gestionale CVTO";
-        $mail_mittente="gestioneutenti@croceverde.org";
+        $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$mail_mittente."\r\n";
+        $headers .= "Bcc: ".$randone."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -190,12 +191,12 @@ if(isset($_POST["resetpwd"])){
         $nomeL = $_POST["xnome"];
         $nome = strtoupper($nomeL);
         $password = $pwd;
-        //
+        //TODO modificare destinatario
         $to= $email;
         $nome_mittente="Gestionale CVTO";
-        $mail_mittente="gestioneutenti@croceverde.org";
+        $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$mail_mittente."\r\n";
+        $headers .= "Bcc: ".$randone."\r\n";
         //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
