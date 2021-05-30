@@ -394,9 +394,16 @@ if (!isset($_SESSION["ID"])){
                     </select> <!-- IDMEZZO -->
                     <br>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="datastart" name="datastart" placeholder="Dal">
-                        <input type="text" class="form-control form-control-sm" id="dataend" name="dataend" placeholder="Al">
+                        <input type="date" class="form-control form-control-sm" id="datastart" name="datastart" placeholder="Dal">
+                        <input type="date" class="form-control form-control-sm" id="dataend" name="dataend" placeholder="Al">
                     </div>
+                    <script>
+                        if (navigator.userAgent.indexOf('Chrome') !== -1) {
+                            $('input[type=date]').on('click', function(event) {
+                                event.preventDefault();
+                            });
+                        }
+                    </script>
                     <br>
                     <button type="submit" class="btn btn-success btn-sm btn-block" id="exportButton" name="exportButton"><i class="far fa-file-excel"></i></button>
                 </div>

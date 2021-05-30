@@ -243,3 +243,16 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-May-2021 20:02:27 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/customer/www/croceverde.org/public_html/gestionale/checklist/details.php on line 198
+[26-May-2021 14:56:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:29
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 29
+[26-May-2021 14:57:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:255
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 255
+[26-May-2021 14:58:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:255
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 255
