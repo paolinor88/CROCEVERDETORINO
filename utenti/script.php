@@ -6,6 +6,7 @@
 session_start();
 //connessione DB
 include "../config/pdo.php";
+include "../config/include/destinatari.php";
 //aggiungi operatore
 if(isset($_POST["ID"])){
     $query = "INSERT INTO utenti (ID, cognome, nome, email, cf, password, telefono, ciclico, livello, stato, sezione, squadra) VALUES (:ID, :cognome, :nome, :email, cf, :password, :telefono, :ciclico, :livello, :stato, :sezione, :squadra)";
@@ -34,12 +35,13 @@ if(isset($_POST["ID"])){
         $nome = $_POST['nome'];
         $cognome = $_POST['cognome'];
         $password = $_POST['password'];
+        //TODO email
         $to= $email;
         $subject="Attivazione utenza";
         $nome_mittente="Gestionale CVTO";
-        $mail_mittente="gestioneutenti@croceverde.org";
+        $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$mail_mittente."\r\n";
+        $headers .= "Bcc: ".$randone."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";

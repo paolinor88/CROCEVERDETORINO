@@ -90,7 +90,7 @@ $dictionaryLivello = array (
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Gestione utenze</a>
                 <a role="button" class="btn btn-outline-cv btn-block " href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<=4){echo "disabled";}?>" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
+                <a role="button" class="btn btn-outline-cv btn-block" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist elettronica</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Eventi e calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-cart-plus"></i> Autoparco</a>
                 <? if ($livello=='1' OR '4' OR '5'): ?>

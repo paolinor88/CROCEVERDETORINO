@@ -3,6 +3,13 @@
 
 mail@paolorandone.it
 ---
+Version 3.0 changelog:
+
+- MAJOR RELEASE
+- Checklist elettronica
+- Nuovo sistema mail
+- Beta pubblica (solo dip)
+---
 Version 2.4 changelog:
 
 - refactoring

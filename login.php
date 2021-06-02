@@ -10,6 +10,7 @@
 session_start();
 //parametri DB
 include "config/config.php";
+include "config/include/destinatari.php";
 //login
 if (isset($_SESSION["ID"])){
     header("Location: index.php");
@@ -119,12 +120,13 @@ if(isset($_POST["activateBTN"])){
         $livello =strtoupper($dictionaryLivello[$var['livello']]);
         $sezione = $dictionarySezione[$var['sezione']];
         $squadra = $dictionarySquadra[$var['squadra']];
+        //TODO email
         $to= $email;
         $subject="Attivazione utenza";
         $nome_mittente="Gestionale CVTO";
-        $mail_mittente="gestioneutenti@croceverde.org";
+        $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$mail_mittente."\r\n";
+        $headers .= "Bcc: ".$randone."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -156,10 +158,10 @@ if(isset($_POST["activateBTN"])){
         echo "<script type='text/javascript'>alert('Utente attivato con successo.\\nLe credenziali di accesso saranno inviate via mail entro 24 ore')</script>";
 
         if ($var){ // CC ADMIN
-            $destinatario= "gestioneutenti@croceverde.org";
+            $destinatario=$gestionale;
             $oggetto="Attivazione utenza $id $cognome $nome" ;
             $nome_mittente="Gestionale CVTO";
-            $mail_mittente="gestioneutenti@croceverde.org";
+            $mail_mittente=$gestionale;
             $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
             //$headers .= "Bcc: ".$destinatario."\r\n";
             $headers .= "X-Mailer: PHP/" . phpversion();
@@ -294,6 +296,12 @@ if(isset($_POST["activateBTN"])){
                         <label for="email">Email</label>
                         <input type="email" class="form-control form-control-sm" id="email" name="email" aria-describedby="emailHelp" required>
                     </div> <!-- email -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+                        <label style="font-size: x-small" class="form-check-label" for="defaultCheck1">
+                            Ho letto e accetto i <a href="https://github.com/paolinor88/gestionalecvto/blob/master/LICENSE.txt" target="_blank">termini di licenza</a>
+                        </label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Chiudi</button>
@@ -307,7 +315,7 @@ if(isset($_POST["activateBTN"])){
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 2.4</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 3.0</p></em></font>
     </div>
 </footer>
 </html>

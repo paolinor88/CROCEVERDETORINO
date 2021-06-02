@@ -135,7 +135,7 @@ if (!isset($_SESSION["ID"])){
                 header: {
                     left: 'prev ,today',
                     center: 'title',
-                    right: 'basicWeek,month,today next',
+                    right: 'basicWeek,month, next',
                 },
                 validRange: function(nowDate) {
                     return {
@@ -150,7 +150,7 @@ if (!isset($_SESSION["ID"])){
                 displayEventEnd: false,
                 eventDurationEditable: false,
                 //eventOverlap: false,
-                defaultView: 'month',
+                defaultView: 'basicWeek',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
                 googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',

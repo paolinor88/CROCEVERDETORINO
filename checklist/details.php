@@ -76,19 +76,13 @@ $dictionarySquadra = array (
 
 if(isset($_POST["reply"])) {
 
-    //PARAMETRI MAIL ->
-    /*
-    $randone= 'paolo.randone@yahoo.it';
-    $bechis= 'massimilianobechis@gmail.com';
-    $gestionale= 'gestioneutenti@croceverde.org';
-    $comunicazioni= 'comunicazioni.mezzi@croceverde.org';
-    $checklist= 'checklist@croceverde.org';
-    */
-    $to= $randone;//.', '.$bechis;
+    //TODO modificare destinatario
+
+    $to= $email;//.', '.$bechis;
     $nome_mittente="Gestionale CVTO";
-    $mail_mittente="gestioneutenti@croceverde.org";
+    $mail_mittente=$gestionale;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$mail_mittente."\r\n";
+    $headers .= "Bcc: ".$randone."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
@@ -114,18 +108,7 @@ if(isset($_POST["reply"])) {
     <meta name="author" content="Paolo Randone">
     <title>Gestisci segnalazione</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../config/css/bootstrap.min.css"> <!-- 4.4.1 -->
-    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="../config/css/custom.css">
-
-    <!-- JS Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="../config/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <? require "../config/include/header.html";?>
 
     <script>
         $(document).ready(function(){

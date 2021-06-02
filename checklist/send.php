@@ -15,27 +15,57 @@ include "../config/include/destinatari.php";
 $cognome = $_SESSION["cognome"];
 $nome = $_SESSION["nome"];
 $email = $_SESSION["email"];
+$sezione= $_SESSION["sezione"];
+$squadra= $_SESSION["squadra"];
 //
 $dictionary = array (
     1 => "MSB",
     2 => "MSA",
     3 => "FLOTTA 118",
 );
+//nicename sezioni
+$dictionarySezione = array (
+    1 => "TO",
+    2 => "AL",
+    3 => "BC",
+    4 => "CI",
+    5 => "SM",
+    6 => "VE",
+    7 => "DIP",
+);
+//nicename squadre
+$dictionarySquadra = array (
+    1 => "1",
+    2 => "2",
+    3 => "3",
+    4 => "4",
+    5 => "5",
+    6 => "6",
+    7 => "7",
+    8 => "8",
+    9 => "9",
+    10 => "SAB",
+    11 => "MON",
+    12 => "DDS",
+    13 => "Lunedì",
+    14 => "Martedì",
+    15 => "Mercoledì",
+    16 => "Giovedì",
+    17 => "Venerdì",
+    18 => "DIU",
+    19 => "GIO",
+    20 => "GEN",
+    21 => "Altro",
+    22 => "TO",
+);
 if(isset($_POST["IDMEZZO"])){
 
-    //PARAMETRI MAIL ->
-    /*
-    $randone= 'paolo.randone@yahoo.it';
-    $bechis= 'massimilianobechis@gmail.com';
-    $gestionale= 'gestioneutenti@croceverde.org';
-    $comunicazioni= 'comunicazioni.mezzi@croceverde.org';
-    $checklist= 'checklist@croceverde.org';
-    */
-    $to= $randone;//.', '.$bechis;
-    $nome_mittente="Gestionale CVTO";
-    $mail_mittente="gestioneutenti@croceverde.org";
+    //TODO modificare destinatario
+    $to= $bechis;//.', '.$bechis;
+    $nome_mittente="Checklist CVTO";
+    $mail_mittente=$checklist;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$mail_mittente."\r\n";
+    $headers .= "Bcc: ".$randone."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
@@ -45,7 +75,8 @@ if(isset($_POST["IDMEZZO"])){
     $numeroauto = $_POST["IDMEZZO"];
     $segnalazione = $_POST["note"];
     $tipo = $_POST["tipo"];
-    $datatesto = $_POST["DATACHECK"];
+    $datacheck = $_POST["DATACHECK"];$var1=date_create("$var");$datatesto=date_format($var1, "d/m/Y");$oratesto=date_format($var1, "H:m");
+
     $compilatore = $_POST["IDOPERATORE"];
 
     $query = "INSERT INTO checklist (IDMEZZO, IDOPERATORE, DATACHECK, ESTERNO, INTERNO, NEB, SCADENZE, OLIO, NOTE) VALUES (:IDMEZZO, :IDOPERATORE, :DATACHECK, :ESTERNO, :INTERNO, :SANIFICAZIONE, :SCADENZE, :OLIO, :NOTE)";
@@ -71,7 +102,10 @@ if(isset($_POST["IDMEZZO"])){
         '{{compilatore}}',
         '{{cognome}}',
         '{{nome}}',
+        '{{squadra}}',
+        '{{sezione}}',
         '{{datatesto}}',
+        '{{oratesto}}',
         '{{tipo}}',
         '{{segnalazione}}',
         //AMBULANZA
@@ -179,13 +213,17 @@ if(isset($_POST["IDMEZZO"])){
         '{{dpi}}',
         '{{chirurgiche}}',
         '{{monossido}}',
+        '{{tablet}}',
     );
     $with = array(
         $numeroauto,
         $compilatore,
         $cognome,
         $nome,
+        $dictionarySquadra[$squadra],
+        $dictionarySezione[$sezione],
         $datatesto,
+        $oratesto,
         $dictionary[$tipo],
         $segnalazione,
         // AMBULANZA
@@ -293,6 +331,7 @@ if(isset($_POST["IDMEZZO"])){
         $dpi=$_POST["dpi"],
         $chirurgiche=$_POST["chirurgiche"],
         $monossido=$_POST["monossido"],
+        $tablet=$_POST["tablet"],
     );
     if($tipo==2){   // MSA
         $corpo = file_get_contents('../config/template/msa.html');
@@ -309,12 +348,47 @@ if(isset($_POST["IDMEZZO"])){
     }
     if (($_POST["rabbocco"])!=0){
         $olioq = $_POST["rabbocco"];
+        //TODO modificare destinatario
+        $to= $comunicazioni;//.', '.$bechis;
+        $nome_mittente="Gestionale CVTO";
+        $mail_mittente=$gestionale;
+        $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+        //$headers .= "Bcc: ".$randone."\r\n";
+        //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1";
         $oggetto = "Rabbocco olio motore auto $numeroauto";
         $corpo = "
         <html lang='it'>
             <body>
                 <p>Si segnala che in data ".$datatesto." sono stati aggiunti ".$olioq." Kg di olio motore all'auto in oggetto</p>
-                <p>".$compilatore." ".$cognome." ".$nome."</p>
+                <p>".$compilatore." ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].")</p>
+            </body>
+        </html>";
+        mail($to, $oggetto, $corpo, $headers);
+    }
+    if (($_POST["note"])!=""){
+        $inoltronote = $_POST["note"];
+        //TODO modificare destinatario
+        $to= $comunicazioni;//.', '.$bechis;
+        $nome_mittente="Checklist CVTO";
+        $mail_mittente=$checklist;
+        $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
+        //$headers .= "Bcc: ".$randone."\r\n";
+        $headers .= "Reply-To: " .  $email . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1";
+        $oggetto = "Segnalazione auto $numeroauto";
+        $corpo = "
+        <html lang='it'>
+            <body>
+                <p>Il giorno ".$datatesto." alle ore ".$oratesto." ".$compilatore." ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].") ha comunicato:</p>
+                <br>
+                <p>**</p>
+                <p>".$inoltronote."</p>
+                <p>**</p>
             </body>
         </html>";
         mail($to, $oggetto, $corpo, $headers);

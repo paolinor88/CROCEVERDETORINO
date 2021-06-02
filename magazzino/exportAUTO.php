@@ -1,5 +1,6 @@
 <?php
-$nomeFile = "registro";
+$nomeFile = "REG_";
+$trattino= "_";
 
 header("Content-Type: application/vnd.ms-excel");
 
@@ -14,7 +15,7 @@ if ($_POST["selectauto"]!=="ALL"){
 }
 
 
-header("Content-Disposition: inline; filename=$nomeFile$numeroauto.xls");
+header("Content-Disposition: inline; filename=$nomeFile$numeroauto$trattino$datastart$trattino$dataend.xls");
 
 include "../config/config.php";
 
@@ -46,48 +47,78 @@ include "../config/config.php";
     </thead>
     <tbody>
     <?php
-    if ($_POST["selectauto"]!=="ALL"){
-        if ($datastart!==""){//data filter ON
-            $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.title='$numeroauto' AND lavaggio_mezzi.start_event BETWEEN '$datastart' AND '$dataend' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
+    if ($_POST["selectauto"]!=="ALL"){//filtro auto SI
+        if ($datastart!==""){//filtro data SI
+            $select = $db->query("SELECT * FROM lavaggio_mezzi JOIN mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.title='$numeroauto' AND lavaggio_mezzi.start_event BETWEEN '$datastart' AND '$dataend' group by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
 
-            //$select = $db->query("SELECT * FROM lavaggio_mezzi WHERE title='$numeroauto' AND start_event BETWEEN '$datastart' AND '$dataend' order by title, start_event");
-        }else{//no data filter
-            $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.title='$numeroauto' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
+        }else{//filtro data NO
+            $select = $db->query("SELECT * FROM lavaggio_mezzi JOIN mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.title='$numeroauto' group by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
 
-            //$select = $db->query("SELECT * FROM lavaggio_mezzi WHERE title='$numeroauto' order by title, start_event");
         }
         while($ciclo = $select->fetch_array()){
+
+            if (($ciclo["esterno"])==1){
+                $esterno = "&#10003;";
+            }else{
+                $esterno =" ";
+            }
+            if (($ciclo["interno"])==1){
+                $interno = "&#10003;";
+            }else{
+                $interno =" ";
+            }
+            if (($ciclo["neb"])==1){
+                $neb = "&#10003;";
+            }else{
+                $neb =" ";
+            }
 
             echo "
 					<tr height='40px'>
 						<td>".$ciclo['title']."</td>
 						<td>".$ciclo['targa']."</td>
 						<td>".$ciclo['start_event']."</td>
-						<td align='center' style='font-size:20px;'>&#10003;</td>
-						<td align='center' style='font-size:20px;'>&#10003;</td>
-						<td align='center' style='font-size:20px;'>&#10003;</td>
+						<td align='center' style='font-size:20px;'>".$neb."</td>
+						<td align='center' style='font-size:20px;'>".$interno."</td>
+						<td align='center' style='font-size:20px;'>".$esterno."</td>
 						<td></td>
 						<td></td>
 						<td></td>
 					</tr>";
         }
-    }else{
-        if ($datastart!==""){//data filter ON
-            $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE lavaggio_mezzi.start_event BETWEEN '$datastart' AND '$dataend' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
-        }else{//no data filter
-            $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE mezzi.stato='1' order by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
+    }else{//filtro auto NO
+        if ($datastart!==""){//filtro data SI
+            $select = $db->query("SELECT * FROM lavaggio_mezzi JOIN mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE mezzi.stato='1' AND mezzi.tipo!='4' AND lavaggio_mezzi.start_event BETWEEN '$datastart' AND '$dataend' group by lavaggio_mezzi.title, lavaggio_mezzi.start_event");
+        }else{//filtro data NO
+            $select = $db->query("SELECT * FROM lavaggio_mezzi JOIN mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE mezzi.stato='1' AND mezzi.tipo!='4' group by lavaggio_mezzi.title, lavaggio_mezzi.start_event ");
         }
 
         while($ciclo = $select->fetch_array()){
+
+            if (($ciclo["esterno"])==1){
+                $esterno = "&#10003;";
+            }else{
+                $esterno =" ";
+            }
+            if (($ciclo["interno"])==1){
+                $interno = "&#10003;";
+            }else{
+                $interno =" ";
+            }
+            if (($ciclo["neb"])==1){
+                $neb = "&#10003;";
+            }else{
+                $neb =" ";
+            }
 
             echo "
 					<tr height='40px'>
 						<td>".$ciclo['title']."</td>
 						<td>".$ciclo['targa']."</td>
 						<td>".$ciclo['start_event']."</td>
-						<td align='center' style='font-size:20px;'>&#10003;</td>
-						<td align='center' style='font-size:20px;'>&#10003;</td>
-						<td align='center' style='font-size:20px;'>&#10003;</td>
+						<td align='center' style='font-size:20px;'>".$neb."</td>
+						<td align='center' style='font-size:20px;'>".$interno."</td>
+						<td align='center' style='font-size:20px;'>".$esterno."</td>
 						<td></td>
 						<td></td>
 						<td></td>

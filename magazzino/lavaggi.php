@@ -102,14 +102,6 @@ if (!isset($_SESSION["ID"])){
                     center: 'title',
                     right: 'basicWeek,month,today next',
                 },
-                /*
-                validRange: function(nowDate) {
-                    return {
-                        start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(1, 'months')
-                    };
-                },
-                */
                 eventOrder: "event.id",
                 //aspectRatio: 3,
                 editable: false,
@@ -117,8 +109,6 @@ if (!isset($_SESSION["ID"])){
                 selectable: false,
                 displayEventEnd: false,
                 eventDurationEditable: false,
-                //eventOverlap: false,
-                //defaultView: 'basicWeek',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
                 googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
@@ -173,7 +163,7 @@ if (!isset($_SESSION["ID"])){
                         }
                     });
                 },
-                eventClick:function(event, jsEvent){ //elimina disponibilità
+                eventClick:function(event, jsEvent){ //elimina lavaggio
                     jsEvent.preventDefault();
                     swal({
                         text: "Sei sicuro di voler cancellare questo lavaggio?",
@@ -394,9 +384,16 @@ if (!isset($_SESSION["ID"])){
                     </select> <!-- IDMEZZO -->
                     <br>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="datastart" name="datastart" placeholder="Dal">
-                        <input type="text" class="form-control form-control-sm" id="dataend" name="dataend" placeholder="Al">
+                        <input type="date" class="form-control form-control-sm" id="datastart" name="datastart" placeholder="Dal">
+                        <input type="date" class="form-control form-control-sm" id="dataend" name="dataend" placeholder="Al">
                     </div>
+                    <script>
+                        if (navigator.userAgent.indexOf('Chrome') !== -1) {
+                            $('input[type=date]').on('click', function(event) {
+                                event.preventDefault();
+                            });
+                        }
+                    </script>
                     <br>
                     <button type="submit" class="btn btn-success btn-sm btn-block" id="exportButton" name="exportButton"><i class="far fa-file-excel"></i></button>
                 </div>
