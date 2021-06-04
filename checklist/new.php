@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -28,7 +28,7 @@ if (isset($_POST['IDMEZZO'])){
     $nome = $_SESSION['nome'];
     $select = $db->query("SELECT * FROM mezzi WHERE ID='$idmezzo' AND stato='1'")->fetch_array();
 }
-echo date_format()
+//echo date_format()
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -260,7 +260,7 @@ echo date_format()
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist elettronica</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
             <li class="breadcrumb-item active" aria-current="page">Nuova checklist</li>
         </ol>
     </nav>
@@ -271,17 +271,17 @@ echo date_format()
     <div class="jumbotron">
         <form name="check" class="needs-validation" novalidate>
             <div style="text-align: center;">
-                <b><?=$idoperatore?> <?=$cognome?> <?=$nome?></b> / <b>AUTO <?=$idmezzo?></b> / <b>CHECKLIST <?=$dictionaryTipo[$select['tipo']]?></b>
+                <b><?=$idoperatore?> <?=$nome?> <?=$cognome?></b> / <b>AUTO <?=$idmezzo?></b> / <b>CHECKLIST <?=$dictionaryTipo[$select['tipo']]?></b>
             </div>
             <hr>
             <?php
-            $notealert = $db->query("SELECT DATACHECK, NOTE FROM checklist WHERE IDMEZZO='$idmezzo' AND NOTE!='' AND CHIUSO!='2' ORDER BY DATACHECK DESC");
+            $notealert = $db->query("SELECT DATACHECK, NOTE FROM checklist WHERE IDMEZZO='$idmezzo' AND NOTE!='' AND STATO!='3' AND STATO!='4 'ORDER BY DATACHECK DESC");
             if ($notealert->num_rows > 0) {
                 echo "<div class=\"alert alert-danger\" role=\"alert\">
                         <h5 class=\"alert-heading\" STYLE='text-align: center'>Segnalazioni attive!</h5>";
                 while($ciclo = $notealert->fetch_array()){
                     $var=$ciclo['DATACHECK'];$var1=date_create("$var");
-                    echo "<p style='font-size: small'>".date_format($var1, "d-m-Y H:s")." -> ".$ciclo['NOTE']."</p>";
+                    echo "<p style='font-size: small'>".date_format($var1, "d-m-Y H:i")." -> ".$ciclo['NOTE']."</p>";
                 }
                 echo "</div><hr>";
             }
@@ -1020,23 +1020,26 @@ echo date_format()
                 </div>
             </div>
             <hr>
-            <div class="alert alert-success" style="text-align: center" role="alert">
+            <div class="alert alert-info" style="text-align: center" role="alert">
                 <b>CONTROLLI MEZZO</b>
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="olio" value="1">
                 <label class="form-check-label" for="scadenze">Controllo olio motore
+                    <small class="text-muted">
                     <?
                     $controlloolio=$db->query("SELECT DATACHECK, OLIO from checklist WHERE IDMEZZO='$idmezzo' AND OLIO=1 ORDER BY DATACHECK DESC LIMIT 1");
                     if ($controlloolio->num_rows>0){
                         list($ultimolio)= $controlloolio->fetch_array();
-                        echo "(ultimo controllo in data $ultimolio)";
+                        $var2=date_create("$ultimolio");
+                        echo "(ultimo controllo in data ".date_format($var2, "d-m-Y").")";
                     }
                     ?>
+                    </small>
                 </label>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="rabbocco">Rabbocco olio motore</label>
+                <label class="col-sm-4 col-form-label" for="rabbocco">Rabbocco olio motore <small class="text-muted"><?if ($idmezzo<=256):?>Tipo 5W-30<?endif;?><?if ($idmezzo>=258):?> Tipo 0W-30<?endif;?></small></label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="rabbocco">
                         <option value="0" selected="selected">NON EFFETTUATO</option>
@@ -1131,7 +1134,19 @@ echo date_format()
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="lavaggioesterno">Lavaggio esterno</label>
+                <label class="col-sm-4 col-form-label" for="lavaggioesterno">Lavaggio esterno
+                    <small class="text-muted">
+                        <?
+                        $controlloesterno=$db->query("SELECT start_event, title, esterno from lavaggio_mezzi WHERE title='$idmezzo' AND esterno=1 ORDER BY start_event DESC LIMIT 1");
+                        if ($controlloesterno->num_rows>0){
+                            list($ultimoesterno)= $controlloesterno->fetch_array();
+                            $var4=date_create("$ultimoesterno");
+
+                            echo "(ultimo lavaggio in data ".date_format($var4, "d-m-Y").")";
+                        }
+                        ?>
+                    </small>
+                </label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="lavaggioesterno">
                         <option value="1">EFFETTUATO</option>
@@ -1140,7 +1155,19 @@ echo date_format()
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="lavaggiointerno">Lavaggio interno</label>
+                <label class="col-sm-4 col-form-label" for="lavaggiointerno">Lavaggio interno
+                    <small class="text-muted">
+                        <?
+                        $controllointerno=$db->query("SELECT start_event, title, interno from lavaggio_mezzi WHERE title='$idmezzo' AND interno=1 ORDER BY start_event DESC LIMIT 1");
+                        if ($controllointerno->num_rows>0){
+                            list($ultimointerno)= $controllointerno->fetch_array();
+                            $var3=date_create("$ultimointerno");
+
+                            echo "(ultimo lavaggio in data ".date_format($var3, "d-m-Y").")";
+                        }
+                        ?>
+                    </small>
+                </label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="lavaggiointerno">
                         <option value="1">EFFETTUATO</option>
@@ -1149,7 +1176,19 @@ echo date_format()
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="disinfezione">Sanificazione</label>
+                <label class="col-sm-4 col-form-label" for="disinfezione">Sanificazione
+                    <small class="text-muted">
+                        <?
+                        $controllosanificazione=$db->query("SELECT start_event, title, neb from lavaggio_mezzi WHERE title='$idmezzo' AND neb=1 ORDER BY start_event DESC LIMIT 1");
+                        if ($controllosanificazione->num_rows>0){
+                            list($ultimasanificazione)= $controllosanificazione->fetch_array();
+                            $var5=date_create("$ultimasanificazione");
+
+                            echo "(ultima sanificazione in data ".date_format($var5, "d-m-Y").")";
+                        }
+                        ?>
+                    </small>
+                </label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="disinfezione">
                         <option value="1">EFFETTUATA</option>
@@ -1173,19 +1212,23 @@ echo date_format()
                 </div>
             <? endif; ?>
             <hr>
-            <div class="alert alert-success" style="text-align: center" role="alert">
+            <div class="alert alert-warning" style="text-align: center" role="alert">
                 <b>CONTROLLO BORSA</b>
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="scadenze" value="1">
                 <label class="form-check-label" for="scadenze">Controllo scadenze
-                    <?
-                    $controlloscandenza=$db->query("SELECT DATACHECK, SCADENZE from checklist WHERE IDMEZZO='$idmezzo' AND SCADENZE=1 ORDER BY DATACHECK DESC LIMIT 1");
-                    if ($controlloscandenza->num_rows>0){
-                        list($ultimascadenza)= $controlloscandenza->fetch_array();
-                        echo "(ultimo controllo in data $ultimascadenza)";
-                    }
-                    ?>
+                    <small class="text-muted">
+                        <?
+                        $controlloscandenza=$db->query("SELECT DATACHECK, SCADENZE from checklist WHERE IDMEZZO='$idmezzo' AND SCADENZE=1 ORDER BY DATACHECK DESC LIMIT 1");
+                        if ($controlloscandenza->num_rows>0){
+                            list($ultimascadenza)= $controlloscandenza->fetch_array();
+                            $var6=date_create("$ultimascadenza");
+
+                            echo "(ultimo controllo in data ".date_format($var6, "d-m-Y").")";
+                        }
+                        ?>
+                    </small>
                 </label>
             </div>
             <hr>

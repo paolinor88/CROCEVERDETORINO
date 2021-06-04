@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -69,7 +69,7 @@ if(isset($_POST["aggiornamezzo"])){
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist elettronica</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
             <li class="breadcrumb-item"><a href="mezzi.php" style="color: #078f40">Lista mezzi</a></li>
             <li class="breadcrumb-item active" aria-current="page"><?=$id?></li>
         </ol>

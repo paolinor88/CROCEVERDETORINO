@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -255,7 +255,7 @@ $pwd = generatePassword(8);
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Gestione utenze</li>
+            <li class="breadcrumb-item active" aria-current="page">Utenze</li>
         </ol>
     </nav>
 </div>

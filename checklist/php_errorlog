@@ -256,3 +256,11 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 255
+[30-May-2021 07:30:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:29
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 29
+[30-May-2021 07:34:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:174
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 174

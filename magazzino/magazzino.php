@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -218,7 +218,7 @@ include "../config/config.php";
 <body>
 <div class="container-fluid">
     <div class="jumbotron">
-        <center>
+        <div style="text-align: center;">
             <div class="btn-group" role="group">
                 <button id="consumo" type="button" class="btn btn-outline-secondary btn-sm">Materiale di consumo</button>
                 <button id="ricambi" type="button" class="btn btn-outline-secondary btn-sm">Ricambi</button>
@@ -230,7 +230,7 @@ include "../config/config.php";
                 <button id="reload" type="button" class="btn btn-outline-info btn-sm" ><i class="fas fa-sync-alt"></i></button>
                 <button id="export" type="button" class="btn btn-outline-success btn-sm" ><i class="far fa-file-excel"></i></button>
             </div>
-        </center>
+        </div>
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">
                 <thead>

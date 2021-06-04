@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -32,6 +32,7 @@ $dictionarySezione = array (
     5 => "San Mauro",
     6 => "Venaria",
     7 => "",
+    8 => "Servizio Civile",
 );
 //nicename sezioni
 $dictionarySquadra = array (
@@ -57,6 +58,7 @@ $dictionarySquadra = array (
     20 => "Servizi Generali",
     21 => "Altro",
     22 => "",
+    23 => "",
 );
 //statocheck
 $dictionaryStatocheck = array(
@@ -231,7 +233,7 @@ if(isset($_POST['eliminaALL'])){
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist elettronica</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
             <li class="breadcrumb-item active" aria-current="page">Archivio</li>
         </ol>
     </nav>
@@ -261,12 +263,12 @@ if(isset($_POST['eliminaALL'])){
                 </thead>
                 <tbody>
                 <?php
-                $select = $db->query("SELECT * FROM checklist WHERE NOTE!='' order by IDCHECK DESC ");
+                $select = $db->query("SELECT * FROM checklist WHERE NOTE!='' AND STATO!=4 order by IDCHECK DESC ");
                 while($ciclo = $select->fetch_array()){
                     if ($ciclo['NOTE']!=""): ?>
 					<tr>
 						<td class="align-middle"><a href="https://<?=$_SERVER['HTTP_HOST']?>/gestionale/checklist/details.php?ID=<?=$ciclo['IDCHECK']?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-search"></i></a></td>
-						<td class="align-middle"><?php $var=$ciclo['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:m")?></td>
+						<td class="align-middle"><?php $var=$ciclo['DATACHECK']; $var1=date_create("$var"); echo date_format($var1, "d-m-Y H:i")?></td>
 						<td class="align-middle"><?=$ciclo['IDMEZZO']?></td>
 						<td class="align-middle"><?=$ciclo['NOTE']?></td>
                         <td class="align-middle"><?=$dictionaryStatocheck[$ciclo['STATO']]?></td>

@@ -61,8 +61,10 @@ if ($_SESSION['livello']==2){
     $root_path = $_SERVER['DOCUMENT_ROOT'].'/gestionale/doc/source/Normativa_e_Procedure';
 }elseif ($_SESSION['livello']==1){
     $root_path = $_SERVER['DOCUMENT_ROOT'].'/gestionale/doc/source/dipendenti';
-}elseif ($_SESSION['livello']>=4){
-    $root_path = $_SERVER['DOCUMENT_ROOT'].'/gestionale/doc/source';
+}elseif ($_SESSION['livello']==3){
+    $root_path = $_SERVER['DOCUMENT_ROOT'].'/gestionale/doc/source/dipendenti';
+}elseif ($_SESSION['livello']>=4) {
+    $root_path = $_SERVER['DOCUMENT_ROOT'] . '/gestionale/doc/source';
 }
 
 // Root url for links in file manager.Relative to $http_host. Variants: '', 'path/to/subfolder'

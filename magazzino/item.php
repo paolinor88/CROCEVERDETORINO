@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -218,7 +218,7 @@ $dictionaryCategoria = array (
                 </script>
             </div>
             <hr>
-            <center>
+            <div style="text-align: center;">
                 <div class="btn-group" role="group">
                     <button type="submit" class="btn btn-sm btn-outline-success" id="update" name="update"><i class="fas fa-check"></i></button>
                     <a href="magazzino.php" class="btn btn-sm btn-outline-secondary" id="indietro"><i class="fas fa-undo"></i></a>
@@ -228,7 +228,7 @@ $dictionaryCategoria = array (
                 <font size="-1"><em><i class="fas fa-check" style="color: #1a712c"></i> Salva e chiudi<br>
                         <font size="-1"><em><i class="fas fa-check" style="color: grey"></i> Indietro<br>
                                 <i class="far fa-trash-alt" style="color: #CC0000"></i> Cancella elemento</em></font>
--->            </center>
+-->            </div>
 
             <div class="modal" id="modaldelete" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">

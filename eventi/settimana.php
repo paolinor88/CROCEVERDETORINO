@@ -49,7 +49,7 @@ if(isset($_GET["provenienza"])){
     <nav aria-label=\"breadcrumb\">
         <ol class=\"breadcrumb\">
             <li class=\"breadcrumb-item\"><a href=\"../index.php\" style=\"color: #078f40\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"index.php\" style=\"color: #078f40\">Eventi e calendario</a></li>
+            <li class=\"breadcrumb-item\"><a href=\"index.php\" style=\"color: #078f40\">Calendario</a></li>
             <li class=\"breadcrumb-item active\" aria-current=\"page\">Settimana ".$settimana."</li>
         </ol>
     </nav>

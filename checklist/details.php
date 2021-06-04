@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -46,7 +46,7 @@ $dictionarySezione = array (
     4 => "Ciriè",
     5 => "San Mauro",
     6 => "Venaria",
-    7 => "",
+    7 => "TO",
 );
 //nicename sezioni
 $dictionarySquadra = array (
@@ -71,7 +71,7 @@ $dictionarySquadra = array (
     19 => "Giovani",
     20 => "Servizi Generali",
     21 => "Altro",
-    22 => "",
+    22 => "DIP",
 );
 
 if(isset($_POST["reply"])) {
@@ -79,10 +79,10 @@ if(isset($_POST["reply"])) {
     //TODO modificare destinatario
 
     $to= $email;//.', '.$bechis;
-    $nome_mittente="Gestionale CVTO";
-    $mail_mittente=$gestionale;
+    $nome_mittente="Checklist CVTO";
+    $mail_mittente=$checklist;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$randone."\r\n";
+    //$headers .= "Bcc: ".$randone."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
@@ -121,9 +121,9 @@ if(isset($_POST["reply"])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist elettronica</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
             <li class="breadcrumb-item"><a href="archivio.php" style="color: #078f40">Archivio</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Checklist</li>
+            <li class="breadcrumb-item active" aria-current="page">Segnalazione</li>
         </ol>
     </nav>
 </div>
@@ -137,7 +137,7 @@ if(isset($_POST["reply"])) {
             <form method="post" action="details.php">
                 <input hidden id="xcheck" name="xcheck" value="<?=$id?>">
                 <p>AUTO: <?=$modifica['IDMEZZO']?></p>
-                <p>DATA: <?=$modifica['DATACHECK']?></p>
+                <p>DATA: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $datatesto=date_format($var1, "d/m/Y");?> ORE: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $oratesto=date_format($var1, "H:i");?> </p>
                 <p>SEZIONE: <?=$dictionarySezione[$sezione]?></p>
                 <p>SQUADRA: <?=$dictionarySquadra[$squadra]?></p>
                 <p>COMPILATORE: <?=$cognome?> <?=$nome?></p>

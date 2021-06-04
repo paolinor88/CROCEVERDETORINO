@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -243,7 +243,7 @@ if(isset($_POST["activateBTN"])){
                     <h4 class="text-center" style="color: #078f40">Accedi</h4>
                     <hr>
                     <div class="form-group">
-                        <input type="text" id="matricolaOP" name="matricolaOP" class="form-control form-control-sm" placeholder="Matricola (es. V4512)" pattern="[D|V0-9]{5}">
+                        <input type="text" id="matricolaOP" name="matricolaOP" class="form-control form-control-sm" placeholder="Matricola (es. V4512)" pattern="[D|V|C0-9]{5}">
                     </div> <!-- matricola -->
                     <div class="form-group">
                         <input type="password" id="passwordOP" name="passwordOP" class="form-control form-control-sm" placeholder="Password" >
@@ -315,7 +315,7 @@ if(isset($_POST["activateBTN"])){
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 2.4</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 3.0</p></em></font>
     </div>
 </footer>
 </html>

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -102,14 +102,6 @@ if (!isset($_SESSION["ID"])){
                     center: 'title',
                     right: 'basicWeek,month,today next',
                 },
-                /*
-                validRange: function(nowDate) {
-                    return {
-                        start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(1, 'months')
-                    };
-                },
-                */
                 eventOrder: "event.id",
                 //aspectRatio: 3,
                 editable: false,
@@ -117,8 +109,6 @@ if (!isset($_SESSION["ID"])){
                 selectable: false,
                 displayEventEnd: false,
                 eventDurationEditable: false,
-                //eventOverlap: false,
-                //defaultView: 'basicWeek',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
                 googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
@@ -173,7 +163,7 @@ if (!isset($_SESSION["ID"])){
                         }
                     });
                 },
-                eventClick:function(event, jsEvent){ //elimina disponibilità
+                eventClick:function(event, jsEvent){ //elimina lavaggio
                     jsEvent.preventDefault();
                     swal({
                         text: "Sei sicuro di voler cancellare questo lavaggio?",

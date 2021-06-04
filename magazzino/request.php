@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -269,7 +269,7 @@ if( isset($_POST['form_item_id_list']) ) {
             </div>
         </div>
         <br>
-        <center>
+        <div style="text-align: center;">
             <input type="hidden" name="form_item_id_list" value="<?= $html_hidd_id_item;?>" />
 
             <button type="submit" id="submit" name="submit" class="btn btn-outline-success btn-sm"><i class="fas fa-check"></i></button>
@@ -278,7 +278,7 @@ if( isset($_POST['form_item_id_list']) ) {
             }
             ?>
 
-        </center>
+        </div>
     </form>
 </div>
 <br>

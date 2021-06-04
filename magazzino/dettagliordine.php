@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    2.4
+ * @version    3.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -190,13 +190,13 @@ if(isset($_POST["deleterichiesta"])){
                 </script>
             </div>
             <hr>
-            <center>
+            <div style="text-align: center;">
                 <div class="btn-group" role="group">
                     <button type="submit" class="btn btn-sm btn-outline-success" id="updateordine" name="updateordine"><i class="fas fa-check"></i></button>
                     <a href="ordini.php" class="btn btn-sm btn-outline-secondary" id="indietro"><i class="fas fa-undo"></i></a>
                     <button type="button" class="btn btn-sm btn-outline-danger" id="doublemodal" data-toggle="modal" data-target="#modaldelete"><i class="far fa-trash-alt"></i></button>
                 </div>
-            </center>
+            </div>
 
             <div class="modal" id="modaldelete" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
