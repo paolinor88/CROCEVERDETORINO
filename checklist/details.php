@@ -21,6 +21,9 @@ if (isset($_GET["ID"])){
     $id = $_GET["ID"];
     $modifica = $db->query("SELECT * FROM checklist WHERE IDCHECK='$id'")->fetch_array();
     $idoperatore = $modifica['IDOPERATORE'];
+    $idmezzo = $modifica['IDMEZZO'];
+    $datacheck = $modifica['DATACHECK'];
+    $note = $modifica['NOTE'];
 }
 //OP variable
 $select = $db->query("SELECT cognome, nome, squadra, sezione, email FROM utenti WHERE ID='$idoperatore'")->fetch_array();
@@ -40,38 +43,40 @@ $dictionaryLivello = array (
 );
 //nicename sezioni
 $dictionarySezione = array (
-    1 => "Torino",
-    2 => "Alpignano",
-    3 => "Borgaro/Caselle",
-    4 => "Ciriè",
-    5 => "San Mauro",
-    6 => "Venaria",
-    7 => "TO",
+    1 => "TO",
+    2 => "AL",
+    3 => "BC",
+    4 => "CI",
+    5 => "SM",
+    6 => "VE",
+    7 => "DIP",
+    8 => "SCN",
 );
 //nicename sezioni
 $dictionarySquadra = array (
-    1 => "Prima",
-    2 => "Seconda",
-    3 => "Terza",
-    4 => "Quarta",
-    5 => "Quinta",
-    6 => "Sesta",
-    7 => "Settima",
-    8 => "Ottava",
-    9 => "Nona",
-    10 => "Sabato",
-    11 => "Montagna",
-    12 => "Direzione",
+    1 => "1",
+    2 => "2",
+    3 => "3",
+    4 => "4",
+    5 => "5",
+    6 => "6",
+    7 => "7",
+    8 => "8",
+    9 => "9",
+    10 => "SAB",
+    11 => "MON",
+    12 => "DDS",
     13 => "Lunedì",
     14 => "Martedì",
     15 => "Mercoledì",
     16 => "Giovedì",
     17 => "Venerdì",
-    18 => "Diurno",
+    18 => "DIU",
     19 => "Giovani",
     20 => "Servizi Generali",
     21 => "Altro",
-    22 => "DIP",
+    22 => "TO",
+    23 => "TO",
 );
 
 if(isset($_POST["reply"])) {
@@ -82,13 +87,15 @@ if(isset($_POST["reply"])) {
     $nome_mittente="Checklist CVTO";
     $mail_mittente=$checklist;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    //$headers .= "Bcc: ".$randone."\r\n";
+    $headers .= "Bcc: ".$comunicazioni."\r\n";
     //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
-    $subject = "Risposta segnalazione";
-    $corpo = $_POST['testo'];
+    $subject = "Risposta segnalazione auto ".$idmezzo."";
+    $corpo = "Compilatore ".$idoperatore." ".$nome." ".$cognome." (".$dictionarySezione[$sezione]." ".$dictionarySquadra[$squadra].")";
+    $corpo .= '**'."\r\n". $note . "\r\n" .'**'."\r\n";
+    $corpo .= $_POST['testo'];
     mail($to, $subject, $corpo, $headers);
 
         echo '<script type="text/javascript">
@@ -136,11 +143,11 @@ if(isset($_POST["reply"])) {
         <div class="jumbotron">
             <form method="post" action="details.php">
                 <input hidden id="xcheck" name="xcheck" value="<?=$id?>">
-                <p>AUTO: <?=$modifica['IDMEZZO']?></p>
+                <p>AUTO: <b><?=$modifica['IDMEZZO']?></b></p>
                 <p>DATA: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $datatesto=date_format($var1, "d/m/Y");?> ORE: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $oratesto=date_format($var1, "H:i");?> </p>
                 <p>SEZIONE: <?=$dictionarySezione[$sezione]?></p>
                 <p>SQUADRA: <?=$dictionarySquadra[$squadra]?></p>
-                <p>COMPILATORE: <?=$cognome?> <?=$nome?></p>
+                <p>COMPILATORE: <b><?=$cognome?> <?=$nome?></b></p>
                 <p>MATRICOLA: <?=$modifica['IDOPERATORE']?></p>
                 <hr>
                 <div class="form-group">
@@ -178,7 +185,7 @@ if(isset($_POST["reply"])) {
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <textarea class="form-control" name="testo" rows="15" placeholder="Digita qui la risposta" autofocus><?='<messaggio originale>'."\r\n". $modifica['NOTE'] . "\r\n" .'<-------------------->'."\r\n"?></textarea>
+                        <textarea class="form-control" name="testo" rows="15" placeholder="Digita qui la risposta" autofocus></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

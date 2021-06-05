@@ -1025,7 +1025,7 @@ if (isset($_POST['IDMEZZO'])){
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="olio" value="1">
-                <label class="form-check-label" for="scadenze">Controllo olio motore
+                <label class="form-check-label" for="olio">Controllo olio motore
                     <small class="text-muted">
                     <?
                     $controlloolio=$db->query("SELECT DATACHECK, OLIO from checklist WHERE IDMEZZO='$idmezzo' AND OLIO=1 ORDER BY DATACHECK DESC LIMIT 1");
