@@ -59,13 +59,12 @@ if (isset($_POST['IDMEZZO'])){
                         if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();
-                            alert("ATTENZIONE, una o più voci risultano mancanti; puoi ignorare questo messaggio e inviare comunque la checklist, oppure premere annulla e completare l'inserimento.");
                         }
                         form.classList.add('was-validated');
                     }, false);
                 });
             }, false);
-        })();
+        })(); 
     </script>
 
     <!-- STRUTTURA CHECKLIST -->
@@ -290,6 +289,11 @@ if (isset($_POST['IDMEZZO'])){
             <input hidden id="IDMEZZO" value="<?=$idmezzo?>">
             <input hidden id="IDOPERATORE" value="<?=$idoperatore?>">
             <input hidden id="tipo" value="<?=$select['tipo']?>">
+            <div class="form-group row">
+                    <select class="form-control form-control-sm" id="blank" required hidden>
+                        <option disabled selected value="">blank</option>
+                    </select>
+            </div>
             <div class="alert alert-success" style="text-align: center" role="alert">
                 <b>VANO SANITARIO</b>
             </div>
@@ -639,7 +643,7 @@ if (isset($_POST['IDMEZZO'])){
             </div>
             <hr>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="DAE">DAE + piastre ADULTI e PEDIATRICHE</label>
+                <label class="col-sm-4 col-form-label" for="DAE">DAE + piastre ADULTI e PEDIATRICHE <small class="text-muted">(Dove previsto)</small></label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="DAE" required>
                         <option disabled selected value="">Scegli...</option>
@@ -1199,7 +1203,7 @@ if (isset($_POST['IDMEZZO'])){
             <?php
             if (($select['tipo'])!=3): ?>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label" for="battesedia">Batteria + caricabatteria sedia</label>
+                    <label class="col-sm-4 col-form-label" for="battesedia">Batteria + caricabatteria sedia <small class="text-muted">(Dove previsto)</small></label>
                     <div class="col col-sm-2">
                         <select class="form-control form-control-sm" id="battesedia" required>
                             <option disabled selected value="">Scegli...</option>
@@ -1246,7 +1250,7 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="reservoirped">Reservoire +  valvola</label>
+                <label class="col-sm-4 col-form-label" for="reservoirped">Reservoire +  valvola (PED)</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="reservoirped" required>
                         <option disabled selected value="">Scegli...</option>
@@ -1272,7 +1276,7 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="maschereped">Mascherine (3 misure)</label>
+                <label class="col-sm-4 col-form-label" for="maschereped">Mascherine (3 misure PED)</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="maschereped" required>
                         <option disabled selected value="">Scegli...</option>
@@ -1285,7 +1289,7 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="guedelped">Guedel (3 misure)</label>
+                <label class="col-sm-4 col-form-label" for="guedelped">Guedel (3 misure PED)</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="guedelped" required>
                         <option disabled selected value="">Scegli...</option>
@@ -1325,7 +1329,7 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="reservoiradulti">Reservoire +  valvola</label>
+                <label class="col-sm-4 col-form-label" for="reservoiradulti">Reservoire +  valvola ADU</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="reservoiradulti" required>
                         <option disabled selected value="">Scegli...</option>
@@ -1351,7 +1355,7 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="maschereadulti">Mascherine (5 misure)</label>
+                <label class="col-sm-4 col-form-label" for="maschereadulti">Mascherine (5 misure ADU)</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="maschereadulti" required>
                         <option disabled selected value="">Scegli...</option>
@@ -1364,7 +1368,7 @@ if (isset($_POST['IDMEZZO'])){
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="guedeladulti">Guedel (5 misure)</label>
+                <label class="col-sm-4 col-form-label" for="guedeladulti">Guedel (5 misure ADU)</label>
                 <div class="col col-sm-2">
                     <select class="form-control form-control-sm" id="guedeladulti" required>
                         <option disabled selected value="">Scegli...</option>
