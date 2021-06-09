@@ -16,22 +16,23 @@ include "../config/include/destinatari.php";
 if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
 }
-//GET variable
+//GET SEGNALAZIONE
 if (isset($_GET["ID"])){
     $id = $_GET["ID"];
     $modifica = $db->query("SELECT * FROM checklist WHERE IDCHECK='$id'")->fetch_array();
-    $idoperatore = $modifica['IDOPERATORE'];
-    $idmezzo = $modifica['IDMEZZO'];
-    $datacheck = $modifica['DATACHECK'];
-    $note = $modifica['NOTE'];
+    $idcompilatore = $modifica['IDOPERATORE'];
 }
-//OP variable
-$select = $db->query("SELECT cognome, nome, squadra, sezione, email FROM utenti WHERE ID='$idoperatore'")->fetch_array();
-$cognome = $select['cognome'];
-$nome = $select['nome'];
-$sezione = $select['sezione'];
-$squadra = $select['squadra'];
-$email = $select['email'];
+//compilatore
+$select = $db->query("SELECT ID, cognome, nome, squadra, sezione, email FROM utenti WHERE ID='$idcompilatore'")->fetch_array();
+
+//variabile sessione
+$idmittente= $_SESSION['ID'];
+$cognomemittente = $_SESSION['cognome'];
+$nomemittente = $_SESSION['nome'];
+$emailmittente = $_SESSION['email'];
+$squadramittente = $_SESSION['squadra'];
+$sezionemittente = $_SESSION['sezione'];
+
 //nicename livelli
 $dictionaryLivello = array (
     1 => "Dipendente",
@@ -80,10 +81,19 @@ $dictionarySquadra = array (
 );
 
 if(isset($_POST["reply"])) {
+    $idmezzo = $_POST['idmezzo'];
+    $idcompilatore = $_POST['idcompilatore'];
+    $nomecompilatore = $_POST['nomecompilatore'];
+    $cognomecompilatore = $_POST['cognomecompilatore'];
+    $squadracompilatore = $_POST['squadracompilatore'];
+    $sezionecompilatore = $_POST['sezionecompilatore'];
+    $emailcompilatore = $_POST['emailcompilatore'];
+    $note = $_POST['note'];
+    $risposta = $_POST["risposta"];
 
     //TODO modificare destinatario
 
-    $to= $email;//.', '.$bechis;
+    $to= $emailcompilatore;//.', '.$bechis;
     $nome_mittente="Checklist CVTO";
     $mail_mittente=$checklist;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
@@ -93,9 +103,22 @@ if(isset($_POST["reply"])) {
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
     $subject = "Risposta segnalazione auto ".$idmezzo."";
-    $corpo = "Compilatore ".$idoperatore." ".$nome." ".$cognome." (".$dictionarySezione[$sezione]." ".$dictionarySquadra[$squadra].")";
-    $corpo .= '**'."\r\n". $note . "\r\n" .'**'."\r\n";
-    $corpo .= $_POST['testo'];
+    $corpo = "
+        <html lang='it'>
+            <body>
+                <p>Compilatore [".$idcompilatore."] ".$nomecompilatore." ".$cognomecompilatore." (".$dictionarySquadra[$squadracompilatore]." ".$dictionarySezione[$sezionecompilatore].")</p>
+                <p>Messaggio originale:</p>
+                <p>**</p>
+                <p>".$note."</p>
+                <p>**</p>
+                <br>
+                <p>Risposta di [".$idmittente."] ".$nomemittente." ".$cognomemittente.":</p>
+                <p>**</p>
+                <p>".$risposta."</p>
+                <p>**</p>
+            </body>
+        </html>";
+
     mail($to, $subject, $corpo, $headers);
 
         echo '<script type="text/javascript">
@@ -161,7 +184,7 @@ if(isset($_POST["reply"])) {
 
                     </div>
                     <br>
-                    <span style="font-size: smaller; "><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></span>
+                   <span style="font-size: smaller; "><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></span>
                 </div>
             </form>
         </div>
@@ -177,19 +200,25 @@ if(isset($_POST["reply"])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title" id="exampleModalLabel">Rispondi a <?= $modifica['IDOPERATORE'] ?></h6>
-                    <input hidden name="email" value="<?=$select['email']?>">
-
+                    <input hidden id="idmezzo" name="idmezzo" value="<?=$modifica['IDMEZZO']?>">
+                    <input hidden id="idcompilatore" name="idcompilatore" value="<?=$select['ID']?>">
+                    <input hidden id="cognomecompilatore" name="cognomecompilatore" value="<?=$select['cognome']?>">
+                    <input hidden id="nomecompilatore" name="nomecompilatore" value="<?=$select['nome']?>">
+                    <input hidden id="sezionecompilatore" name="sezionecompilatore" value="<?=$select['sezione']?>">
+                    <input hidden id="squadracompilatore" name="squadracompilatore" value="<?=$select['squadra']?>">
+                    <input hidden id="emailcompilatore" name="emailcompilatore" value="<?=$select['email']?>">
+                    <input hidden id="note" name="note" value="<?=$modifica['NOTE']?>">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <textarea class="form-control" name="testo" rows="15" placeholder="Digita qui la risposta" autofocus></textarea>
+                        <textarea class="form-control" name="risposta" rows="15" placeholder="Digita qui la risposta" autofocus></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="reply" class="btn btn-info btn-sm">Invia</button>
+                    <button type="submit" name="reply" class="btn btn-info btn-sm" >Invia</button>
                 </div>
             </div>
         </div>

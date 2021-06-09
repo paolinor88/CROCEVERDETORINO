@@ -258,7 +258,7 @@ if(isset($_POST["activateBTN"])){
                     </div>
                     <hr>
                     <div class="text-center">
-                        <a style="color: #078f40" href="https://croceverde.org/gestionale/help.php" target="_blank">MANUALE UTENTE</a>
+                        <a style="color: #078f40" href="https://croceverde.org/gestionale/istruzioni_gestionale_COMPLETE_v3.0.pdf" target="_blank">MANUALE UTENTE</a>
                     </div>
                 </div>
             </div>

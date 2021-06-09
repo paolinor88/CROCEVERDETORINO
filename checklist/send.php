@@ -375,7 +375,7 @@ if(isset($_POST["IDMEZZO"])){
         $nome_mittente="Checklist CVTO";
         $mail_mittente=$checklist;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        //$headers .= "Bcc: ".$randone."\r\n";
+        $headers .= "Bcc: ".$email."\r\n";
         $headers .= "Reply-To: " .  $email . "\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";

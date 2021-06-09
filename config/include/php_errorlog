@@ -1,0 +1,4 @@
+[08-Jun-2021 13:59:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/croceverde.org/public_html/gestionale/config/include/griglia_checklist.php:769
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/config/include/griglia_checklist.php on line 769
