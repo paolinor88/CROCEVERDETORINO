@@ -263,7 +263,7 @@ if(isset($_POST['eliminaALL'])){
                 </thead>
                 <tbody>
                 <?php
-                $select = $db->query("SELECT * FROM checklist WHERE NOTE!='' AND STATO!=4 order by IDCHECK DESC ");
+                $select = $db->query("SELECT * FROM checklist WHERE NOTE!='' AND STATO!=4 order by STATO, DATACHECK DESC ");
                 while($ciclo = $select->fetch_array()){
                     if ($ciclo['NOTE']!=""): ?>
 					<tr>
