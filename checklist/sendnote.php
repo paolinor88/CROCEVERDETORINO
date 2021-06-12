@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.0
+ * @version    3.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -92,8 +92,7 @@ if(isset($_POST["solonote"])){
     $corpo = "
         <html lang='it'>
             <body>
-                <p>Il giorno ".$datatesto." ".$compilatore." ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].") ha comunicato:</p>
-                <br>
+                <p>Il giorno ".$datatesto.", [".$compilatore."] ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].") ha comunicato:</p>
                 <p>**</p>
                 <p>".$segnalazione."</p>
                 <p>**</p>

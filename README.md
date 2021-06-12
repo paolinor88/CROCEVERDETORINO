@@ -3,6 +3,10 @@
 
 mail@paolorandone.it
 ---
+Version 3.1 changelog:
+
+- minor update and bug fixes
+---
 Version 3.0 changelog:
 
 - MAJOR RELEASE

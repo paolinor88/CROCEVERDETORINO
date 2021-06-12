@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.0
+ * @version    3.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -102,20 +102,21 @@ if(isset($_POST["reply"])) {
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
-    $subject = "Risposta segnalazione auto ".$idmezzo."";
+    $subject = "Re: Segnalazione auto ".$idmezzo."";
     $corpo = "
         <html lang='it'>
             <body>
-                <p>Compilatore [".$idcompilatore."] ".$nomecompilatore." ".$cognomecompilatore." (".$dictionarySquadra[$squadracompilatore]." ".$dictionarySezione[$sezionecompilatore].")</p>
-                <p>Messaggio originale:</p>
-                <p>**</p>
-                <p>".$note."</p>
-                <p>**</p>
-                <br>
-                <p>Risposta di [".$idmittente."] ".$nomemittente." ".$cognomemittente.":</p>
+                <p>[".$idmittente."] ".$nomemittente." ".$cognomemittente." ha risposto:</p>
                 <p>**</p>
                 <p>".$risposta."</p>
                 <p>**</p>
+                <br>
+                <p>Al messaggio inviato da [".$idcompilatore."] ".$nomecompilatore." ".$cognomecompilatore." (".$dictionarySquadra[$squadracompilatore]." ".$dictionarySezione[$sezionecompilatore]."):</p>
+                <p>**</p>
+                <p>".$note."</p>
+                <p>**</p>
+                
+
             </body>
         </html>";
 
@@ -168,9 +169,9 @@ if(isset($_POST["reply"])) {
                 <input hidden id="xcheck" name="xcheck" value="<?=$id?>">
                 <p>AUTO: <b><?=$modifica['IDMEZZO']?></b></p>
                 <p>DATA: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $datatesto=date_format($var1, "d/m/Y");?> ORE: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $oratesto=date_format($var1, "H:i");?> </p>
-                <p>SEZIONE: <?=$dictionarySezione[$sezione]?></p>
-                <p>SQUADRA: <?=$dictionarySquadra[$squadra]?></p>
-                <p>COMPILATORE: <b><?=$cognome?> <?=$nome?></b></p>
+                <p>SEZIONE: <?=$dictionarySezione[$select['sezione']]?></p>
+                <p>SQUADRA: <?=$dictionarySquadra[$select['squadra']]?></p>
+                <p>COMPILATORE: <b><?=$select['cognome']?> <?=$select['nome']?></b></p>
                 <p>MATRICOLA: <?=$modifica['IDOPERATORE']?></p>
                 <hr>
                 <div class="form-group">

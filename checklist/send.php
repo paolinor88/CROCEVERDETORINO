@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.0
+ * @version    3.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -384,8 +384,7 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = "
         <html lang='it'>
             <body>
-                <p>In data ".$datatesto." ".$compilatore." ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].") ha comunicato:</p>
-                <br>
+                <p>Il giorno ".$datatesto.", [".$compilatore."] ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].") ha comunicato:</p>
                 <p>**</p>
                 <p>".$inoltronote."</p>
                 <p>**</p>

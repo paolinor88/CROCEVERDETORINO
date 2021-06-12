@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.0
+ * @version    3.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -127,7 +127,6 @@ if (isset($_POST['IDMEZZO'])){
                 var cinghie = $("#cinghie option:selected").val();
                 var estintorepost = $("#estintorepost option:selected").val();
                 var coltrino = $("#coltrino option:selected").val();
-                var coperta = $("#coperta option:selected").val();
                 var traslatore = $("#traslatore option:selected").val();
                 var estintoreant = $("#estintoreant option:selected").val();
                 var faro = $("#faro option:selected").val();
@@ -226,7 +225,7 @@ if (isset($_POST['IDMEZZO'])){
                                     cpap:cpap, pedimate:pedimate, guanti:guanti, sedia:sedia, KED:KED, steccobende:steccobende,
                                     bomboleport:bomboleport, caschi:caschi, padella:padella, carta:carta, amputazioni:amputazioni,
                                     ragno:ragno, trauma:trauma, cinghie:cinghie, estintorepost:estintorepost, coltrino:coltrino,
-                                    coperta:coperta, traslatore:traslatore, estintoreant:estintoreant, faro:faro, scasso:scasso,
+                                    traslatore:traslatore, estintoreant:estintoreant, faro:faro, scasso:scasso,
                                     bloccocv:bloccocv, schede118:schede118, fuoriservizio:fuoriservizio, antifiamma:antifiamma,
                                     panseptil:panseptil, luci:luci, blu:blu, sirene:sirene, gasolio:gasolio, telepass:telepass,
                                     doc:doc, cartaagip:cartaagip, lavaggioesternotext:lavaggioesternotext, lavaggiointernotext:lavaggiointernotext,
