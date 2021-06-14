@@ -1,0 +1,4 @@
+[13-Jun-2021 08:05:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/croceverde.org/public_html/gestionale/config/template/check_msb.php:752
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/config/template/check_msb.php on line 752
