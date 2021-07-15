@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.1
+ * @version    3.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -258,7 +258,7 @@ if(isset($_POST["activateBTN"])){
                     </div>
                     <hr>
                     <div class="text-center">
-                        <a style="color: #078f40" href="https://croceverde.org/gestionale/istruzioni_gestionale_COMPLETE_v3.0.pdf" target="_blank">MANUALE UTENTE</a>
+                        <a style="color: #078f40" href="https://croceverde.org/gestionale/istruzioni_gestionale_COMPLETE_v3.2.pdf" target="_blank">MANUALE UTENTE</a>
                     </div>
                 </div>
             </div>
@@ -315,7 +315,7 @@ if(isset($_POST["activateBTN"])){
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 3.1</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:gestioneutenti@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 3.2</p></em></font>
     </div>
 </footer>
 </html>

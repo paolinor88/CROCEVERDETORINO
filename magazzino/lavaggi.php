@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.1
+ * @version    3.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -56,10 +56,12 @@ if (!isset($_SESSION["ID"])){
                 eventRender: function (event, element) {
                     if ((event.stato) === '1') {
                         element.addClass('checklist');
-                    } else {
+                    } else if ((event.stato) === '2'){
                         element.addClass('SAMSIC');
+                    }else {
+                        element.addClass('altro');
                     }
-                    return (['all', event.user_id].indexOf($("#modalFilterID option:selected").val()) >= 0) && (['all', event.title].indexOf($("#modalFilterAuto option:selected").val()) >= 0);
+                    return (['all', event.user_id].indexOf($("#modalFilterID option:selected").val()) >= 0) && (['all', event.title].indexOf($("#modalFilterAuto option:selected").val()) >= 0) && (['all', event.stato].indexOf($("#modalFilterStato option:selected").val()) >= 0);
                 },
                 customButtons: {
                     refreshBTN: {
@@ -288,7 +290,14 @@ if (!isset($_SESSION["ID"])){
                         }
                         ?>
                     </select>
-
+                    <hr>
+                    <div>Tipo</div>
+                    <select id="modalFilterStato" name="modalFilterStato" class="form-control form-control-sm" required>
+                        <option value="2" selected>SAMSIC</option>
+                        <option value="1">Checklist</option>
+                        <option value="3">Altro</option>
+                        <option value="all">Tutti</option>
+                    </select>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <div class="btn-group btn-group" role="group">

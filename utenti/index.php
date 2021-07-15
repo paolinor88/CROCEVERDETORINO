@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.1
+ * @version    3.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -27,11 +27,12 @@ $dictionaryLivello = array (
 $dictionarySezione = array (
     1 => "Torino",
     2 => "Alpignano",
-    3 => "Borgaro/Caselle",
+    3 => "Borgaro Caselle",
     4 => "Ciriè",
     5 => "San Mauro",
     6 => "Venaria",
-    7 => "",
+    7 => "Dipendente",
+    8 => "Servizio Civile",
 );
 //nicename sezioni
 $dictionarySquadra = array (
@@ -57,6 +58,7 @@ $dictionarySquadra = array (
     20 => "Servizi Generali",
     21 => "Altro",
     22 => "",
+    23 => "",
 );
 //apri dettaglio
 if (isset($_GET["ID"])){
@@ -373,7 +375,7 @@ $pwd = generatePassword(8);
                         <label for="sezione">Sezione</label>
                         <select class="form-control form-control-sm" id="sezione" required>
                             <?
-                            for($a=1;$a<8;$a++){
+                            for($a=1;$a<9;$a++){
                                 ($a==$modifica['sezione'])? $sel="selected" : $sel="";
                                 echo "<option $sel value='$a'>".$dictionarySezione[$a]."</option>";
                             }

@@ -9,7 +9,7 @@ include "../config/pdo.php";
 include "../config/include/destinatari.php";
 //aggiungi operatore
 if(isset($_POST["ID"])){
-    $query = "INSERT INTO utenti (ID, cognome, nome, email, cf, password, telefono, ciclico, livello, stato, sezione, squadra) VALUES (:ID, :cognome, :nome, :email, cf, :password, :telefono, :ciclico, :livello, :stato, :sezione, :squadra)";
+    $query = "INSERT INTO utenti (ID, cognome, nome, email, cf, password, telefono, ciclico, livello, stato, sezione, squadra) VALUES (:ID, :cognome, :nome, :email, :cf, :password, :telefono, :ciclico, :livello, :stato, :sezione, :squadra)";
 
     $statement = $connect->prepare($query);
     $statement->execute(

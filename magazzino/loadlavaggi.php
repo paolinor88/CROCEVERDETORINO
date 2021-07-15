@@ -3,7 +3,7 @@ include "../config/pdo.php";
 
 $data = array();
 
-$query = "SELECT * FROM lavaggio_mezzi WHERE stato='2' ORDER BY id";
+$query = "SELECT * FROM lavaggio_mezzi  ORDER BY id";
 
 $statement = $connect->prepare($query);
 

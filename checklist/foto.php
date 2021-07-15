@@ -19,8 +19,8 @@ if (($_SESSION["livello"])<4){
 //GET SEGNALAZIONE
 if (isset($_GET["ID"])){
     $id = $_GET["ID"];
-    $modifica = $db->query("SELECT * FROM checklist WHERE IDCHECK='$id'")->fetch_array();
-    $idcompilatore = $modifica['IDOPERATORE'];
+    $modifica = $db->query("SELECT * FROM images WHERE id='$id'")->fetch_array();
+    $idcompilatore = $modifica['id_operatore'];
 }
 //compilatore
 $select = $db->query("SELECT ID, cognome, nome, squadra, sezione, email FROM utenti WHERE ID='$idcompilatore'")->fetch_array();
@@ -122,7 +122,7 @@ if(isset($_POST["reply"])) {
 
     mail($to, $subject, $corpo, $headers);
 
-        echo '<script type="text/javascript">
+    echo '<script type="text/javascript">
         alert("Risposta inviata con successo");
         location.href="archivio.php";
         </script>';
@@ -154,7 +154,7 @@ if(isset($_POST["reply"])) {
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
             <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
             <li class="breadcrumb-item"><a href="archivio.php" style="color: #078f40">Archivio</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Segnalazione</li>
+            <li class="breadcrumb-item active" aria-current="page">Foto</li>
         </ol>
     </nav>
 </div>
@@ -162,53 +162,65 @@ if(isset($_POST["reply"])) {
 <body>
 <div class="container-fluid">
     <div class="row text-left">
-    <div class="col-md-3 col-md-offset-3"></div>
-    <div class="col-md-6">
-        <div class="jumbotron">
-            <form method="post" action="details.php">
-                <input hidden id="xcheck" name="xcheck" value="<?=$id?>">
-                <p>AUTO: <b><?=$modifica['IDMEZZO']?></b></p>
-                <p>DATA: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $datatesto=date_format($var1, "d/m/Y");?> ORE: <?$var=$modifica["DATACHECK"];$var1=date_create("$var");echo $oratesto=date_format($var1, "H:i");?> </p>
-                <p>SEZIONE: <?=$dictionarySezione[$select['sezione']]?></p>
-                <p>SQUADRA: <?=$dictionarySquadra[$select['squadra']]?></p>
-                <p>COMPILATORE: <b><?=$select['cognome']?> <?=$select['nome']?></b></p>
-                <p>MATRICOLA: <?=$modifica['IDOPERATORE']?></p>
-                <hr>
-                <div class="form-group">
-                    <textarea class="form-control" id="xnote" name="xnote" readonly rows="15"><?=$modifica['NOTE']?></textarea>
-                </div>
-                <div style="text-align: center;">
-                    <div class="btn-group" role="group">
-                        <button type="button" id="rispondi" name="rispondi" class="btn btn-sm btn-outline-info" aria-label="Rispondi" data-toggle="modal" data-target="#modalrisposta"><i class="fas fa-reply"></i></button>
-
-                        <a href="archivio.php" class="btn btn-sm btn-outline-secondary" id="indietro"><i class="fas fa-undo"></i></a>
-
+        <div class="col-md-3 col-md-offset-3"></div>
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <form method="post" action="details.php">
+                    <input hidden id="xcheck" name="xcheck" value="<?=$id?>">
+                    <p>AUTO: <b><?=$modifica['id_mezzo']?></b></p>
+                    <p>DATA: <?$var=$modifica["uploaded_on"];$var1=date_create("$var");echo $datatesto=date_format($var1, "d/m/Y");?> ORE: <?$var=$modifica["uploaded_on"];$var1=date_create("$var");echo $oratesto=date_format($var1, "H:i");?> </p>
+                    <p>SEZIONE: <?=$dictionarySezione[$select['sezione']]?></p>
+                    <p>SQUADRA: <?=$dictionarySquadra[$select['squadra']]?></p>
+                    <p>COMPILATORE: <b><?=$select['cognome']?> <?=$select['nome']?></b></p>
+                    <p>MATRICOLA: <?=$modifica['id_operatore']?></p>
+                    <hr>
+                    <?php
+                    $idmezzo = $modifica['id_mezzo'];
+                    $query = $db->query("SELECT * FROM images WHERE id_mezzo='$idmezzo' ORDER BY id DESC");
+                    if($query->num_rows > 0){ ?>
+                        <?
+                        while($row = $query->fetch_assoc()){
+                            $imageURL = 'uploads/'.$row["file_name"];
+                            ?>
+                            <img src="<?php echo $imageURL; ?>" alt="" width="200" class="img-thumbnail"/><br>
+                        <?php }
+                    }?>
+                    <hr>
+                    <div class="form-group">
+                        <textarea class="form-control" id="xnote" name="xnote" readonly rows="5"><?=$modifica['note']?></textarea>
                     </div>
-                    <br>
-                   <span style="font-size: smaller; "><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></span>
-                </div>
-            </form>
+                    <hr>
+                    <div style="text-align: center;">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="rispondi" name="rispondi" class="btn btn-sm btn-outline-info" aria-label="Rispondi" data-toggle="modal" data-target="#modalrisposta"><i class="fas fa-reply"></i></button>
+
+                            <a href="archivio.php" class="btn btn-sm btn-outline-secondary" id="indietro"><i class="fas fa-undo"></i></a>
+
+                        </div>
+                        <br>
+                        <span style="font-size: smaller; "><em>Premi il pulsante <i class="fas fa-reply" style="color: steelblue"></i> per rispondere, oppure  <i class="fas fa-undo" style="color: grey"></i> per tornare alla pagina precedente</em></span>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
 </body>
 <!-- Modal -->
-<form action="details.php" method="post">
+<form action="foto.php" method="post">
     <div class="modal" id="modalrisposta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Rispondi a <?= $modifica['IDOPERATORE'] ?></h6>
-                    <input hidden id="idmezzo" name="idmezzo" value="<?=$modifica['IDMEZZO']?>">
+                    <h6 class="modal-title" id="exampleModalLabel">Rispondi a <?= $modifica['id_operatore'] ?></h6>
+                    <input hidden id="idmezzo" name="idmezzo" value="<?=$modifica['id_mezzo']?>">
                     <input hidden id="idcompilatore" name="idcompilatore" value="<?=$select['ID']?>">
                     <input hidden id="cognomecompilatore" name="cognomecompilatore" value="<?=$select['cognome']?>">
                     <input hidden id="nomecompilatore" name="nomecompilatore" value="<?=$select['nome']?>">
                     <input hidden id="sezionecompilatore" name="sezionecompilatore" value="<?=$select['sezione']?>">
                     <input hidden id="squadracompilatore" name="squadracompilatore" value="<?=$select['squadra']?>">
                     <input hidden id="emailcompilatore" name="emailcompilatore" value="<?=$select['email']?>">
-                    <input hidden id="note" name="note" value="<?=$modifica['NOTE']?>">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

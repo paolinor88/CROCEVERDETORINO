@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.1
+ * @version    3.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -264,7 +264,7 @@ include "../config/config.php";
                             <td class="align-middle"><?=$ciclo['categoria']?></td>
                         </tr>
                     <? endif; ?>
-                    <? if($rif>$scadenza): ?>
+                    <? if($rif>=$scadenza): ?>
                         <tr>
                             <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details'><i class="fas fa-search"></i></button></form></td>
                             <td class="align-middle"><?=$ciclo['nome']?></td>

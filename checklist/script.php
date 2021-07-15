@@ -11,3 +11,14 @@ if (isset($_POST["stato"])){
         )
     );
 }
+if (isset($_POST["status"])){
+    $update3 = "UPDATE images SET status=:status WHERE id=:id"; 
+
+    $statement3 = $connect->prepare($update3);
+    $statement3->execute(
+        array(
+            ':status' => $_POST['status'],
+            ':id' => $_POST['id'],
+        )
+    );
+}

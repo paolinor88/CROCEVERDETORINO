@@ -3,6 +3,12 @@
 
 mail@paolorandone.it
 ---
+Version 3.2 changelog:
+
+- foto manager
+- istruction update
+- minor changes
+---
 Version 3.1 changelog:
 
 - minor update and bug fixes

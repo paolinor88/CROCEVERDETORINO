@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.1
+ * @version    3.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -28,7 +28,6 @@ if (isset($_POST['IDMEZZO'])){
     $nome = $_SESSION['nome'];
     $select = $db->query("SELECT * FROM mezzi WHERE ID='$idmezzo' AND stato='1'")->fetch_array();
 }
-echo date_format()
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -36,7 +35,7 @@ echo date_format()
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Inserisci checklist</title>
+    <title>Inserisci segnalazione</title>
 
     <? require "../config/include/header.html";?>
 
