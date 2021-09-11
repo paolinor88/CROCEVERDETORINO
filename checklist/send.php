@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.2
+ * @version    3.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -333,17 +333,42 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = file_get_contents('../config/template/msa.html');
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
+        //invio telegram
+        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+        $data = [
+            'chat_id' => '@gestionaleCVTO',
+            //'text' => $_POST['message']
+            'text' => 'Auto '.$numeroauto.': eseguita checklist da ['.$compilatore.'] '.$nome.' '.$cognome.''
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
     }elseif ($tipo==1){ // MSB
         $corpo = file_get_contents('../config/template/msb.html');
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
+        //invio telegram
+        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+        $data = [
+            'chat_id' => '@gestionaleCVTO',
+            //'text' => $_POST['message']
+            'text' => 'Auto '.$numeroauto.': eseguita checklist da ['.$compilatore.'] '.$nome.' '.$cognome.''
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
     }elseif ($tipo==3){ // 118
         $corpo = file_get_contents('../config/template/118.html');
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
+        //invio telegram
+        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+        $data = [
+            'chat_id' => '@gestionaleCVTO',
+            //'text' => $_POST['message']
+            'text' => 'Auto '.$numeroauto.': eseguita checklist da ['.$compilatore.'] '.$nome.' '.$cognome.''
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
     }
     if (($_POST["rabbocco"])!=0){
         $olioq = $_POST["rabbocco"];
+        $oliok = $_POST["kilometriolio"];
         //TODO modificare destinatario
         $to= $comunicazioni;//.', '.$bechis;
         $nome_mittente="Gestionale CVTO";
@@ -358,11 +383,20 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = "
         <html lang='it'>
             <body>
-                <p>Si segnala che in data ".$datatesto." sono stati aggiunti ".$olioq." Kg di olio motore all'auto in oggetto</p>
+                <p>Si segnala che in data ".$datatesto." sono stati aggiunti ".$olioq." Kg di olio motore all'auto in oggetto (KM percorsi: ".$oliok.")</p>
                 <p>".$compilatore." ".$nome." ".$cognome." (".$dictionarySquadra[$squadra]." ".$dictionarySezione[$sezione].")</p>
             </body>
         </html>";
         mail($to, $oggetto, $corpo, $headers);
+
+        //invio telegram
+        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+        $data = [
+            'chat_id' => '@gestionaleCVTO',
+            //'text' => $_POST['message']
+            'text' => 'Il giorno '.$datatesto.', ['.$compilatore.'] '.$nome.' '.$cognome.' ha aggiunto '.$olioq.'Kg di olio motore sul mezzo '.$numeroauto.' (KM percorsi: '.$oliok.')'
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
     }
     if (($_POST["note"])!=""){
         $inoltronote = $_POST["note"];
@@ -387,6 +421,16 @@ if(isset($_POST["IDMEZZO"])){
             </body>
         </html>";
         mail($to, $oggetto, $corpo, $headers);
+
+        //invio telegram
+        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+        $data = [
+            'chat_id' => '@gestionaleCVTO',
+            //'text' => $_POST['message']
+            'title' => 'Comunicazione auto '.$numeroauto.'',
+            'text' => 'Il giorno '.$datatesto.', ['.$compilatore.'] '.$nome.' '.$cognome.' ha comunicato il seguente messaggio sul mezzo '.$numeroauto.': **'.$inoltronote.'**'
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
     }
 
     if ((($_POST["ESTERNO"])!=0) OR (($_POST["INTERNO"])!=0) OR (($_POST["SANIFICAZIONE"])!=0)){

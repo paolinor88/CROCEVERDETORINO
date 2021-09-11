@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.2
+ * @version    3.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -157,6 +157,7 @@ if (isset($_POST['IDMEZZO'])){
                 //CONTROLLI MEZZO
                 var oliocheck = $("#olio").prop("checked") ? 'EFFETTUATO' : 'NON EFFETTUATO';
                 var rabbocco = $("#rabbocco option:selected").val();
+                var kilometriolio = $("#kilometriolio").val();
 
                 var lavaggioesternotext = $("input[name='lavaggioesterno']:checked").next('label').text();
                 var lavaggiointernotext = $("input[name='lavaggiointerno']:checked").next('label').text();
@@ -248,7 +249,7 @@ if (isset($_POST['IDMEZZO'])){
                             $.ajax({
                                 url:"send.php",
                                 type:"POST",
-                                data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, ESTERNO:ESTERNO, INTERNO:INTERNO, SANIFICAZIONE:SANIFICAZIONE, SCADENZE:SCADENZE, OLIO:OLIO, note:note, file:file,
+                                data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, ESTERNO:ESTERNO, INTERNO:INTERNO, SANIFICAZIONE:SANIFICAZIONE, SCADENZE:SCADENZE, OLIO:OLIO, note:note, file:file, kilometriolio:kilometriolio,
                                     spinale:spinale, scoop:scoop, collari:collari, elettrodi:elettrodi, gel:gel, ecg:ecg, sixlead:sixlead,
                                     fourlead:fourlead, saturimetro:saturimetro, pacing:pacing, circuitoventilatore:circuitoventilatore,
                                     maschere:maschere, piastre:piastre, LP:LP, cavoLP:cavoLP, batterieLP:batterieLP, aspiratore:aspiratore,
@@ -474,6 +475,10 @@ if (isset($_POST['IDMEZZO'])){
                             <option value="1.5">1.5 Kg</option>
                             <option value="2.0">2 Kg</option>
                         </select>
+                    </div>
+                    <label class="col-sm-4 col-form-label" for="rabbocco"><b>Kilometri:</b></label>
+                    <div class="col col-sm-2">
+                        <input type="text" class="form-control form-control-sm" id="kilometriolio">
                     </div>
                 </div>
                 <hr>

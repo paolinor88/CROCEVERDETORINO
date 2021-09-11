@@ -245,3 +245,8 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportAUTO.php on line 97
+[07-Sep-2021 13:54:14 UTC] PHP Parse error:  syntax error, unexpected '(' in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportITEMS.php on line 7
+[07-Sep-2021 13:55:32 UTC] PHP Fatal error:  Uncaught Error: Object of class DateTime could not be converted to string in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportITEMS.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/magazzino/exportITEMS.php on line 9

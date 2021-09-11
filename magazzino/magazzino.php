@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.2
+ * @version    3.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -198,7 +198,8 @@ include "../config/config.php";
                 })
             });
             $('#export').on('click', function () {
-                alert("ESPORTAZIONE EXCEL NON ANCORA DISPONIBILE")
+                $('#modalexportITEMS').modal('show');
+
             })
         });
     </script>
@@ -381,6 +382,30 @@ include "../config/config.php";
         <div class="modal-content">
             <div class="modal-body" id="modaldetails">
             </div>
+        </div>
+    </div>
+</div>
+
+<!--esporta MAGAZZINO-->
+<div id="modalexportITEMS" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <form action="exportITEMS.php" method="post">
+                <div class="modal-body" align="center">
+                    <h6 class="modal-title">Esporta articoli</h6>
+                    <br>
+                    <input type="hidden" id="user_id" value="<?=$_SESSION['ID']?>">
+                    <select id="selectcategoria" name="selectcategoria" class="form-control form-control-sm" required>
+                        <option value="ALL">Tutti</option>
+                        <option value="1">Materiale di consumo</option>
+                        <option value="2">Ricambi</option>
+                        <option value="3">Altro</option>
+                        <option value="4">Vestiario</option>
+                    </select>
+                    <br>
+                    <button type="submit" class="btn btn-success btn-sm" id="exportBTN" name="exportBTN"><i class="far fa-file-excel"></i></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

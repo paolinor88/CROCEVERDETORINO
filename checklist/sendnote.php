@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.2
+ * @version    3.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -99,4 +99,13 @@ if(isset($_POST["solonote"])){
             </body>
         </html>";
     mail($to, $oggetto, $corpo, $headers);
+
+    //invio telegram
+    $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+    $data = [
+        'chat_id' => '@gestionaleCVTO',
+        //'text' => $_POST['message']
+        'text' => 'Il giorno '.$datatesto.', ['.$compilatore.'] '.$nome.' '.$cognome.' ha comunicato il seguente messaggio sul mezzo '.$numeroauto.': **'.$segnalazione.'**'
+    ];
+    $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 }

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.2
+ * @version    3.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -60,7 +60,7 @@ if( isset($_POST['form_item_id_list']) ) {
         if( isset($_POST['form_qt_' . $id_item]) and ($_POST['form_qt_' . $id_item] > 0) ) {
             $quantita = $_POST['form_qt_' . $id_item];
             $prova = $db->query("SELECT nome, tipo FROM giacenza WHERE id='$id_item'")->fetch_array();
-            $tabella .= $prova['nome'].' '.$prova['tipo'].': '.$quantita.'<br>';
+            $tabella .= $prova['nome']." ".$prova['tipo'].":  ".$quantita."<br>";
             $sessionID = $_SESSION['ID'];
             $oggi= date("Y-m-d");
             $note = $_POST['note'];
@@ -71,7 +71,7 @@ if( isset($_POST['form_item_id_list']) ) {
 
     //PARAMETRI MAIL ->
     //TODO modificare mail
-    $to=$bechis;
+    $to=$bechis.', '.$_SESSION['email'];
     $nome_mittente="Gestionale CVTO";
     $mail_mittente=$gestionale;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
@@ -108,6 +108,18 @@ if( isset($_POST['form_item_id_list']) ) {
 
     mail($to, $subject, $corpo, $headers);
 
+    //invio telegram
+    $compilatore= $_SESSION['ID'];
+    $nome= $_SESSION['nome'];
+    $cognome= $_SESSION['cognome'];
+
+    $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+    $data = [
+        'chat_id' => '@gestionaleCVTO',
+        //'text' => $_POST['message']
+        'text' => "Richiesta materiale effettuata da [$compilatore] $nome $cognome:\n**$note**\n$tabella"
+    ];
+    $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 
     // <- fine parametri mail
 

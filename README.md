@@ -3,6 +3,12 @@
 
 mail@paolorandone.it
 ---
+Version 3.3 changelog:
+
+- terms and condition subscription
+- new export items
+- minor changes
+---
 Version 3.2 changelog:
 
 - foto manager

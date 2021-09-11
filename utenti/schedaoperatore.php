@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.2
+ * @version    3.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -32,7 +32,7 @@ $dictionarySezione = array (
     4 => "Ciriè",
     5 => "San Mauro",
     6 => "Venaria",
-    7 => "",
+    7 => "TO",
 );
 //nicename squadre
 $dictionarySquadra = array (
@@ -57,7 +57,7 @@ $dictionarySquadra = array (
     19 => "Giovani",
     20 => "Servizi Generali",
     21 => "Altro",
-    22 => "",
+    22 => "DIP",
 );
 //recupera variabili
 if (isset($_GET["ID"])){
@@ -128,6 +128,15 @@ if(isset($_POST["update"])){
         $corpo = str_replace ($replace, $with, $corpo);
 
         mail($to, $subject, $corpo, $headers);
+
+        //prova telegram
+        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
+        $data = [
+            'chat_id' => '@gestionaleCVTO',
+            //'text' => $_POST['message']
+            'text' => 'Recupero credenziali richiesto da ['.$id.'] '.$cognome.' '.$nome.''
+        ];
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 
     }
 }
@@ -292,17 +301,11 @@ if(isset($_POST["resetpwd"])){
                         <label for="xsezione">Sezione</label>
                         <select class="form-control form-control-sm" id="xsezione" name="xsezione">
                             <?
-                            if (($_SESSION["livello"])!=6){
-                                for($a=1;$a<8;$a++){
-                                    ($a==$modifica['sezione'])? $sel="selected" : $sel="";
-                                    echo "<option disabled $sel value='$a'>".$dictionarySezione[$a]."</option>";
-                                }
-                            }else{
+
                                 for($a=1;$a<8;$a++){
                                     ($a==$modifica['sezione'])? $sel="selected" : $sel="";
                                     echo "<option $sel value='$a'>".$dictionarySezione[$a]."</option>";
                                 }
-                            }
 
                             ?>
                         </select>
@@ -311,17 +314,11 @@ if(isset($_POST["resetpwd"])){
                         <label for="xsquadra">Squadra</label>
                         <select class="form-control form-control-sm" id="xsquadra" name="xsquadra">
                             <?
-                            if (($_SESSION["livello"])!=6){
+
                                 for($a=1;$a<23;$a++){
                                     ($a==$modifica['squadra'])? $sel="selected" : $sel="";
-                                    echo "<option disabled $sel value='$a'>".$dictionarySquadra[$a]."</option>";
+                                    echo "<option  $sel value='$a'>".$dictionarySquadra[$a]."</option>";
                                 }
-                            }else{
-                                for($a=1;$a<23;$a++){
-                                    ($a==$modifica['squadra'])? $sel="selected" : $sel="";
-                                    echo "<option $sel value='$a'>".$dictionarySquadra[$a]."</option>";
-                                }
-                            }
 
                             ?>
                         </select>
@@ -330,10 +327,10 @@ if(isset($_POST["resetpwd"])){
                         <label for="xlivello">Livello</label>
                         <select class="form-control form-control-sm" id="xlivello" name="xlivello">
                             <?
-                            if (($_SESSION["livello"])!=6){
+                            if (($_SESSION["livello"])<6){
                                 for($a=1;$a<6;$a++){
                                     ($a==$modifica['livello'])? $sel="selected" : $sel="";
-                                    echo "<option disabled $sel value='$a'>".$dictionaryLivello[$a]."</option>";
+                                    echo "<option  $sel value='$a'>".$dictionaryLivello[$a]."</option>";
                                 }
                             }else{
                                 for($a=1;$a<7;$a++){
