@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.3
+ * @version    3.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -20,6 +20,7 @@ $dictionary = array (
     1 => "MSB",
     2 => "MSA",
     3 => "118",
+    4 => "Altro",
 );
 ?>
 <!DOCTYPE html>
@@ -62,13 +63,13 @@ $dictionary = array (
                     .then((confirm) => {
                         if(confirm){
                             $.ajax({
-                                url:"/checklist/script.php",
+                                url:"../checklist/script.php",
                                 type:"POST",
                                 data:{ID:ID, targa:targa, tipo:tipo, note:note},
                                 success:function(){
                                     swal({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
-                                        location.href='listamezzi.php';
+                                        location.href='/gestionale/checklist/mezzi.php';
                                     },1001
                                     )
                                 }
@@ -109,6 +110,7 @@ $dictionary = array (
                 dataTables.columns(3).search("").draw();
                 dataTables.columns(3).search("MSB").draw();
                 $( "#msb" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
+                $( "#altro" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
@@ -117,6 +119,7 @@ $dictionary = array (
                 dataTables.columns(3).search("").draw();
                 dataTables.columns(3).search("MSA").draw();
                 $( "#msa" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
+                $( "#altro" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
@@ -125,6 +128,16 @@ $dictionary = array (
                 dataTables.columns(3).search("").draw();
                 dataTables.columns(3).search("118").draw();
                 $( "#emergenza" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
+                $( "#altro" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
+                $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
+                $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
+                $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
+            });
+            $('#altro').on('click', function () {
+                dataTables.columns(3).search("").draw();
+                dataTables.columns(3).search("Altro").draw();
+                $( "#altro" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
+                $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
@@ -134,6 +147,7 @@ $dictionary = array (
                 $( "#msb" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#msa" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#emergenza" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
+                $( "#altro" ).removeClass( "btn-secondary" ).addClass( "btn-outline-secondary" );
                 $( "#all" ).removeClass( "btn-outline-secondary" ).addClass( "btn-secondary" );
             });
         } );
@@ -158,6 +172,7 @@ $dictionary = array (
                 <button id="msb" type="button" class="btn btn-outline-secondary btn-sm">MSB</button>
                 <button id="msa" type="button" class="btn btn-outline-secondary btn-sm">MSA</button>
                 <button id="emergenza" type="button" class="btn btn-outline-secondary btn-sm">Flotta 118</button>
+                <button id="altro" type="button" class="btn btn-outline-secondary btn-sm">Altro</button>
                 <button id="all" type="button" class="btn btn-secondary btn-sm">ALL</button>
             </div>
         </div>
@@ -219,6 +234,7 @@ $dictionary = array (
                             <option value="1">MSB</option>
                             <option value="2">MSA</option>
                             <option value="3">118</option>
+                            <option value="4">Altro</option>
                         </select>
                     </div> <!-- tipo -->
                     <div class="form-group">

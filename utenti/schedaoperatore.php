@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.3
+ * @version    3.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -129,14 +129,6 @@ if(isset($_POST["update"])){
 
         mail($to, $subject, $corpo, $headers);
 
-        //prova telegram
-        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
-        $data = [
-            'chat_id' => '@gestionaleCVTO',
-            //'text' => $_POST['message']
-            'text' => 'Recupero credenziali richiesto da ['.$id.'] '.$cognome.' '.$nome.''
-        ];
-        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 
     }
 }

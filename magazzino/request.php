@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.3
+ * @version    3.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -113,7 +113,6 @@ if( isset($_POST['form_item_id_list']) ) {
     $nome= $_SESSION['nome'];
     $cognome= $_SESSION['cognome'];
 
-    $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
     $data = [
         'chat_id' => '@gestionaleCVTO',
         //'text' => $_POST['message']

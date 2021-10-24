@@ -1,5 +1,19 @@
 <?php
 include "../config/pdo.php";
+if (isset($_POST["targa"])){
+    $insert = "INSERT INTO mezzi  (ID, targa, tipo, stato, note) VALUES  (:ID, :targa, :tipo, :stato, :note)";
+
+    $statement = $connect->prepare($insert);
+    $statement->execute(
+        array(
+            ':ID' => $_POST['ID'],
+            ':targa' => $_POST['targa'],
+            ':tipo' => $_POST['tipo'],
+            ':stato' => 1,
+            ':note' => $_POST['note'],
+        )
+    );
+}
 if (isset($_POST["stato"])){
     $update = "UPDATE checklist SET STATO=:STATO WHERE IDCHECK=:id";
 

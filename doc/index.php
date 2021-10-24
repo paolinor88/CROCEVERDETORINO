@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.3
+ * @version    3.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -48,7 +48,7 @@ include "../config/config.php";
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:info@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 3.3</p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:info@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 3.4</p></em></font>
     </div>
 </footer>
 </html>

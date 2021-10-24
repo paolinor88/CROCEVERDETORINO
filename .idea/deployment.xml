@@ -9,6 +9,7 @@
           </mappings>
           <excludedPaths>
             <excludedPath path="/doc/source" />
+            <excludedPath path="/checklist/uploads" />
           </excludedPaths>
         </serverdata>
       </paths>

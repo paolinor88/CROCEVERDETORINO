@@ -30,15 +30,17 @@ include "../config/config.php";
 <table>
     <thead>
     <tr>
-        <th scope="col" style="color: white; background: lightblue;">NOME</th>
-        <th scope="col" style="color: white; background: lightblue;">TIPO</th>
-        <th scope="col" style="color: white; background: lightblue;">DETTAGLI</th>
-        <th scope="col" style="color: white; background: lightblue;">QUANTITA'</th>
-        <th scope="col" style="color: white; background: lightblue;">SCADENZA</th>
-        <th scope="col" style="color: white; background: lightblue;">POSIZIONE</th>
         <th scope="col" style="color: white; background: lightblue;">CATEGORIA</th>
-        <th scope="col" style="color: white; background: lightblue;">FORNITORE</th>
-        <th scope="col" style="color: white; background: lightblue;">PREZZO</th>
+        <th scope="col" style="color: white; background: lightblue;">PRODOTTO</th>
+        <th scope="col" style="color: white; background: lightblue;">TIPO</th>
+        <th scope="col" style="color: white; background: lightblue;">QUANTITA'</th>
+        <th scope="col" style="color: white; background: lightblue;">PREZZO UNITARIO</th>
+        <th scope="col" style="color: white; background: lightblue;">VALORE</th>
+        <th scope="col" style="color: white; background: lightblue;">IVA</th>
+        <th scope="col" style="color: white; background: lightblue;">TOTALE</th>
+        <th scope="col" style="color: white; background: lightblue;">POSIZIONE</th>
+        <th scope="col" style="color: white; background: lightblue;">SCADENZA</th>
+        <th scope="col" style="color: white; background: lightblue;">DETTAGLI</th>
     </tr>
     </thead>
     <tbody>
@@ -56,15 +58,18 @@ include "../config/config.php";
 
         echo "
                 <tr>
+                    <td>".$dictionaryCategoria[$ciclo['categoria']]."</td>
                     <td>".$ciclo['nome']."</td>
                     <td>".$ciclo['tipo']."</td>
-                    <td>".$ciclo['dettagli']."</td>
                     <td>".$ciclo['quantita']."</td>
-                    <td>".$ciclo['scadenza']."</td>
-                    <td>".$ciclo['posizione']."</td>
-                    <td>".$dictionaryCategoria[$ciclo['categoria']]."</td>
-                    <td>".$ciclo['fornitore']."</td>
                     <td>".$ciclo['prezzo']."</td>
+                    <td>=(".($ciclo['quantita'])."*".($ciclo['prezzo']).")</td>
+                    <td>=(".($ciclo['prezzo'])."*".($ciclo['quantita'])."*22%)</td>
+                    <td>=((".($ciclo['quantita'])."*".($ciclo['prezzo']).")+(".($ciclo['prezzo'])."*".($ciclo['quantita'])."*22%))</td>
+                    <td>".$ciclo['posizione']."</td>
+                    <td>".$ciclo['scadenza']."</td>
+                    <td>".$ciclo['dettagli']."</td>
+
                 </tr>";
     }
     ?>

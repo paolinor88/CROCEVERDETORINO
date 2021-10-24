@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.3
+ * @version    3.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -334,7 +334,6 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
         //invio telegram
-        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
         $data = [
             'chat_id' => '@gestionaleCVTO',
             //'text' => $_POST['message']
@@ -346,7 +345,6 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
         //invio telegram
-        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
         $data = [
             'chat_id' => '@gestionaleCVTO',
             //'text' => $_POST['message']
@@ -358,7 +356,6 @@ if(isset($_POST["IDMEZZO"])){
         $corpo = str_replace ($replace, $with, $corpo);
         mail($to, $subject, $corpo, $headers);
         //invio telegram
-        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
         $data = [
             'chat_id' => '@gestionaleCVTO',
             //'text' => $_POST['message']
@@ -390,7 +387,6 @@ if(isset($_POST["IDMEZZO"])){
         mail($to, $oggetto, $corpo, $headers);
 
         //invio telegram
-        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
         $data = [
             'chat_id' => '@gestionaleCVTO',
             //'text' => $_POST['message']
@@ -423,7 +419,6 @@ if(isset($_POST["IDMEZZO"])){
         mail($to, $oggetto, $corpo, $headers);
 
         //invio telegram
-        $apiToken = "1910080280:AAG9Qpubn6Cy9ZCySCJi8pShEbjqq04_9d0";
         $data = [
             'chat_id' => '@gestionaleCVTO',
             //'text' => $_POST['message']

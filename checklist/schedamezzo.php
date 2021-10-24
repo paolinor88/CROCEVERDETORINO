@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.3
+ * @version    3.4
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -25,6 +25,7 @@ $dictionary = array (
     1 => "MSB",
     2 => "MSA",
     3 => "118",
+    4 => "Altro",
 );
 //nicename stato
 $dictionary1 = array (
@@ -100,7 +101,7 @@ if(isset($_POST["aggiornamezzo"])){
                         <label for="xtipo">Tipo</label>
                         <select class="form-control form-control-sm" id="xtipo" name="xtipo">
                             <?
-                            for($a=1;$a<4;$a++){
+                            for($a=1;$a<5;$a++){
                                 ($a==$modifica['tipo'])? $sel="selected" : $sel="";
                                 echo "<option $sel value='$a'>".$dictionary[$a]."</option>";
                             }

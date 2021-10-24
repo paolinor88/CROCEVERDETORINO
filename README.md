@@ -3,6 +3,11 @@
 
 mail@paolorandone.it
 ---
+Version 3.4 changelog:
+
+- risolto bug inserimento mezzi
+- migliorata esportazione magazzino
+---
 Version 3.3 changelog:
 
 - terms and condition subscription
