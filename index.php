@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.4
+ * @version    4.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -90,7 +90,7 @@ $dictionaryLivello = array (
                 <h4 class="text-center" style="color: #078f40">Gestionale</h4>
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Utenze</a>
-                <a role="button" class="btn btn-outline-cv btn-block " href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
+                <a role="button" class="btn btn-outline-cv btn-block disabled" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello==3){echo "disabled";}?>" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Calendario</a>
                 <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-cart-plus"></i> Autoparco</a>

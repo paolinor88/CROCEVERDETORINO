@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.4
+ * @version    4.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -428,6 +428,7 @@ if (!isset($_SESSION["ID"])){
                     </select>
                     <br>
                     <select id="selectanno" name="selectanno" class="form-control form-control-sm" required>
+                        <option value="2022">2022</option>
                         <option value="2021">2021</option>
                     </select>
                     <br>

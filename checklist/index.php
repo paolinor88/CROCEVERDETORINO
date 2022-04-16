@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.4
+ * @version    4.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -45,11 +45,14 @@ if (!isset($_SESSION["ID"])){
     <div class="row text-center">
         <div class="col-md-3 col-md-offset-3"></div>
         <div class="text-center col-md-6">
+            <div class="alert alert-danger" style="text-align: center" role="alert">
+                <b>ATTENZIONE!! I MODULI "CHECKLIST" E "SANIFICAZIONI" SONO STATI DISATTIVATI; UTILIZZARE LE FUNZIONI DEL NUOVO PORTALE GALILEO!!!</b>
+            </div>
             <div class="jumbotron">
-                <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal1"><i class="fas fa-plus"></i> Nuova checklist</button>
+                <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal1" disabled><i class="fas fa-plus"></i> Nuova checklist</button>
                 <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal2"><i class="fas fa-exclamation-triangle"></i>  Inserisci segnalazione</button>
-                <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal3"><i class="fas fa-shower"></i> Lavaggio / sanificazione</button>
-                <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal4"><i class="fas fa-camera"></i> Segnala danno</button>
+                <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal3" disabled><i class="fas fa-shower"></i> Lavaggio / sanificazione</button>
+                <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal4" disabled><i class="fas fa-camera"></i> Segnala danno</button>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="archivio.php"><i class="fas fa-search"></i> Archivio</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="mezzi.php"><i class="fas fa-ambulance"></i> Gestione mezzi</a>
             </div>

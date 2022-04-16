@@ -33,7 +33,7 @@ include "../config/config.php";
     <?php
     if (isset($_POST["exportSAMSIC"])){
 
-        $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE MONTH(lavaggio_mezzi.start_event)='$numeromese' AND YEAR(lavaggio_mezzi.start_event)='$numeroanno' AND lavaggio_mezzi.stato='2' AND mezzi.stato='1' order by lavaggio_mezzi.start_event, lavaggio_mezzi.title");
+        $select = $db->query("SELECT * FROM mezzi LEFT OUTER JOIN lavaggio_mezzi ON mezzi.ID = lavaggio_mezzi.title WHERE MONTH(lavaggio_mezzi.start_event)='$numeromese' AND YEAR(lavaggio_mezzi.start_event)='$numeroanno' AND lavaggio_mezzi.stato='2' AND mezzi.stato='1' order by  lavaggio_mezzi.title, lavaggio_mezzi.start_event");
 
         while($ciclo = $select->fetch_array()){
 

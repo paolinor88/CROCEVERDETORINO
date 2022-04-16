@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    3.4
+ * @version    4.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -66,7 +66,7 @@ if (!isset($_SESSION["ID"])){
                     <select id="numerosettimana" name="numerosettimana" class="form-control form-control-sm" required>
                         <option value="">...</option>
                         <?
-                        for($a=1;$a<38;$a++){
+                        for($a=1;$a<40;$a++){
                             ($a==['settimana'])? $sel="selected" : $sel="";
                             echo "<option $sel value='$a'>".$a."</option>";
                         }

@@ -3,6 +3,11 @@
 
 mail@paolorandone.it
 ---
+Version 4.0 changelog:
+
+- MAJOR RELEASE
+- deprecated function according to new galileo sw
+---
 Version 3.4 changelog:
 
 - risolto bug inserimento mezzi

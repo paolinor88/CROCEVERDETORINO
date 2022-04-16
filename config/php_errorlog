@@ -1,0 +1,4 @@
+[30-Oct-2021 17:08:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sqlsrv_connect() in /home/customer/www/croceverde.org/public_html/gestionale/config/sqltest.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/config/sqltest.php on line 9
