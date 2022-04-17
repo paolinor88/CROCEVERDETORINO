@@ -8,7 +8,6 @@
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
-            <excludedPath path="/doc" />
             <excludedPath path="/checklist/uploads" />
           </excludedPaths>
         </serverdata>
