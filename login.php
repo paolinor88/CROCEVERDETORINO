@@ -254,7 +254,7 @@ if(isset($_POST["activateBTN"])){
                     </div>
                     <br>
                     <div class="text-center">
-                        <span style="font-size: 70%; "><a href="mailto: mail@paolorandone.it">Problemi di accesso?</a></span>
+                        <span style="font-size: 70%; "><a href="mailto: paolo.randone@croceverde.org">Problemi di accesso?</a></span>
                     </div>
                     <hr>
                     <div class="text-center">

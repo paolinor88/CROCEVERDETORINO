@@ -19,6 +19,7 @@ if (isset($_GET["ID"])){
     $id = $_GET["ID"];
     $readonly = "readonly";
     $modifica = $db->query("SELECT * FROM mezzi WHERE ID='$id'")->fetch_array();
+    $tagliando = $db->query("SELECT * FROM mezzi_tagliandi WHERE ID_MEZZO='$id'")->fetch_array();
 }
 //nicename tipo
 $dictionary = array (
@@ -71,7 +72,7 @@ if(isset($_POST["aggiornamezzo"])){
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
             <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
-            <li class="breadcrumb-item"><a href="mezzi.php" style="color: #078f40">Lista mezzi</a></li>
+            <li class="breadcrumb-item"><a href="../magazzino/mezzi.php" style="color: #078f40">Lista mezzi</a></li>
             <li class="breadcrumb-item active" aria-current="page"><?=$id?></li>
         </ol>
     </nav>

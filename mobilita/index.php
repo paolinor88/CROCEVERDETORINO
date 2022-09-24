@@ -21,7 +21,7 @@ if (!isset($_SESSION["ID"])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Gestione autoparco</title>
+    <title>Gruppo mobilità</title>
 
     <? require "../config/include/header.html";?>
 
@@ -31,7 +31,7 @@ if (!isset($_SESSION["ID"])){
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Autoparco</li>
+            <li class="breadcrumb-item active" aria-current="page">Mobilità</li>
         </ol>
     </nav>
 </div>
@@ -41,10 +41,8 @@ if (!isset($_SESSION["ID"])){
         <div class="col-md-3 col-md-offset-3"></div>
         <div class="text-center col-md-6">
             <div class="jumbotron">
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="mezzi.php"><i class="fas fa-ambulance"></i> Gestione mezzi</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="lavaggi.php"><i class="fas fa-shower"></i> Lavaggio mezzi</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="manutenzionimezzi.php"><i class="fas fa-cogs"></i> Manutenzioni mezzi</a>
+                <a role="button" class="btn btn-outline-cv btn-block" href="vistatrasporti.php"><i class="far fa-calendar-alt"></i> Calendario</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION["livello"]<4){echo "disabled";}?>" href=""><i class="fas fa-plus"></i> Inserisci</a>
             </div>
         </div>
     </div>

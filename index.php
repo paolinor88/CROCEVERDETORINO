@@ -90,10 +90,9 @@ $dictionaryLivello = array (
                 <h4 class="text-center" style="color: #078f40">Gestionale</h4>
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Utenze</a>
-                <a role="button" class="btn btn-outline-cv btn-block disabled" href="doc/index.php"><i class="fas fa-file"></i> Documentazione</a>
-                <a role="button" class="btn btn-outline-cv btn-block" href="checklist/index.php"><i class="fas fa-tasks"></i> Checklist</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello==3){echo "disabled";}?>" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Calendario</a>
-                <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-cart-plus"></i> Autoparco</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="mobilita/index.php"><i class="fas fa-wheelchair"></i> Mobilità</a>
+                <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-globe"></i> Autoparco</a>
                 <? if ($livello==1): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>

@@ -69,7 +69,7 @@ $dictionary = array (
                                 success:function(){
                                     swal({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
-                                        location.href='/gestionale/checklist/mezzi.php';
+                                        location.href='mezzi.php';
                                     },1001
                                     )
                                 }
@@ -158,7 +158,7 @@ $dictionary = array (
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Autoparco</a></li>
             <li class="breadcrumb-item active" aria-current="page">Lista mezzi</li>
         </ol>
     </nav>

@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="croceverde.org">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="croceverde.org" confirmBeforeUploading="false">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
       <paths name="croceverde.org">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/gestionale" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/tools" local="$PROJECT_DIR$/../toolscvto" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/../eventi" web="/" />
           </mappings>
           <excludedPaths>
             <excludedPath path="/checklist/uploads" />
+            <excludedPath path="/gestionale/doc/source" />
           </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="guestcvto">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="pssa">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
         </serverdata>
       </paths>
     </serverData>

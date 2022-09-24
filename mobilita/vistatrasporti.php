@@ -16,12 +16,11 @@ if (!isset($_SESSION["ID"])){
 }
 ?>
 <!DOCTYPE html>
-<html lang="it">
-<head>
+<div lang="it">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Agenda straordinario</title>
+    <title>Calendario trasporti</title>
 
     <? require "../config/include/header.html";?>
 
@@ -93,7 +92,7 @@ if (!isset($_SESSION["ID"])){
                 eventSources: [
                     {
                         // AGENDA STRAORDINARIO
-                        url: 'loadagenda.php',
+                        url: 'loadmobilita.php',
                         type: 'POST',
                         data: {
                             stato: 'stato',
@@ -132,16 +131,30 @@ if (!isset($_SESSION["ID"])){
                     }
                     return(['all', event.id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
                 },
-                header: {
-                    left: 'prev ,today',
-                    center: 'title',
-                    right: 'basicWeek,month, next',
+                customButtons: {
+                    refreshBTN: {
+                        text: 'Aggiorna',
+                        click: function(){location.reload();}
+                    },
+                    filterBTN: {
+                        text: 'Filter',
+                        click: function () {
+                            $('#modal3').modal('show');
+                            $("#filterButton").click(function () {
+                                $('#modal3').modal('hide');
+                                agendacal.fullCalendar('refetchEvents')
+                            });
+                            $("#resetButton").click(function () {
+                                $('#modal3').modal('hide');
+                                location.reload();
+                            });
+                        }
+                    },
                 },
-                validRange: function(nowDate) {
-                    return {
-                        start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(8, 'days')
-                    };
+                header: {
+                    left: 'prev filterBTN,refreshBTN,today',
+                    center: 'title',
+                    right: 'basicWeek,month next',
                 },
                 eventOrder: "event.id",
                 //aspectRatio: 3,
@@ -150,18 +163,24 @@ if (!isset($_SESSION["ID"])){
                 displayEventEnd: false,
                 eventDurationEditable: false,
                 //eventOverlap: false,
-                defaultView: 'basicWeek',
+                defaultView: 'month',
                 themeSystem: 'bootstrap4',
                 displayEventTime: false,
                 googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
                 eventSources: [
                     {
-                        // AGENDA STRAORDINARIO
-                        url: 'loadagenda.php',
+                        // CALENDARIO TRASPORTI
+                        url: 'loadmobilita.php',
                         type: 'POST',
                         data: {
                             stato: 'stato',
-                            id: 'id'
+                            id: 'id',
+                            equipaggio: 'equipaggio',
+                            partenza: 'partenza',
+                            destinazione: 'destinazione',
+                            AR: 'AR',
+                            note: 'note',
+                            id_mezzo: 'id_mezzo'
                         },
                     },
                     {
@@ -173,7 +192,7 @@ if (!isset($_SESSION["ID"])){
 
                     }
                 ],
-                dayClick: function(date) { //INSERISCI DISPONIBILITA
+                dayClick: function(date) { //INSERISCI TRASPORTO
                     if(moment() <= date){
                         var day = date.format("YYYY-MM-DD");
                         $('#modal4').modal('show');
@@ -192,7 +211,7 @@ if (!isset($_SESSION["ID"])){
                                     data: {title:title, start:start, end:end, user_id:user_id},
                                     success: function () {
                                         calendaruser.fullCalendar('refetchEvents');
-                                        swal({text: "Disponibilità inserita con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
+                                        swal({text: "Trasporto inserito con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
                                         setTimeout(function () {
                                                 location.reload();
                                             }, 1001
@@ -209,9 +228,10 @@ if (!isset($_SESSION["ID"])){
                 },
                 eventClick:function(event, jsEvent){ //elimina disponibilità
                     jsEvent.preventDefault();
+                    alert (event.equipaggio);
                     var title = $("#cognomenome").val();
                     //alert(event.start.format("YYYY-MM-DD"));
-                    if(((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD")))&&(title===event.title)){
+                    if((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD"))){
                         swal({
                             text: "Sei sicuro di voler cancellare questa disponibilità?",
                             icon: "warning",
@@ -259,25 +279,23 @@ if (!isset($_SESSION["ID"])){
         });
     </script>
 
-</head>
-<!-- NAVBAR -->
+    <!-- NAVBAR -->
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Calendario</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Agenda straordinario</li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Mobilità</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Calendario trasporti</li>
         </ol>
     </nav>
 </div>
 <br>
 
 <div class="container-fluid">
-    <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'</div>
-    <div id='<?if (($_SESSION['livello']==1) OR ($_SESSION['livello']==4)) echo "calendaruser"?>'</div>
+    <div id='calendaruser'</div>
 
 
-<div align="center">Legenda: <span style="color: darkorange" >Mattino</span>, <span style="color: forestgreen" >Centrale</span>, <span style="color: royalblue" >Pomeriggio</span>, <span style="color: slategray" >Weekend e festività</span><br> <span style="color: darkred" >RICORDA DI CANCELLARTI IN CASO DI CAMBIO TURNO</span></div>
+<div align="center">Legenda: <span style="color: darkorange" >PROGRAMMATO</span>, <span style="color: royalblue" >CONFERMATO</span></div>
 
 <!-- MODAL INSERIMENTO -->
 <div id="modal4" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -285,18 +303,13 @@ if (!isset($_SESSION["ID"])){
         <div class="modal-content">
             <form>
                 <div class="modal-header">
-                    <h6 class="modal-title" id="modal4Title">Il mio turno è:</h6>
+                    <h6 class="modal-title" id="modal4Title">Inserisci trasporto</h6>
                 </div>
-                <div class="modal-body" align="center">
-                    <input type="hidden" id="user_id" value="<?=$_SESSION['ID']?>">
-                    <input type="hidden" id="cognomenome" value="<?=$_SESSION['cognome'].' '.$_SESSION['nome']?>">
-                    <select class="form-control form-control-sm" id="modalAddStart">
-                        <option value="">Seleziona...</option>
-                        <option value="06:00:00">Mattino</option>
-                        <option value="08:00:00">Centrale</option>
-                        <option value="13:00:00">Pomeriggio</option>
-                        <option value="01:00:00">Weekend e festività</option>
-                    </select>
+                <div class="modal-body">
+                    <label for="start_event">
+                        Orario sul posto
+                    </label>
+                    <input type="time" class="form-control form-control-sm" id="start_event" name="start_event" value="<?=$modifica['start_event']?>">
                 </div>
                 <div class="modal-footer justify-content-center">
                     <div class="btn-group btn-group" role="group">
@@ -374,6 +387,5 @@ if (!isset($_SESSION["ID"])){
         </div>
     </div>
 </div>
-
+</div>
 <?php include('../config/include/footer.php'); ?>
-</html>

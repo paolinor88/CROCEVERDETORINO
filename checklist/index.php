@@ -54,7 +54,7 @@ if (!isset($_SESSION["ID"])){
                 <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal3" disabled><i class="fas fa-shower"></i> Lavaggio / sanificazione</button>
                 <button class="btn btn-outline-cv btn-block" data-toggle="modal" data-target="#modal4" disabled><i class="fas fa-camera"></i> Segnala danno</button>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="archivio.php"><i class="fas fa-search"></i> Archivio</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="mezzi.php"><i class="fas fa-ambulance"></i> Gestione mezzi</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="../magazzino/mezzi.php"><i class="fas fa-ambulance"></i> Gestione mezzi</a>
             </div>
         </div>
     </div>
