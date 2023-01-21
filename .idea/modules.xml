@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../eventi/.idea/eventi.iml" filepath="$PROJECT_DIR$/../eventi/.idea/eventi.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gestionale.iml" filepath="$PROJECT_DIR$/.idea/gestionale.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../toolscvto/.idea/toolscvto.iml" filepath="$PROJECT_DIR$/../toolscvto/.idea/toolscvto.iml" />
     </modules>
   </component>
 </project>

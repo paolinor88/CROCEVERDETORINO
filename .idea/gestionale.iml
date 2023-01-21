@@ -6,14 +6,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="all" level="application" />
     <orderEntry type="library" name="jquery-ui" level="application" />
     <orderEntry type="library" name="mdb" level="application" />
     <orderEntry type="library" name="moment" level="application" />
-    <orderEntry type="library" name="bootstrap-toggle" level="application" />
-    <orderEntry type="library" name="bootstrap4-toggle" level="application" />
     <orderEntry type="library" name="javascript.util" level="application" />
     <orderEntry type="library" name="gijgo" level="application" />
     <orderEntry type="library" name="bs-custom-file-input" level="application" />
+    <orderEntry type="module" module-name="toolscvto" />
+    <orderEntry type="module" module-name="eventi" />
   </component>
 </module>
