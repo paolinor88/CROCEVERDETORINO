@@ -1,7 +1,12 @@
 # gestionaleCVTO
 *Powered for Croce Verde Torino. All rights reserved*
 
-mail@paolorandone.it
+paolo.randone@croceverde.org
+---
+Version 5.0 changelog:
+
+- MAJOR RELEASE
+- Nuove funzioni: gestione automezzi, gestione manutenzioni
 ---
 Version 4.0 changelog:
 

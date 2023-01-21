@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    4.0
+ * @version    5.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -41,9 +41,10 @@ if (!isset($_SESSION["ID"])){
         <div class="col-md-3 col-md-offset-3"></div>
         <div class="text-center col-md-6">
             <div class="jumbotron">
-                <a role="button" class="btn btn-outline-cv btn-block" href="request.php"><i class="fas fa-question"></i> Richiesta</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="mezzi.php"><i class="fas fa-ambulance"></i> Gestione mezzi</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="lavaggi.php"><i class="fas fa-shower"></i> Lavaggio mezzi</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="manutenzionimezzi.php"><i class="fas fa-cogs"></i> Manutenzioni mezzi</a>
             </div>
         </div>
     </div>

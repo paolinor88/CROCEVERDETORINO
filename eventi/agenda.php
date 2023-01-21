@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <mail@paolorandone.it>
- * @version    4.0
+ * @version    5.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -140,7 +140,7 @@ if (!isset($_SESSION["ID"])){
                 validRange: function(nowDate) {
                     return {
                         start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(1, 'months')
+                        end: nowDate.clone().add(8, 'days')
                     };
                 },
                 eventOrder: "event.id",
