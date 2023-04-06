@@ -29,7 +29,7 @@ $dictionary = array (
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Gestione manutenzioni</title>
+    <title>Gestione mezzi</title>
 
     <? require "../config/include/header.html";?>
 
@@ -69,8 +69,8 @@ $dictionary = array (
                                 success:function(){
                                     swal({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
-                                            location.href='/gestionale/checklist/mezzi.php';
-                                        },1001
+                                        location.href='/gestionale/checklist/mezzi.php';
+                                    },1001
                                     )
                                 }
                             });
@@ -158,7 +158,7 @@ $dictionary = array (
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Checklist</a></li>
+            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Autoparco</a></li>
             <li class="breadcrumb-item active" aria-current="page">Lista mezzi</li>
         </ol>
     </nav>
@@ -180,24 +180,26 @@ $dictionary = array (
             <table class="table table-hover table-sm" id="myTable">
                 <thead>
                 <tr>
-                    <th scope="col">Sigla</th> 
-                    <th scope="col">KM attuali</th>
-                    <th scope="col">Ultimo tagliando</th>
-                    <th scope="col">KM mancanti</th>
+                    <th scope="col"><button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modal1"><i class="fas fa-plus"></i></button></th>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Targa</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Note</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
 
-                $select = $db->query("SELECT * FROM mezzi_tagliandi group by ID_MEZZO, DATATAGLIANDO order by ID_MEZZO, DATATAGLIANDO");
+                $select = $db->query("SELECT ID, tipo, targa, note FROM mezzi WHERE stato='1' order by ID");
                 while($ciclo = $select->fetch_array()){
-                            $diffKM= ($ciclo['KMMEZZO']-$ciclo['KMTAGLIANDO']);
+
                     echo "
 					<tr>
-						<td>".$ciclo['ID_MEZZO']."</td>
-						<td>".$ciclo['KMMEZZO']."</td>
-						<td>".$ciclo['DATATAGLIANDO']."</td>
-						<td>".(23000-$diffKM)."</td>
+						<td>"."<a href=\"https://".$_SERVER['HTTP_HOST']."/gestionale/checklist/schedamezzo.php?ID=".$ciclo['ID']."\" class=\"btn btn-sm btn-outline-dark\" \"><i class=\"fas fa-cogs\"></i></a>"."</td>
+						<td>".$ciclo['ID']."</td>
+						<td>".$ciclo['targa']."</td>
+						<td>".$ciclo=$dictionary[$ciclo['tipo']]."</td>
+						<td>".$ciclo['note']."</td>
 					</tr>";
 
                 }

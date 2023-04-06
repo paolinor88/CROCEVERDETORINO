@@ -11,6 +11,7 @@ session_start();
 //parametri DB
 include "../config/config.php";
 //controllo LOGIN
+
 if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
 }

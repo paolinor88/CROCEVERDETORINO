@@ -91,8 +91,9 @@ $dictionaryLivello = array (
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Utenze</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello==3){echo "disabled";}?>" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Calendario</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="mobilita/index.php"><i class="fas fa-wheelchair"></i> Mobilità</a>
+<!--                <a role="button" class="btn btn-outline-cv btn-block --><?//if($livello<4){echo "disabled";}?><!--" href="mobilita/index.php"><i class="fas fa-wheelchair"></i> Mobilità</a>-->
                 <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-globe"></i> Autoparco</a>
+                <a role='button' class='btn btn-outline-secondary btn-block' href='https://docs.google.com/spreadsheets/d/12dRo15x-qgjuTBHQlqEz83wcG9ifCnuObOObzL_fwOQ/edit?usp=sharing/' target='_blank'><i class="fas fa-external-link-alt"></i> Censimento ossigeno</a>
                 <? if ($livello==1): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>

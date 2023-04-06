@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$/../eventi" libraries="{all, bootstrap4-toggle, jquery-3.4.1, jquery-ui, jqueryui, popper.js}" />
-    <file url="file://$PROJECT_DIR$/../toolscvto" libraries="{bootstrap, bootstrap-datepicker, bootstrap-icons, bootstrap-toggle, d1afadef6f, dataTables.bootstrap4, dataTables.bootstrap5, dataTables.jqueryui, fullcalendar, fullcalendar-scheduler, jquery-3.6.0, jquery.dataTables, sweetalert}" />
+    <file url="file://$PROJECT_DIR$/../eventi" libraries="{bootstrap, bootstrap-datepicker, bootstrap-icons, dataTables.bootstrap4, dataTables.bootstrap5, fa32a0bcb4, jquery-3.6.4, jquery-ui, jquery.dataTables, sweetalert}" />
   </component>
 </project>

@@ -5,7 +5,8 @@
       <paths name="croceverde.org">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/gestionale" local="$PROJECT_DIR$" web="/gestionale" />
+            <mapping deploy="/eventi" local="$PROJECT_DIR$/../eventi" web="/eventi" />
           </mappings>
           <excludedPaths>
             <excludedPath path="/checklist/uploads" />
