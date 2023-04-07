@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL" uuid="91b841c1-4127-4966-a22a-892aab13fb4b">
+    <data-source source="LOCAL" name="croceverde.org" uuid="91b841c1-4127-4966-a22a-892aab13fb4b">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://c52454.sgvps.net:3306/massi369_gestionale</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="galileo" uuid="c6679f61-1fe0-4099-ae3d-420129e2e1bc">
-      <driver-ref>sqlserver.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://cvtorino.database.windows.net\52.236.184.163:1433;database=CVTORINO</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

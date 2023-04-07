@@ -20,8 +20,7 @@ $sql = "SELECT IDTipoG, DataGuardia,
                SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='7' THEN 1 ELSE 0 END) AS '1_7',
                SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='8' THEN 1 ELSE 0 END) AS '1_8',
                SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='9' THEN 1 ELSE 0 END) AS '1_9',
-               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='10' THEN 1 ELSE 0 END) AS '1_10',
-               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='18' THEN 1 ELSE 0 END) AS '1_18'
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='10' THEN 1 ELSE 0 END) AS '1_10'
         FROM presenze
         WHERE YEAR (DataGuardia) = '$inputanno' and MONTH (DataGuardia) = '$inputmese' 
         GROUP BY DataGuardia, IDTipoG
@@ -59,6 +58,7 @@ $dictionarySquadra = array (
     8 => "SQ. 8",
     9 => "SQ. 9",
     10 => "SQ. SAB",
+    /*
     11 => "MONT",
     12 => "DIR",
     13 => "LUN",
@@ -72,6 +72,7 @@ $dictionarySquadra = array (
     21 => "21",
     22 => "CIT",
     23 => "DIP",
+    */
 );
 ?>
 <!DOCTYPE html>
@@ -105,9 +106,8 @@ $dictionarySquadra = array (
     </style>
 
 </head>
-
 <body style="font-family: Arial,serif">
-<form action="controllapresenze.php" method="post">
+<form action="controllapresenze.php" method="post"  >
     <table class="center">
         <tr>
             <th>
@@ -169,7 +169,6 @@ $dictionarySquadra = array (
         <th>SQ. 8</th>
         <th>SQ. 9</th>
         <th>SQ. SAB</th>
-        <th>SQ. DIU</th>
     </tr>
     <?php
 
@@ -194,16 +193,18 @@ $dictionarySquadra = array (
                     echo "<td style='text-align: center'>" . $row["1_".$i] . "</td>";//TORINO 1/10
                 }
             }
-            if (($row["1_18"])>0){
+/*            if (($row["1_18"])>0){
                 echo "<td style='text-align: center' class='ok'>" . $row["1_18"] . "</td></tr>";//TORINO SAB
             }else{
                 echo "<td style='text-align: center' >" . $row["1_18"] . "</td></tr>";//TORINO SAB
-            }
+            }*/
         }
     } else {
-        echo "<tr><td colspan='13' STYLE='text-align: center'>Nessun risultato trovato</td></tr>";
+        echo "<tr><td colspan='12' STYLE='text-align: center'>Nessun risultato trovato</td></tr>";
     }
 
     ?>
+</table>
 </body>
+</html>
 
