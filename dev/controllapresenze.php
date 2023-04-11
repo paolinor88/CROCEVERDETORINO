@@ -2,15 +2,14 @@
 session_start();
 //parametri DB
 include "../config/config.php";
-if(isset($_POST["submit"])){
 
-    $inputanno = $_POST["inputanno"];
+$inputanno = $_POST["inputanno"];
+if((isset($_POST["submit"]))&&($_POST["inputmese"]!=0)){
+
     $inputmese = $_POST["inputmese"];
     $inputsezione = $_POST["inputsezione"];
-}
 
-// Query per ottenere i dati necessari
-$sql = "SELECT IDTipoG, DataGuardia,
+    $sql = "SELECT IDTipoG, DataGuardia,
                SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='1' THEN 1 ELSE 0 END) AS '1_1',
                SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='2' THEN 1 ELSE 0 END) AS '1_2',
                SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='3' THEN 1 ELSE 0 END) AS '1_3',
@@ -26,8 +25,27 @@ $sql = "SELECT IDTipoG, DataGuardia,
         GROUP BY DataGuardia, IDTipoG
         ORDER BY  IDTipoG, DataGuardia";
 
-$result = $db->query($sql);
+}else{
+    $inputsezione = $_POST["inputsezione"];
 
+    $sql = "SELECT IDTipoG, DataGuardia,
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='1' THEN 1 ELSE 0 END) AS '1_1',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='2' THEN 1 ELSE 0 END) AS '1_2',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='3' THEN 1 ELSE 0 END) AS '1_3',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='4' THEN 1 ELSE 0 END) AS '1_4',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='5' THEN 1 ELSE 0 END) AS '1_5',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='6' THEN 1 ELSE 0 END) AS '1_6',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='7' THEN 1 ELSE 0 END) AS '1_7',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='8' THEN 1 ELSE 0 END) AS '1_8',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='9' THEN 1 ELSE 0 END) AS '1_9',
+               SUM(CASE WHEN Sezione='$inputsezione' AND Squadra='10' THEN 1 ELSE 0 END) AS '1_10'
+        FROM presenze
+        WHERE YEAR (DataGuardia) = '$inputanno'
+        GROUP BY DataGuardia, IDTipoG
+        ORDER BY  IDTipoG, DataGuardia";
+
+}
+$result = $db->query($sql);
 //query calendario
 $sql2 = "SELECT * FROM guardie2023";
 $result2 = $db->query($sql2);
@@ -116,18 +134,33 @@ $dictionarySquadra = array (
             <th>
                 <select name="inputanno" required>
                     <option value="">---</option>
-                    <option value="2023">2023</option>
+                    <?php
+                    $selectedAnno = $_POST['inputanno'] ?? '';
+                    for ($i=2023; $i>=2023; $i--) {
+                        echo '<option value="'.$i.'" '.($selectedAnno == $i ? 'selected' : '').'>'.$i.'</option>';
+                    }
+                    ?>
+                </select>
             </th>
             <th>
                 MESE
             </th>
             <th>
                 <select name="inputmese" required>
-                    <option value="">---</option>
-                    <option value="1">GENNAIO</option>
-                    <option value="2">FEBBRAIO</option>
-                    <option value="3">MARZO</option>
-                    <option value="4">APRILE</option>
+                    <option value="0">Tutti</option>
+                    <?php
+                    $selectedMese = $_POST['inputmese'] ?? '';
+                    $mesi = array(
+                        1 => 'GENNAIO',
+                        2 => 'FEBBRAIO',
+                        3 => 'MARZO',
+                        4 => 'APRILE'
+                    );
+                    foreach ($mesi as $key => $value) {
+                        echo '<option value="'.$key.'" '.($selectedMese == $key ? 'selected' : '').'>'.$value.'</option>';
+                    }
+                    ?>
+                </select>
             </th>
         </tr>
         <tr>
@@ -136,25 +169,35 @@ $dictionarySquadra = array (
             </th>
             <th colspan="2">
                 <select name="inputsezione" required>
-                    <option value="0">---</option>
-                    <option value="1">TORINO</option>
-                    <option value="2">ALPIGNANO</option>
-                    <option value="3">BORGARO</option>
-                    <option value="4">CIRIE'</option>
-                    <option value="5">SAN MAURO</option>
-                    <option value="6">VENARIA</option>
+                    <option value="">---</option>
+                    <?php
+                    $selectedSezione = $_POST['inputsezione'] ?? '';
+                    $sezioni = array(
+                        1 => 'TORINO',
+                        2 => 'ALPIGNANO',
+                        3 => 'BORGARO',
+                        4 => 'CIRIE\'',
+                        5 => 'SAN MAURO',
+                        6 => 'VENARIA'
+                    );
+                    foreach ($sezioni as $key => $value) {
+                        echo '<option value="'.$key.'" '.($selectedSezione == $key ? 'selected' : '').'>'.$value.'</option>';
+                    }
+                    ?>
+                </select>
             </th>
         </tr>
     </table>
     <br>
     <div style="text-align: center">
         <input type="submit" name="submit">
+        <button type="button" onclick="location.href='controllapresenze.php';">Azzera</button>
     </div>
 </form>
 <hr>
 <table class="center">
     <tr>
-        <th colspan="13"><?= "Sezione: $dictionarySezione[$inputsezione]";?></th>
+        <th colspan="12"><?= "Sezione: $dictionarySezione[$inputsezione]";?></th>
     </tr>
     <tr>
         <th>Data</th>
@@ -193,11 +236,6 @@ $dictionarySquadra = array (
                     echo "<td style='text-align: center'>" . $row["1_".$i] . "</td>";//TORINO 1/10
                 }
             }
-/*            if (($row["1_18"])>0){
-                echo "<td style='text-align: center' class='ok'>" . $row["1_18"] . "</td></tr>";//TORINO SAB
-            }else{
-                echo "<td style='text-align: center' >" . $row["1_18"] . "</td></tr>";//TORINO SAB
-            }*/
         }
     } else {
         echo "<tr><td colspan='12' STYLE='text-align: center'>Nessun risultato trovato</td></tr>";

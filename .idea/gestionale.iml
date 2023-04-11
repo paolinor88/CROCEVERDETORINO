@@ -12,5 +12,6 @@
     <orderEntry type="library" name="gijgo" level="application" />
     <orderEntry type="library" name="bs-custom-file-input" level="application" />
     <orderEntry type="module" module-name="eventi" />
+    <orderEntry type="library" name="bootstrap4-toggle" level="application" />
   </component>
 </module>
