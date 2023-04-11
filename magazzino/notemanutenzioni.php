@@ -5,8 +5,8 @@ session_start();
 /**
  *
  * @author     Paolo Randone
- * @author     <mail@paolorandone.it>
- * @version    5.0
+ * @author     <paolo.randone@croceverde.org>
+ * @version    6.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */

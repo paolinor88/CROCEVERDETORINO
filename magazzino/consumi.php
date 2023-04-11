@@ -2,8 +2,8 @@
 /**
  *
  * @author     Paolo Randone
- * @author     <mail@paolorandone.it>
- * @version    5.0
+ * @author     <paolo.randone@croceverde.org>
+ * @version    6.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -85,7 +85,7 @@ $dictionary = array (
 
                 $select = $db->query("SELECT * FROM consumi GROUP BY Sigla order by Sigla DESC");
                 while($ciclo = $select->fetch_array()){
-                    $kminiziali = $ciclo
+                    $kminiziali = $ciclo;
                     if($select->num_rows>0): ?>
                         <tr>
                             <td><?=$ciclo['Sigla']?></td>

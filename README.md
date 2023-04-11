@@ -3,6 +3,12 @@
 
 paolo.randone@croceverde.org
 ---
+Version 6.0 changelog:
+
+- Ripulito db utenti
+- Integrazione con galileo
+- [beta] controlla presenze & crea guardie
+---
 Version 5.0 changelog:
 
 - MAJOR RELEASE

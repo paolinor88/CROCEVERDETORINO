@@ -1,4 +1,12 @@
 <?php
+/**
+ *
+ * @author     Paolo Randone
+ * @author     <paolo.randone@croceverde.org>
+ * @version    6.0
+ * @note       Powered for Croce Verde Torino. All rights reserved
+ *
+ */
 session_start();
 //parametri DB
 include "../config/config.php";
