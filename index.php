@@ -103,6 +103,9 @@ $dictionaryLivello = array (
                 <? if ($livello==5): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
+                <? if ($livello==6): ?>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                <? endif; ?>
                 <? if ($id=='D9999'): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>
                 <? endif; ?>

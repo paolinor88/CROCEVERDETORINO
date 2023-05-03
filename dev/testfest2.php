@@ -1,29 +1,17 @@
 <?php
-/**
- *
- * @author     Paolo Randone
- * @author     <paolo.randone@croceverde.org>
- * @version    6.0
- * @note       Powered for Croce Verde Torino. All rights reserved
- *
- */
 if(isset($_POST["submit"])){
     $anno = $_POST["anno"];
     $squadrauno = $_POST["squadrauno"];
 }
 
-// Definisci le squadre
 $squadre = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-// Crea un array di tutti i giorni dell'anno
 $giorni_anno = range(strtotime($anno.'-01-01'), strtotime($anno.'-12-31'), 86400);
 
-// Inizializza gli array dei turni notturni e festivi
 $turni_notturni = array();
 $turni_diurni = array();
 $turni_fest = array();
 
-// ciclo turni notturni
 $numero_squadra = $squadrauno;
 foreach ($giorni_anno as $giorno) {
     $turni_notturni[date('d-m-Y', $giorno)] = $numero_squadra;
@@ -33,14 +21,15 @@ foreach ($giorni_anno as $giorno) {
     }
 }
 
-// Assegna festivi
 foreach ($giorni_anno as $giorno) {
     $data = date('d-m-Y', $giorno);
     $patrono = strtotime('24-06-'.$anno);
     $patronox =date('d-m-Y', $patrono);
     $patrono_weekday = date('N', $patrono);
-    if (date('N', $giorno) == 7 || in_array($data, festivita_anno()) ) {
-        // Verifica quale squadra ha il minor numero di turni diurni e almeno due giorni di riposo
+    if (in_array($data, festivita_anno())) {
+        if(date('N', $giorno) == 7){
+            continue;
+        }
         $squadra_min_turni = null;
         $min_turni = PHP_INT_MAX;
         foreach ($squadre as $squadra) {
@@ -50,87 +39,59 @@ foreach ($giorni_anno as $giorno) {
                 $min_turni = $num_turni;
             }
         }
-        // Assegna festivo alla prima sq utile che soddisfa i requisiti
         $turni_diurni[$data] = $squadra_min_turni;
     }
-    //se patrono è martedì assegna a sq sabato
+    if (date('N', $giorno) == 7) {
+        $squadra_min_turni = null;
+        $min_turni = PHP_INT_MAX;
+        foreach ($squadre as $squadra) {
+            $num_turni = count_turni_diurni($turni_diurni, $squadra);
+            if ($num_turni < $min_turni && verifica_riposo_diurno($turni_notturni, $turni_diurni, $squadra, $data)) {
+                $squadra_min_turni = $squadra;
+                $min_turni = $num_turni;
+            }
+        }
+        $turni_diurni[$data] = $squadra_min_turni;
+    }
     if (date('N', $patrono) == 2 && in_array($data, festivita_anno()) ){
         $turni_diurni[$patronox] = "SAB";
     }
-    //se patrono è mercoledì assegna a sabato
-    if (date('N', $patrono) == 3 && in_array($data, festivita_anno()) ){
+    if (date('N', $patrono) ==6 && in_array($data, festivita_anno()) ){
         $turni_diurni[$patronox] = "SAB";
     }
-    //se un festivo è di sabato assegna a sabato
-    if (date('N', $giorno) == 6 && in_array($data, festivita_anno()) ){
-        $turni_diurni[$data] = "SAB";
-    }
 }
 
-// Funzione che restituisce un array di tutte le festività del 2024
 function festivita_anno() {
-    //dataentry anno
-    $anno = $_POST["anno"];
-
-    //Definisci pasquetta
-    $pasqua = easter_date($anno);
-    $pasquetta = strtotime("+1 day", $pasqua);
-
-    //definisci array festivi
-    $festivita = array(
-        '01-01-'.$anno, // Capodanno
-        '06-01-'.$anno, // Epifania
-        date('d-m-Y', $pasquetta), // Pasquetta
-        '25-04-'.$anno, // Liberazione
-        '01-05-'.$anno, // Lavoratori
-        '02-06-'.$anno, // Repubblica
-        '24-06-'.$anno, // Patrono
-        '15-08-'.$anno, // Ferragosto
-        '01-11-'.$anno, // Santi
-        '08-12-'.$anno, // Immacolata
-        '25-12-'.$anno, // Natale
-        '26-12-'.$anno, // Santo Stefano
+    global $anno;
+    return array(
+        '01-01-'.$anno,
+        '06-01-'.$anno,
+        '25-04-'.$anno,
+        '01-05-'.$anno,
+        '02-06-'.$anno,
+        '15-08-'.$anno,
+        '01-11-'.$anno,
+        '08-12-'.$anno,
+        '25-12-'.$anno,
+        '26-12-'.$anno
     );
-
-    //ritorna array per assegnazione
-    return array_values($festivita);
 }
 
-//conteggia festivi assegnati
+function verifica_riposo_diurno($turni_notturni, $turni_diurni, $squadra, $data) {
+    $giorno_prima = date('d-m-Y', strtotime($data.' -1 day'));
+    return $turni_notturni[$giorno_prima] != $squadra && (empty($turni_diurni[$giorno_prima]) || $turni_diurni[$giorno_prima] != $squadra);
+}
+
 function count_turni_diurni($turni_diurni, $squadra) {
-    $count = 0;
-    foreach ($turni_diurni as $data => $num_squadra) {
-        if ($num_squadra == $squadra) {
-            $count++;
+    $num_turni = 0;
+    foreach ($turni_diurni as $turno) {
+        if ($turno == $squadra) {
+            $num_turni++;
         }
     }
-    return $count;
+    return $num_turni;
 }
-function count_turni_fest($turni_diurni, $squadra) {
-    $count = 0;
-    foreach ($turni_diurni as $data => $num_squadra) {
-        if ($num_squadra == $squadra) {
-            $count++;
-        }
-    }
-    return $count;
-}
-// verifica due turni di riposo
-function verifica_riposo_diurno($turni_notturni, $turni_diurni, $squadra, $data_diurno) {
-    $riposo_minimo = strtotime('-2 days', strtotime($data_diurno));
-    $riposo_massimo = strtotime('+2 days', strtotime($data_diurno));
-    foreach ($turni_notturni as $data => $num_squadra) {
-        if ($num_squadra == $squadra && strtotime($data) >= $riposo_minimo && strtotime($data) <= $riposo_massimo) {
-            return false;
-        }
-    }
-    foreach ($turni_diurni as $data => $num_squadra) {
-        if ($num_squadra == $squadra && strtotime($data) >= $riposo_minimo && strtotime($data) <= $riposo_massimo && $data != $data_diurno) {
-            return false;
-        }
-    }
-    return true;
-}
+
 ?>
 
 <!DOCTYPE html>
