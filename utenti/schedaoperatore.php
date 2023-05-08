@@ -100,7 +100,7 @@ if(isset($_POST["update"])){
         $nome_mittente="Gestionale CVTO";
         $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$randone."\r\n";
+        $headers .= "Bcc: ".$autoparco."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -124,7 +124,7 @@ if(isset($_POST["update"])){
             $squadrad,
         );
 
-        $corpo = file_get_contents('../config/template/reminder.html');
+        $corpo = file_get_contents('../config/template/active.html');
         $corpo = str_replace ($replace, $with, $corpo);
 
         mail($to, $subject, $corpo, $headers);
