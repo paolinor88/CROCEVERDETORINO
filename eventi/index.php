@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -42,10 +42,14 @@ if (!isset($_SESSION["ID"])){
         <div class="text-center col-md-6">
             <div class="jumbotron">
                 <a role="button" class="btn btn-outline-cv btn-block" href="calendar.php"><i class="far fa-calendar-alt"></i> Calendario</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION["livello"]<5){echo "disabled";}?>" href="event.php"><i class="fas fa-thumbtack"></i> Eventi</a>
                 <?if(($_SESSION["livello"]==1)||($_SESSION["livello"]>=4)){echo "
                      <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"agenda.php\"><i class=\"far fa-calendar-check\"></i> Agenda straordinario</a>
                      <button type=\"button\" class=\"btn btn-outline-cv btn-block\" data-toggle=\"modal\" data-target=\"#modal1\"><i class=\"fas fa-search\"></i> Cerca settimana</button>
+                ";}?>
+
+                <?if(/*($_SESSION["livello"]==1)||*/($_SESSION["livello"]>=4)){echo "
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiasettimana.php\"><i class=\"fas fa-sync\"></i></i> Cambio settimana</a>
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiagiorno.php\"><i class=\"fas fa-sync\"></i></i> Cambio giornaliero</a>
                 ";}?>
 
             </div>

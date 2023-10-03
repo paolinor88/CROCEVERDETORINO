@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -162,7 +162,10 @@ $dictionarySquadra = array (
                         1 => 'GENNAIO',
                         2 => 'FEBBRAIO',
                         3 => 'MARZO',
-                        4 => 'APRILE'
+                        4 => 'APRILE',
+                        5 => 'MAGGIO',
+                        6=> 'GIUGNO',
+                        7=> 'LUGLIO',
                     );
                     foreach ($mesi as $key => $value) {
                         echo '<option value="'.$key.'" '.($selectedMese == $key ? 'selected' : '').'>'.$value.'</option>';

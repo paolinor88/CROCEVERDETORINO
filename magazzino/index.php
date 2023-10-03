@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -42,9 +42,9 @@ if (!isset($_SESSION["ID"])){
         <div class="text-center col-md-6">
             <div class="jumbotron">
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="magazzino.php"><i class="fas fa-key"></i> Giacenza</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="mezzi.php"><i class="fas fa-ambulance"></i> Gestione mezzi</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<4){echo "disabled";}?>" href="mezzi.php"><i class="fas fa-ambulance"></i> Lista mezzi</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="lavaggi.php"><i class="fas fa-shower"></i> Lavaggio mezzi</a>
-                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="manutenzionimezzi.php"><i class="fas fa-cogs"></i> Manutenzioni mezzi</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="manutenzionimezzi.php"><i class="fas fa-cogs"></i> Manutenzione mezzi</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="calcolaossigeno.php" target="_blank"><i class="fas fa-calculator"></i> Calcolo ossigeno</a>
             </div>
         </div>

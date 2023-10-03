@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -95,16 +95,16 @@ $dictionaryLivello = array (
                 <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-globe"></i> Autoparco</a>
                 <a role='button' class='btn btn-outline-secondary btn-block' href='https://docs.google.com/spreadsheets/d/12dRo15x-qgjuTBHQlqEz83wcG9ifCnuObOObzL_fwOQ/edit?usp=sharing/' target='_blank'><i class="fas fa-external-link-alt"></i> Censimento ossigeno</a>
                 <? if ($livello==1): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
                 <? if ($livello==4): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
                 <? if ($livello==5): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
                 <? if ($livello==6): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='http://82.180.54.178/mip/' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
                 <? endif; ?>
                 <? if ($id=='D9999'): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>

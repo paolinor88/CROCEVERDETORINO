@@ -1,7 +1,7 @@
 <?php
 include "../config/pdo.php";
 if (isset($_POST["targa"])){
-    $insert = "INSERT INTO mezzi  (ID, targa, tipo, stato, note) VALUES  (:ID, :targa, :tipo, :stato, :note)";
+    $insert = "INSERT INTO mezzi  (ID, targa, tipo, stato, note, IMMATRICOLAZIONE) VALUES  (:ID, :targa, :tipo, :stato, :note, :IMMATRICOLAZIONE)";
 
     $statement = $connect->prepare($insert);
     $statement->execute(
@@ -11,6 +11,7 @@ if (isset($_POST["targa"])){
             ':tipo' => $_POST['tipo'],
             ':stato' => 1,
             ':note' => $_POST['note'],
+            ':IMMATRICOLAZIONE' => $_POST['IMMATRICOLAZIONE'],
         )
     );
 }

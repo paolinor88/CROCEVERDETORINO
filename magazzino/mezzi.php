@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -42,6 +42,7 @@ $dictionary = array (
                 var targa = $("#targa").val();
                 var tipo = $("#tipo option:selected").val();
                 var note = $("#note").val();
+                var immatricolazione = $("#immatricolazione").val();
                 swal({
                     text: "Sei sicuro di voler inserire questo mezzo?",
                     icon: "warning",
@@ -65,7 +66,7 @@ $dictionary = array (
                             $.ajax({
                                 url:"../checklist/script.php",
                                 type:"POST",
-                                data:{ID:ID, targa:targa, tipo:tipo, note:note},
+                                data:{ID:ID, targa:targa, immatricolazione:immatricolazione, tipo:tipo, note:note},
                                 success:function(){
                                     swal({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
@@ -184,29 +185,40 @@ $dictionary = array (
                     <th scope="col">Numero</th>
                     <th scope="col">Targa</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Immatricolazione</th>
+                    <th scope="col">KM Attuali</th>
                     <th scope="col">Note</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
 
-                $select = $db->query("SELECT ID, tipo, targa, note FROM mezzi WHERE stato='1' order by ID");
-                while($ciclo = $select->fetch_array()){
+                $select = $db->query("SELECT ID, tipo, targa, IMMATRICOLAZIONE, note FROM mezzi WHERE stato='1' ORDER BY ID");
+
+                while ($ciclo = $select->fetch_array()) {
+                    $mezzoID = $ciclo['ID'];
+                    $selectTagliandi = $db->query("SELECT KMATTUALI FROM mezzi_tagliandi WHERE ID_MEZZO='$mezzoID'");
+                    $tagliando = $selectTagliandi->fetch_array();
 
                     echo "
-					<tr>
-						<td>"."<a href=\"https://".$_SERVER['HTTP_HOST']."/gestionale/checklist/schedamezzo.php?ID=".$ciclo['ID']."\" class=\"btn btn-sm btn-outline-dark\" \"><i class=\"fas fa-cogs\"></i></a>"."</td>
-						<td>".$ciclo['ID']."</td>
-						<td>".$ciclo['targa']."</td>
-						<td>".$ciclo=$dictionary[$ciclo['tipo']]."</td>
-						<td>".$ciclo['note']."</td>
-					</tr>";
+        <tr>
+            <td>" . "<a href=\"https://" . $_SERVER['HTTP_HOST'] . "/gestionale/magazzino/schedamezzo.php?ID=" . $ciclo['ID'] . "\" class=\"btn btn-sm btn-outline-dark\"><i class=\"fas fa-cogs\"></i></a>" . "</td>
+            <td>" . $ciclo['ID'] . "</td>
+            <td>" . $ciclo['targa'] . "</td>
+            <td>" . $ciclo = $dictionary[$ciclo['tipo']] . "</td>
+            <td>" . $ciclo['IMMATRICOLAZIONE'] . "</td>
+            <td>" . $tagliando['KMATTUALI'] . "</td>
+            <td>" . $ciclo['note'] . "</td>
+            
+            
+        </tr>";
 
                 }
 
                 ?>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
@@ -227,6 +239,10 @@ $dictionary = array (
                     <div class="form-group">
                         <label for="targa">Targa</label>
                         <input id="targa" class="form-control form-control-sm" required>
+                    </div> <!-- targa -->
+                    <div class="form-group">
+                        <label for="immatricolazione">Immatricolazione</label>
+                        <input id="immatricolazione" class="form-control form-control-sm" required placeholder="gg/mm/aaaa">
                     </div> <!-- targa -->
                     <div class="form-group">
                         <label for="tipo">Tipo</label>

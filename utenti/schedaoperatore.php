@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -100,7 +100,7 @@ if(isset($_POST["update"])){
         $nome_mittente="Gestionale CVTO";
         $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$autoparco."\r\n";
+        $headers .= "Bcc: ".$ufficioautoparco."\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1";
@@ -197,7 +197,7 @@ if(isset($_POST["resetpwd"])){
         $nome_mittente="Gestionale CVTO";
         $mail_mittente=$gestionale;
         $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-        $headers .= "Bcc: ".$randone."\r\n";
+        $headers .= "Bcc: ".$ufficioautoparco."\r\n";
         //$headers .= "Reply-To: " .  $mail_mittente . "\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
         $headers .= "MIME-Version: 1.0\r\n";

@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    6.0
+ * @version    7.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -221,7 +221,7 @@ if (($_SESSION["livello"])<4){
 <body>
 <div class="container-fluid">
     <div class="jumbotron">
-        <div style="text-align: center;">
+<!--        <div style="text-align: center;">
             <div class="btn-group" role="group">
                 <button id="consumo" type="button" class="btn btn-outline-secondary btn-sm">Materiale di consumo</button>
                 <button id="ricambi" type="button" class="btn btn-outline-secondary btn-sm">Ricambi</button>
@@ -233,12 +233,12 @@ if (($_SESSION["livello"])<4){
                 <button id="reload" type="button" class="btn btn-outline-info btn-sm" ><i class="fas fa-sync-alt"></i></button>
                 <button id="export" type="button" class="btn btn-outline-success btn-sm" ><i class="far fa-file-excel"></i></button>
             </div>
-        </div>
+        </div>-->
         <div class="table-responsive-sm">
             <table class="table table-hover table-sm" id="myTable">
                 <thead>
                 <tr>
-                    <th scope="col"><button class="btn btn-sm btn-outline-info" style="border: none" data-toggle="modal" data-target="#additem"><i class="fas fa-plus"></i></button></th>
+                    <th scope="col"><button class="btn btn-sm btn-outline-info" disabled style="border: none" data-toggle="modal" data-target="#additem"><i class="fas fa-plus"></i></button></th>
                     <th scope="col">Nome</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Quantità</th>
@@ -258,7 +258,7 @@ if (($_SESSION["livello"])<4){
                     $scadenza = strtotime($ciclo['scadenza']);
                     if($rif<$scadenza): ?>
                         <tr>
-                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details'><i class="fas fa-search"></i></button></form></td>
+                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details' disabled><i class="fas fa-search"></i></button></form></td>
                             <td class="align-middle"><?=$ciclo['nome']?></td>
                             <td class="align-middle"><?=$ciclo['tipo']?></td>
                             <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-link btn btn-sm fast' style="font-size:16px" value='<?=$ciclo['quantita']?>'><?=$ciclo['quantita']?></button></form></td>
@@ -269,7 +269,7 @@ if (($_SESSION["livello"])<4){
                     <? endif; ?>
                     <? if($rif>=$scadenza): ?>
                         <tr>
-                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details'><i class="fas fa-search"></i></button></form></td>
+                            <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-outline-dark btn btn-sm details' disabled><i class="fas fa-search"></i></button></form></td>
                             <td class="align-middle"><?=$ciclo['nome']?></td>
                             <td class="align-middle"><?=$ciclo['tipo']?></td>
                             <td class="align-middle"><form><button type='button' id='<?=$ciclo['id']?>' class='btn-link btn btn-sm fast' style="font-size:16px" value="<?=$ciclo['quantita']?>"><?=$ciclo['quantita']?></button></form></td>

@@ -34,13 +34,15 @@ foreach ($giorni_anno as $giorno) {
 }
 
 // Assegna festivi
+
 foreach ($giorni_anno as $giorno) {
     $data = date('d-m-Y', $giorno);
     $patrono = strtotime('24-06-'.$anno);
     $patronox =date('d-m-Y', $patrono);
     $patrono_weekday = date('N', $patrono);
+
     if (date('N', $giorno) == 7 || in_array($data, festivita_anno()) ) {
-        // Verifica quale squadra ha il minor numero di turni diurni e almeno due giorni di riposo
+        // Verifica quale squadra ha il minor numero di turni diurni festivi e almeno due giorni di riposo
         $squadra_min_turni = null;
         $min_turni = PHP_INT_MAX;
         foreach ($squadre as $squadra) {
@@ -52,10 +54,11 @@ foreach ($giorni_anno as $giorno) {
         }
         // Assegna festivo alla prima sq utile che soddisfa i requisiti
         $turni_diurni[$data] = $squadra_min_turni;
+
     }
     //se patrono è martedì assegna a sq sabato
     if (date('N', $patrono) == 2 && in_array($data, festivita_anno()) ){
-                $turni_diurni[$patronox] = "SAB";
+        $turni_diurni[$patronox] = "SAB";
     }
     //se patrono è mercoledì assegna a sabato
     if (date('N', $patrono) == 3 && in_array($data, festivita_anno()) ){
