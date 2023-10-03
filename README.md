@@ -3,7 +3,7 @@
 
 paolo.randone@croceverde.org
 ---
-Version 6.0 changelog:
+Version 7.0 changelog:
 
 - Nuove funzioni richieste cambi
 - Tools ossigeno, controllo guardie e ciclico notti volontari
