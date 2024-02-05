@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.0
+ * @version    7.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -143,8 +143,8 @@ $dictionarySquadra = array (
                 <select name="inputanno" required>
                     <option value="">---</option>
                     <?php
-                    $selectedAnno = $_POST['inputanno'] ?? '';
-                    for ($i=2023; $i>=2023; $i--) {
+                    $selectedAnno = isset($_POST['inputanno']) ? $_POST['inputanno'] : '';
+                    for ($i = 2024; $i >= 2023; $i--) {
                         echo '<option value="'.$i.'" '.($selectedAnno == $i ? 'selected' : '').'>'.$i.'</option>';
                     }
                     ?>
@@ -166,6 +166,11 @@ $dictionarySquadra = array (
                         5 => 'MAGGIO',
                         6=> 'GIUGNO',
                         7=> 'LUGLIO',
+                        8=> 'AGOSTO',
+                        9=> 'SETTEMBRE',
+                        10=> 'OTTOBRE',
+                        11=> 'NOVEMBRE',
+                        12=> 'DICEMBRE',
                     );
                     foreach ($mesi as $key => $value) {
                         echo '<option value="'.$key.'" '.($selectedMese == $key ? 'selected' : '').'>'.$value.'</option>';

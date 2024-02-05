@@ -3,6 +3,10 @@
 
 paolo.randone@croceverde.org
 ---
+Version 7.1 changelog:
+
+- Bug fixed
+---
 Version 7.0 changelog:
 
 - Nuove funzioni richieste cambi

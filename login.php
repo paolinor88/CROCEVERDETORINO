@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.0
+ * @version    7.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -258,7 +258,7 @@ if(isset($_POST["activateBTN"])){
                     </div>
                     <hr>
                     <div class="text-center">
-                        <a style="color: #078f40" href="https://croceverde.org/gestionale/istruzioni_gestionale_COMPLETE_v3.2.pdf" target="_blank">MANUALE UTENTE</a>
+                        <a style="color: #078f40" href="https://croceverde.org/gestionale/istruzioni_gestionale_COMPLETE_v7.0.pdf" target="_blank">MANUALE UTENTE</a>
                     </div>
                 </div>
             </div>

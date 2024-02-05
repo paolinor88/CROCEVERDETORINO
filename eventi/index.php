@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.0
+ * @version    7.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -47,9 +47,12 @@ if (!isset($_SESSION["ID"])){
                      <button type=\"button\" class=\"btn btn-outline-cv btn-block\" data-toggle=\"modal\" data-target=\"#modal1\"><i class=\"fas fa-search\"></i> Cerca settimana</button>
                 ";}?>
 
-                <?if(/*($_SESSION["livello"]==1)||*/($_SESSION["livello"]>=4)){echo "
-                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiasettimana.php\"><i class=\"fas fa-sync\"></i></i> Cambio settimana</a>
-                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiagiorno.php\"><i class=\"fas fa-sync\"></i></i> Cambio giornaliero</a>
+                <?if(($_SESSION["livello"]==1)||($_SESSION["livello"]>=4)){echo "
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiasettimana.php\"><i class=\"fas fa-sync\"></i> Cambio settimana</a>
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiagiorno.php\"><i class=\"fas fa-sync\"></i> Cambio giornaliero</a>
+                ";}?>
+                <?if($_SESSION["livello"]>=4){echo "
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"ferie.php\"><i class=\"far fa-paper-plane\"></i> Richiesta ferie</a>
                 ";}?>
 
             </div>

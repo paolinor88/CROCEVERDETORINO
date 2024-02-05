@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.0
+ * @version    7.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -91,22 +91,16 @@ $dictionaryLivello = array (
                 <hr>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello<4){echo "disabled";}?>" href="utenti/index.php"><i class="fas fa-user"></i> Utenze</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($livello==3){echo "disabled";}?>" href="eventi/index.php"><i class="far fa-calendar-alt"></i> Calendario</a>
-<!--                <a role="button" class="btn btn-outline-cv btn-block --><?//if($livello<4){echo "disabled";}?><!--" href="mobilita/index.php"><i class="fas fa-wheelchair"></i> Mobilità</a>-->
                 <a role="button" class="btn btn-outline-cv btn-block " href="magazzino/index.php"><i class="fas fa-globe"></i> Autoparco</a>
+                <a role="button" class="btn btn-outline-secondary btn-block " href="http://galileoambulanze.eu" target="_blank"><i class="fas fa-external-link-alt"></i> GALILEO</a>
                 <a role='button' class='btn btn-outline-secondary btn-block' href='https://docs.google.com/spreadsheets/d/12dRo15x-qgjuTBHQlqEz83wcG9ifCnuObOObzL_fwOQ/edit?usp=sharing/' target='_blank'><i class="fas fa-external-link-alt"></i> Censimento ossigeno</a>
-                <? if ($livello==1): ?>
+                <?php if ($livello == 1 || $livello == 4 || $livello == 5 || $livello == 6): ?>
+                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://drive.google.com/drive/folders/1Vg-kOzzbAkhCk21CHqIKOUxuZ9cfD1wD?usp=sharing' target='_blank'><i class="fas fa-external-link-alt"></i> Documentazione</a>
+                <?php endif; ?>
+                <?php if ($livello == 1 || $livello == 4 || $livello == 5 || $livello == 6): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
-                <? endif; ?>
-                <? if ($livello==4): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
-                <? endif; ?>
-                <? if ($livello==5): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
-                <? endif; ?>
-                <? if ($livello==6): ?>
-                    <a role='button' class='btn btn-outline-secondary btn-block' href='https://infinitycloud.it/mipcampasso/jsp/login.jsp' target='_blank'><i class="fas fa-external-link-alt"></i> Cedolino online</a>
-                <? endif; ?>
-                <? if ($id=='D9999'): ?>
+                <?php endif; ?>
+                <? if ($livello == 6): ?>
                     <a role='button' class='btn btn-outline-secondary btn-block' href='https://login.siteground.com' target='_blank'><i class='fas fa-question'></i> ADMIN</a>
                 <? endif; ?>
                 <a role="button" class="btn btn-outline-danger btn-block" href="logout.php"><i class="fas fa-times"></i> Logout</a>

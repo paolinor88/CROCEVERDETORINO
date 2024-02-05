@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.0
+ * @version    7.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -26,15 +26,37 @@ if(isset($_POST["invia"])){
     $nuovo2= $_POST["turnonuovo2"];
     $cognomeaccettante = '';
     $selected_option_parts = explode(' ', $selectdip);
+
+    if (count($selected_option_parts) >= 2) {
+        // Unisci tutte le parti tranne l'ultima per formare il cognome composto
+        array_pop($selected_option_parts); // Rimuove l'ultima parte (se non fa parte del cognome)
+        $cognomeaccettante = implode(' ', $selected_option_parts);
+
+        // Usa parametri preparati per evitare injection
+        $stmt = $db->prepare("SELECT email FROM utenti WHERE cognome = ?");
+        $stmt->bind_param("s", $cognomeaccettante);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $selectacc = $result->fetch_assoc();
+
+        $emailaccettante = $selectacc['email'];
+
+        $stmt->close();
+    }
+
+
+    /*
     if (count($selected_option_parts) >= 2) {
         $cognomeaccettante = $selected_option_parts[0];
         $selectacc = $db->query("SELECT email FROM utenti WHERE cognome='$cognomeaccettante'")->fetch_array();
         $emailaccettante = $selectacc['email'];
     }
+    */
     $selectsett= $_POST["selectsett"];
     //TODO modificare destinatario
     $to= $autoparco ;
-    $subject="Cambio turno giorno".' '.$selectsett.'/'.$cognomerichiedente .'-'.$cognomeaccettante;
+    $subject="Cambio turno giorno".' '.$selectsett.'_'.$cognomerichiedente .'-'.$cognomeaccettante;
     $nome_mittente="Gestionale CVTO";
     $mail_mittente=$gestionale;
     $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
@@ -172,12 +194,13 @@ if(isset($_POST["invia"])){
                     <option value="400 mattino">400 mattino</option>
                     <option value="400 pomeriggio">400 pomeriggio</option>
                     <option value="410 mattino">410 mattino</option>
-                    <option value="410 pomeriggio">410 pomeriggio</option>
+                    <option value="410 notte">410 notte</option>
                     <option value="430 mattino">430 mattino</option>
                     <option value="430 pomeriggio">430 pomeriggio</option>
                     <option value="610 mattino">610 mattino</option>
                     <option value="610 pomeriggio">610 pomeriggio</option>
                     <option value="680">680</option>
+                    <option value="Notti aggiuntive">Notti aggiuntive</option>
                 </select>
             </div>
             <br>
@@ -207,12 +230,13 @@ if(isset($_POST["invia"])){
                     <option value="400 mattino">400 mattino</option>
                     <option value="400 pomeriggio">400 pomeriggio</option>
                     <option value="410 mattino">410 mattino</option>
-                    <option value="410 pomeriggio">410 pomeriggio</option>
+                    <option value="410 notte">410 notte</option>
                     <option value="430 mattino">430 mattino</option>
                     <option value="430 pomeriggio">430 pomeriggio</option>
                     <option value="610 mattino">610 mattino</option>
                     <option value="610 pomeriggio">610 pomeriggio</option>
                     <option value="680">680</option>
+                    <option value="Notti aggiuntive">Notti aggiuntive</option>
                 </select>
             </div>
             <br>

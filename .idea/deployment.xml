@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="croceverde.org">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="croceverde.org" confirmBeforeDeletion="false">
+    <option name="confirmBeforeDeletion" value="false" />
     <serverData>
       <paths name="croceverde.org">
         <serverdata>
           <mappings>
             <mapping deploy="/gestionale" local="$PROJECT_DIR$" web="/gestionale" />
             <mapping deploy="/eventi" local="$PROJECT_DIR$/../eventi" web="/eventi" />
+            <mapping deploy="/strumenti" local="$PROJECT_DIR$/../strumenti" web="/strumenti" />
           </mappings>
           <excludedPaths>
             <excludedPath path="/checklist/uploads" />

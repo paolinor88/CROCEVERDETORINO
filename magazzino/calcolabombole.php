@@ -10,19 +10,22 @@
 //input
 if(isset($_POST["submit"])){
     $litriminuto = $_POST["litriminuto"];
-    $oreviaggio = $_POST["oreviaggio"];
+    $pressione_bar = $_POST["pressione_bar"];
+    $capacita_litri = $_POST["capacita_litri"];
 }
-// Quantità di ossigeno richiesta in 7 ore
-$ossigeno = $litriminuto * 60 * ($oreviaggio+1);
+// Calcolo della quantità di ossigeno richiesta in litri
+$ossigeno = $pressione_bar * $capacita_litri;
 
-// Capacità di una bombola di ossigeno
-$capacita = 7 * 200;
+// Calcolo della durata della bombola in minuti
+$durata_minuti = $ossigeno / $litriminuto;
 
-// Calcolo della quantità di bombole necessarie
-$bombole = ceil($ossigeno / $capacita);
+// Calcolo della durata della bombola in ore e minuti
+$durata_ore = floor($durata_minuti / 60); // Ore intere
+$durata_minuti_restanti = $durata_minuti % 60; // Minuti restanti
 
-//Calcolo tempo massimo
-$max_ossigeno = floor($bombole * $capacita / $litriminuto / 60);
+// Formattazione della durata come tempo (ore e minuti)
+$durata_tempo = "$durata_ore ore e $durata_minuti_restanti minuti";
+
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +52,7 @@ $max_ossigeno = floor($bombole * $capacita / $litriminuto / 60);
 </head>
 <body style="font-family: Arial,serif">
 <BR>
-<form action="calcolaossigeno.php" method="post">
+<form action="calcolabombole.php" method="post">
     <table class="center">
         <tr>
             <th>
@@ -61,10 +64,18 @@ $max_ossigeno = floor($bombole * $capacita / $litriminuto / 60);
         </tr>
         <tr>
             <th>
-                DURATA VIAGGIO (IN ORE)
+                PRESSIONE (bar)
             </th>
             <th>
-                <input type="text" name="oreviaggio" required>
+                <input type="text" name="pressione_bar" required>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                CAPACITA' BOMBOLA (litri)
+            </th>
+            <th>
+                <input type="text" name="capacita_litri" required>
             </th>
         </tr>
     </table>
@@ -76,9 +87,8 @@ $max_ossigeno = floor($bombole * $capacita / $litriminuto / 60);
 <br>
 <div style="text-align: center">
     <?php
-    if (isset($litriminuto)){
-        echo "<p>Sono necessarie $bombole bombole di ossigeno da 7 litri per erogare $litriminuto litri al minuto per $oreviaggio ore. </p>";
-        echo "<p>Con $bombole bombole, erogando $litriminuto litri al minuto, avrai ossigeno per massimo $max_ossigeno ore</p>";
+    if (isset($litriminuto) && isset($pressione_bar) && isset($capacita_litri)){
+        echo "<p>Erogando $litriminuto litri al minuto, una bombola da $capacita_litri litri alla pressione di $pressione_bar bar, durerà $durata_minuti minuti ($durata_tempo  circa).</p>";
     }else{
         echo "Inserisci i parametri e premi INVIA";
     }

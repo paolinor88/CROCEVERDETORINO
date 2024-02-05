@@ -14,5 +14,6 @@
     <orderEntry type="module" module-name="eventi" />
     <orderEntry type="library" name="bootstrap4-toggle" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="module" module-name="strumenti" />
   </component>
 </module>
