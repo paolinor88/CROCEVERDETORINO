@@ -12,6 +12,6 @@ $dictionaryLivello = array (
 <!-- FOOTER -->
 <footer class="container-fluid">
     <div class="text-center">
-        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:paolorandone@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 7.1 | <?=$dictionaryLivello[$livello]?> | <?=$_SESSION['nome'].' '.$_SESSION['cognome']?></p></em></font>
+        <font size="-4" style="color: lightgray; "><em>Powered for <a href="mailto:paolorandone@croceverde.org">Croce Verde Torino</a>. All rights reserved.<p>V 7.2 | <?=$dictionaryLivello[$livello]?> | <?=$_SESSION['nome'].' '.$_SESSION['cognome']?></p></em></font>
     </div>
 </footer>

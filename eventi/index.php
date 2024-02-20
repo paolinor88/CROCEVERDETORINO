@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.1
+* @version    7.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -50,11 +50,9 @@ if (!isset($_SESSION["ID"])){
                 <?if(($_SESSION["livello"]==1)||($_SESSION["livello"]>=4)){echo "
                      <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiasettimana.php\"><i class=\"fas fa-sync\"></i> Cambio settimana</a>
                      <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"cambiagiorno.php\"><i class=\"fas fa-sync\"></i> Cambio giornaliero</a>
-                ";}?>
-                <?if($_SESSION["livello"]>=4){echo "
                      <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"ferie.php\"><i class=\"far fa-paper-plane\"></i> Richiesta ferie</a>
+                     <a role=\"button\" class=\"btn btn-outline-cv btn-block\" href=\"orario.php\"><i class=\"far fa-paper-plane\"></i> Smonto in orario</a>
                 ";}?>
-
             </div>
         </div>
     </div>

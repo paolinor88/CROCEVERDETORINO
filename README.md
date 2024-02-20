@@ -3,6 +3,10 @@
 
 paolo.randone@croceverde.org
 ---
+Version 7.2 changelog:
+
+- Ultimati tool cambi turno e ferie
+---
 Version 7.1 changelog:
 
 - Bug fixed

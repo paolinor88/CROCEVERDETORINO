@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.1
+* @version    7.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -22,15 +22,15 @@ if (!isset($_SESSION["ID"])) {
 }
 
 if (isset($_POST["invia"])) {
-    // Assicurati che le variabili siano inizializzate correttamente
+
     $numerogiorni = $_POST["numerogiorni"];
     $datainizio = $_POST["datainizio"];
     $datafine = $_POST["datafine"];
     $tipoassenza = $_POST["tipoassenza"];
     $note = $_POST["note"];
 
-    $to = $ufficioautoparco ?? '';
-    $subject = "Richiesta " .$tipoassenza.' '. $cognomerichiedente . ' dal ' . $datainizio . ' al ' . $datafine;
+    $to = $autoparco ?? '';
+
     $nome_mittente = "Gestionale CVTO";
     $mail_mittente = $gestionale;
 
@@ -39,8 +39,49 @@ if (isset($_POST["invia"])) {
     $headers .= "X-Mailer: PHP/" . phpversion();
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
+if ($numerogiorni==1){
+    $subject = "Richiesta " .$tipoassenza.'_'. $cognomerichiedente . '_' . $datainizio;
+    $templatePath = '../config/template/ferie1.html';
+    if (file_exists($templatePath)) {
+        $replace = array(
+            '{{richiedente}}',
+            '{{numerogiorni}}',
+            '{{tipoassenza}}',
+            '{{datainizio}}',
+            '{{note}}',
+        );
+        $with = array(
+            $cognomenomerichiedente,
+            $numerogiorni,
+            $tipoassenza,
+            $datainizio,
+            $note,
+        );
 
+        $corpo = file_get_contents($templatePath);
+        $corpo = str_replace($replace, $with, $corpo);
+
+        // Verifica
+        if (mail($to, $subject, $corpo, $headers)) {
+            echo '<script type="text/javascript">
+                alert("Richiesta inviata con successo");
+                location.href="index.php";
+                </script>';
+        } else {
+            echo '<script type="text/javascript">
+                alert("Errore nell\'invio della mail. Contatta l\'amministratore.");
+                location.href="index.php"; 
+            </script>';
+        }
+    } else {
+        echo '<script type="text/javascript">
+                alert("Il template HTML della mail non esiste. Contatta l\'amministratore.");
+            location.href="index.php"; 
+            </script>';
+    }
+}else{
     $templatePath = '../config/template/ferie.html';
+    $subject = "Richiesta " .$tipoassenza.'_'. $cognomerichiedente . '_dal_' . $datainizio . '_al_' . $datafine;
     if (file_exists($templatePath)) {
         $replace = array(
             '{{richiedente}}',
@@ -81,6 +122,8 @@ if (isset($_POST["invia"])) {
             </script>';
     }
 }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +135,53 @@ if (isset($_POST["invia"])) {
     <title>Modulo richiesta ferie/RFA</title>
 
     <? require "../config/include/header.html";?>
+    <script>
+        $(document).ready(function () {
+            $('#indietro').on('click', function(){
+                location.href='index.php';
+            });
+        });
+    </script>
+    <script>
+
+        function gestisciCampoNote() {
+            var tipoAssenza = document.querySelector('input[name="tipoassenza"]:checked').value;
+            var noteInput = document.getElementById('notefield');
+            if (tipoAssenza === 'PERMESSO') {
+                noteInput.style.display = 'block';
+            } else {
+                noteInput.style.display = 'none';
+                noteInput.value = '';
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('numerogiorni').addEventListener('change', function() {
+                var numerogiorni = parseInt(this.value);
+                var dataFineContainer = document.getElementById('dataFineContainer');
+                if (numerogiorni > 1) {
+                    dataFineContainer.style.display = 'block';
+                } else {
+                    dataFineContainer.style.display = 'none';
+                    document.getElementById('datafine').value = ''; // Resetta il valore di datafine se viene nascosto
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('numerogiorni').addEventListener('change', function() {
+                var numerogiorni = parseInt(this.value);
+                var datainizioLabel = document.getElementById('datainizio_label');
+                if (numerogiorni === 1) {
+                    datainizioLabel.textContent = 'Il giorno';
+                } else {
+                    datainizioLabel.textContent = 'Dal giorno';
+                }
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -120,12 +210,12 @@ if (isset($_POST["invia"])) {
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="datainizio" class="col-sm-2 col-form-label">Dal giorno</label>
+                <label for="datainizio" id="datainizio_label" class="col-sm-2 col-form-label">Il giorno</label>
                 <div class="col-sm-2">
                     <input type="date" class="form-control form-control-sm" id="datainizio" name="datainizio">
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3" id="dataFineContainer" style="display: none;">
                 <label for="datafine" class="col-sm-2 col-form-label">Al giorno</label>
                 <div class="col-sm-2">
                     <input type="date" class="form-control form-control-sm" id="datafine" name="datafine">
@@ -135,29 +225,29 @@ if (isset($_POST["invia"])) {
                 <legend class="col-form-label col-sm-2 pt-0">Tipo assenza</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipoassenza" id="FERIE" value="FERIE">
+                        <input class="form-check-input" type="radio" name="tipoassenza" id="FERIE" value="FERIE" onclick="gestisciCampoNote()">
                         <label class="form-check-label" for="FERIE">
                             FERIE
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipoassenza" id="RFA" value="RFA">
+                        <input class="form-check-input" type="radio" name="tipoassenza" id="RFA" value="RFA" onclick="gestisciCampoNote()">
                         <label class="form-check-label" for="tipoassenza">
                             RFA
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipoassenza" id="PERMESSO" value="PERMESSO">
+                        <input class="form-check-input" type="radio" name="tipoassenza" id="PERMESSO" value="PERMESSO" onclick="gestisciCampoNote()">
                         <label class="form-check-label" for="gridRadios3">
                             PERMESSO
                         </label>
                     </div>
                 </div>
             </fieldset>
-            <div class="row mb-3">
+            <div class="row mb-3" id="notefield" style="display: none;">
                 <label for="note" class="col-sm-2 col-form-label">Note</label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control form-control-sm" id="note" name="note" placeholder="max 255 caratteri">
+                    <input type="text" class="form-control form-control-sm" id="note" name="note" placeholder="Motiva la richiesta di permesso">
                 </div>
             </div>
             <br>

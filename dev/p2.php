@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.1
+* @version    7.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */

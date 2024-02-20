@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
- * @version    7.1
+* @version    7.2
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -45,14 +45,6 @@ if(isset($_POST["invia"])){
         $stmt->close();
     }
 
-
-    /*
-    if (count($selected_option_parts) >= 2) {
-        $cognomeaccettante = $selected_option_parts[0];
-        $selectacc = $db->query("SELECT email FROM utenti WHERE cognome='$cognomeaccettante'")->fetch_array();
-        $emailaccettante = $selectacc['email'];
-    }
-    */
     $selectsett= $_POST["selectsett"];
     //TODO modificare destinatario
     $to= $autoparco ;
@@ -110,11 +102,8 @@ if(isset($_POST["invia"])){
                 var selectdipValue = $('#selectdip').val();
                 $('#nomenuovo2').val(selectdipValue);
             }
-
-            // Call the function when the page loads
             updateNomenuovo2();
 
-            // Call the function whenever selectdip changes
             $('#selectdip').on('change', updateNomenuovo2);
 
             $('#indietro').on('click', function(){
@@ -122,8 +111,6 @@ if(isset($_POST["invia"])){
             });
         });
     </script>
-
-
 </head>
 <body>
 
