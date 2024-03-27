@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.3
+ * @version    7.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -29,7 +29,7 @@ $dictionary = array (
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
-    <title>Consumi medi</title>
+    <title>Segnalazioni Guasti</title>
 
     <? require "../config/include/header.html";?>
 
@@ -47,7 +47,7 @@ $dictionary = array (
                 stateSave: true,
                 "paging": false,
                 "language": {url: '../config/js/package.json'},
-                "order": [[0, "asc"]],
+                "order": [[3, "asc"]],
                 "pagingType": "simple",
                 "pageLength": 100,
             });
@@ -61,7 +61,7 @@ $dictionary = array (
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
             <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Autoparco</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Consumi</li>
+            <li class="breadcrumb-item active" aria-current="page">Segnalazioni Guasti</li>
         </ol>
     </nav>
 </div>
@@ -73,26 +73,28 @@ $dictionary = array (
             <table class="table table-hover table-sm" id="myTable">
                 <thead>
                 <tr>
-                    <th scope="col">Sigla</th>
-                    <th scope="col">Litri</th>
-                    <th scope="col">Importo</th>
-                    <th scope="col">Km Percorsi</th>
-                    <th scope="col">Media Lt / 100 KM</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Auto</th>
+                    <th scope="col">Segnalazione</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Verificato</th>
+                    <th scope="col">Note</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
 
-                $select = $db->query("SELECT * FROM consumi GROUP BY Sigla order by Sigla DESC");
+                $select = $db->query("SELECT * FROM SegnalazioniGuastiMezzi ");
                 while($ciclo = $select->fetch_array()){
-                    $kminiziali = $ciclo;
+
                     if($select->num_rows>0): ?>
                         <tr>
+                            <td><?=$ciclo['IDSegnalazione']?></td>
                             <td><?=$ciclo['Sigla']?></td>
-                            <td><?=$ciclo['Giorno']?></td>
-                            <td><?=$ciclo['Litri']?></td>
-                            <td><?=$ciclo['Importo']?></td>
-                            <td><?=$ciclo['']?></td>
+                            <td><?=$ciclo['Segnalazione']?></td>
+                            <td><?=$ciclo['DataOra']?></td>
+                            <td><?=$ciclo['DataVerificato']?></td>
+                            <td><?=$ciclo['NoteVerificato']?></td>
                         </tr>
                     <? endif;
                 }?>

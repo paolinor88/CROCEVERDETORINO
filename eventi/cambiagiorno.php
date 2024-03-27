@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.2
+* @version    7.3
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -143,7 +143,7 @@ if(isset($_POST["invia"])){
                 <select id="selectdip" name="selectdip" class="form-control form-control-sm" required>
                     <option value="">Scegli...</option>
                     <?
-                    $select = $db->query("SELECT cognome, nome, email  FROM utenti WHERE stato=1 and  ID LIKE 'D%' order by cognome");
+                    $select = $db->query("SELECT cognome, nome, email  FROM utenti WHERE stato=1 and  ID LIKE 'D%' and utenti.livello<5 order by cognome");
                     while($ciclo = $select->fetch_array()){
                         $emailaccettante= $ciclo['email'];
                         echo "<option value=\"".$ciclo['cognome'].' '.$ciclo['nome']."\">".$ciclo['cognome'].' '.$ciclo['nome']."</option>";
