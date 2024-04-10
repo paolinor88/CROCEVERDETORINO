@@ -3,6 +3,10 @@
 
 paolo.randone@croceverde.org
 ---
+Version 7.4 changelog:
+
+- Integrazione con segnalazioni galileo e verifica
+---
 Version 7.3 changelog:
 
 - Bug fix
