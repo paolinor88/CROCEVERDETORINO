@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -225,7 +225,7 @@ if (isset($_POST['IDMEZZO'])){
                 var note = $("#note").val();
                 var file = $("#file").val();
 
-                swal({
+                Swal.fire({
                     text: "Confermare invio?",
                     icon: "warning",
                     buttons:{
@@ -270,7 +270,7 @@ if (isset($_POST['IDMEZZO'])){
                                     maschereborsa:maschereborsa, robin:robin, guantisterili:guantisterili, telini:telini, metalline:metalline, spazzatura:spazzatura,
                                     pappagallo:pappagallo, dpi:dpi, chirurgiche:chirurgiche, monossido:monossido, oliocheck:oliocheck, rabbocco:rabbocco, tablet:tablet},
                                 success:function(){
-                                    swal({text:"Checklist inviata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Checklist inviata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='index.php';
                                         },1001
@@ -278,7 +278,7 @@ if (isset($_POST['IDMEZZO'])){
                                 }
                             });
                         } else {
-                            swal({text:"Invio annullato come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Invio annullato come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             })

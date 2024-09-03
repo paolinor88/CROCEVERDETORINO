@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -152,7 +152,7 @@ if (!isset($_SESSION["ID"])){
                                 data: {title:title, start_event:start_event, user_id:user_id, stato:stato},
                                 success: function () {
                                     agendalavaggi.fullCalendar('refetchEvents');
-                                    swal({text: "OK", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
+                                    Swal.fire({text: "OK", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.reload();
                                         }, 1001
@@ -167,7 +167,7 @@ if (!isset($_SESSION["ID"])){
                 },
                 eventClick:function(event, jsEvent){ //elimina lavaggio
                     jsEvent.preventDefault();
-                    swal({
+                    Swal.fire({
                         text: "Sei sicuro di voler cancellare questo lavaggio?",
                         icon: "warning",
                         buttons:{
@@ -185,8 +185,8 @@ if (!isset($_SESSION["ID"])){
                             },
                         },
                     })
-                        .then((confirm) => {
-                            if(confirm){
+                        .then((result) => {
+                            if(result.isConfirmed){
                                 var id = event.id;
                                 var title = event.title;
                                 $.ajax({
@@ -195,7 +195,7 @@ if (!isset($_SESSION["ID"])){
                                     data:{id:id, title:title},
                                     success:function(){
                                         agendalavaggi.fullCalendar('refetchEvents');
-                                        swal({text:"Lavaggio eliminato con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                        Swal.fire({text:"Lavaggio eliminato con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                         setTimeout(function () {
                                                 location.reload();
                                             },1001
@@ -203,7 +203,7 @@ if (!isset($_SESSION["ID"])){
                                     }
                                 });
                             } else {
-                                swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                                Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                             }
                         })
                 },

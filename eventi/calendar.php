@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -192,7 +192,7 @@ if (!isset($_SESSION["ID"])){
                                     data: {id_evento:id_evento, id_utente:id_utente},
                                     success: function () {
                                         calendarvulu.fullCalendar('refetchEvents');
-                                        swal({text: "Disponibilità inserita con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
+                                        Swal.fire({text: "Disponibilità inserita con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
                                         setTimeout(function () {
                                                 location.reload();
                                             }, 1001

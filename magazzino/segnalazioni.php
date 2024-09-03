@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -44,10 +44,10 @@ $dictionary = array (
     <script>
         $(document).ready(function() {
             var dataTables = $('#myTable').DataTable({
-                stateSave: true,
+                //stateSave: true,
                 "paging": false,
                 "language": {url: '../config/js/package.json'},
-                "order": [[0, "desc"]],
+                //"order": [[3, "desc"]],
                 "pagingType": "simple",
                 "pageLength": 100,
                 "columnDefs": [
@@ -84,12 +84,18 @@ $dictionary = array (
                     success: function(response) {
 
                         var dataAttuale = new Date().toISOString().slice(0, 19).replace('T', ' ');
-                        $('button[name="dettagli"]:contains("' + ID + '")').closest('tr').find('td:eq(4)').text(dataAttuale); // Imposta la data di verifica
-                        $('button[name="dettagli"]:contains("' + ID + '")').closest('tr').find('td:eq(5)').text(noteAggiornate); // Aggiorna le note
+                        $('button[name="dettagli"]:contains("' + ID + '")').closest('tr').find('td:eq(4)').text(dataAttuale);
+                        $('button[name="dettagli"]:contains("' + ID + '")').closest('tr').find('td:eq(5)').text(noteAggiornate);
 
-                        $('#modalDetails').modal('hide'); // Chiude la modale
-                        alert("Note aggiornate con successo!");
-                        window.location.reload();
+                        $('#modalDetails').modal('hide');
+                        Swal.fire({text:"Aggiornato!", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                        //alert("Note aggiornate con successo!");
+                        //window.location.reload();
+                        setTimeout(function () {
+                            //location.href='mezzi.php';
+                                window.location.reload();
+                        },1001
+                        )
                     },
 
                     error: function(xhr, status, error) {
@@ -129,16 +135,18 @@ $dictionary = array (
                 <tbody>
                 <?php
 
-                $select = $db->query("SELECT * FROM SegnalazioniGuastiMezzi");
+                $select = $db->query("SELECT * FROM SegnalazioniGuastiMezzi order by DataOra desc " );
                 while($ciclo = $select->fetch_array()){
-                    $dataFormattata = date('d/m/Y H:i', strtotime($ciclo['DataOra']));
+                    //$dataFormattata = date('d/m/Y H:i', strtotime($ciclo['DataOra']));
+                    //$dataFormattata = date('Y-m-d\TH:i:s', strtotime($ciclo['DataOra']));
+
                     if($select->num_rows>0): ?>
                         <tr>
                             <td><button class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modalDetails" name="dettagli" data-id="<?=$ciclo['ID']?>"><i class="fas fa-search"></i></button>
                             </td>
                             <td align="center"><?=$ciclo['Sigla']?></td>
                             <td><?=$ciclo['Segnalazione']?></td>
-                            <td><?=$dataFormattata?></td>
+                            <td><?=$ciclo['DataOra']?></td>
                             <td align="center">
     <span class="checkmark-container">
         <?if(($ciclo['DataVerificato'])!=""){echo "<i class='fas fa-check' style='color: #1a712c'></i>";}?>

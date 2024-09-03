@@ -3,13 +3,16 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
 session_start();
 include "../config/config.php";
 include "../config/include/destinatari.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if (!isset($_SESSION["ID"])) {
     header("Location: ../login.php");
@@ -36,9 +39,10 @@ if (isset($_POST["invia"])) {
 
     $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
     $headers .= "Bcc: " . $emailrichiedente . "\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
+    
 if ($numerogiorni==1){
     $subject = "Richiesta " .$tipoassenza.'_'. $cognomerichiedente . '_' . $datainizio;
     $templatePath = '../config/template/ferie1.html';

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -43,7 +43,7 @@ $dictionary = array (
                 var tipo = $("#tipo option:selected").val();
                 var note = $("#note").val();
                 var immatricolazione = $("#immatricolazione").val();
-                swal({
+                Swal.fire({
                     text: "Sei sicuro di voler inserire questo mezzo?",
                     icon: "warning",
                     buttons:{
@@ -68,7 +68,7 @@ $dictionary = array (
                                 type:"POST",
                                 data:{ID:ID, targa:targa, immatricolazione:immatricolazione, tipo:tipo, note:note},
                                 success:function(){
-                                    swal({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                         location.href='mezzi.php';
                                     },1001
@@ -76,7 +76,7 @@ $dictionary = array (
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             })

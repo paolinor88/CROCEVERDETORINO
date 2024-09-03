@@ -45,7 +45,7 @@ $dictionary1 = array (
                     type: "POST",
                     data: {id_richiesta:id_richiesta, statoF:statoF},
                     success:function () {
-                        swal({text:"Eseguito", icon: "success", button:false, timer:1000, closeOnClickOutside: false});
+                        Swal.fire({text:"Eseguito", icon: "success", button:false, timer:1000, closeOnClickOutside: false});
                         setTimeout(function () {
                                 location.href='ordini.php';
                             },1001

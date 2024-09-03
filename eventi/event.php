@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -54,7 +54,7 @@ $dictionaryStato = array (
                 var sezione = $("#sezione option:selected").val();
                 var squadra = $("#squadra option:selected").val();
                 //alert(password);
-                swal({
+                Swal.fire({
                     text: "Sei sicuro di voler inserire questo utente?",
                     icon: "warning",
                     buttons:{
@@ -79,7 +79,7 @@ $dictionaryStato = array (
                                 type:"POST",
                                 data:{ID:ID, cognome:cognome, nome:nome, email:email, cf:cf, password:password, telefono:telefono, livello:livello, sezione:sezione, squadra:squadra},
                                 success:function(){
-                                    swal({text:"Utente inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Utente inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='index.php';
                                         },1001
@@ -89,7 +89,7 @@ $dictionaryStato = array (
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             })

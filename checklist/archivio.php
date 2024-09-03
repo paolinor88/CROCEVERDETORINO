@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -199,7 +199,7 @@ if(isset($_POST['fotoeliminaALL'])){
                 e.preventDefault();
                 var id = $(this).attr("id");
                 var stato = "2";
-                swal({
+                Swal.fire({
                     text: "Conferma azione",
                     icon: "warning",
                     buttons:{
@@ -224,7 +224,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 type:"POST",
                                 data:{id:id, stato:stato},
                                 success:function(){
-                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='archivio.php';
                                         },1001
@@ -232,7 +232,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             });
@@ -240,7 +240,7 @@ if(isset($_POST['fotoeliminaALL'])){
                 e.preventDefault();
                 var id = $(this).attr("id");
                 var stato = "3";
-                swal({
+                Swal.fire({
                     text: "Conferma azione",
                     icon: "warning",
                     buttons:{
@@ -265,7 +265,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 type:"POST",
                                 data:{id:id, stato:stato},
                                 success:function(){
-                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='archivio.php';
                                         },1001
@@ -273,7 +273,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             });
@@ -281,7 +281,7 @@ if(isset($_POST['fotoeliminaALL'])){
                 e.preventDefault();
                 var id = $(this).attr("id");
                 var status = "2";
-                swal({
+                Swal.fire({
                     text: "Conferma azione",
                     icon: "warning",
                     buttons:{
@@ -306,7 +306,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 type:"POST",
                                 data:{id:id, status:status},
                                 success:function(){
-                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='archivio.php';
                                         },1001
@@ -314,7 +314,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             });
@@ -322,7 +322,7 @@ if(isset($_POST['fotoeliminaALL'])){
                 e.preventDefault();
                 var id = $(this).attr("id");
                 var status = "3";
-                swal({
+                Swal.fire({
                     text: "Conferma azione",
                     icon: "warning",
                     buttons:{
@@ -347,7 +347,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 type:"POST",
                                 data:{id:id, status:status},
                                 success:function(){
-                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='archivio.php';
                                         },1001
@@ -355,7 +355,7 @@ if(isset($_POST['fotoeliminaALL'])){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             });

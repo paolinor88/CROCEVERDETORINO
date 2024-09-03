@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -51,10 +51,11 @@ if(isset($_POST["invia"])){
     $subject="Cambio turno giorno".' '.$selectsett.'_'.$cognomerichiedente .'-'.$cognomeaccettante;
     $nome_mittente="Gestionale CVTO";
     $mail_mittente=$gestionale;
-    $headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
-    $headers .= "Bcc: ".$emailrichiedente."\r\n";
+
+    $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
+    $headers .= "Bcc: " . $emailrichiedente . "\r\n";
     $headers .= "Bcc: ".$emailaccettante."\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
 
@@ -83,6 +84,7 @@ if(isset($_POST["invia"])){
         location.href="index.php";
         </script>';
 }
+
 ?>
 
 <!DOCTYPE html>

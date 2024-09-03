@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -57,7 +57,7 @@ if (isset($_POST['IDMEZZO'])){
                 var DATACHECK = moment().format('YYYY-MM-DD HH:mm:ss');
                 //
                 var solonote = $("#note").val();
-                swal({
+                Swal.fire({
                     text: "Confermare invio?",
                     icon: "warning",
                     buttons:{
@@ -82,7 +82,7 @@ if (isset($_POST['IDMEZZO'])){
                                 type:"POST",
                                 data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, tipo:tipo, DATACHECK:DATACHECK, solonote:solonote},
                                 success:function(){
-                                    swal({text:"Segnalazione inviata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Segnalazione inviata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='index.php';
                                         },1001
@@ -90,7 +90,7 @@ if (isset($_POST['IDMEZZO'])){
                                 }
                             });
                         } else {
-                            swal({text:"Invio annullato come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Invio annullato come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             })

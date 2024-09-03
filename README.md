@@ -2,6 +2,11 @@
 *Powered for Croce Verde Torino. All rights reserved*
 
 paolo.randone@croceverde.org
+
+Version 7.5 changelog:
+
+- Correzione di bug, aggiunte utility autoparco
+- Aggiunto modulo raccolta segnalazione per ODV
 ---
 Version 7.4 changelog:
 

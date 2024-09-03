@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -114,35 +114,38 @@ if (!isset($_SESSION["ID"])){
 
                 }
             });
+            //TODO MODIFICARE NEL CAMBIO ORA
+            var nowDate = moment.utc("<?php echo gmdate("Y-m-d\TH:i:s\Z", time()+2*3600); ?>");//ANTI DE MARCO
+            //console.log(nowDate);
             var calendaruser = $('#calendaruser').fullCalendar({
-                eventRender: function (event, element){
-                    if ((event.stato) !== '1'){
+                eventRender: function (event, element) {
+                    if ((event.stato) !== '1') {
                         element.addClass('confermato');
-                    }else if ((event.start.format("HH:mm:ss")) === "06:00:00"){
+                    } else if ((event.start.format("HH:mm:ss")) === "06:00:00") {
                         element.addClass('mattino');
-                    }else if
-                    ((event.start.format("HH:mm:ss")) === "08:00:00"){
+                    } else if
+                    ((event.start.format("HH:mm:ss")) === "08:00:00") {
                         element.addClass('centrale');
-                    }else if
-                    ((event.start.format("HH:mm:ss")) === "01:00:00"){
+                    } else if
+                    ((event.start.format("HH:mm:ss")) === "01:00:00") {
                         element.addClass('giorno');
-                    }
-                    else {
+                    } else {
                         element.addClass('pomeriggio');
                     }
-                    return(['all', event.id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
+                    return (['all', event.id].indexOf($("#modalFilterID option:selected").val()) >= 0) && (['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val()) >= 0);
                 },
                 header: {
                     left: 'prev ,today',
                     center: 'title',
                     right: 'basicWeek,month, next',
                 },
-                validRange: function(nowDate) {
+                validRange: function () {
                     return {
                         start: nowDate.clone().subtract(1, 'years'),
                         end: nowDate.clone().add(8, 'days')
                     };
                 },
+
                 eventOrder: "event.id",
                 //aspectRatio: 3,
                 editable: true,
@@ -173,56 +176,69 @@ if (!isset($_SESSION["ID"])){
 
                     }
                 ],
-                dayClick: function(date) { //INSERISCI DISPONIBILITA
-                    if(moment() <= date){
+                dayClick: function (date) { //INSERISCI DISPONIBILITA
+                    if (moment() <= date) {
                         var day = date.format("YYYY-MM-DD");
                         $('#modal4').modal('show');
                         $('#addButton').off('click').on('click', function () {
                             $('#modal4').modal('hide');
                             var user_id = $("#user_id").val();
                             var title = $("#cognomenome").val();
-                            if (($("#modalAddStart option:selected").val()) !== ""){
+                            if (($("#modalAddStart option:selected").val()) !== "") {
                                 var start = day + " " + $("#modalAddStart option:selected").val();
                                 var endStr = $.fullCalendar.moment(start);
                                 endStr.add(1, 'hours');
-                                var end =endStr.format("YYYY-MM-DD HH:mm:ss");
+                                var end = endStr.format("YYYY-MM-DD HH:mm:ss");
                                 $.ajax({
                                     url: "insert.php",
                                     type: "POST",
-                                    data: {title:title, start:start, end:end, user_id:user_id},
+                                    data: {title: title, start: start, end: end, user_id: user_id},
                                     success: function () {
                                         calendaruser.fullCalendar('refetchEvents');
-                                        swal({text: "Disponibilità inserita con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
+                                        //alert("Disponibilità inserita con successo");
+                                        Swal.fire({
+                                            text: "Disponibilità inserita con successo",
+                                            icon: "success",
+                                            timer: 1000,
+                                            button: false,
+                                            closeOnClickOutside: false
+                                        });
                                         setTimeout(function () {
                                                 location.reload();
                                             }, 1001
                                         )
                                     }
                                 });
-                            }else{
+                            } else {
                                 alert("Seleziona un turno dall'elenco a discesa!")
                             }
                         });
-                    }else{
-                        swal({title: "ERRORE!", text:"Non è una macchina del tempo!", icon: "error", button:true, closeOnClickOutside: false});
+                    } else {
+                        Swal.fire({
+                            title: "ERRORE!",
+                            text: "Non è una macchina del tempo!",
+                            icon: "error",
+                            button: true,
+                            closeOnClickOutside: false
+                        });
                     }
                 },
-                eventClick:function(event, jsEvent){ //elimina disponibilità
+                eventClick: function (event, jsEvent) { //elimina disponibilità
                     jsEvent.preventDefault();
                     var title = $("#cognomenome").val();
                     //alert(event.start.format("YYYY-MM-DD"));
-                    if(((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD")))&&(title===event.title)){
-                        swal({
+                    if (((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD"))) && (title === event.title)) {
+                        Swal.fire({
                             text: "Sei sicuro di voler cancellare questa disponibilità?",
                             icon: "warning",
-                            buttons:{
-                                cancel:{
+                            buttons: {
+                                cancel: {
                                     text: "Annulla",
                                     value: null,
                                     visible: true,
                                     closeModal: true,
                                 },
-                                confirm:{
+                                confirm: {
                                     text: "Conferma",
                                     value: true,
                                     visible: true,
@@ -231,28 +247,45 @@ if (!isset($_SESSION["ID"])){
                             },
                         })
                             .then((confirm) => {
-                                if(confirm){
+                                if (confirm) {
                                     var id = event.id;
                                     $.ajax({
-                                        url:"script.php",
-                                        type:"POST",
-                                        data:{id:id},
-                                        success:function(){
+                                        url: "script.php",
+                                        type: "POST",
+                                        data: {id: id},
+                                        success: function () {
                                             calendaruser.fullCalendar('refetchEvents');
-                                            swal({text:"Disponibilità eliminata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                            Swal.fire({
+                                                text: "Disponibilità eliminata con successo",
+                                                icon: "success",
+                                                timer: 1000,
+                                                button: false,
+                                                closeOnClickOutside: false
+                                            });
                                             setTimeout(function () {
                                                     location.reload();
-                                                },1001
+                                                }, 1001
                                             )
                                         }
                                     });
                                 } else {
-                                    swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({
+                                        text: "Operazione annullata come richiesto!",
+                                        timer: 1000,
+                                        button: false,
+                                        closeOnClickOutside: false
+                                    });
                                 }
                             })
-                    }else{
+                    } else {
                         calendaruser.fullCalendar('refetchEvents');
-                        swal({title: "ERRORE!", text:"Non puoi eseguire questa operazione", icon: "error", button:true, closeOnClickOutside: false});
+                        Swal.fire({
+                            title: "ERRORE!",
+                            text: "Non puoi eseguire questa operazione",
+                            icon: "error",
+                            button: true,
+                            closeOnClickOutside: false
+                        });
                     }
                 },
             });

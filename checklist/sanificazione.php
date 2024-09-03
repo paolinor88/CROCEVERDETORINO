@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -60,7 +60,7 @@ echo date_format()
                 var INTERNO = $("#lavaggiointerno option:selected").val();
                 var SANIFICAZIONE = $("#disinfezione option:selected").val();
                 //alert(IDMEZZO);
-                swal({
+                Swal.fire({
                     text: "Confermare invio?",
                     icon: "warning",
                     buttons:{
@@ -85,7 +85,7 @@ echo date_format()
                                 type:"POST",
                                 data:{IDMEZZO:IDMEZZO, IDOPERATORE:IDOPERATORE, DATACHECK:DATACHECK, ESTERNO:ESTERNO, INTERNO:INTERNO, SANIFICAZIONE:SANIFICAZIONE},
                                 success:function(){
-                                    swal({text:"Lavaggio inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Lavaggio inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='index.php';
                                         },1001
@@ -93,7 +93,7 @@ echo date_format()
                                 }
                             });
                         } else {
-                            swal({text:"Invio annullato come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Invio annullato come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             })

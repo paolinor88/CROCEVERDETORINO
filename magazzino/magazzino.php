@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -49,7 +49,7 @@ if (($_SESSION["livello"])<4){
                 var categoria = $("#categoria").val();
                 var fornitore = $("#fornitore").val();
                 var prezzo = $("#prezzo").val();
-                swal({
+                Swal.fire({
                     text: "Sei sicuro di voler aggiungere questo articolo?",
                     icon: "warning",
                     buttons:{
@@ -74,7 +74,7 @@ if (($_SESSION["livello"])<4){
                                 type:"POST",
                                 data:{nome:nome, tipo:tipo, quantita:quantita, scadenza:scadenza, dettagli:dettagli, posizione:posizione, categoria:categoria, fornitore:fornitore, prezzo:prezzo},
                                 success:function(){
-                                    swal({text:"Articolo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Articolo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='magazzino.php';
                                         },1001
@@ -82,7 +82,7 @@ if (($_SESSION["livello"])<4){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             })

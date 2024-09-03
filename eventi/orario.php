@@ -3,10 +3,14 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 include "../config/config.php";
 include "../config/include/destinatari.php";
@@ -24,14 +28,14 @@ if (!isset($_SESSION["ID"])) {
 if (isset($_POST["invia"])) {
     $datainizio = $_POST["datainizio"];
 
-    $to = $autoparco ?? '';
+    $to = 'autoparco@croceverde.org';
 
     $nome_mittente = "Gestionale CVTO";
     $mail_mittente = $gestionale;
     $subject = "Richiesta " .$datainizio. "_IN_ORARIO_" . $cognomerichiedente;
     $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
     $headers .= "Bcc: " . $emailrichiedente . "\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
 
@@ -48,8 +52,12 @@ if (isset($_POST["invia"])) {
 
         $corpo = file_get_contents($templatePath);
         $corpo = str_replace($replace, $with, $corpo);
-
-        // Verifica
+        /*
+        var_dump($to);
+        var_dump($subject);
+        var_dump($corpo);
+        var_dump($headers);
+*/
         if (mail($to, $subject, $corpo, $headers)) {
             echo '<script type="text/javascript">
                 alert("Richiesta inviata con successo");
@@ -67,13 +75,8 @@ if (isset($_POST["invia"])) {
             location.href="index.php"; 
             </script>';
     }
-
 }
-/*
-echo $matricola;
-echo  $cognomenomerichiedente;
-echo  $emailrichiedente;
-*/
+
 ?>
 
 <!DOCTYPE html>

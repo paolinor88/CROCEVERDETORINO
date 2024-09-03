@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -211,7 +211,7 @@ if (!isset($_SESSION["ID"])){
                                     data: {title:title, start:start, end:end, user_id:user_id},
                                     success: function () {
                                         calendaruser.fullCalendar('refetchEvents');
-                                        swal({text: "Trasporto inserito con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
+                                        Swal.fire({text: "Trasporto inserito con successo", icon: "success", timer: 1000, button: false, closeOnClickOutside: false});
                                         setTimeout(function () {
                                                 location.reload();
                                             }, 1001
@@ -223,7 +223,7 @@ if (!isset($_SESSION["ID"])){
                             }
                         });
                     }else{
-                        swal({title: "ERRORE!", text:"Non è una macchina del tempo!", icon: "error", button:true, closeOnClickOutside: false});
+                        Swal.fire({title: "ERRORE!", text:"Non è una macchina del tempo!", icon: "error", button:true, closeOnClickOutside: false});
                     }
                 },
                 eventClick:function(event, jsEvent){ //elimina disponibilità
@@ -232,7 +232,7 @@ if (!isset($_SESSION["ID"])){
                     var title = $("#cognomenome").val();
                     //alert(event.start.format("YYYY-MM-DD"));
                     if((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD"))){
-                        swal({
+                        Swal.fire({
                             text: "Sei sicuro di voler cancellare questa disponibilità?",
                             icon: "warning",
                             buttons:{
@@ -259,7 +259,7 @@ if (!isset($_SESSION["ID"])){
                                         data:{id:id},
                                         success:function(){
                                             calendaruser.fullCalendar('refetchEvents');
-                                            swal({text:"Disponibilità eliminata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                            Swal.fire({text:"Disponibilità eliminata con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                             setTimeout(function () {
                                                     location.reload();
                                                 },1001
@@ -267,12 +267,12 @@ if (!isset($_SESSION["ID"])){
                                         }
                                     });
                                 } else {
-                                    swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                                 }
                             })
                     }else{
                         calendaruser.fullCalendar('refetchEvents');
-                        swal({title: "ERRORE!", text:"Non puoi eseguire questa operazione", icon: "error", button:true, closeOnClickOutside: false});
+                        Swal.fire({title: "ERRORE!", text:"Non puoi eseguire questa operazione", icon: "error", button:true, closeOnClickOutside: false});
                     }
                 },
             });

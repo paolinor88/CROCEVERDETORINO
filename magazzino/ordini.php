@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.4
+* @version    7.5
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -228,7 +228,7 @@ if(isset($_POST['eliminaALL'])){
                 e.preventDefault();
                 var id_richiesta = $(this).attr("id");
                 var statoF = "2";
-                swal({
+                Swal.fire({
                     text: "Conferma azione",
                     icon: "warning",
                     buttons:{
@@ -253,7 +253,7 @@ if(isset($_POST['eliminaALL'])){
                                 type:"POST",
                                 data:{id_richiesta:id_richiesta, statoF:statoF},
                                 success:function(){
-                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='ordini.php';
                                         },1001
@@ -261,7 +261,7 @@ if(isset($_POST['eliminaALL'])){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             });
@@ -269,7 +269,7 @@ if(isset($_POST['eliminaALL'])){
                 e.preventDefault();
                 var id_richiesta = $(this).attr("id");
                 var statoF = "3";
-                swal({
+                Swal.fire({
                     text: "Conferma azione",
                     icon: "warning",
                     buttons:{
@@ -294,7 +294,7 @@ if(isset($_POST['eliminaALL'])){
                                 type:"POST",
                                 data:{id_richiesta:id_richiesta, statoF:statoF},
                                 success:function(){
-                                    swal({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
+                                    Swal.fire({text:"Fatto", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
                                             location.href='ordini.php';
                                         },1001
@@ -302,7 +302,7 @@ if(isset($_POST['eliminaALL'])){
                                 }
                             });
                         } else {
-                            swal({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
+                            Swal.fire({text:"Operazione annullata come richiesto!", timer: 1000, button:false, closeOnClickOutside: false});
                         }
                     })
             });
