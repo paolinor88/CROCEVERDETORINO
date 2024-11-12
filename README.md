@@ -3,6 +3,9 @@
 
 paolo.randone@croceverde.org
 
+Version 8.0 changelog:
+- Aggiunto modulo gestione ossigeno
+---
 Version 7.5 changelog:
 
 - Correzione di bug, aggiunte utility autoparco

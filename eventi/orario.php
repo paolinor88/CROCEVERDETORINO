@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.5
+* @version    8.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -27,14 +27,14 @@ if (!isset($_SESSION["ID"])) {
 
 if (isset($_POST["invia"])) {
     $datainizio = $_POST["datainizio"];
-
+    //$to= $autoparco;
     $to = 'autoparco@croceverde.org';
 
     $nome_mittente = "Gestionale CVTO";
     $mail_mittente = $gestionale;
     $subject = "Richiesta " .$datainizio. "_IN_ORARIO_" . $cognomerichiedente;
     $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
-    $headers .= "Bcc: " . $emailrichiedente . "\r\n";
+    $headers .= "Cc: " . $emailrichiedente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";

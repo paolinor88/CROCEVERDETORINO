@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.5
+* @version    8.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -46,6 +46,7 @@ if (!isset($_SESSION["ID"])){
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="lavaggi.php"><i class="fas fa-shower"></i> Lavaggio mezzi</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="manutenzionimezzi.php"><i class="fas fa-cogs"></i> Manutenzione mezzi</a>
                 <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="segnalazioni.php"><i class="fas fa-search"></i> Segnalazioni mezzi</a>
+                <a role="button" class="btn btn-outline-cv btn-block <?if($_SESSION['livello']<=3){echo "disabled";}?>" href="movimenti.php"><i class="fas fa-barcode"></i> Movimenti Ossigeno</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="calcolaossigeno.php" target="_blank"><i class="fas fa-calculator"></i> Calcolo ossigeno viaggi</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="calcolabombole.php" target="_blank"><i class="fas fa-calculator"></i> Calcolo durata bombole</a>
                 <a role="button" class="btn btn-outline-cv btn-block" href="calcolaviaggio.php" target="_blank"><i class="fas fa-calculator"></i> Calcolo costo servizio</a>

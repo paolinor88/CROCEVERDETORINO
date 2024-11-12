@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.5
+* @version    8.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -48,13 +48,15 @@ if(isset($_POST["invia"])){
     $selectsett= $_POST["selectsett"];
     //TODO modificare destinatario
     $to= $autoparco ;
-    $subject="Cambio turno giorno".' '.$selectsett.'_'.$cognomerichiedente .'-'.$cognomeaccettante;
+   // $to= 'paolo.randone@croceverde.org';
+    $subject="Richiesta cambio giorno".' '.$selectsett.'_'.$cognomerichiedente .'-'.$cognomeaccettante;
     $nome_mittente="Gestionale CVTO";
     $mail_mittente=$gestionale;
 
     $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
-    $headers .= "Bcc: " . $emailrichiedente . "\r\n";
-    $headers .= "Bcc: ".$emailaccettante."\r\n";
+    $headers .= "Cc: ".$emailrichiedente.", ".$emailaccettante."\r\n";
+    //$headers .= "Bcc: " . $emailrichiedente . "\r\n";
+    //$headers .= "Bcc: ".$emailaccettante."\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";

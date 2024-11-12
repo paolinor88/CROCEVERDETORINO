@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.5
+* @version    8.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -33,18 +33,18 @@ if (isset($_POST["invia"])) {
     $note = $_POST["note"];
 
     $to = $autoparco ?? '';
-
+    //$to = 'paolo.randone@croceverde.org' ?? '';
     $nome_mittente = "Gestionale CVTO";
     $mail_mittente = $gestionale;
 
     $headers = "From: " . $nome_mittente . " <" . $mail_mittente . ">\r\n";
-    $headers .= "Bcc: " . $emailrichiedente . "\r\n";
+    $headers .= "Cc: " . $emailrichiedente . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1";
     
 if ($numerogiorni==1){
-    $subject = "Richiesta " .$tipoassenza.'_'. $cognomerichiedente . '_' . $datainizio;
+    $subject = "Richiesta " .$datainizio.'_'. $tipoassenza . '_' . $cognomerichiedente;
     $templatePath = '../config/template/ferie1.html';
     if (file_exists($templatePath)) {
         $replace = array(
@@ -85,7 +85,7 @@ if ($numerogiorni==1){
     }
 }else{
     $templatePath = '../config/template/ferie.html';
-    $subject = "Richiesta " .$tipoassenza.'_'. $cognomerichiedente . '_dal_' . $datainizio . '_al_' . $datafine;
+    $subject = "Richiesta " .$datainizio.'_al_'. $datafine . '_' . $tipoassenza . '_' . $cognomerichiedente;
     if (file_exists($templatePath)) {
         $replace = array(
             '{{richiedente}}',

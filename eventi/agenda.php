@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    7.5
+* @version    8.0
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -27,6 +27,10 @@ if (!isset($_SESSION["ID"])){
 
     <script src="../config/js/gcal.js"></script>
     <script src="../config/js/it.js"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Moment Timezone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -114,9 +118,10 @@ if (!isset($_SESSION["ID"])){
 
                 }
             });
-            //TODO MODIFICARE NEL CAMBIO ORA
-            var nowDate = moment.utc("<?php echo gmdate("Y-m-d\TH:i:s\Z", time()+2*3600); ?>");//ANTI DE MARCO
-            //console.log(nowDate);
+            //TODO NUOVO ORARIO DI SBLOCCO ORE 3 ITALIANE
+            var nowDate = moment.tz("<?php echo gmdate("Y-m-d"); ?> 03:00:00", "Europe/Rome");
+
+            //console.log(nowDate.format("YYYY-MM-DD HH:mm:ss") + " UTC");
             var calendaruser = $('#calendaruser').fullCalendar({
                 eventRender: function (event, element) {
                     if ((event.stato) !== '1') {
@@ -291,6 +296,10 @@ if (!isset($_SESSION["ID"])){
             });
         });
     </script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Moment Timezone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.min.js"></script>
 
 </head>
 <!-- NAVBAR -->
