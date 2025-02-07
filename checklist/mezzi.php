@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    8.0
+* @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -69,7 +69,7 @@ $dictionary = array (
                                 success:function(){
                                     Swal.fire({text:"Mezzo inserito con successo", icon: "success", timer: 1000, button:false, closeOnClickOutside: false});
                                     setTimeout(function () {
-                                        location.href='/gestionale/checklist/mezzi.php';
+                                        location.href='mezzi.php';
                                     },1001
                                     )
                                 }

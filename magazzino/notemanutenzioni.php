@@ -6,7 +6,7 @@ session_start();
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    8.0
+* @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -24,7 +24,7 @@ echo"    <div class=\"table-responsive-sm\">
             ";
 if (isset($_GET["id"])){
     $id = $_GET["id"];
-    $select = $db->query("SELECT * FROM mezzi_tagliandi WHERE ID_MEZZO='$id' AND TIPOMANUTENZIONE !=5");
+    $select = $db->query("SELECT * FROM mezzi_tagliandi WHERE ID_MEZZO='$id' AND TIPOMANUTENZIONE !=5 ");
     while($ciclo = $select->fetch_array()){
         if($select->num_rows>0): ?>
             <tr>

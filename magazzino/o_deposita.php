@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 /**
  *
  * @author     Paolo Randone
- * @version    8.0
+ * @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -90,12 +90,48 @@ if (isset($_POST["IDBombola"])) {  // Rileva l'input dal lettore di barcode
             let submitTimeout;
             let countdownInterval;
             let countdown = 5;  // Imposta il ritardo di conferma a 5 secondi
+            let lastScanTime = 0;
+
+            $('#barcodeForm input').on('keypress', function (e) {
+                // Ignora gli invii multipli ravvicinati
+                const currentTime = new Date().getTime();
+                if (e.which === 13 && currentTime - lastScanTime < 500) { // 500ms di tolleranza
+                    e.preventDefault();
+                    return false;
+                }
+                lastScanTime = currentTime;
+            });
 
             // Gestione del submit con ritardo e conto alla rovescia
             $('#barcodeForm input').on('input', function () {
                 clearTimeout(submitTimeout);
                 clearInterval(countdownInterval);
 
+                const idBombola = $('#IDBombola').val().trim(); // Rimuove spazi o caratteri invisibili
+
+                // Controllo validità IDBombola solo se la lunghezza è esattamente 12
+                if (idBombola.length === 12 && !idBombola.endsWith('10119')) {
+                    // Mostra alert con SweetAlert e ricarica la pagina
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ERRORE!',
+                        text: 'Hai scansionato un codice a barre non valido. Utilizza quello della etichetta posta sul collo della bombola',
+                        timer: 4000, // Mostra l'alert per 4 secondi
+                        showConfirmButton: false
+                    }).then(() => {
+                        location.reload(); // Ricarica la pagina dopo l'alert
+                    });
+
+                    // Reset form e blocco
+                    clearTimeout(submitTimeout);
+                    clearInterval(countdownInterval);
+                    $('#countdownPrompt').hide();
+                    $('#barcodeForm')[0].reset();
+                    $('#IDBombola').focus();
+                    return;
+                }
+
+                // Procedi solo quando tutti i campi richiesti sono completi
                 if ($('#IDBombola').val() && $('#TipoMovimento').val() && $('#Destinazione').val()) {
                     countdown = 5;  // Reimposta il conto alla rovescia
 
@@ -128,6 +164,7 @@ if (isset($_POST["IDBombola"])) {  // Rileva l'input dal lettore di barcode
             });
         });
     </script>
+
     <style>
         input {
             text-align: center;

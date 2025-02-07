@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    8.0
+* @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -34,268 +34,303 @@ if (!isset($_SESSION["ID"])){
 
     <script>
         $(document).ready(function () {
-            var agendacal = $('#agendacal').fullCalendar({
-                eventRender: function (event, element){
-                    if ((event.stato) !== '1'){
-                        element.addClass('confermato');
-                    }else if ((event.start.format("HH:mm:ss")) === "06:00:00"){
-                        element.addClass('mattino');
-                    }else if
-                    ((event.start.format("HH:mm:ss")) === "08:00:00"){
-                        element.addClass('centrale');
-                    }else if
-                    ((event.start.format("HH:mm:ss")) === "01:00:00"){
-                        element.addClass('giorno');
-                    }
-                    else {
-                        element.addClass('pomeriggio');
-                    }
-                    return(['all', event.user_id].indexOf($("#modalFilterID option:selected").val())>=0)&&(['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val())>=0);
-                },
-                customButtons: {
-                    refreshBTN: {
-                        text: 'Aggiorna',
-                        click: function(){location.reload();}
-                    },
-                    filterBTN: {
-                        text: 'Filter',
-                        click: function () {
-                            $('#modal3').modal('show');
-                            $("#filterButton").click(function () {
-                                $('#modal3').modal('hide');
-                                agendacal.fullCalendar('refetchEvents')
-                            });
-                            $("#resetButton").click(function () {
-                                $('#modal3').modal('hide');
-                                location.reload();
-                            });
+
+            // Ottieni i limiti validi dal server
+            $.ajax({
+                url: 'getValidRange.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    let validStart = response.validStart;
+                    let validEnd = response.validEnd;
+                    // calendario admin
+                    var agendacal = $('#agendacal').fullCalendar({
+                        validRange: {
+                            start: validStart,
+                            end: validEnd
+                        },
+                        eventRender: function (event, element) {
+                            if (event.stato !== '1') {
+                                element.addClass('confermato');
+                            } else if (event.start.format("HH:mm:ss") === "06:00:00") {
+                                element.addClass('mattino');
+                            } else if (event.start.format("HH:mm:ss") === "08:00:00") {
+                                element.addClass('centrale');
+                            } else if ((event.start.format("HH:mm:ss") === "01:00:00") ||  (event.start.format("HH:mm:ss") === "03:00:00")){
+                                element.addClass('giorno');
+                            } else {
+                                element.addClass('pomeriggio');
+                            }
+
+                            // Filtra eventi in base ai selettori nel modal
+                            return (
+                                ['all', event.user_id].indexOf($("#modalFilterID option:selected").val()) >= 0 &&
+                                ['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val()) >= 0
+                            );
+                        },
+                        customButtons: {
+                            refreshBTN: {
+                                text: 'Aggiorna',
+                                click: function () {
+                                    location.reload();
+                                }
+                            },
+                            filterBTN: {
+                                text: 'Filtra',
+                                click: function () {
+                                    $('#modal3').modal('show');
+                                    $("#filterButton").off('click').on('click', function () {
+                                        $('#modal3').modal('hide');
+                                        agendacal.fullCalendar('refetchEvents');
+                                    });
+                                    $("#resetButton").off('click').on('click', function () {
+                                        $('#modal3').modal('hide');
+                                        location.reload();
+                                    });
+                                }
+                            },
+                        },
+                        header: {
+                            left: 'prev filterBTN,refreshBTN,today',
+                            center: 'title',
+                            right: 'basicWeek,month next',
+                        },
+                        eventOrder: "event.id",
+                        editable: false,
+                        selectable: false,
+                        displayEventEnd: false,
+                        eventDurationEditable: false,
+                        defaultView: 'month',
+                        themeSystem: 'bootstrap4',
+                        displayEventTime: false,
+                        googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
+                        eventSources: [
+                            {
+                                url: 'loadagenda.php',
+                                type: 'POST',
+                                data: { stato: 'stato', id: 'id', user_id: 'user_id' },
+                            },
+                            {
+                                googleCalendarId: 'rpiguh13hptg6bq4imt5udgjpo@group.calendar.google.com',
+                                color: 'red',
+                                className: 'nolink',
+                            }
+                        ],
+                        eventClick: function (event, jsEvent) {
+                            jsEvent.preventDefault(); // Disabilita azioni predefinite
                         }
-                    },
-                },
-                header: {
-                    left: 'prev filterBTN,refreshBTN,today',
-                    center: 'title',
-                    right: 'basicWeek,month next',
-                },
-                validRange: function(nowDate) {
-                    return {
-                        start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(1, 'months')
-                    };
-                },
-                eventOrder: "event.id",
-                //aspectRatio: 5,
-                editable: true,
-                selectable: false,
-                displayEventEnd: false,
-                eventDurationEditable: false,
-                //eventOverlap: false,
-                defaultView: 'month',
-                themeSystem: 'bootstrap4',
-                displayEventTime: false,
-                googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
-                eventSources: [
-                    {
-                        // AGENDA STRAORDINARIO
-                        url: 'loadagenda.php',
-                        type: 'POST',
-                        data: {
-                            stato: 'stato',
-                            id: 'id',
-                            user_id: 'user_id'
+                    });
+                    // calendario user
+                    var calendaruser = $('#calendaruser').fullCalendar({
+                        validRange: {
+                            start: validStart,
+                            end: validEnd
                         },
-                    },
-                    {
-                        // festività nazionali
-                        googleCalendarId: 'rpiguh13hptg6bq4imt5udgjpo@group.calendar.google.com',
-                        color: 'red',
-                        className: 'nolink',
-                    }
-                ],
-                //FUNZIONE DISABILITATA
-                eventClick:function(event, jsEvent){
-                    jsEvent.preventDefault();
+                        eventRender: function (event, element) {
+                            if (event.stato !== '1') {
+                                element.addClass('confermato');
+                            } else if (event.start.format("HH:mm:ss") === "06:00:00") {
+                                element.addClass('mattino');
+                            } else if (event.start.format("HH:mm:ss") === "08:00:00") {
+                                element.addClass('centrale');
+                            } else if ((event.start.format("HH:mm:ss") === "01:00:00") ||  (event.start.format("HH:mm:ss") === "03:00:00")){
+                                element.addClass('giorno');
+                            } else {
+                                element.addClass('pomeriggio');
+                            }
 
-                }
-            });
-            //TODO NUOVO ORARIO DI SBLOCCO ORE 3 ITALIANE
-            var nowDate = moment.tz("<?php echo gmdate("Y-m-d"); ?> 03:00:00", "Europe/Rome");
-
-            //console.log(nowDate.format("YYYY-MM-DD HH:mm:ss") + " UTC");
-            var calendaruser = $('#calendaruser').fullCalendar({
-                eventRender: function (event, element) {
-                    if ((event.stato) !== '1') {
-                        element.addClass('confermato');
-                    } else if ((event.start.format("HH:mm:ss")) === "06:00:00") {
-                        element.addClass('mattino');
-                    } else if
-                    ((event.start.format("HH:mm:ss")) === "08:00:00") {
-                        element.addClass('centrale');
-                    } else if
-                    ((event.start.format("HH:mm:ss")) === "01:00:00") {
-                        element.addClass('giorno');
-                    } else {
-                        element.addClass('pomeriggio');
-                    }
-                    return (['all', event.id].indexOf($("#modalFilterID option:selected").val()) >= 0) && (['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val()) >= 0);
-                },
-                header: {
-                    left: 'prev ,today',
-                    center: 'title',
-                    right: 'basicWeek,month, next',
-                },
-                validRange: function () {
-                    return {
-                        start: nowDate.clone().subtract(1, 'years'),
-                        end: nowDate.clone().add(8, 'days')
-                    };
-                },
-
-                eventOrder: "event.id",
-                //aspectRatio: 3,
-                editable: true,
-                selectable: false,
-                displayEventEnd: false,
-                eventDurationEditable: false,
-                //eventOverlap: false,
-                defaultView: 'basicWeek',
-                themeSystem: 'bootstrap4',
-                displayEventTime: false,
-                googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
-                eventSources: [
-                    {
-                        // AGENDA STRAORDINARIO
-                        url: 'loadagenda.php',
-                        type: 'POST',
-                        data: {
-                            stato: 'stato',
-                            id: 'id'
+                            return (
+                                ['all', event.id].indexOf($("#modalFilterID option:selected").val()) >= 0 &&
+                                ['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val()) >= 0
+                            );
                         },
-                    },
-                    {
-                        // festività nazionali
-                        googleCalendarId: 'rpiguh13hptg6bq4imt5udgjpo@group.calendar.google.com',
-                        color: 'red',
-                        className: 'nolink',
-                        rendering: 'background'
+                        header: {
+                            left: 'prev,today',
+                            center: 'title',
+                            right: 'basicWeek,month,next',
+                        },
+                        eventOrder: "event.id",
+                        editable: false,
+                        selectable: false,
+                        displayEventEnd: false,
+                        eventDurationEditable: false,
+                        defaultView: 'basicWeek',
+                        themeSystem: 'bootstrap4',
+                        displayEventTime: false,
+                        googleCalendarApiKey: 'AIzaSyDUFn_ITtZMX10bHqcL0kVsaOKI0Sgg1yo',
+                        eventSources: [
+                            {
+                                url: 'loadagenda.php',
+                                type: 'POST',
+                                data: { stato: 'stato', id: 'id' },
+                            },
+                            {
+                                googleCalendarId: 'rpiguh13hptg6bq4imt5udgjpo@group.calendar.google.com',
+                                color: 'red',
+                                className: 'nolink',
+                                rendering: 'background'
+                            }
+                        ],
+                        //adesso vediamo chi è più furbo!!!
+                        dayClick: function (date) {
+                            // Ottieni la data cliccata in formato "YYYY-MM-DD"
+                            let day = date.format("YYYY-MM-DD");
 
-                    }
-                ],
-                dayClick: function (date) { //INSERISCI DISPONIBILITA
-                    if (moment() <= date) {
-                        var day = date.format("YYYY-MM-DD");
-                        $('#modal4').modal('show');
-                        $('#addButton').off('click').on('click', function () {
-                            $('#modal4').modal('hide');
-                            var user_id = $("#user_id").val();
-                            var title = $("#cognomenome").val();
-                            if (($("#modalAddStart option:selected").val()) !== "") {
-                                var start = day + " " + $("#modalAddStart option:selected").val();
-                                var endStr = $.fullCalendar.moment(start);
-                                endStr.add(1, 'hours');
-                                var end = endStr.format("YYYY-MM-DD HH:mm:ss");
+                            // Mostra il modal
+                            $('#modal4').modal('show');
+
+                            // Aggiungi un listener al bottone "Aggiungi"
+                            $('#addButton').off('click').on('click', function () {
+                                // Nascondi il modal
+                                $('#modal4').modal('hide');
+
+                                // Ottieni i dati necessari
+                                let user_id = $("#user_id").val();
+                                let title = $("#cognomenome").val();
+                                let selectedTime = $("#modalAddStart option:selected").val();
+
+                                // Validazione dei dati
+                                if (!selectedTime) {
+                                    Swal.fire({
+                                        text: "Seleziona un turno dall'elenco!",
+                                        icon: "warning",
+                                    });
+                                    return;
+                                }
+
+                                // Costruzione della data e orario con Moment.js
+                                let start, end;
+                                try {
+                                    start = `${day} ${selectedTime}`; // Inizio evento
+                                    let startDate = moment(start, "YYYY-MM-DD HH:mm:ss"); // Oggetto Moment per calcoli
+                                    let endDate = startDate.clone().add(1, 'hours'); // Fine evento (+1 ora)
+                                    end = endDate.format("YYYY-MM-DD HH:mm:ss");
+                                } catch (error) {
+                                    Swal.fire({
+                                        title: "Errore!",
+                                        text: "Formato orario non valido. Controlla i dati inseriti.",
+                                        icon: "error",
+                                    });
+                                    console.error("Errore nella creazione dell'orario:", error);
+                                    return;
+                                }
                                 $.ajax({
-                                    url: "insert.php",
-                                    type: "POST",
-                                    data: {title: title, start: start, end: end, user_id: user_id},
+                                    url: "insert.php", // Endpoint per l'inserimento
+                                    type: "POST", // Metodo HTTP
+                                    data: {
+                                        title: title,        // Titolo (nome evento)
+                                        start: start,        // Data e ora inizio (YYYY-MM-DD HH:mm:ss)
+                                        end: end,            // Data e ora fine (YYYY-MM-DD HH:mm:ss)
+                                        user_id: user_id     // ID utente
+                                    },
                                     success: function () {
+                                        // Aggiorna il calendario
                                         calendaruser.fullCalendar('refetchEvents');
-                                        //alert("Disponibilità inserita con successo");
                                         Swal.fire({
                                             text: "Disponibilità inserita con successo",
                                             icon: "success",
-                                            timer: 1000,
-                                            button: false,
-                                            closeOnClickOutside: false
+                                            timer: 1000
                                         });
-                                        setTimeout(function () {
-                                                location.reload();
-                                            }, 1001
-                                        )
+                                    },
+                                    error: function (xhr) {
+                                        // Gestione degli errori
+                                        if (xhr.status === 403) {
+                                            // Se il server restituisce errore 403
+                                            Swal.fire({
+                                                title: "TENTATIVO BLOCCATO",
+                                                text: "Inserimento non valido!",
+                                                icon: "error",
+                                            });
+                                        } else {
+                                            // Per tutti gli altri errori
+                                            Swal.fire({
+                                                title: "Errore sconosciuto!",
+                                                text: "Riprova più tardi.",
+                                                icon: "error",
+                                            });
+                                        }
                                     }
                                 });
-                            } else {
-                                alert("Seleziona un turno dall'elenco a discesa!")
-                            }
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "ERRORE!",
-                            text: "Non è una macchina del tempo!",
-                            icon: "error",
-                            button: true,
-                            closeOnClickOutside: false
-                        });
-                    }
-                },
-                eventClick: function (event, jsEvent) { //elimina disponibilità
-                    jsEvent.preventDefault();
-                    var title = $("#cognomenome").val();
-                    //alert(event.start.format("YYYY-MM-DD"));
-                    if (((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD"))) && (title === event.title)) {
-                        Swal.fire({
-                            text: "Sei sicuro di voler cancellare questa disponibilità?",
-                            icon: "warning",
-                            buttons: {
-                                cancel: {
-                                    text: "Annulla",
-                                    value: null,
-                                    visible: true,
-                                    closeModal: true,
-                                },
-                                confirm: {
-                                    text: "Conferma",
-                                    value: true,
-                                    visible: true,
-                                    closeModal: true,
-                                },
-                            },
-                        })
-                            .then((confirm) => {
-                                if (confirm) {
-                                    var id = event.id;
-                                    $.ajax({
-                                        url: "script.php",
-                                        type: "POST",
-                                        data: {id: id},
-                                        success: function () {
-                                            calendaruser.fullCalendar('refetchEvents');
+                            });
+                        },
+                        eventClick: function (event, jsEvent) { //elimina disponibilità
+                            jsEvent.preventDefault();
+                            var title = $("#cognomenome").val();
+                            //alert(event.start.format("YYYY-MM-DD"));
+                            if (((moment().format("YYYY-MM-DD")) < (event.start.format("YYYY-MM-DD"))) && (title === event.title)) {
+                                Swal.fire({
+                                    text: "Sei sicuro di voler cancellare questa disponibilità?",
+                                    icon: "warning",
+                                    buttons: {
+                                        cancel: {
+                                            text: "Annulla",
+                                            value: null,
+                                            visible: true,
+                                            closeModal: true,
+                                        },
+                                        confirm: {
+                                            text: "Conferma",
+                                            value: true,
+                                            visible: true,
+                                            closeModal: true,
+                                        },
+                                    },
+                                })
+                                    .then((confirm) => {
+                                        if (confirm) {
+                                            var id = event.id;
+                                            $.ajax({
+                                                url: "script.php",
+                                                type: "POST",
+                                                data: {id: id},
+                                                success: function () {
+                                                    calendaruser.fullCalendar('refetchEvents');
+                                                    Swal.fire({
+                                                        text: "Disponibilità eliminata con successo",
+                                                        icon: "success",
+                                                        timer: 1000,
+                                                        button: false,
+                                                        closeOnClickOutside: false
+                                                    });
+                                                    setTimeout(function () {
+                                                            location.reload();
+                                                        }, 1001
+                                                    )
+                                                }
+                                            });
+                                        } else {
                                             Swal.fire({
-                                                text: "Disponibilità eliminata con successo",
-                                                icon: "success",
+                                                text: "Operazione annullata come richiesto!",
                                                 timer: 1000,
                                                 button: false,
                                                 closeOnClickOutside: false
                                             });
-                                            setTimeout(function () {
-                                                    location.reload();
-                                                }, 1001
-                                            )
                                         }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        text: "Operazione annullata come richiesto!",
-                                        timer: 1000,
-                                        button: false,
-                                        closeOnClickOutside: false
-                                    });
-                                }
-                            })
-                    } else {
-                        calendaruser.fullCalendar('refetchEvents');
-                        Swal.fire({
-                            title: "ERRORE!",
-                            text: "Non puoi eseguire questa operazione",
-                            icon: "error",
-                            button: true,
-                            closeOnClickOutside: false
-                        });
-                    }
+                                    })
+                            } else {
+                                calendaruser.fullCalendar('refetchEvents');
+                                Swal.fire({
+                                    title: "ERRORE!",
+                                    text: "Non puoi eseguire questa operazione",
+                                    icon: "error",
+                                    button: true,
+                                    closeOnClickOutside: false
+                                });
+                            }
+                        },
+                    });
                 },
+                error: function () {
+                    Swal.fire({
+                        title: 'Errore!',
+                        text: 'Impossibile ottenere i limiti dal server. Riprova più tardi.',
+                        icon: 'error'
+                    });
+                }
             });
         });
     </script>
+
     <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- Moment Timezone -->
@@ -312,8 +347,8 @@ if (!isset($_SESSION["ID"])){
         </ol>
     </nav>
 </div>
-<br>
 
+<!--<div id="clock" style="text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: grey"></div>-->
 <div class="container-fluid">
     <div id='<?if ($_SESSION['livello']>=5)echo "agendacal"?>'</div>
     <div id='<?if (($_SESSION['livello']==1) OR ($_SESSION['livello']==4)) echo "calendaruser"?>'</div>
@@ -337,7 +372,7 @@ if (!isset($_SESSION["ID"])){
                         <option value="06:00:00">Mattino</option>
                         <option value="08:00:00">Centrale</option>
                         <option value="13:00:00">Pomeriggio</option>
-                        <option value="01:00:00">Weekend e festività</option>
+                        <option value="03:00:00">Weekend e festività</option>
                     </select>
                 </div>
                 <div class="modal-footer justify-content-center">

@@ -3,6 +3,11 @@
 
 paolo.randone@croceverde.org
 
+Version 8.1 changelog:
+
+- Migliorato modulo gestione ossigeno
+- Gestione short url
+---
 Version 8.0 changelog:
 - Aggiunto modulo gestione ossigeno
 ---

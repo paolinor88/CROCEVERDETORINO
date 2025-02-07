@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    8.0
+* @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -144,7 +144,7 @@ $dictionarySquadra = array (
                     <option value="">---</option>
                     <?php
                     $selectedAnno = isset($_POST['inputanno']) ? $_POST['inputanno'] : '';
-                    for ($i = 2024; $i >= 2023; $i--) {
+                    for ($i = 2025; $i >= 2023; $i--) {
                         echo '<option value="'.$i.'" '.($selectedAnno == $i ? 'selected' : '').'>'.$i.'</option>';
                     }
                     ?>

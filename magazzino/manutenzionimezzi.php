@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    8.0
+* @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -12,9 +12,12 @@ session_start();
 include "../config/config.php";
 //controllo LOGIN
 //accesso consentito a logistica, segreteria e ADMIN
+/*
 if (($_SESSION["livello"])<4){
     header("Location: ../error.php");
 }
+*/
+$isShortUrl = ($_SERVER['REQUEST_URI'] == "/manutenzioni");
 //nicename tipo
 $dictionary = array (
     1 => "MSB",
@@ -30,7 +33,7 @@ $dictionary = array (
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Paolo Randone">
     <title>Gestione manutenzioni</title>
-
+    <base href="/gestionale/magazzino/">
     <? require "../config/include/header.html";?>
 
 
@@ -88,15 +91,17 @@ $dictionary = array (
     </script>
 </head>
 <!-- NAVBAR -->
-<div class="container-fluid">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
-            <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Autoparco</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Lista manutenzioni</li>
-        </ol>
-    </nav>
-</div>
+<?php if (!$isShortUrl): ?>
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.php" style="color: #078f40">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php" style="color: #078f40">Autoparco</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Lista manutenzioni</li>
+            </ol>
+        </nav>
+    </div>
+<?php endif; ?>
 <!-- content -->
 <body>
 <div class="container-fluid">
@@ -161,6 +166,7 @@ $dictionary = array (
     </div>
 </div>
 <!-- FOOTER -->
-<?php include('../config/include/footer.php'); ?>
-
+<?php if (!$isShortUrl): ?>
+    <?php include('../config/include/footer.php'); ?>
+<?php endif; ?>
 </html>

@@ -3,7 +3,7 @@
  *
  * @author     Paolo Randone
  * @author     <paolo.randone@croceverde.org>
-* @version    8.0
+* @version    8.1
  * @note       Powered for Croce Verde Torino. All rights reserved
  *
  */
@@ -135,7 +135,7 @@ $dictionary = array (
                 <tbody>
                 <?php
 
-                $select = $db->query("SELECT * FROM SegnalazioniGuastiMezzi order by DataOra desc " );
+                $select = $db->query("SELECT * FROM SegnalazioniGuastiMezzi order by DataOra desc LIMIT 100" );
                 while($ciclo = $select->fetch_array()){
                     //$dataFormattata = date('d/m/Y H:i', strtotime($ciclo['DataOra']));
                     //$dataFormattata = date('Y-m-d\TH:i:s', strtotime($ciclo['DataOra']));
@@ -212,6 +212,7 @@ $dictionary = array (
                     </select>
                     <br>
                     <select id="selectanno" name="selectanno" class="form-control form-control-sm" required>
+                        <option value="2024">2025</option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
                         <option value="2022">2022</option>

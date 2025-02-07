@@ -15,13 +15,13 @@ $squadre = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
 // Funzione per eliminare i turni storici di un anno specifico
 function elimina_turni_storici_anno($connect, $anno) {
-    $stmt = $connect->prepare("DELETE FROM turni_storici WHERE anno = :anno");
+    $stmt = $connect->prepare("DELETE FROM turni_storici_bk WHERE anno = :anno");
     $stmt->execute(['anno' => $anno]);
 }
 
 // Funzione per ottenere lo storico turni per una squadra e un tipo di turno
 function get_turni_storici($connect, $squadra, $tipo_turno) {
-    $stmt = $connect->prepare("SELECT COUNT(*) FROM turni_storici WHERE squadra = :squadra AND tipo_turno = :tipo_turno");
+    $stmt = $connect->prepare("SELECT COUNT(*) FROM turni_storici_bk WHERE squadra = :squadra AND tipo_turno = :tipo_turno");
     $stmt->execute(['squadra' => $squadra, 'tipo_turno' => $tipo_turno]);
     return $stmt->fetchColumn();
 }
@@ -45,7 +45,7 @@ function assegna_turno_diurno($squadre, $turni_diurni, $turni_notturni, $data, $
     $turni_diurni[$data] = $squadra_min_turni;
 
     // Salva il turno assegnato nel database
-    $stmt = $connect->prepare("INSERT INTO turni_storici (anno, data, squadra, tipo_turno) VALUES (:anno, :data, :squadra, 'festivo')");
+    $stmt = $connect->prepare("INSERT INTO turni_storici_bk (anno, data, squadra, tipo_turno) VALUES (:anno, :data, :squadra, 'festivo')");
     $stmt->execute(['anno' => $_POST["anno"], 'data' => date('Y-m-d', strtotime($data)), 'squadra' => $squadra_min_turni]);
 
     return $turni_diurni;
