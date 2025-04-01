@@ -8,9 +8,7 @@
  *
  */
 session_start();
-//parametri DB
 include "../config/config.php";
-//login
 if (!isset($_SESSION["ID"])){
     header("Location: ../login.php");
 }
@@ -27,15 +25,12 @@ if (!isset($_SESSION["ID"])){
 
     <script src="../config/js/gcal.js"></script>
     <script src="../config/js/it.js"></script>
-    <!-- Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- Moment Timezone -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.min.js"></script>
 
     <script>
         $(document).ready(function () {
 
-            // Ottieni i limiti validi dal server
             $.ajax({
                 url: 'getValidRange.php',
                 type: 'GET',
@@ -43,7 +38,7 @@ if (!isset($_SESSION["ID"])){
                 success: function (response) {
                     let validStart = response.validStart;
                     let validEnd = response.validEnd;
-                    // calendario admin
+
                     var agendacal = $('#agendacal').fullCalendar({
                         validRange: {
                             start: validStart,
@@ -62,7 +57,6 @@ if (!isset($_SESSION["ID"])){
                                 element.addClass('pomeriggio');
                             }
 
-                            // Filtra eventi in base ai selettori nel modal
                             return (
                                 ['all', event.user_id].indexOf($("#modalFilterID option:selected").val()) >= 0 &&
                                 ['all', event.start.format("HH:mm:ss")].indexOf($("#modalFilterTime option:selected").val()) >= 0
