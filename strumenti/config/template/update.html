@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Paolo Randone">
+    <title>Template aggiornamento evento</title>
+
+    <!-- CSS -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: forestgreen;
+            text-decoration: none;
+        }
+
+        .container {
+            margin: 20px auto;
+            max-width: 600px;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <br>
+    <h3 style="color: forestgreen">Nome: <strong>{{title}}</strong></h3>
+    <h3 style="color: forestgreen">Data: <strong>{{start_event}}</strong></h3>
+    <h3 style="color: forestgreen">Ora inizio: <strong>{{time_event}}</strong></h3>
+    <h3 style="color: forestgreen">Luogo: <strong>{{luogo}}</strong></h3>
+    <hr>
+    <br>
+    <div class="table-responsive">
+        <table>
+            <tbody>
+            <tr>
+                <th>PMA</th>
+                <td>{{pma}}</td>
+            </tr>
+            <tr>
+                <th>MSA</th>
+                <td>{{msa}}</td>
+            </tr>
+            <tr>
+                <th>MSB</th>
+                <td>{{msb}}</td>
+            </tr>
+            <tr>
+                <th>SQUADRE A PIEDI</th>
+                <td>{{squadre}}</td>
+            </tr>
+            <tr>
+                <th>ALTRO</th>
+                <td>{{altro}}</td>
+            </tr>
+            <tr>
+                <th>NOTE</th>
+                <td>{{note}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p style="color: forestgreen"><a href="https://croceverde.org/eventi/gestione/schedaevento.php?IDEvento={{IDEvento}}">Clicca qui per accedere ai dettagli dell'evento</a></p>
+    <hr>
+    <p style="font-size: 10px; color:#aaaaaa">CONFIDENTIALITY NOTICE: The content of this email is confidential and intended for the recipient specified in the message only. It is strictly forbidden to share any part of this message with any third party without the written consent of the sender. If you received this message by mistake, please delete it and <a href="mailto:paolo.randone@croceverde.org">contact us</a>.</p>
+</div>
+</body>
+</html>

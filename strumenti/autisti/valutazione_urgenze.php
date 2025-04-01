@@ -1,0 +1,221 @@
+<?php
+session_start();
+include "../config/config.php";
+include "config/include/destinatari.php";
+include "config/include/dictionary.php";
+
+global $db;
+
+/*
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("ID richiesta non valido.");
+}
+*/
+$id_richiesta = intval($_GET['id']);
+
+$stmt = $db->prepare("SELECT IDUtente, IDProva, Esaminatore FROM AUTISTI_RICHIESTE WHERE IDRichiesta = ?");
+$stmt->bind_param("i", $id_richiesta);
+$stmt->execute();
+$stmt->bind_result($candidato_id, $tipoprova, $Esaminatore);
+$stmt->fetch();
+$stmt->close();
+
+$tipoprova_label = $tipoProvaDict[$tipoprova] ?? 'Non specificato';
+
+$stmt = $db->prepare("
+    SELECT r.Cognome, r.Nome, r.Mail, r.Codice, 
+           an.DataInizio AS DataInizioNormale, 
+           ar.DataInizio AS DataInizioRientro
+    FROM rubrica r
+    LEFT JOIN AUTISTI_NORMALI an ON r.IDUtente = an.IDUtente
+    LEFT JOIN AUTISTI_RIENTRI ar ON r.IDUtente = ar.IDUtente
+    WHERE r.IDUtente = ?
+");
+
+$stmt->bind_param("i", $candidato_id);
+$stmt->execute();
+$stmt->bind_result($candidato_cognome, $candidato_nome, $candidato_mail, $candidato_codice, $candidato_datanormali, $candidato_datarientri);
+$stmt->fetch();
+$stmt->close();
+
+$candidato = "$candidato_cognome $candidato_nome";
+$candidatostringa = "$candidato_cognome".'_'."$candidato_nome".'_'."$candidato_codice";
+
+?>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Valutazione URGENZE</title>
+
+    <?php include "../config/include/header.html"; ?>
+
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #00A25E;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .rating {
+            display: flex;
+            gap: 10px;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            background: #ddd;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .rating input:checked + label {
+            background: #00A25E;
+            color: white;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            background: #00A25E;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #007a47;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            background: #f8f8f8;
+        }
+        .choices {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .choices input {
+            display: none;
+        }
+        .choices label {
+            background: #ddd;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .choices input:checked + label {
+            background: #00A25E;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>SCHEDA DI VALUTAZIONE URGENZE</h2>
+    <br>
+    <form method="post" action="genera_pdf_prova_urgenze.php">
+        <input type="hidden" name="id_utente" value="<?= htmlspecialchars($candidato_id)?>">
+        <input type="hidden" name="id_richiesta" value="<?= htmlspecialchars($id_richiesta) ?>">
+        <input type="hidden" name="candidato_mail" value="<?= htmlspecialchars($candidato_mail) ?>">
+        <input type="hidden" name="candidato" value="<?= htmlspecialchars($candidato) ?>">
+        <input type="hidden" name="esaminatore" value="<?= htmlspecialchars($Esaminatore) ?>">
+        <input type="hidden" name="tipoprovalabel" value="<?= htmlspecialchars($tipoprova_label) ?>">
+        <input type="hidden" name="candidatostringa" value="<?= htmlspecialchars($candidatostringa) ?>">
+        <input type="hidden" name="datanormali" value="<?= date("d/m/Y", strtotime($candidato_normali)) ?>">
+        <input type="hidden" name="datarientri" value="<?= date("d/m/Y", strtotime($candidato_datarientri)) ?>">
+        <div class="form-group">
+            <p>Candidato: <?= "<b>". htmlspecialchars($candidato) ."</b>"?></p>
+            <p>Data prova rientri: <?= !empty($candidato_datarientri) ? date("d/m/Y", strtotime($candidato_datarientri)) : "N.D." ?></p>
+
+            <p>Data prova normali: <?= !empty($candidato_datanormali) ? date("d/m/Y", strtotime($candidato_datanormali)) : "N.D." ?></p>
+
+            <p>Esaminatore: <?= htmlspecialchars($Esaminatore)?></p>
+        </div>
+        <hr>
+        <?php
+        $domande = [
+            "attenzione" => "Attenzione agli incroci",
+            "rallenta" => "Si ferma agli incroci con semaforo verde",
+            "ferma" => "Si ferma agli incroci con semaforo rosso",
+            "destra" => "Ha chiesto se la destra è libera",
+            "agita" => "Si è agitato nella guida in urgenza",
+            //"toponomastica" => "Conosce la toponomastica della città",
+            //"percorso" => "Ha utilizzato il percorso più breve in servizio",
+            "disagio" => "Ha prestato attenzione a provocare il minor disagio al paziente",
+            "sicurezza" => "Sicurezza (utilizzo cinture da parte di tutto l'equipaggio etc)"
+        ];
+
+
+        foreach ($domande as $name => $label): ?>
+            <div class="form-group">
+                <label><?= $label ?></label>
+                <div class="choices">
+                    <input type="radio" name="<?= $name ?>" id="<?= $name ?>_si" value="SI" required>
+                    <label for="<?= $name ?>_si">Sì</label>
+                    <input type="radio" name="<?= $name ?>" id="<?= $name ?>_no" value="NO" required>
+                    <label for="<?= $name ?>_no">No</label>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <div class="form-group">
+            <label>Conosce la toponomastica della città</label>
+            <div class="rating">
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                    <input type="radio" name="toponomastica" id="toponomastica<?= $i ?>" value="<?= $i ?>" required>
+                    <label for="toponomastica<?= $i ?>"><?= $i ?></label>
+                <?php endfor; ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Ha utilizzato il percorso più breve in servizio</label>
+            <div class="rating">
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                    <input type="radio" name="percorso" id="percorso<?= $i ?>" value="<?= $i ?>" required>
+                    <label for="percorso<?= $i ?>"><?= $i ?></label>
+                <?php endfor; ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="commentiesame" class="form-label">Commenti esaminatore:</label>
+            <textarea class="form-control" id="commentiesame" name="commentiesame" rows="3"></textarea>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label>Esito finale</label>
+            <select name="esito" required>
+                <option value="">Seleziona...</option>
+                <option value="1">PROMOSSO</option>
+                <option value="2">BOCCIATO</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn" >Concludi esame e invia valutazione</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Paolo Randone">
+    <title>Template nuovo evento</title>
+    <style>
+        .container-fluid {
+            margin: 0 auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: forestgreen;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: darkgreen;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #aaaaaa;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        font[size="-4"] {
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <br>
+        <h2 style="color: forestgreen">Nome: <strong>{{title}}</strong></h2>
+        <h2 style="color: forestgreen">Data: <strong>{{start_event}}</strong></h2>
+        <h2 style="color: forestgreen">Ora inizio: <strong>{{time_event}}</strong></h2>
+        <h2 style="color: forestgreen">Luogo: <strong>{{luogo}}</strong></h2>
+        <p style="color: forestgreen"><a href="https://croceverde.org/eventi/gestione/schedaevento.php?IDEvento={{IDEvento}}">Clicca qui per accedere ai dettagli dell'evento</a></p>
+        <hr>
+        <font size="-4" style="color:#aaaaaa">CONFIDENTIALITY NOTICE: The content of this email is confidential and intended for the recipient specified in message only. It is strictly forbidden to share any part of this message with any third party, without a written consent of the sender. If you received this message by mistake, please delete it and <a href="mailto:paolo.randone@croceverde.org">contact us.</a></font>
+    </div>
+</body>
+</html>
