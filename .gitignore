@@ -1,7 +1,30 @@
-/config/config.php
-/config/crea_ciclico.php
-/config/script.php
-/config/pdo.php
-/config/include/destinatari.php
-/checklist/uploads
+# PhpStorm
+.idea/
+
+# Composer
+strumenti/vendor/
+
+# Cache
+*.log
+*.cache
+
+# Backup
+*.bak
+*.tmp
+
+# Video
 *.mp4
+
+# Uploads
+gestionale/checklist/uploads
+
+# Config personalizzati
+gestionale/config/config.php
+strumenti/config/pdo.php
+strumenti/config/config.php
+gestionale/config/pdo.php
+
+.gitignore
+CODE_OF_CONDUCT.md
+LICENSE.txt
+README.md
