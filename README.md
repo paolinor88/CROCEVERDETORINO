@@ -1,4 +1,4 @@
-# gestionaleCVTO
+# CROCE VERDE TORINO ODV
 
 Sistema gestionale personalizzato per **Croce Verde Torino**, sviluppato per supportare le attività interne, la logistica, la gestione dei turni, degli automezzi e del magazzino.
 
@@ -23,7 +23,10 @@ Sistema gestionale personalizzato per **Croce Verde Torino**, sviluppato per sup
 
 ## 🧾 Changelog
 
-### 🟢 Versione 8.1
+### 🟢 Versione 8.2
+- Repo unificata
+
+### 8.1
 - Migliorato modulo gestione ossigeno
 - Gestione short URL
 

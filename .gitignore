@@ -25,6 +25,3 @@ strumenti/config/config.php
 gestionale/config/pdo.php
 
 .gitignore
-CODE_OF_CONDUCT.md
-LICENSE.txt
-README.md
