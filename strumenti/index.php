@@ -1,5 +1,6 @@
 <?php
 //header('Access-Control-Allow-Origin: *');
+global $db;
 /**
  *
  * @author     Paolo Randone
