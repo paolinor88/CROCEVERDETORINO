@@ -8,7 +8,7 @@ global $db;
  * @version    8.2
  * @note         Powered for Croce Verde Torino. All rights reserved
  *
- */
+ */ 
 session_start();
 
 include "config/config.php";
