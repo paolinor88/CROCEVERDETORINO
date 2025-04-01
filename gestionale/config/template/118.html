@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Paolo Randone">
+    <title>Template email 118</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<p>Checklist auto <strong>{{numeroauto}}</strong></p>
+<p>Effettuata da: {{compilatore}} <strong>{{nome}} {{cognome}}</strong> ({{squadra}} {{sezione}})</p>
+<p>Il giorno {{datatesto}}</p>
+<p>Tipo mezzo: {{tipo}}</p>
+<p>Segnalazioni: {{segnalazione}}</p>
+<hr>
+<p><strong>CONTROLLO AMBULANZA</strong></p>
+<table class="table table-sm table-bordered">
+    <tbody>
+    <tr>
+        <td>Asse spinale</td>
+        <td>{{spinale}}</td>
+    </tr>
+    <tr>
+        <td>Barella scoop</td>
+        <td>{{scoop}}</td>
+    </tr>
+    <tr>
+        <td>Collari cervicali</td>
+        <td>{{collari}}</td>
+    </tr>
+    <tr>
+        <td>Aspiratore con sondino</td>
+        <td>{{aspiratore}}</td>
+    </tr>
+    <tr>
+        <td>Bombole fisse 7lt (2x)</td>
+        <td>{{bombolefisse}}</td>
+    </tr>
+    <tr>
+        <td>Porta taglienti</td>
+        <td>{{taglienti}}</td>
+    </tr>
+    <tr>
+        <td>DAE + piastre ADULTI e PEDIATRICHE</td>
+        <td>{{DAE}}</td>
+    </tr>
+    <tr>
+        <td>Lenzuola monouso (10x)</td>
+        <td>{{lenzuola}}</td>
+    </tr>
+    <tr>
+        <td>Guanti</td>
+        <td>{{guanti}}</td>
+    </tr>
+    <tr>
+        <td>Sedia</td>
+        <td>{{sedia}}</td>
+    </tr>
+    <tr>
+        <td>Kit estricazione</td>
+        <td>{{KED}}</td>
+    </tr>
+    <tr>
+        <td>Set steccobende con pompa</td>
+        <td>{{steccobende}}</td>
+    </tr>
+    <tr>
+        <td>Bombole portatili 3lt. (2x)</td>
+        <td>{{bomboleport}}</td>
+    </tr>
+    <tr>
+        <td>Elmetti (4x)</td>
+        <td>{{caschi}}</td>
+    </tr>
+    <tr>
+        <td>Padella</td>
+        <td>{{padella}}</td>
+    </tr>
+    <tr>
+        <td>Rotolo carta</td>
+        <td>{{carta}}</td>
+    </tr>
+    <tr>
+        <td>Ragno</td>
+        <td>{{ragno}}</td>
+    </tr>
+    <tr>
+        <td>Base + fermacapo + mentoniere</td>
+        <td>{{trauma}}</td>
+    </tr>
+    <tr>
+        <td>Cinture scoop (3x)</td>
+        <td>{{cinghie}}</td>
+    </tr>
+    <tr>
+        <td>Estintore posteriore</td>
+        <td>{{estintorepost}}</td>
+    </tr>
+    <tr>
+        <td>Coltrino</td>
+        <td>{{coltrino}}</td>
+    </tr>    <tr>
+        <td>Pedi-mate</td>
+        <td>{{pedimate}}</td>
+    </tr>
+    <tr>
+        <td>Tablet e stampante</td>
+        <td>{{tablet}}</td>
+    </tr>
+    <tr>
+        <td>Estintore anteriore</td>
+        <td>{{estintoreant}}</td>
+    </tr>
+    <tr>
+        <td>Faro di ricerca</td>
+        <td>{{faro}}</td>
+    </tr>
+    <tr>
+        <td>Set da scasso</td>
+        <td>{{scasso}}</td>
+    </tr>
+    <tr>
+        <td>Blocco auto CV</td>
+        <td>{{bloccocv}}</td>
+    </tr>
+    <tr>
+        <td>Schede MSB 118 (5x)</td>
+        <td>{{schede118}}</td>
+    </tr>
+    <tr>
+        <td>Cartello FUORI SERVIZIO</td>
+        <td>{{fuoriservizio}}</td>
+    </tr>
+    <tr>
+        <td>Coperta anti-fiamma</td>
+        <td>{{antifiamma}}</td>
+    </tr>
+    <tr>
+        <td>Disinfettante</td>
+        <td>{{panseptil}}</td>
+    </tr>
+    <tr>
+        <td>Luci</td>
+        <td>{{luci}}</td>
+    </tr>
+    <tr>
+        <td>Lampeggianti</td>
+        <td>{{blu}}</td>
+    </tr>
+    <tr>
+        <td>Sirene</td>
+        <td>{{sirene}}</td>
+    </tr>
+    <tr>
+        <td>Carburante</td>
+        <td>{{gasolio}}</td>
+    </tr>
+    <tr>
+        <td>Telepass</td>
+        <td>{{telepass}}</td>
+    </tr>
+    <tr>
+        <td>Documenti</td>
+        <td>{{doc}}</td>
+    </tr>
+    <tr>
+        <td>Carta carburante</td>
+        <td>{{cartaagip}}</td>
+    </tr>
+    <tr>
+        <td>Lavaggio esterno</td>
+        <td>{{lavaggioesterno}}</td>
+    </tr>
+    <tr>
+        <td>Lavaggio interno</td>
+        <td>{{lavaggiointerno}}</td>
+    </tr>
+    <tr>
+        <td>Sanificazione</td>
+        <td>{{disinfezione}}</td>
+    </tr>
+    <tr>
+        <td>Controllo olio motore</td>
+        <td>{{oliocheck}}</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<p><strong>CONTROLLO BORSA</strong></p>
+<table class="table table-sm table-bordered">
+    <tbody>
+    <tr>
+        <td>Controllo scadenze</td>
+        <td>{{scadenzeborsa}}</td>
+    </tr>
+    <tr>
+        <td>Ambu pediatrico</td>
+        <td>{{ambuped}}</td>
+    </tr>
+    <tr>
+        <td>Reservoir + valvola</td>
+        <td>{{reservoirped}}</td>
+    </tr>
+    <tr>
+        <td>Filtri (2x)</td>
+        <td>{{filtroped}}</td>
+    </tr>
+    <tr>
+        <td>Maschere (3x)</td>
+        <td>{{maschereped}}</td>
+    </tr>
+    <tr>
+        <td>Guedel (3x)</td>
+        <td>{{guedelped}}</td>
+    </tr>
+    <tr>
+        <td>Raccordo ossigeno</td>
+        <td>{{ossped}}</td>
+    </tr>
+    <tr>
+        <td>Ambu adulti</td>
+        <td>{{ambuadulti}}</td>
+    </tr>
+    <tr>
+        <td>Reservoir + valvola</td>
+        <td>{{reservoiradulti}}</td>
+    </tr>
+    <tr>
+        <td>Filtri (2x)</td>
+        <td>{{filtroadulti}}</td>
+    </tr>
+    <tr>
+        <td>Maschere (5x)</td>
+        <td>{{maschereadulti}}</td>
+    </tr>
+    <tr>
+        <td>Guedel (5x)</td>
+        <td>{{guedeladulti}}</td>
+    </tr>
+    <tr>
+        <td>Raccordo ossigeno</td>
+        <td>{{ossadulti}}</td>
+    </tr>
+    <tr>
+        <td>Fisiologica (2x)</td>
+        <td>{{fisio}}</td>
+    </tr>
+    <tr>
+        <td>Acqua ossigenata</td>
+        <td>{{h2o2}}</td>
+    </tr>
+    <tr>
+        <td>Betadine</td>
+        <td>{{betadine}}</td>
+    </tr>
+    <tr>
+        <td>Cerotti (2x)</td>
+        <td>{{cerotti}}</td>
+    </tr>
+    <tr>
+        <td>Peha haft (4x)</td>
+        <td>{{benda}}</td>
+    </tr>
+    <tr>
+        <td>Ghiaccio</td>
+        <td>{{ghiaccio}}</td>
+    </tr>
+    <tr>
+        <td>Garze sterili (3x)</td>
+        <td>{{garze}}</td>
+    </tr>
+    <tr>
+        <td>Laccio arterioso</td>
+        <td>{{arterioso}}</td>
+    </tr>
+    <tr>
+        <td>Laccio venoso</td>
+        <td>{{venoso}}</td>
+    </tr>
+    <tr>
+        <td>Rasoio</td>
+        <td>{{rasoio}}</td>
+    </tr>
+    <tr>
+        <td>Sfigmomanometro</td>
+        <td>{{sfigmo}}</td>
+    </tr>
+    <tr>
+        <td>Fonendoscopio</td>
+        <td>{{fonendo}}</td>
+    </tr>
+    <tr>
+        <td>Saturimetro</td>
+        <td>{{saturimetrob}}</td>
+    </tr>
+    <tr>
+        <td>Termometro</td>
+        <td>{{termometro}}</td>
+    </tr>
+    <tr>
+        <td>Sondini aspiratore (5x)</td>
+        <td>{{sondini}}</td>
+    </tr>
+    <tr>
+        <td>Mascherine reservoir</td>
+        <td>{{maschereborsa}}</td>
+    </tr>
+    <tr>
+        <td>Robin</td>
+        <td>{{robin}}</td>
+    </tr>
+    <tr>
+        <td>Guanti sterili (4x)</td>
+        <td>{{guantisterili}}</td>
+    </tr>
+    <tr>
+        <td>Telini sterili</td>
+        <td>{{telini}}</td>
+    </tr>
+    <tr>
+        <td>Metalline (4x)</td>
+        <td>{{metalline}}</td>
+    </tr>
+    <tr>
+        <td>Sacchetti rifiuti</td>
+        <td>{{spazzatura}}</td>
+    </tr>
+    <tr>
+        <td>Kit infettivi (3x)</td>
+        <td>{{dpi}}</td>
+    </tr>
+    <tr>
+        <td>Mascherine chirurgiche</td>
+        <td>{{chirurgiche}}</td>
+    </tr>
+    <tr>
+        <td>Rilevatore monossido</td>
+        <td>{{monossido}}</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

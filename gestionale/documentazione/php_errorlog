@@ -1,0 +1,1 @@
+[05-Jan-2023 17:26:44 UTC] PHP Fatal error:  require(): Failed opening required 'header.html' (include_path='.:/usr/local/php74/pear') in /home/customer/www/croceverde.org/public_html/gestionale/documentazione/downloadmanager.php on line 468

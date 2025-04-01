@@ -1,0 +1,270 @@
+[26-Feb-2020 06:47:53 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:171
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 171
+[26-Feb-2020 06:50:56 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:51:19 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:51:39 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:52:07 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:170
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 170
+[26-Feb-2020 06:53:33 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:167
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 167
+[26-Feb-2020 06:58:13 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:167
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 167
+[26-Feb-2020 06:59:32 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:159
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 159
+[26-Feb-2020 07:03:11 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:03:16 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:10:48 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:10:55 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:11:08 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:13:33 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:160
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 160
+[26-Feb-2020 07:20:53 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:154
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 154
+[26-Feb-2020 07:21:46 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home/massi369/public_html/gestionale/checklist/index.php:154
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/index.php on line 154
+[02-Mar-2020 03:50:23 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:269
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 269
+[02-Mar-2020 03:51:24 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:269
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 269
+[02-Mar-2020 10:28:01 CST6CDT] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home/massi369/public_html/gestionale/checklist/new.php on line 748
+[02-Mar-2020 12:42:49 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[03-Mar-2020 00:39:50 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[03-Mar-2020 02:14:48 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[06-Mar-2020 04:49:15 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:277
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 277
+[10-Mar-2020 13:24:00 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:281
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 281
+[10-Mar-2020 13:25:25 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:281
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 281
+[10-Mar-2020 13:29:11 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:285
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 285
+[03-May-2020 01:39:05 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:271
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 271
+[03-May-2020 09:33:20 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/checklist/schedamezzo.php:270
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/checklist/schedamezzo.php on line 270
+[08-Nov-2020 09:48:07 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php:356
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php on line 356
+[08-Nov-2020 09:48:38 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php:356
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php on line 356
+[08-Nov-2020 09:49:21 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php:356
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/archivio.php on line 356
+[12-Nov-2020 13:19:50 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on null in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php:950
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php on line 950
+[12-Nov-2020 13:30:54 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on null in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php:950
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/new.php on line 950
+[25-Feb-2021 07:30:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:31:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:20 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:32:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:33:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-Feb-2021 07:34:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[18-Mar-2021 21:46:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[18-Mar-2021 21:47:12 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:06:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:08:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:09:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:09:20 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:09:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:09:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:10:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:10:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:10:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:11:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:11:15 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:11:23 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:11:36 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[16-May-2021 19:11:53 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[21-May-2021 21:30:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:258
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 258
+[25-May-2021 20:02:27 UTC] PHP Parse error:  syntax error, unexpected '.' in /home/customer/www/croceverde.org/public_html/gestionale/checklist/details.php on line 198
+[26-May-2021 14:56:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:29
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 29
+[26-May-2021 14:57:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:255
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 255
+[26-May-2021 14:58:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:255
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 255
+[30-May-2021 07:30:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:29
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 29
+[30-May-2021 07:34:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php:174
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/schedamezzo.php on line 174
+[08-Jun-2021 14:02:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/customer/www/croceverde.org/public_html/gestionale/checklist/griglia_checklist.php:768
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/croceverde.org/public_html/gestionale/checklist/griglia_checklist.php on line 768

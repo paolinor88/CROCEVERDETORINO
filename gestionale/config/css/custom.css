@@ -1,0 +1,19 @@
+.btn-outline-cri{color:#CC0000;background-color:transparent;background-image:none;border-color:#CC0000}.btn-outline-cri:hover{color:#fff;background-color:#CC0000;border-color:#CC0000}.btn-outline-cri.focus,.btn-outline-cri:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}.btn-outline-cri.disabled,.btn-outline-cri:disabled{color:#CC0000;background-color:transparent}.btn-outline-cri:not(:disabled):not(.disabled).active,.btn-outline-cri:not(:disabled):not(.disabled):active,.show>.btn-outline-cri.dropdown-toggle{color:#fff;background-color:#CC0000;border-color:#CC0000}.btn-outline-cri:not(:disabled):not(.disabled).active:focus,.btn-outline-cri:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-cri.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
+.btn-outline-cv{color:#078f40;background-color:transparent;background-image:none;border-color:#078f40}.btn-outline-cv:hover{color:#fff;background-color:#078f40;border-color:#078f40}.btn-outline-cv.focus,.btn-outline-cv:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}.btn-outline-cv.disabled,.btn-outline-cv:disabled{color:#078f40;background-color:transparent}.btn-outline-cv:not(:disabled):not(.disabled).active,.btn-outline-cv:not(:disabled):not(.disabled):active,.show>.btn-outline-cv.dropdown-toggle{color:#fff;background-color:#078f40;border-color:#078f40}.btn-outline-cv:not(:disabled):not(.disabled).active:focus,.btn-outline-cv:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-cv.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
+.bg-privato{background-color: yellow}
+.bg-molinette{background-color: green}
+.bg-hmv{background-color: darksalmon}
+.bg-TO4C{background-color: lightgray}
+.bg-TO4L{background-color: red}
+.bg-OAS{background-color: orange}
+.bg-TO4R{background-color: lightsteelblue}
+.bg-TO4A{background-color: pink}
+.bg-TO2{background-color: sandybrown;color: white}
+.jumbotron {
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.3rem; }
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 2rem 1rem; } }

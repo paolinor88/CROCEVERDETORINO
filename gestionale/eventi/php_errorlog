@@ -1,0 +1,110 @@
+[26-Apr-2020 03:17:07 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function format() on string in /home/massi369/public_html/gestionale/eventi/schedaevento.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/schedaevento.php on line 32
+[01-May-2020 02:48:09 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 02:50:04 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 03:25:16 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 04:01:42 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 04:03:32 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 04:34:52 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 04:35:22 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/settimana.php:77
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 77
+[01-May-2020 04:36:00 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 04:38:19 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 04:39:37 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/settimana.php:77
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 77
+[01-May-2020 07:42:27 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/settimana.php:77
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 77
+[01-May-2020 07:42:45 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 10:36:04 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 10:53:30 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:78
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 78
+[01-May-2020 10:57:30 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:79
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 79
+[01-May-2020 10:58:59 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on bool in /home/massi369/public_html/gestionale/eventi/settimana.php:79
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/settimana.php on line 79
+[01-May-2020 11:21:43 CST6CDT] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ';' in /home/massi369/public_html/gestionale/eventi/settimana.php on line 82
+[02-May-2020 05:19:39 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/calendar.php:141
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/calendar.php on line 141
+[02-May-2020 05:19:45 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/calendar.php:141
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/calendar.php on line 141
+[06-May-2020 02:50:58 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/massi369/public_html/gestionale/eventi/schedaevento.php:156
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/schedaevento.php on line 156
+[07-May-2020 07:07:38 CST6CDT] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/massi369/public_html/gestionale/eventi/schedaevento.php:302
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/schedaevento.php on line 302
+[07-May-2020 09:17:25 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/calendar.php:283
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/calendar.php on line 283
+[07-May-2020 09:17:33 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/calendar.php:283
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/calendar.php on line 283
+[07-May-2020 09:17:44 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/calendar.php:283
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/calendar.php on line 283
+[07-May-2020 09:18:39 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/massi369/public_html/gestionale/eventi/calendar.php:283
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/calendar.php on line 283
+[07-May-2020 13:46:00 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/eventi/script1.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/script1.php on line 5
+[07-May-2020 13:47:27 CST6CDT] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/massi369/public_html/gestionale/eventi/script1.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/massi369/public_html/gestionale/eventi/script1.php on line 5
+[17-May-2020 14:28:32 CST6CDT] PHP Fatal error:  require(): Failed opening required 'header.html' (include_path='.:/usr/local/php73/pear') in /home/massi369/public_html/gestionale/eventi/index.php on line 28
