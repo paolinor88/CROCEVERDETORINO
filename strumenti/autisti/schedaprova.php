@@ -21,6 +21,8 @@ $stmt = $db->prepare("
         rubrica.Nome, 
         rubrica.IDFiliale,
         rubrica.IDSquadra,
+        rubrica.Cellulare,
+        rubrica.Mail,
         AUTISTI_RICHIESTE.IDProva,
         AUTISTI_RICHIESTE.StatoRichiesta,
         AUTISTI_RICHIESTE.DataProva,
@@ -82,6 +84,14 @@ if ($row['IDProva'] == 1) {
             <td><?= htmlspecialchars($dictionaryFiliale[$row['IDFiliale']]) . " - " . htmlspecialchars($dictionarySquadra[$row['IDSquadra']]) ?></td>
         </tr>
         <tr>
+            <th>Cellulare</th>
+            <td><?= htmlspecialchars($row['Cellulare'])?></td>
+        </tr>
+        <tr>
+            <th>Mail</th>
+            <td><?= htmlspecialchars($row['Mail'])?></td>
+        </tr>
+        <tr>
             <th>Tipo di Prova</th>
             <td><?= $tipoProvaDict[$row['IDProva']] ?? 'Sconosciuto' ?></td>
         </tr>
@@ -119,36 +129,29 @@ if ($row['IDProva'] == 1) {
         </tr>
         </tbody>
     </table>
-    <?php
-    if (
-        $row['StatoRichiesta'] != 3 &&
-        (
-            $_SESSION['Livello'] == 29 ||
-            ($_SESSION['Livello'] == 30 && $row['IDProva'] == 3)
-        )
-    ): ?>
-        <div class="text-center">
-            <a href="<?= htmlspecialchars($link_modifica) ?>" TARGET="_blank" class="btn btn-primary btn-sm">
+    <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+        <?php if (
+            $row['StatoRichiesta'] != 3 &&
+            (
+                $_SESSION['Livello'] == 29 ||
+                ($_SESSION['Livello'] == 30 && $row['IDProva'] == 3)
+            )
+        ): ?>
+            <a href="<?= htmlspecialchars($link_modifica) ?>" target="_blank" class="btn btn-outline-cv">
                 ✏️ Modifica Richiesta
             </a>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-
-    <br>
-    <?php
-    if (
-        $row['StatoRichiesta'] == 2 &&
-        (
-            $_SESSION['Livello'] == 29 ||
-            ($_SESSION['Livello'] == 30 && $row['IDProva'] == 3)
-        )
-    ): ?>
-        <div class="text-center">
-            <a href="<?= htmlspecialchars($link_valutazione) ?>" TARGET="_blank" class="btn btn-primary btn-sm">
+        <?php if (
+            $row['StatoRichiesta'] == 2 &&
+            (
+                $_SESSION['Livello'] == 29 ||
+                ($_SESSION['Livello'] == 30 && $row['IDProva'] == 3)
+            )
+        ): ?>
+            <a href="<?= htmlspecialchars($link_valutazione) ?>" target="_blank" class="btn btn-outline-cv">
                 📝️ Valuta Esame
             </a>
-        </div>
-    <?php endif; ?>
-
+        <?php endif; ?>
+    </div>
 </div>

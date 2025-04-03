@@ -46,81 +46,100 @@ $link_modifica = "modifica_servizio.php?id=" . urlencode($id_richiesta);
 
 ?>
 
-<div class="container">
-    <h4 class="text-center text-success">Dettagli Servizio</h4>
-    <hr>
+<div class="container-fluid px-2">
+    <div class="card card-cv p-4 mb-3">
+        <h4 class="text-center text-success mb-4">Dettagli Servizio</h4>
 
-    <table class="table table-bordered">
-        <tbody>
-        <tr>
-            <th>Stato</th>
-            <td><?= $dictionaryServizio[$row['StatoServizio']] ?></td>
-        </tr>
-        <tr>
-            <th>Conferma</th>
-            <td><?= $dictionaryStatoTelLabel[$row['StatoTel']] ?></td>
-        </tr>
-        <tr>
-            <th>Data</th>
-            <td><?= $data_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Richiedente</th>
-            <td><?= $richidente_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Contatto</th>
-            <td><?= $contatto_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Partenza</th>
-            <td><?= $partenza_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Destinazione</th>
-            <td><?= $destinazione_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Tipo</th>
-            <td><?= $dictionaryTipoServizio[$tipo_servizio] ?></td>
-        </tr>
-        <tr>
-            <th>Mezzo richiesto</th>
-            <td><?= $dictionaryTipoMezzo[$mezzorichiesto_servizio] ?></td>
-        </tr>
-        <tr>
-            <th>Carrozzina CVTO</th>
-            <td><?= $carrozzina_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Sedia a motore</th>
-            <td><?= $sedia_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Informazioni Paziente</th>
-            <td><?= $infopz_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Informazioni Servizio</th>
-            <td><?= $infoser_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Tariffa</th>
-            <td><?= $tariffa_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Equipaggio</th>
-            <td><?= $equipaggio_servizio ?></td>
-        </tr>
-        <tr>
-            <th>Mezzo Assegnato</th>
-            <td><?= $mezzoassegnato_servizio ?></td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="text-center">
-        <a href="<?= htmlspecialchars($link_modifica) ?>" class="btn btn-primary btn-sm">
-            ✏️ Modifica Richiesta
-        </a>
+        <form class="row g-3">
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Stato</label>
+                <div class="form-control" readonly><?= $dictionaryServizio[$row['StatoServizio']] ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Conferma</label>
+                <div class="form-control" readonly><?= $dictionaryStatoTelLabel[$row['StatoTel']] ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Data</label>
+                <div class="form-control" readonly><?= $data_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Richiedente</label>
+                <div class="form-control" readonly><?= $richidente_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Contatto</label>
+                <div class="form-control" readonly><?= $contatto_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Partenza</label>
+                <div class="form-control" readonly><?= $partenza_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-labe fw-semibold text-mutedl">Destinazione</label>
+                <div class="form-control" readonly><?= $destinazione_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Tipo</label>
+                <div class="form-control" readonly><?= $dictionaryTipoServizio[$tipo_servizio] ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Mezzo richiesto</label>
+                <div class="form-control" readonly><?= $dictionaryTipoMezzo[$mezzorichiesto_servizio] ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Mezzo assegnato</label>
+                <div class="form-control" readonly><?= $mezzoassegnato_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Carrozzina CVTO</label>
+                <div class="form-control" readonly><?= $carrozzina_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Sedia a motore</label>
+                <div class="form-control" readonly><?= $sedia_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Informazioni Paziente</label>
+                <div class="form-control" readonly><?= $infopz_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Informazioni Servizio</label>
+                <div class="form-control" readonly><?= $infoser_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Tariffa</label>
+                <div class="form-control" readonly><?= $tariffa_servizio ?></div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label fw-semibold text-muted">Equipaggio</label>
+                <div class="form-control" readonly><?= $equipaggio_servizio ?></div>
+            </div>
+
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="<?= htmlspecialchars($link_modifica) ?>" class="btn btn-outline-cv">
+                ✏️ Modifica Richiesta
+            </a>
+        </div>
     </div>
 </div>
+
+

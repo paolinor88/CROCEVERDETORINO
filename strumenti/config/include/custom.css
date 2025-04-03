@@ -449,3 +449,19 @@ body.modal-open {
         flex: 1 1 100%;
     }
 }
+.modal table {
+    table-layout: auto;
+}
+/* tabella modali*/
+.modal table td,
+.modal table th {
+    white-space: normal !important;
+    word-break: break-word;
+    vertical-align: top;
+}
+.form-control[disabled] {
+    background-color: #f8f9fa;
+    color: #495057;
+    opacity: 1;
+    font-weight: 600;
+}

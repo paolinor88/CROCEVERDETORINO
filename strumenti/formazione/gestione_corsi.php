@@ -31,7 +31,7 @@ $corsi = $result_corsi->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione Corsi</title>
-    <?php require "config/include/header.html"; ?>
+    <?php require "../config/include/header.html"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
 </head>

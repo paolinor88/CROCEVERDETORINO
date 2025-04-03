@@ -54,7 +54,7 @@ if ($id_edizione > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo ($id_edizione > 0) ? "Modifica Edizione" : "Nuova Edizione"; ?></title>
-    <?php require "config/include/header.html"; ?>
+    <?php require "../config/include/header.html"; ?>
     <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
     <style>
 

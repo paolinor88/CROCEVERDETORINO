@@ -84,18 +84,15 @@ if (isset($_SESSION['email_error'])) {
             });
         });
 
-        $(document).ready(function(){
-            $('.noterubrica').on('click', function (e) {
-                e.preventDefault();
-                var id = $(this).attr("id");
-                var livelloUtente = <?= json_encode($_SESSION['Livello']) ?>;
-                //console.log("ID ricevuto:", id, "Lunghezza ID:", id.length);
-                $.get("https://croceverde.org/strumenti/autisti/schedaprova.php", {id:id, livello: livelloUtente}, function (html) {
-                    $('#modalnote').html(html);
-                    $('.bd-note').modal('toggle');
-                }).fail(function () {
-                    Swal.fire("Errore", "Impossibile caricare la scheda" , "error");
-                });
+        $(document).on('click', '.noterubrica', function (e) {
+            e.preventDefault();
+            var id = $(this).attr("id");
+            var livelloUtente = <?= json_encode($_SESSION['Livello']) ?>;
+            $.get("https://croceverde.org/strumenti/autisti/schedaprova.php", {id:id, livello: livelloUtente}, function (html) {
+                $('#modalnote').html(html);
+                $('.bd-note').modal('toggle');
+            }).fail(function () {
+                Swal.fire("Errore", "Impossibile caricare la scheda" , "error");
             });
         });
 

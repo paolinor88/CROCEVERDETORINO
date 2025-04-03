@@ -23,7 +23,8 @@ $emailSquadre = [
     //8 => 'paolo.randone@croceverde.org',
     9 => 'nona.to@croceverde.org',
     10 => 'sabato.to@croceverde.org',
-    11 => 'diurna.cvto@gmail.com',
+    11 => 'responsabile.montagna@croceverde.org',
+    18 => 'diurna.cvto@gmail.com',
 ];
 
 // se IDFiliale != 1

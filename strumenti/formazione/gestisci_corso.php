@@ -39,7 +39,7 @@ if ($id_corso) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $id_corso ? "Modifica Corso" : "Nuovo Corso" ?></title>
 
-    <?php require "config/include/header.html"; ?>
+    <?php require "../config/include/header.html"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
     <style>

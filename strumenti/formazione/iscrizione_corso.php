@@ -29,7 +29,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iscrizione ai Corsi</title>
-    <?php require "config/include/header.html"; ?>
+    <?php require "../config/include/header.html"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
 
@@ -69,7 +69,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
         <img src="../config/images/logo.png" class="img-fluid" style="max-width: 280px;" alt="LOGOCVTOESTESO">
     </div>
 
-    <h3 class="text-center mb-3" style="color: #00A25E;">Formazione a distanza</h3>
+    <h2 class="text-center mb-3" style="color: #00A25E;">Formazione</h2>
     <p class="text-center mb-4 text-muted">Seleziona uno dei corsi disponibili e completa la registrazione per partecipare.</p>
 
     <div class="card card-cv mx-auto" style="max-width: 580px;">

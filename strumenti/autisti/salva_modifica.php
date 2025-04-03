@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST" || empty($_POST['id_richiesta']) || !i
 }
 
 $id_richiesta = intval($_POST['id_richiesta']);
-
 $stato_richiesta = $_POST['stato_richiesta'] ?? null;
 $data_prova = $_POST['data_prova'] ?? null;
 $ora_prova = $_POST['ora_prova'] ?? null;

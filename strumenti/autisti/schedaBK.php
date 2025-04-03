@@ -14,9 +14,8 @@ if (isset($_GET["id"])) {
 
     if ($select && $select->num_rows > 0) {
         while ($ciclo = $select->fetch_array()) {
-            //echo "<h4 align='center'>" . htmlspecialchars($ciclo['Codice']) . " " . htmlspecialchars($ciclo['Cognome']) . " " . htmlspecialchars($ciclo['Nome']) . "</h4>";
-            echo "<h4 class='text-center text-success mb-2'>" . htmlspecialchars($ciclo['Codice']) . " " . htmlspecialchars($ciclo['Cognome']) . " " . htmlspecialchars($ciclo['Nome']) . "</h4>";
-            /*
+            echo "<h4 align='center'>" . htmlspecialchars($ciclo['Codice']) . " " . htmlspecialchars($ciclo['Cognome']) . " " . htmlspecialchars($ciclo['Nome']) . "</h4>";
+
             if ($ciclo['SOSP'] == 72) {
                 $scadenza = DateTime::createFromFormat('d/m/Y', $ciclo['ScadenzaSOSP']);
                 $oggi = new DateTime();
@@ -24,89 +23,72 @@ if (isset($_GET["id"])) {
                     echo "<h3 align='center' style='color:red; font-weight:bold;'><i class='fas fa-exclamation-triangle'></i> GUIDA SOSPESA <i class='fas fa-exclamation-triangle'></i></h3>";
                 }
             }
-            */
-            if ($ciclo['SOSP'] == 72) {
-                $scadenza = DateTime::createFromFormat('d/m/Y', $ciclo['ScadenzaSOSP']);
-                $oggi = new DateTime();
-                if ($scadenza && $scadenza > $oggi) {
-                    echo "<div class='alert alert-danger text-center' role='alert'>
-                <i class='fas fa-exclamation-triangle'></i> <strong>Guida SOSPESA</strong> fino al " . $scadenza->format('d/m/Y') . " <i class='fas fa-exclamation-triangle'></i>
-              </div>";
-                }
-            }
             echo "<hr>";
 
             echo '
-<nav class="mb-3">
-    <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab">Abilitazioni</button>
-        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab">Corsi</button>
-        <button class="nav-link" id="nav-patente-tab" data-bs-toggle="tab" data-bs-target="#nav-patente" type="button" role="tab">Patente</button>';
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Abilitazioni</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Corsi</button>
+                    <button class="nav-link" id="nav-patente-tab" data-bs-toggle="tab" data-bs-target="#nav-patente" type="button" role="tab" aria-controls="nav-patente" aria-selected="false">Patente</button>';
             if ($_SESSION['Livello'] != 30 ) {
-                echo '<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab">Contatto</button>';
+                echo '<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contatto</button>';
             }
-            echo '
-    </div>
-</nav>
 
-<div class="tab-content" id="nav-tabContent">
-<!-- Abilitazioni -->
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-        <div class="card card-cv p-3 mb-3">
-            <form class="row g-3">';
+            echo '
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">';
+
+            echo '<form class="row g-3">';
             mostraDatiAutisti($db, $id, 'AUTISTI_RIENTRI', 'Rientri');
             mostraDatiAutisti($db, $id, 'AUTISTI_NORMALI', 'Normali');
             mostraDatiAutisti($db, $id, 'AUTISTI_URGENZE', 'Urgenze');
             mostraDatiAutisti($db, $id, 'AUTISTI_OVER', 'Over');
-            echo '      </form>
-        </div>
-    </div>
+            echo '</form>';
 
-    <!-- Corsi -->
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-        <div class="card card-cv p-3 mb-3">
-            <form class="row g-3">';
+            echo '
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <form class="row g-3">';
             mostraDataInizioFormazione($db, $id, 39);
             mostraDataInizioFormazione($db, $id, 40);
             mostraDataInizioFormazione($db, $id, 50);
             mostraDataInizioFormazione($db, $id, 62);
-            echo '      </form>
-        </div>
-    </div>
+            echo '
+                </form>
+                </div>';
 
-    <!-- Patente -->
-    <div class="tab-pane fade" id="nav-patente" role="tabpanel" aria-labelledby="nav-patente-tab" tabindex="0">
-        <div class="card card-cv p-3 mb-3">
-            <form class="row g-3">';
+            echo '
+                <div class="tab-pane fade" id="nav-patente" role="tabpanel" aria-labelledby="nav-patente-tab" tabindex="0">
+                <form class="row g-3">';
             mostraDatiPatente($db, $id);
-            echo '      </form>
-        </div>
-    </div>';
+            echo '
+                </form>
+                </div>';
 
             if ($_SESSION['Livello'] != 30) {
                 echo '
-    <!-- Contatto -->
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-        <div class="card card-cv p-3 mb-3">
-            <form class="row g-3">
-                <div class="col-md-12">
-                    <label for="Cellulare" class="form-label">Cellulare</label>
-                    <input type="text" class="form-control" id="Cellulare" value="'.  htmlspecialchars($ciclo["Cellulare"]) .'" disabled>
-                </div>
-                <div class="col-md-12">
-                    <label for="Mail" class="form-label">Mail</label>
-                    <input type="text" class="form-control" id="Mail" value="'.  htmlspecialchars($ciclo["Mail"]) .'" disabled>
-                </div>
-                <div class="col-md-12">
-                    <label for="Nascita" class="form-label">Data di nascita</label>
-                    <input type="text" class="form-control" id="Nascita" value="'.  htmlspecialchars($ciclo["DataNascita"]) .'" disabled>
-                </div>
-            </form>
-        </div>
-    </div>';
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                <br>
+                    <div class="col-md-12">
+                        <label for="Cellulare" class="form-label">Cellulare</label>
+                        <input type="text" class="form-control" id="Cellulare" value="'.  $ciclo["Cellulare"] .'" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="Mail" class="form-label">Mail</label>
+                        <input type="text" class="form-control" id="Mail" value="'.  $ciclo["Mail"] .'" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="Nascita" class="form-label">Data di nascita</label>
+                        <input type="text" class="form-control" id="Nascita" value="'.  $ciclo["DataNascita"] .'" disabled>
+                    </div>
+                </div>';
             }
 
-            echo '</div>';
+            echo '
+                </div>';
         }
     } else {
         echo "Nessun record trovato nella rubrica.";
@@ -128,7 +110,7 @@ function mostraDatiAutisti($db, $codice, $tabella, $tipo) {
                 $dataDisplayed |= checkAndDisplayDate($row, 'SCADENZAURGENZE', 'Scadenza Urgenze');
             } elseif ($tipo === 'Over') {
                 if (!empty($row['SCADENZAOVER']) && strtotime($row['SCADENZAOVER']) !== false) {
-                    $dataDisplayed |= checkAndDisplayDate($row, 'SCADENZAOVER', 'Validità Over 65');
+                    $dataDisplayed |= checkAndDisplayDate($row, 'SCADENZAOVER', 'Scadenza abilitazione Over 65');
                 }
                 if (!empty($row['LIMITEOVER']) && strtotime($row['LIMITEOVER']) !== false) {
                     $limiteOverDate = date('d/m/Y', strtotime($row['LIMITEOVER']));
@@ -192,21 +174,33 @@ function mostraDatiPatente($db, $codice) {
 
     if ($query && $query->num_rows > 0) {
         while ($row = $query->fetch_array()) {
+
             switch ($row['IDQualifica']) {
-                case 67: $categoria = "Patente B"; break;
-                case 68: $categoria = "Patente C"; break;
-                case 70: $categoria = "Patente D"; break;
-                case 71: $categoria = "Patente A"; break;
-                default: $categoria = "Categoria Sconosciuta";
+                case 67:
+                    $categoria = "Patente B";
+                    break;
+                case 68:
+                    $categoria = "Patente C";
+                    break;
+                case 70:
+                    $categoria = "Patente D";
+                    break;
+                case 71:
+                    $categoria = "Patente A";
+                    break;
+                default:
+                    $categoria = "Categoria Sconosciuta";
             }
 
-            echo "<div class='border rounded p-3 mb-3'>";
-            echo "<h6 class='text-primary mb-3'><strong>$categoria</strong></h6>";
+            echo "<div class='card mb-3'>";
+            echo "<div class='card-header'>$categoria</div>";
+            echo "<div class='card-body'>";
             echo "<div class='row'>";
-            echo "<div class='col-md-6 mb-2'><label class='form-label'>Data Rilascio</label><input type='text' class='form-control' value='".htmlspecialchars(date('d/m/Y', strtotime($row['DataInizio'])))."' disabled></div>";
-            echo "<div class='col-md-6 mb-2'><label class='form-label'>Scadenza Patente</label><input type='text' class='form-control' value='".htmlspecialchars(date('d/m/Y', strtotime($row['ScadenzaAutUltimoRetraining'])))."' disabled></div>";
-            echo "<div class='col-md-6 mb-2'><label class='form-label'>Numero Patente</label><input type='text' class='form-control' value='".htmlspecialchars($row['NAut'])."' disabled></div>";
-            echo "<div class='col-md-6 mb-2'><label class='form-label'>Ente Rilascio</label><input type='text' class='form-control' value='".htmlspecialchars($row['RilasciataDa'])."' disabled></div>";
+            echo "<div class='col-md-6'><label for='DataInizio' class='form-label'>Data Rilascio</label><input type='text' class='form-control' id='DataInizio' value='".htmlspecialchars(date('d/m/Y', strtotime($row['DataInizio'])))."' disabled></div>";
+            echo "<div class='col-md-6'><label for='ScadenzaAutUltimoRetraining' class='form-label'>Scadenza Patente</label><input type='text' class='form-control' id='ScadenzaAutUltimoRetraining' value='".htmlspecialchars(date('d/m/Y', strtotime($row['ScadenzaAutUltimoRetraining'])))."' disabled></div>";
+            echo "<div class='col-md-6'><label for='Naut' class='form-label'>Numero Patente</label><input type='text' class='form-control' id='Naut' value='".htmlspecialchars($row['NAut'])."' disabled></div>";
+            echo "<div class='col-md-6'><label for='RilasciataDa' class='form-label'>Ente Rilascio</label><input type='text' class='form-control' id='RilasciataDa' value='".htmlspecialchars($row['RilasciataDa'])."' disabled></div>";
+            echo "</div>";
             echo "</div>";
             echo "</div>";
         }
@@ -214,6 +208,5 @@ function mostraDatiPatente($db, $codice) {
         echo "<p class='text-danger'>Nessuna patente registrata</p>";
     }
 }
-
 
 ?>
