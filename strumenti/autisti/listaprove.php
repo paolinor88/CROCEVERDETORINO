@@ -167,7 +167,7 @@ if (isset($_SESSION['email_error'])) {
                     rubrica
                 LEFT JOIN  
                     AUTISTI_RICHIESTE ON rubrica.IDUtente = AUTISTI_RICHIESTE.IDUtente
-                WHERE  AUTISTI_RICHIESTE.IDRichiesta IS NOT NULL
+                WHERE  AUTISTI_RICHIESTE.IDRichiesta IS NOT NULL order by DataProva
             ";
 
                     $select = $db->query($query);

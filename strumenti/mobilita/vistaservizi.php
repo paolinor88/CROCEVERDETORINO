@@ -114,14 +114,18 @@ global $db;
 <br>
 <div class="container-fluid px-2 mb-4">
     <div class="card card-cv">
-        <div class="mb-3 d-flex align-items-center gap-2">
-            <button id="filterPastRecords" class="btn btn-outline-primary">Nascondi</button>
+        <div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+            <button id="filterPastRecords" class="btn btn-outline-primary">
+                <i class="fas fa-history fa-fw me-1"></i> Nascondi
+            </button>
+
             <a role="button" class="btn btn-secondary" href="form_mobilita.php" target="_blank">
-                <i class="far fa-plus"></i> Nuova
+                <i class="far fa-plus fa-fw me-1"></i> Nuova
             </a>
+
             <div class="dropdown">
                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Stato
+                    <i class="fas fa-filter fa-fw me-1"></i> Stato
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#" data-value="">TUTTI</a></li>
@@ -133,7 +137,14 @@ global $db;
                     <li><a class="dropdown-item" href="#" data-value="Chiuso">Chiuso</a></li>
                 </ul>
             </div>
+
+            <div class="ms-auto">
+                <a role="button" class="btn btn-outline-success d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exportModal">
+                    <i class="fas fa-file-excel fa-fw me-1"></i> Esporta
+                </a>
+            </div>
         </div>
+
         <div class="table-wrapper">
             <div class="table-responsive">
                 <table class="table table-hover table-sm sfondo" id="myTable">
@@ -244,6 +255,44 @@ global $db;
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body" id="modalnote"></div>
+        </div>
+    </div>
+</div>
+
+<!-- MODALE ESPORTAZIONE -->
+<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content card-cv">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exportModalLabel">Esporta in Excel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+            </div>
+            <div class="modal-body">
+                <form id="exportForm" method="GET" action="export_mobilita.php" target="_blank">
+                    <div class="mb-3">
+                        <label for="dataFiltro" class="form-label">Periodo</label>
+                        <select class="form-select" name="dataFiltro" id="dataFiltro">
+                            <option value="futuri" selected>Programmati</option>
+                            <option value="tutti">Tutti</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="statoFiltro" class="form-label">Stato del servizio</label>
+                        <select class="form-select" name="statoFiltro" id="statoFiltro">
+                            <option value="" selected>Tutti</option>
+                            <option value="1">Richiesto</option>
+                            <option value="2">Accettato</option>
+                            <option value="3">Confermato</option>
+                            <option value="4">Rifiutato</option>
+                            <option value="5">Annullato</option>
+                            <option value="6">Chiuso</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer px-0">
+                        <button type="submit" class="btn btn-success">Esporta</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

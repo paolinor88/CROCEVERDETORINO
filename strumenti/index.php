@@ -123,9 +123,11 @@ if (isset($_POST["LoginBTN"])) {
             <a role="button" class="btn btn-outline-secondary" href="http://galileoambulanze.eu" target="_blank">
                 <i class="fas fa-external-link-alt me-2"></i> GALILEO
             </a>
-            <a role="button" class="btn btn-outline-secondary" href="logout.php">
-                <i class="fa-solid fa-sign-out me-2"></i> Logout
-            </a>
+            <?php if (isset($_SESSION['ID'])): ?>
+                <a role="button" class="btn btn-outline-secondary" href="logout.php">
+                    <i class="fa-solid fa-sign-out me-2"></i> Logout
+                </a>
+            <? endif; ?>
         </div>
     </div>
     <?php include "config/include/footer.php"; ?>

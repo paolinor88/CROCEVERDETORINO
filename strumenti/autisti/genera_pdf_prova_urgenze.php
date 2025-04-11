@@ -22,9 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $candidato_id = intval($_POST['id_utente']);
     $candidato = $_POST['candidato'] ?? 'N/A';
     $esaminatore = $_POST['esaminatore'] ?? 'N/A';
-    $datarientri = date("d/m/Y", strtotime($_POST['datarientri']));
 
-    $datanormali = $_POST['datanormali'] ?? 'N/A';
+    $datarientri = !empty($_POST['datarientri']) ? $_POST['datarientri'] : 'N/A';
+    $datanormali = !empty($_POST['datanormali']) ? $_POST['datanormali'] : 'N/A';
+
     $tipoprova_label = $_POST['tipoprovalabel'] ?? 'N/A';
     $attenzione = $_POST['attenzione'] ?? 'N/A';
     $rallenta = $_POST['rallenta'] ?? 'N/A';
@@ -48,6 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ssi", $esitoX, $commenti_esame, $id_richiesta);
     if (!$stmt->execute()) {
         die("Errore durante l'aggiornamento dell'EsitoProva: " . $stmt->error);
+    }
+    $stmt->close();
+
+    $stmt = $db->prepare("UPDATE AUTISTI_RICHIESTE SET DataProva = CURDATE() WHERE IDRichiesta = ? AND DataProva IS NULL");
+    if (!$stmt) {
+        die("Errore nella preparazione della query per aggiornare la DataProva: " . $db->error);
+    }
+    $stmt->bind_param("i", $id_richiesta);
+    if (!$stmt->execute()) {
+        die("Errore durante l'aggiornamento della DataProva: " . $stmt->error);
     }
     $stmt->close();
 

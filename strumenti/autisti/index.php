@@ -13,7 +13,7 @@ session_start();
 include "../config/config.php";
 include "../config/include/destinatari.php";
 
-if (!in_array($_SESSION['Livello'], [1, 20, 23, 24, 25, 26, 27, 28, 29,30])) {
+if (!in_array($_SESSION['Livello'], [1, 20, 23, 24, 25, 26, 28, 29,30])) {
     header("Location: ../index.php");
     echo "<script type='text/javascript'>alert('Accesso negato');</script>";
     exit;

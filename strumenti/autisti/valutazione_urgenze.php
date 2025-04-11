@@ -143,8 +143,9 @@ $candidatostringa = "$candidato_cognome".'_'."$candidato_nome".'_'."$candidato_c
         <input type="hidden" name="esaminatore" value="<?= htmlspecialchars($Esaminatore) ?>">
         <input type="hidden" name="tipoprovalabel" value="<?= htmlspecialchars($tipoprova_label) ?>">
         <input type="hidden" name="candidatostringa" value="<?= htmlspecialchars($candidatostringa) ?>">
-        <input type="hidden" name="datanormali" value="<?= date("d/m/Y", strtotime($candidato_normali)) ?>">
-        <input type="hidden" name="datarientri" value="<?= date("d/m/Y", strtotime($candidato_datarientri)) ?>">
+        <input type="hidden" name="datanormali" value="<?= !empty($candidato_datanormali) ? date("d/m/Y", strtotime($candidato_datanormali)) : '' ?>">
+        <input type="hidden" name="datarientri" value="<?= !empty($candidato_datarientri) ? date("d/m/Y", strtotime($candidato_datarientri)) : '' ?>">
+
         <div class="form-group">
             <p>Candidato: <?= "<b>". htmlspecialchars($candidato) ."</b>"?></p>
             <p>Data prova rientri: <?= !empty($candidato_datarientri) ? date("d/m/Y", strtotime($candidato_datarientri)) : "N.D." ?></p>
