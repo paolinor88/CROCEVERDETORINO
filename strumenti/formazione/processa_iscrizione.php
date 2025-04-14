@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $id_edizione = $_POST['id_edizione'] ?? 0;
 $codice_fiscale = trim($_POST['codice_fiscale'] ?? '');
 $codice_matricola = trim($_POST['codice_matricola'] ?? '');
+$tipo_iscrizione = $_POST['tipo_iscrizione'] ?? 'iscrizione';
 
 if (empty($id_edizione) || empty($codice_fiscale) || empty($codice_matricola)) {
     echo json_encode(["success" => false, "message" => "Tutti i campi sono obbligatori"]);
@@ -39,13 +40,56 @@ $stmt->execute();
 $result = $stmt->get_result();
 $corso_data = $result->fetch_assoc();
 
+$id_corso = $corso_data['id_corso'];
+$data_inizio = $corso_data['data_inizio'];
+
+if ($tipo_iscrizione === 'lista_attesa') {
+
+    $stmt = $db->prepare("
+        SELECT ac.id
+        FROM autorizzazioni_corsi ac
+        JOIN edizioni_corso ec ON ac.id_edizione = ec.id_edizione
+        WHERE ac.discente_id = ? AND ec.id_corso = ?
+    ");
+    $stmt->bind_param("ii", $id_discente, $id_corso);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo json_encode(["success" => false, "message" => "Hai già un'iscrizione attiva per questo corso"]);
+        exit();
+    }
+
+    $stmt = $db->prepare("SELECT id FROM lista_attesa WHERE id_corso = ? AND id_utente = ?");
+    $stmt->bind_param("ii", $id_corso, $id_discente);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo json_encode(["success" => false, "message" => "Sei già in lista d'attesa per questo corso"]);
+        exit();
+    }
+
+    $stmt = $db->prepare("INSERT INTO lista_attesa (id_corso, id_utente) VALUES (?, ?)");
+    if (!$stmt) {
+        echo json_encode(["success" => false, "message" => "Errore nella preparazione della query per la lista d’attesa"]);
+        exit();
+    }
+
+    $stmt->bind_param("ii", $id_corso, $id_discente);
+    if (!$stmt->execute()) {
+        echo json_encode(["success" => false, "message" => "Errore durante l'inserimento nella lista d’attesa"]);
+        exit();
+    }
+
+    echo json_encode(["success" => true, "message" => "Ti sei aggiunto alla lista d’attesa. Sarai contattato in caso di disponibilità."]);
+    exit();
+}
+
 if (!$corso_data) {
     echo json_encode(["success" => false, "message" => "Edizione non trovata"]);
     exit();
 }
-
-$id_corso = $corso_data['id_corso'];
-$data_inizio = $corso_data['data_inizio'];
 
 $stmt = $db->prepare("SELECT id FROM autorizzazioni_corsi WHERE discente_id = ? AND id_edizione = ?");
 $stmt->bind_param("ii", $id_discente, $id_edizione);
@@ -54,6 +98,16 @@ $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     echo json_encode(["success" => false, "message" => "Sei già iscritto a questa edizione"]);
+    exit();
+}
+
+$stmt = $db->prepare("SELECT id FROM lista_attesa WHERE id_corso = ? AND id_utente = ?");
+$stmt->bind_param("ii", $id_corso, $id_discente);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    echo json_encode(["success" => false, "message" => "Non puoi iscriverti: sei già in lista d’attesa per questo corso"]);
     exit();
 }
 

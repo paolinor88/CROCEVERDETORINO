@@ -126,7 +126,13 @@ if ($id_corso) {
                 <input type="hidden" id="id_corso_hidden" value="<?= $id_corso; ?>">
                 <div id="risultati_ricerca" class="mt-2"></div>
             </div>
-
+            <?php if ($id_corso): ?>
+                <div class="mb-3 text-end">
+                    <a href="gestione_lista_attesa.php?id_corso=<?= $id_corso; ?>" class="btn btn-outline-cv" target="_blank">
+                        <i class="fas fa-clock"></i> Gestisci lista d’attesa
+                    </a>
+                </div>
+            <?php endif; ?>
             <!-- LISTA DISCENTI -->
             <h4>Assegnati</h4>
             <?php if (!empty($discenti_assegnati)): ?>
@@ -305,6 +311,6 @@ if ($id_corso) {
     }
 </script>
 
-<?php include "config/include/footer.php"; ?>
+<?php include "../config/include/footer.php"; ?>
 </body>
 </html>

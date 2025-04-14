@@ -89,6 +89,10 @@ if ($stmt->affected_rows > 0) {
     $stmt->bind_param("i", $id_edizione);
     $stmt->execute();
 
+    $stmt = $db->prepare("DELETE FROM lista_attesa WHERE id_corso = ? AND id_utente = ?");
+    $stmt->bind_param("ii", $id_corso, $id_discente);
+    $stmt->execute();
+
     inviaEmailDiscente($email, $rubrica_data['Nome'] ?? $discente['nome'], $rubrica_data['Cognome'] ?? $discente['cognome'], $rubrica_data['CodFiscale'] ?? '', $password, $titolo_corso, $data_inizio);
 
     echo json_encode(["success" => true, "message" => "Discente assegnato con successo"]);

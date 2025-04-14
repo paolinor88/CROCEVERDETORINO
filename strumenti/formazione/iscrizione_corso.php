@@ -90,11 +90,12 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
                                 Posti disponibili: <strong><?= $edizione['posti_liberi']; ?></strong>
                             </p>
 
-                            <button class="btn btn-outline-cv btn-iscriviti <?= ($edizione['posti_liberi'] <= 0) ? 'disabled' : ''; ?>"
+                            <button class="btn btn-outline-cv btn-iscriviti"
                                     data-edizione="<?= $edizione['id_edizione']; ?>"
-                                <?= ($edizione['posti_liberi'] <= 0) ? 'disabled' : ''; ?>>
-                                <?= ($edizione['posti_liberi'] <= 0) ? "Posti esauriti" : "Iscriviti"; ?>
+                                    data-posti-liberi="<?= $edizione['posti_liberi']; ?>">
+                                <?= ($edizione['posti_liberi'] <= 0) ? "Iscriviti alla lista d’attesa" : "Iscriviti"; ?>
                             </button>
+
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -107,6 +108,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
     document.querySelectorAll(".btn-iscriviti:not(.disabled)").forEach(button => {
         button.addEventListener("click", function () {
             let idEdizione = this.getAttribute("data-edizione");
+            let postiLiberi = this.getAttribute("data-posti-liberi");
 
             Swal.fire({
                 title: "Iscrizione al Corso",
@@ -149,23 +151,31 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
             }).then((result) => {
                 if (result.isConfirmed) {
                     const formData = new FormData();
+                    const tipoIscrizione = postiLiberi > 0 ? "iscrizione" : "lista_attesa";
+
                     formData.append("id_edizione", result.value.id_edizione);
                     formData.append("codice_fiscale", result.value.codice_fiscale);
                     formData.append("codice_matricola", result.value.codice_matricola);
+                    formData.append("tipo_iscrizione", tipoIscrizione);
 
-                    fetch("processa_iscrizione.php", {
+                    fetch("processa_iscrizione2.php", {
                         method: "POST",
                         body: formData
                     }).then(response => response.json()).then(data => {
                         if (data.success) {
+                            const messaggio = data.message ?? "Iscrizione completata!";
+                            const isListaAttesa = messaggio.toLowerCase().includes("attesa");
+                            const titolo = isListaAttesa ? "Inserito in lista d’attesa" : "Iscrizione completata!";
+                            const icona = isListaAttesa ? "info" : "success";
+
                             Swal.fire({
-                                title: "Iscrizione completata!",
+                                title: titolo,
                                 html: `
-                                    <img src="../config/images/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 180px;">
-                                    <p class="mb-0">Hai ricevuto un'email con le credenziali di accesso.</p>
-                                    <p class="text-muted small mt-2">Grazie per esserti iscritto!</p>
+                                <img src="../config/images/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 180px;">
+                                <p class="mb-0">${messaggio}</p>
+                                <p class="text-muted small mt-2">Grazie!</p>
                                 `,
-                                icon: "success",
+                                icon: icona,
                                 confirmButtonText: "OK",
                                 customClass: {
                                     confirmButton: 'btn btn-success'
@@ -174,6 +184,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
                             }).then(() => {
                                 window.location.reload();
                             });
+
                         } else {
                             Swal.fire({
                                 title: "Errore!",
@@ -186,6 +197,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
                                 buttonsStyling: false
                             });
                         }
+
                     }).catch(error => {
                         Swal.fire("Errore", "Errore imprevisto durante l'iscrizione.", "error");
                         console.error("Errore:", error);

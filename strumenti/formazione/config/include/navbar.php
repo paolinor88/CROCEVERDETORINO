@@ -26,6 +26,9 @@
                 case 'lezioni.php':
                     $breadcrumbLabel = 'FAD';
                     break;
+                case 'gestione_lista_attesa.php':
+                    $breadcrumbLabel = 'Waiting list';
+                    break;
                 default:
                     $breadcrumbLabel = '';
             }

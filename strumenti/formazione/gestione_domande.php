@@ -178,6 +178,6 @@ $aggiungi_domanda = isset($_GET['aggiungi']);
     }
 </script>
 
-<?php include "config/include/footer.php"; ?>
+<?php include "../config/include/footer.php"; ?>
 </body>
 </html>

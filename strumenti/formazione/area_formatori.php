@@ -52,7 +52,7 @@ if (!isset($_SESSION['Livello']) || $_SESSION['Livello'] != 28 ) {
     </div>
 </div>
 
-<?php include "config/include/footer.php"; ?>
+<?php include "../config/include/footer.php"; ?>
 </body>
 </html>
 

@@ -23,6 +23,14 @@ $query_corsi = "
 $result_corsi = $db->query($query_corsi);
 $corsi = $result_corsi->fetch_all(MYSQLI_ASSOC);
 
+$attesa_query = "SELECT id_corso, COUNT(*) AS in_attesa FROM lista_attesa GROUP BY id_corso";
+$result_attesa = $db->query($attesa_query);
+$lista_attesa_count = [];
+
+while ($row = $result_attesa->fetch_assoc()) {
+    $lista_attesa_count[$row['id_corso']] = $row['in_attesa'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,14 +61,22 @@ $corsi = $result_corsi->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($corsi as $corso): ?>
                     <li class="list-group-item corso-item">
                         <div class="corso-info">
+                            <?php
+                            $titolo = htmlspecialchars($corso['titolo']);
+                            $edizioni_badge = $corso['edizioni_attive'] > 0
+                                ? '<span class="badge bg-primary ms-2">' . $corso['edizioni_attive'] . ' edizioni attive</span>'
+                                : '<span class="badge bg-secondary ms-2">Nessuno attivo</span>';
+                            $attesa = $lista_attesa_count[$corso['id_corso']] ?? 0;
+                            $attesa_badge = $attesa > 0
+                                ? '<span class="badge bg-warning text-dark ms-2">' . $attesa . ' utenti in attesa</span>'
+                                : '';
+                            ?>
                             <strong>
-                                <?= htmlspecialchars($corso['titolo']); ?>
-                                <?php if ($corso['edizioni_attive'] > 0): ?>
-                                    <span class="badge bg-primary ms-2"><?= $corso['edizioni_attive']; ?> attive</span>
-                                <?php else: ?>
-                                    <span class="badge bg-secondary ms-2">Nessuna attiva</span>
-                                <?php endif; ?>
+                                <?= $titolo ?>
+                                <?= $edizioni_badge ?>
+                                <?= $attesa_badge ?>
                             </strong>
+
                             <p><?= nl2br(htmlspecialchars($corso['descrizione'])); ?></p>
                             <p><em><?= nl2br(htmlspecialchars($corso['note'])); ?></em></p>
                         </div>
@@ -163,7 +179,7 @@ $corsi = $result_corsi->fetch_all(MYSQLI_ASSOC);
     }
 </script>
 
-<?php include "config/include/footer.php"; ?>
+<?php include "../config/include/footer.php"; ?>
 </body>
 </html>
 
