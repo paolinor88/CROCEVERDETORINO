@@ -68,6 +68,16 @@ if (!$is_registered) {
 } else {
     $password = $discente['password_hash'];
     $email = $discente['email'];
+
+    $stmt = $db->prepare("SELECT nome, cognome, codice_fiscale FROM discenti WHERE id = ?");
+    $stmt->bind_param("i", $id_discente);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $extra = $result->fetch_assoc();
+
+    $nome = $extra['nome'] ?? '';
+    $cognome = $extra['cognome'] ?? '';
+    $codice_fiscale = $extra['codice_fiscale'] ?? '';
 }
 
 $stmt = $db->prepare("SELECT id FROM autorizzazioni_corsi WHERE discente_id = ? AND id_edizione = ?");
@@ -93,7 +103,7 @@ if ($stmt->affected_rows > 0) {
     $stmt->bind_param("ii", $id_corso, $id_discente);
     $stmt->execute();
 
-    inviaEmailDiscente($email, $rubrica_data['Nome'] ?? $discente['nome'], $rubrica_data['Cognome'] ?? $discente['cognome'], $rubrica_data['CodFiscale'] ?? '', $password, $titolo_corso, $data_inizio);
+    inviaEmailDiscente($email, $nome, $cognome, $codice_fiscale, $password, $id_edizione, $id_corso);
 
     echo json_encode(["success" => true, "message" => "Discente assegnato con successo"]);
 } else {
@@ -101,13 +111,30 @@ if ($stmt->affected_rows > 0) {
     echo json_encode(["success" => false, "error" => "Errore nell'assegnazione al corso"]);
 }
 
-function inviaEmailDiscente($email, $nome, $cognome, $codice_fiscale, $password, $titolo_corso) {
+function inviaEmailDiscente($email, $nome, $cognome, $codice_fiscale, $password, $id_edizione, $id_corso) {
+    global $db;
+
+    $stmt = $db->prepare("
+        SELECT c.titolo, e.data_inizio 
+        FROM edizioni_corso e 
+        JOIN corsi c ON e.id_corso = c.id_corso 
+        WHERE e.id_edizione = ?
+    ");
+    $stmt->bind_param("i", $id_edizione);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $corso = $result->fetch_assoc();
+
+    $titolo_corso = $corso['titolo'] ?? "Corso Sconosciuto";
+    $data_inizio = isset($corso['data_inizio']) ? date("d/m/Y", strtotime($corso['data_inizio'])) : "Data non disponibile";
+    $redirectUrl = "https://croceverde.org/strumenti/formazione/login.php?redirect=" . urlencode("lezioni.php?id_corso=$id_corso");
+
     $to = $email;
-    $subject = "Iscrizione al corso: $titolo_corso";
+    $subject = "Iscrizione $titolo_corso - Edizione $data_inizio";
     $boundary = md5(time());
 
     $headers = "From: Gestionale CVTO <gestioneutenti@croceverde.org>\r\n";
-    $headers .= "Bcc: paolo.randone@croceverde.org\r\n";
+    //$headers .= "Bcc: paolo.randone@croceverde.org\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
 
@@ -115,7 +142,7 @@ function inviaEmailDiscente($email, $nome, $cognome, $codice_fiscale, $password,
     $emailBody .= "Content-Type: text/plain; charset=UTF-8\r\n";
     $emailBody .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
     $emailBody .= "Gentile $nome $cognome,\r\n\r\n";
-    $emailBody .= "Sei stato iscritto al corso: $titolo_corso.\r\n";
+    $emailBody .= "Sei stato iscritto al corso \"$titolo_corso\" del $data_inizio .\r\n";
     $emailBody .= "Accedi al portale formazione al seguente link:\r\n";
     $emailBody .= "https://croceverde.org/strumenti/formazione/corsi.php\r\n\r\n";
     $emailBody .= "Credenziali di accesso:\r\n";
@@ -131,12 +158,12 @@ function inviaEmailDiscente($email, $nome, $cognome, $codice_fiscale, $password,
     $emailBody .= "<div style='max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;'>";
     $emailBody .= "<div style='text-align: center;'>";
     $emailBody .= "<img src='https://croceverde.org/strumenti/formazione/config/images/logo.png' alt='Croce Verde Torino' style='max-width: 150px;'><br>";
-    $emailBody .= "<h2 style='color: #078f40;'>Iscrizione al corso: $titolo_corso</h2>";
+    $emailBody .= "<h2 style='color: #078f40;'>$titolo_corso</h2>";
+    $emailBody .= "<p><strong>Edizione del $data_inizio</strong></p>";
     $emailBody .= "</div>";
     $emailBody .= "<p>Gentile <strong>$nome $cognome</strong>,</p>";
-    $emailBody .= "<p>Sei stato iscritto con successo al corso <strong>$titolo_corso</strong>.</p>";
-    $emailBody .= "<p>Accedi al portale formazione al seguente link:</p>";
-    $emailBody .= "<p style='text-align: center;'><a href='https://croceverde.org/strumenti/formazione/corsi.php' style='background-color: #078f40; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;'>Accedi al Portale</a></p>";
+    $emailBody .= "<p>Sei stato inserito con successo al corso e ora puoi accedere al portale per seguire le lezioni.</p>";
+    $emailBody .= "<p style='text-align: center;'><a href='$redirectUrl' style='background-color: #078f40; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;'>Accedi al corso</a></p>";
     $emailBody .= "<h3>Le tue credenziali di accesso:</h3>";
     $emailBody .= "<table style='width: 100%; border-collapse: collapse;'>";
     $emailBody .= "<tr><td style='border: 1px solid #ddd; padding: 8px;'><strong>Codice Fiscale:</strong></td><td style='border: 1px solid #ddd; padding: 8px;'>$codice_fiscale</td></tr>";

@@ -12,7 +12,7 @@ include "../config/config.php";
 global $db;
 
 $query = "
-    SELECT e.id_edizione, c.titolo, e.data_inizio, e.posti_disponibili, 
+    SELECT e.id_edizione, c.titolo, e.data_inizio, e.orario_inizio, e.posti_disponibili, 
            (e.posti_disponibili - e.posti_occupati) AS posti_liberi
     FROM edizioni_corso e
     JOIN corsi c ON e.id_corso = c.id_corso
@@ -29,6 +29,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iscrizione ai Corsi</title>
+    <base href="/strumenti/formazione/">
     <?php require "../config/include/header.html"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
@@ -85,6 +86,14 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
                                 <i class="far fa-calendar-alt me-1"></i>
                                 Data: <strong><?= date("d/m/Y", strtotime($edizione['data_inizio'])); ?></strong>
                             </p>
+                            <p class="info mb-1">
+                                <i class="far fa-clock"></i>
+                                Orario: <strong>
+                                    <?= date("H:i", strtotime($edizione['orario_inizio'])); ?> -
+                                    <?= date("H:i", strtotime($edizione['orario_inizio'] . ' +4 hours 30 minutes')); ?>
+                                </strong>
+                            </p>
+
                             <p class="info">
                                 <i class="fas fa-user-friends me-1"></i>
                                 Posti disponibili: <strong><?= $edizione['posti_liberi']; ?></strong>
@@ -158,7 +167,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
                     formData.append("codice_matricola", result.value.codice_matricola);
                     formData.append("tipo_iscrizione", tipoIscrizione);
 
-                    fetch("processa_iscrizione2.php", {
+                    fetch("processa_iscrizione.php", {
                         method: "POST",
                         body: formData
                     }).then(response => response.json()).then(data => {

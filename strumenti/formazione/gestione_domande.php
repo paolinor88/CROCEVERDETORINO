@@ -34,7 +34,7 @@ if ($id_corso) {
 }
 
 if ($id_lezione) {
-    $stmt = $db->prepare("SELECT * FROM test_domande WHERE id_lezione = ?");
+    $stmt = $db->prepare("SELECT * FROM test_domande WHERE id_lezione = ? ORDER BY ordine ASC");
     $stmt->bind_param("i", $id_lezione);
     $stmt->execute();
     $result_domande = $stmt->get_result();
@@ -74,6 +74,10 @@ $aggiungi_domanda = isset($_GET['aggiungi']);
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
         }
+        .list-group-item {
+            cursor: move;
+        }
+
     </style>
 </head>
 
@@ -135,20 +139,22 @@ $aggiungi_domanda = isset($_GET['aggiungi']);
         <!-- ELENCO DOMANDE -->
         <?php if (!empty($domande)): ?>
             <h4 class="mt-4">Domande:</h4>
-            <ul class="list-group">
+            <ul class="list-group" id="sortable">
+                <?php $i = 1; ?>
                 <?php foreach ($domande as $domanda): ?>
-                    <li class="list-group-item">
-                        <strong><?= htmlspecialchars($domanda['domanda']); ?></strong>
+                    <li class="list-group-item" data-id="<?= $domanda['id']; ?>">
+                        <strong><?= $i . '. ' . htmlspecialchars($domanda['domanda']); ?></strong>
                         <ul>
-                            <?php for ($i = 1; $i <= 4; $i++): ?>
-                                <li class="<?= ($domanda['risposta_corretta'] == $i) ? 'correct-answer' : ''; ?>">
-                                    <?= htmlspecialchars($domanda["risposta$i"]); ?>
+                            <?php for ($j = 1; $j <= 4; $j++): ?>
+                                <li class="<?= ($domanda['risposta_corretta'] == $j) ? 'correct-answer' : ''; ?>">
+                                    <?= htmlspecialchars($domanda["risposta$j"]); ?>
                                 </li>
                             <?php endfor; ?>
                         </ul>
                         <a href="gestione_domande.php?edit=<?= $domanda['id']; ?>&id_corso=<?= $id_corso; ?>&id_lezione=<?= $id_lezione; ?>" class="btn btn-warning btn-sm">Modifica</a>
                         <button class="btn btn-danger btn-sm" onclick="confermaEliminazione(<?= $domanda['id']; ?>, '<?= $id_corso; ?>', '<?= $id_lezione; ?>')">Elimina</button>
                     </li>
+                    <?php $i++; ?>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
@@ -176,6 +182,45 @@ $aggiungi_domanda = isset($_GET['aggiungi']);
             }
         });
     }
+</script>
+
+<script>
+    $(function () {
+        $("#sortable").sortable({
+            update: function () {
+                const ordine = $("#sortable").sortable("toArray", {attribute: "data-id"});
+                fetch("aggiorna_ordine_domande.php", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({ordine})
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                title: "Ordine aggiornato",
+                                text: "Ricarica la pagina aggiornare la sequenza.",
+                                icon: "success",
+                                showCancelButton: true,
+                                confirmButtonText: "Ricarica ora",
+                                cancelButtonText: "Chiudi"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            Swal.fire("Errore", "Impossibile aggiornare l'ordine.", "error");
+                        }
+                    })
+                    .catch(() => {
+                        Swal.fire("Errore", "Errore durante l'invio dei dati.", "error");
+                    });
+            }
+
+        });
+        $("#sortable").disableSelection();
+    });
 </script>
 
 <?php include "../config/include/footer.php"; ?>

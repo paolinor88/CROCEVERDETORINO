@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesso Area Corsi</title>
-    <?php require "config/include/header.html"; ?>
+    <?php require "../config/include/header.html"; ?>
     <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
     <style>
         body {

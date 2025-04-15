@@ -82,7 +82,7 @@ if ($tipo_iscrizione === 'lista_attesa') {
         exit();
     }
 
-    echo json_encode(["success" => true, "message" => "Ti sei aggiunto alla lista d’attesa. Sarai contattato in caso di disponibilità."]);
+    echo json_encode(["success" => true, "message" => "Ti sei aggiunto alla lista d’attesa. Sarai contattato in caso di disponibilità di posti, anche su edizioni diverse da quella desiderata."]);
     exit();
 }
 
