@@ -71,10 +71,9 @@ if (empty($domande)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Lezione</title>
-    <?php require "config/include/header.html"; ?>
-
+    <?php require "../config/include/header.html"; ?>
+    <link rel="stylesheet" href="../config/include/custom.css?v=<?= time() ?>">
     <style>
-        <?php include "config/include/custom.css"; ?>
         body { background-color: #f8f9fa; }
         .test-container { max-width: 700px; margin: 50px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
         .btn-primary { background-color: #007bff; border: none; width: 100%; }

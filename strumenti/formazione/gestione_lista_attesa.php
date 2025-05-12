@@ -46,6 +46,13 @@ if ($id_corso) {
 <div class="container-fluid px-2 mb-4">
     <div class="card card-cv">
         <h3 class="text mb-4">Gestione Lista d’attesa</h3>
+        <?php if ($id_corso && !empty($lista_attesa)): ?>
+            <div class="mb-3 text-end">
+                <a href="esporta_lista_attesa.php?id_corso=<?= $id_corso ?>" class="btn btn-outline-cv" target="_blank">
+                    <i class="fas fa-file-excel"></i> Esporta Excel
+                </a>
+            </div>
+        <?php endif; ?>
 
         <form method="GET" action="gestione_lista_attesa.php" class="mb-4">
             <label for="id_corso">Seleziona un corso:</label>

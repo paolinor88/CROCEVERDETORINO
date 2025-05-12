@@ -131,7 +131,12 @@ if ($id_corso) {
                     <a href="gestione_lista_attesa.php?id_corso=<?= $id_corso; ?>" class="btn btn-outline-cv" target="_blank">
                         <i class="fas fa-clock"></i> Gestisci lista d’attesa
                     </a>
+                    <a href="esporta_discenti.php?id_corso=<?= $id_corso ?>&id_edizione=<?= $id_edizione ?>" class="btn btn-outline-cv" target="_blank">
+                        <i class="fas fa-file-excel"></i> Esporta Excel
+                    </a>
                 </div>
+
+
             <?php endif; ?>
             <!-- LISTA DISCENTI -->
             <h4>Assegnati</h4>

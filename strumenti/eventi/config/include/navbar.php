@@ -75,7 +75,7 @@
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             <?php else: ?>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modal3" class="btn btn-sm btn-outline-light">Login</a>
+            <!--<a href="#" data-bs-toggle="modal" data-bs-target="#modal3" class="btn btn-sm btn-outline-light">Login</a>-->
             <?php endif; ?>
         </div>
     </div>

@@ -180,10 +180,10 @@ if (isset($_GET['message'])){
             <label for="IDEvento"><B>EVENTO</B></label>
             <select class="form-select form-select-sm" id="IDEvento" name="IDEvento">
                 <option value="0">Scegli...</option>
-                <!--<option value="1">STADIO OLIMPICO</option>-->
-                <option value="2">INALPI ARENA</option>
-                <option value="3">CONCORDIA</option>
-                <option value="4">ALTRO</option>
+                <option value="2">JOVANOTTI 16/04</option>
+                <option value="1">JOVANOTTI 15/04</option>
+                <option value="98">ALTRO</option>
+                <option DISABLED value="99">STADIO OLIMPICO</option>
             </select>
         </div>
         <br>

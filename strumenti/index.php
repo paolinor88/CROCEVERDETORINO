@@ -116,7 +116,9 @@ if (isset($_POST["LoginBTN"])) {
                     <i class="fa-solid fa-car me-2"></i> Autisti
                 </button>
             <?php endif; ?>
-
+            <a role="button" class="btn btn-outline-cv" href="formazione/index.php">
+                <i class="fas fa-chalkboard-teacher"></i> Formazione
+            </a>
             <a role="button" class="btn btn-outline-cv" href="utility/index.php">
                 <i class="fa-solid fa-screwdriver-wrench me-2"></i> Utility
             </a>

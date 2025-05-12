@@ -48,7 +48,34 @@ include "../config/config.php";
                 $(this).val($(this).val().toUpperCase());
             });
             $('#add').on('click', function(){
-                var cognome = $("#cognome").val();
+                var IDEvento = $("#IDEvento").val();
+                var cognome = $("#cognome").val().trim();
+                var patologia = $("#patologia option:selected").val();
+
+                if(IDEvento === ""){
+                    Swal.fire({
+                        text: "Seleziona un evento prima di procedere.",
+                        icon: "warning",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+                if(cognome === ""){
+                    Swal.fire({
+                        text: "Il campo COGNOME è obbligatorio.",
+                        icon: "warning",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+                if(patologia === ""){
+                    Swal.fire({
+                        text: "Il campo PATOLOGIA è obbligatorio.",
+                        icon: "warning",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
                 var nome = $("#nome").val();
                 var nascita = $("#nascita").val();
                 var indirizzo = $("#indirizzo").val();
@@ -56,12 +83,8 @@ include "../config/config.php";
                 var squadra = $("#squadra").val();
                 var inizio = $("#inizio").val();
                 var fine = $("#fine").val();
-                var IDEvento = $("#IDEvento").val();
-
                 var posizione = $("#posizione option:selected").val()+' '+$("#posizionealtro").val();;
-                var patologia = $("#patologia option:selected").val();
                 var gravita = $("#gravita option:selected").val();
-
                 var esito = $("#esito").val();
                 var stato = $("#stato option:selected").val();
                 var note = $("#note").val();
@@ -129,10 +152,7 @@ include "../config/config.php";
                 <div class="col-md-2">
                     <label for="IDEvento"><B>EVENTO</B></label>
                     <select class="form-select form-select-sm" id="IDEvento" name="IDEvento">
-                        <option value="2">INALPI ARENA</option>
-                        <option value="3">CONCORDIA</option>
-                        <option value="1">STADIO OLIMPICO</option>
-                        <option value="4">ALTRO</option>
+                        <?php include "select_eventi.html"; ?>
                     </select>
                 </div>
                 <div class="col-md-2">
@@ -187,11 +207,9 @@ include "../config/config.php";
                             <optgroup label="INALPI ARENA">
                                 <option value="INFERMERIA">INFERMERIA</option>
                                 <option value="MSA">MSA</option>
-                            </optgroup>
-                            <optgroup label="CONCORDIA">
-                                <option value="SIERRA">SIERRA</option>
                                 <option value="MSB">MSB</option>
                             </optgroup>
+
                             <?php
 
                             $posizioniALFA = array("ALFA 1", "ALFA 2", "ALFA 3", "ALFA 4");
@@ -218,7 +236,7 @@ include "../config/config.php";
                     <div class="col-md-2">
                         <label for="patologia">Patologia *</label>
                         <select class="form-select form-select-sm" id="patologia" name="patologia" required>
-                            <option></option>
+                            <option VALUE=""></option>
                             <option value="1">MEDICO</option>
                             <option value="2">TRAUMA</option>
                         </select>

@@ -18,7 +18,7 @@ if (empty($id_edizione) || empty($codice_fiscale) || empty($codice_matricola)) {
     exit();
 }
 
-$stmt = $db->prepare("SELECT IDUtente, Nome, Cognome, Mail FROM rubrica WHERE CodFiscale = ? AND Codice = ?");
+$stmt = $db->prepare("SELECT IDUtente, Nome, Cognome, Mail, IDSquadra FROM rubrica WHERE CodFiscale = ? AND Codice = ?");
 $stmt->bind_param("ss", $codice_fiscale, $codice_matricola);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -33,6 +33,12 @@ $id_discente = $rubrica_data['IDUtente'];
 $email = $rubrica_data['Mail'];
 $nome = $rubrica_data['Nome'];
 $cognome = $rubrica_data['Cognome'];
+
+// forzata lista attesa per dipendenti
+$idsquadra = $rubrica_data['IDSquadra'] ?? null;
+if ($idsquadra == 23) {
+    $tipo_iscrizione = 'lista_attesa';
+}
 
 $stmt = $db->prepare("SELECT id_corso, DATE_FORMAT(data_inizio, '%d/%m/%Y') AS data_inizio FROM edizioni_corso WHERE id_edizione = ?");
 $stmt->bind_param("i", $id_edizione);
@@ -81,8 +87,18 @@ if ($tipo_iscrizione === 'lista_attesa') {
         echo json_encode(["success" => false, "message" => "Errore durante l'inserimento nella lista d’attesa"]);
         exit();
     }
-
-    echo json_encode(["success" => true, "message" => "Ti sei aggiunto alla lista d’attesa. Sarai contattato in caso di disponibilità di posti, anche su edizioni diverse da quella desiderata."]);
+    if ($idsquadra == 23) {
+        echo json_encode([
+            "success" => true,
+            "message" => "La tua richiesta di partecipazione è stata registrata; attendi la conferma dell'iscrizione e le indicazioni sulle modalità di svolgimento."
+        ]);
+    } else {
+        echo json_encode([
+            "success" => true,
+            "message" => "Ti sei aggiunto alla lista d’attesa. Sarai contattato in caso di disponibilità. Sarai contattato in caso di disponibilità di posti, anche su edizioni diverse da quella desiderata"
+        ]);
+    }
+    //echo json_encode(["success" => true, "message" => "Ti sei aggiunto alla lista d’attesa. Sarai contattato in caso di disponibilità di posti, anche su edizioni diverse da quella desiderata."]);
     exit();
 }
 

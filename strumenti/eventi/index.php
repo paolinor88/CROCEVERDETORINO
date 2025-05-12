@@ -50,7 +50,7 @@ if(isset($_POST["submitButton"])){
     <h2 class="text-center mb-4">Gestione eventi</h2>
     <div class="card card-cv mx-auto" style="max-width: 600px;">
         <div class="d-grid gap-3">
-            <button class="btn btn-outline-cv " href="" disabled><i class="fas fa-tasks" ></i> Gestione eventi</button>
+       <!--     <button class="btn btn-outline-cv " href="" disabled><i class="fas fa-tasks" ></i> Gestione eventi</button>-->
             <a role="button" class="btn btn-outline-cv" href="interventi/index.php"><i class="fas fa-user-plus"></i> Interventi</a>
         </div>
     </div>
