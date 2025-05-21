@@ -70,6 +70,7 @@ $edizioni = $result->fetch_all(MYSQLI_ASSOC);
                         </div>
 
                         <div class="edizione-actions">
+                            <a class="btn btn-primary btn-sm" href="statistiche_test.php?id_edizione=<?= $edizione['id_edizione'] ?>">Statistiche</a>
                             <button class="btn btn-warning btn-sm" onclick="gestisciEdizione(<?= $edizione['id_edizione'] ?>, <?= $id_corso ?>)">Modifica</button>
                             <button class="btn btn-danger btn-sm" onclick="confermaEliminazioneEdizione(<?= $edizione['id_edizione'] ?>)">Elimina</button>
                             <button id="btnArchivia_<?= $edizione['id_edizione'] ?>"

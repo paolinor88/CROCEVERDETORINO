@@ -47,61 +47,52 @@ if (isset($_GET['message'])){
     <!--PER EVENTI MULTIPLI-->
     <script>
         $(document).ready(function() {
-            $('#myTable').hide();
-            $('#IDEvento').change(function() {
-                var selectedEvent = $(this).val();
-                $.ajax({
-                    url: 'get_interventi.php',
-                    type: 'GET',
-                    data: { IDEvento: selectedEvent, random: Math.random()  },
-                    success: function(response) {
-                        $('#myTable tbody').html(response);
-                        $('#myTable').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                        //   errori
-                    }
-                });
-            });
-        });
-    </script>
+            const $table = $('#myTable');
+            const $select = $('#IDEvento');
 
-    <!--PER EVENTI SINGOLI USA QUESTO
-    <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: 'get_interventi.php',
-                type: 'GET',
-                data: { IDEvento: 1, random: Math.random() },
-                success: function(response) {
-                    $('#myTable tbody').html(response);
-                    $('#myTable').show();
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                    //   errori
-                }
-            });
-            $('#IDEvento').change(function() {
-                var selectedEvent = $(this).val();
+            const loadEventData = (eventId) => {
+                if (!eventId) return;
                 $.ajax({
                     url: 'get_interventi.php',
                     type: 'GET',
-                    data: { IDEvento: selectedEvent },
+                    data: { IDEvento: eventId, random: Math.random() },
                     success: function(response) {
-                        $('#myTable tbody').html(response);
-                        $('#myTable').show();
+                        $table.find('tbody').html(response);
+                        // Conta i codici gravità nelle righe caricate
+                        let countBianchi = 0, countVerdi = 0, countGialli = 0, countRossi = 0;
+
+                        $table.find('tbody tr').each(function () {
+                            const btn = $(this).find('td:first-child .btn');
+                            if (btn.hasClass('btn-outline-dark')) countBianchi++;
+                            if (btn.hasClass('btn-success')) countVerdi++;
+                            if (btn.hasClass('btn-warning')) countGialli++;
+                            if (btn.hasClass('btn-danger')) countRossi++;
+                        });
+
+                        // Aggiorna badge
+                        $('#countBianchi').text(countBianchi);
+                        $('#countVerdi').text(countVerdi);
+                        $('#countGialli').text(countGialli);
+                        $('#countRossi').text(countRossi);
+
+                        const numeroRighe = $table.find('tbody tr').length;
+                        $('#totaleContatore').text('Totale: ' + numeroRighe);
+                        $table.show();
                     },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                        //   errori
+                    error: function(xhr) {
+                        console.error('Errore AJAX:', xhr.responseText);
                     }
                 });
+            };
+
+            const initialEventId = $select.val();
+            loadEventData(initialEventId);
+
+            $select.on('change', function () {
+                loadEventData($(this).val());
             });
         });
     </script>
-    -->
 
     <script>
         $(document).ready(function() {
@@ -112,6 +103,7 @@ if (isset($_GET['message'])){
                 "order": [[1, "asc"]],
                 "pagingType": "simple",
                 "pageLength": 50,
+                "info": false,
                 "columnDefs": [
                     {
                         "targets": [ 0 ],
@@ -176,17 +168,19 @@ if (isset($_GET['message'])){
 </div>
 <div class="container-fluid px-2 mb-4">
     <div class="card card-cv">
-        <div class="col-md-2">
-            <label for="IDEvento"><B>EVENTO</B></label>
-            <select class="form-select form-select-sm" id="IDEvento" name="IDEvento">
-                <option value="0">Scegli...</option>
-                <option value="2">JOVANOTTI 16/04</option>
-                <option value="1">JOVANOTTI 15/04</option>
-                <option value="98">ALTRO</option>
-                <option DISABLED value="99">STADIO OLIMPICO</option>
-            </select>
+        <div class="card-body">
+            <form class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="IDEvento" class="col-form-label fw-bold">Evento</label>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select form-select-sm" id="IDEvento" name="IDEvento">
+                        <?php include "select_eventi.html"; ?>
+                    </select>
+                </div>
+            </form>
         </div>
-        <br>
+
         <div class="table-wrapper">
             <div class="table-responsive">
                 <table class="table table-hover table-sm sfondo" id="myTable">
@@ -204,6 +198,14 @@ if (isset($_GET['message'])){
                     </tr>
                     </thead>
                 </table>
+                <div class="d-flex flex-wrap gap-2 justify-content-end my-2" id="conteggioGravita">
+                    <span class="badge text-dark border border-secondary bg-white" id="countBianchi">0</span>
+                    <span class="badge bg-success text-white" id="countVerdi">0</span>
+                    <span class="badge bg-warning text-dark" id="countGialli">0</span>
+                    <span class="badge bg-danger" id="countRossi">0</span>
+                    <span class="badge bg-secondary" id="totaleContatore">Totale: 0</span>
+                </div>
+
             </div>
             <hr>
             <?if( $_SESSION['Livello']===1):?>

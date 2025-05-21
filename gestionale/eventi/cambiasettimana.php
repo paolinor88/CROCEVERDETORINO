@@ -151,7 +151,7 @@ if(isset($_POST["invia"])){
                 <select class="form-control form-control-sm" id="selectsett" name="selectsett">
                     <option value="">Scegli...</option>
                     <?php
-                    for ($a = 1; $a <= 39; $a++) {
+                    for ($a = 1; $a <= 43; $a++) {
                         echo "<option value='$a'>$a</option>";
                     }
                     ?>

@@ -29,6 +29,12 @@
                 case 'gestione_lista_attesa.php':
                     $breadcrumbLabel = 'Waiting list';
                     break;
+                case 'statistiche_test.php':
+                    $breadcrumbLabel = 'Statistiche';
+                    break;
+                case 'risultati_individuali.php':
+                    $breadcrumbLabel = 'Valutazioni ';
+                    break;
                 default:
                     $breadcrumbLabel = '';
             }

@@ -99,6 +99,7 @@ if (empty($domande)) {
     <form id="testForm">
         <input type="hidden" name="id_lezione" value="<?php echo $id_lezione; ?>">
         <input type="hidden" name="id_corso" value="<?php echo $id_corso; ?>">
+        <input type="hidden" name="id_edizione" value="<?= $id_edizione ?>">
 
         <?php foreach ($domande as $domanda): ?>
             <div class="mb-3">

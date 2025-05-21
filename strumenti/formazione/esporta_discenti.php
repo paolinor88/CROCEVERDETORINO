@@ -14,10 +14,9 @@ if (!$id_corso) {
     die("Corso non specificato.");
 }
 
-// Query identica a quella della tua pagina
 $query = "
-    SELECT d.nome, d.cognome, d.codice_fiscale, 
-           r.IDFiliale, r.IDSquadra,
+    SELECT d.nome, d.cognome, d.codice_fiscale,
+           r.IDFiliale, r.IDSquadra, r.DataNascita, c.DescComune,
            COUNT(pl.id_lezione) AS lezioni_seguite,
            SUM(COALESCE(pl.completata, 0)) AS lezioni_completate,
            SUM(COALESCE(pl.superato_test, 0)) AS test_superati,
@@ -27,6 +26,7 @@ $query = "
     JOIN autorizzazioni_corsi a ON d.id = a.discente_id
     JOIN edizioni_corso e ON a.id_edizione = e.id_edizione
     LEFT JOIN rubrica r ON d.codice_fiscale = r.CodFiscale
+    LEFT JOIN Comuni c ON r.IDComuneNascita = c.IDComune
     LEFT JOIN progresso_lezioni pl ON d.id = pl.discente_id AND pl.id_corso = ?
     WHERE e.id_corso = ?
 ";
@@ -54,13 +54,18 @@ header('Content-Disposition: attachment; filename=discenti_corso.csv');
 $output = fopen('php://output', 'w');
 
 // Intestazione
-fputcsv($output, ['Nome', 'Cognome', 'Codice Fiscale', 'Sezione', 'Squadra', 'Lezioni Seguite', 'Lezioni Completate', 'Test Superati', 'Totale Lezioni', 'Data Inizio Edizione']);
+fputcsv($output, [
+    'Nome', 'Cognome', 'Codice Fiscale', 'Sezione', 'Squadra', 'Data Nascita', 'Comune di Nascita',
+    'Lezioni Seguite', 'Lezioni Completate', 'Test Superati', 'Totale Lezioni', 'Data Inizio Edizione'
+]);
 
 foreach ($discenti as $row) {
     fputcsv($output, [
-        $row['nome'],
         $row['cognome'],
+        $row['nome'],
         $row['codice_fiscale'],
+        ($row['DataNascita']) ? date('d/m/Y', strtotime($row['DataNascita'])) : '',
+        $row['DescComune'],
         $row['IDFiliale'],
         $row['IDSquadra'],
         $row['lezioni_seguite'],

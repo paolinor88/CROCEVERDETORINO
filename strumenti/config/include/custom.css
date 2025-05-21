@@ -4,28 +4,28 @@ body {
 }
 
 h2 {
-    color: #00A25E;
+    color: #00A25D;
     font-weight: 600;
 }
 h3 {
-    color: #00A25E;
+    color: #00A25D;
     font-weight: 600;
 }
 
 /* pulsanti */
 .btn-outline-cv {
-    --bs-btn-color: #00A25E;
-    --bs-btn-border-color: #00A25E;
+    --bs-btn-color: #00A25D;
+    --bs-btn-border-color: #00A25D;
     --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #00A25E;
-    --bs-btn-hover-border-color: #00A25E;
+    --bs-btn-hover-bg: #00A25D;
+    --bs-btn-hover-border-color: #00A25D;
     --bs-btn-focus-shadow-rgb: 7, 143, 64;
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #056b31;
-    --bs-btn-active-border-color: #00A25E;
-    --bs-btn-disabled-color: #00A25E;
+    --bs-btn-active-border-color: #00A25D;
+    --bs-btn-disabled-color: #00A25D;
     --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #00A25E;
+    --bs-btn-disabled-border-color: #00A25D;
     --bs-gradient: none;
     padding: 0.75rem;
     font-size: 1rem;
@@ -69,7 +69,7 @@ h3 {
 
 /* navbar */
 .navbar-cv {
-    background-color: #00A25E;
+    background-color: #00A25D;
 }
 
 .navbar-cv .navbar-brand,
@@ -90,7 +90,7 @@ h3 {
 
 .navbar-cv .btn-outline-light:hover {
     background-color: white;
-    color: #00A25E;
+    color: #00A25D;
 }
 
 @media (max-width: 576px) {
@@ -245,16 +245,16 @@ table.table th, table.table td {
 }
 
 .navbar-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-    color: #00A25E;
+    color: #00A25D;
 }
 
 .navbar-breadcrumb .breadcrumb-item a {
-    color: #00A25E;
+    color: #00A25D;
     text-decoration: underline;
 }
 
 .navbar-breadcrumb .breadcrumb-item.active {
-    color: #00A25E;
+    color: #00A25D;
     text-decoration: none;
     font-weight: 600;
 }
@@ -285,17 +285,17 @@ table.table th, table.table td {
 }
 
 .navbar-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-    color: #00A25E;
+    color: #00A25D;
 }
 
 .navbar-breadcrumb .breadcrumb-item a {
-    color: #00A25E;
+    color: #00A25D;
     text-decoration: underline;
     white-space: nowrap;
 }
 
 .navbar-breadcrumb .breadcrumb-item.active {
-    color: #00A25E;
+    color: #00A25D;
     text-decoration: none;
     font-weight: 600;
 }
